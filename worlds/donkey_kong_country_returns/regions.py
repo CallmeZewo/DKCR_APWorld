@@ -54,7 +54,7 @@ def create_all_regions(world: DKCRWorld) -> None:
     Mole_Patrol = Region("Mole Patrol", world.player, world.multiworld)
     Crowded_Cavers = Region("Crowded Cavern", world.player, world.multiworld)
     The_Mole_Train = Region("The Mole Train", world.player, world.multiworld)
-    Jegged_Jewels = Region("Jagged Jewels", world.player, world.multiworld)
+    Jagged_Jewels = Region("Jagged Jewels", world.player, world.multiworld)
 
     Forest = Region("Forest", world.player, world.multiworld)
     Forest_Shop = Region("Forest Shop", world.player, world.multiworld)
@@ -104,11 +104,12 @@ def create_all_regions(world: DKCRWorld) -> None:
     Bobbing_Basalt = Region("Bobbing Basalt", world.player, world.multiworld)
     Moving_Melters = Region("Moving Melters", world.player, world.multiworld)
     Red_Red_Rising = Region("Red Red Rising", world.player, world.multiworld)
-    Tikit_Tong_Terror = Region("Tikit Tong Terror", world.player, world.multiworld)
+    Tiki_Tong_Terror = Region("Tikit Tong Terror", world.player, world.multiworld)
     Five_Monkey_Trial = Region("Five Monkey Trial", world.player, world.mutltiworld)
 
     regions = [
         Jungle,
+        Jungle_Shop,
         King_of_Cling,
         Tree_Top_Bop,
         Sunset_Shore,
@@ -118,19 +119,78 @@ def create_all_regions(world: DKCRWorld) -> None:
         Platform_Panic,
         Beach,
         Poppin_Planks,
+        Sloppy_Sands,
+        Peaceful_Pier,
+        Cannon_Cluster,
+        Stormy_Shore,
         Blowhole_Bound,
+        Tidal_Terror,
+        Pichin_Pirates,
+        Tumblin_Temple,
         Ruins,
+        Ruins_Shop,
+        Wonky_Waterway,
+        Button_Bash,
+        Mast_Blast,
         Damp_Dungeon,
+        Itty_Bitty_Biters,
+        Temple_Topple,
+        Ruined_Roost,
+        Shifty_Smashers,
         Cave,
+        Cave_Shop,
+        Rickety_Rails,
+        Grip_n_Trip,
+        Bombs_Away,
         Mole_Patrol,
+        Crowded_Cavers,
+        The_Mole_Train,
+        Jagged_Jewels,
         Forest,
+        Forest_Shop,
+        Vine_Valley,
+        Clingy_Swingy,
+        Flutter_Flyaway,
+        Tippin_Totems,
+        Longshot_Launch,
         Springy_Spores,
+        Wigglevine_Wonders,
+        Muncher_Marathon,
+        Mangoruby_Run,
+        Blast_n_Bounce,
         Cliff,
+        Cliff_Shop,
+        Sticky_Situation,
+        Prehistoric_Path,
+        Weighty_Way,
+        Boulder_Roller,
         Precarious_Plateau,
+        Crumble_Canyon,
+        Trippy_Shippy,
+        Clifftop_Climb,
+        Thuglys_Highrise,
+        Perilous_Passage,
         Factory,
+        Factory_Shop,
+        Slammin_Steel,
         Handy_Hazards,
+        Gear_Getaway,
+        Cog_Jog,
+        Switcheroo,
+        Music_Madness,
+        Lift_Off_Launch,
+        Feather_Fiend,
+        Treacherous_Track,
         Volcano,
-        Smokey_Peak
+        Furious_Fire,
+        Hot_Rocket,
+        Roasting_Rails,
+        Smokey_Peak,
+        Bobbing_Basalt,
+        Moving_Melters,
+        Red_Red_Rising,
+        Tiki_Tong_Terror,
+        Five_Monkey_Trial
     ]
 
     if world.options.golden_temple:
