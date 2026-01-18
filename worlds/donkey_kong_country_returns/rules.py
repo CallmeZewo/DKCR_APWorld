@@ -6,14 +6,14 @@ from BaseClasses import CollectionState
 from worlds.generic.Rules import add_rule, set_rule
 
 if TYPE_CHECKING:
-    from .world import DKCR
+    from .world import DKCRWorld
 
-def set_all_rules(world: DKCR) -> None:
+def set_all_rules(world: DKCRWorld) -> None:
     set_all_entrance_rules(world)
     set_all_location_rules(world)
     set_completion_condition(world)
 
-def set_all_entrance_rules(world: DKCR) -> None:
+def set_all_entrance_rules(world: DKCRWorld) -> None:
     Jungle_to_Beach = world.get_entrance("Jungle to Beach")
     Jungle_to_SunsetShore = world.get_entrance("Jungle to Sunset Shore")
     Beach_to_Ruins = world.get_entrance("Beach to Ruins")
@@ -49,10 +49,10 @@ def set_all_entrance_rules(world: DKCR) -> None:
     set_rule(Factory_to_HandyHazards, lambda state: state.has("Factory Shop Key", world.player))
     set_rule(Factory_to_Volcano, lambda state: state.has("Volcano Shop Key", world.player))
 
-def set_all_location_rules(world: DKCR) -> None:
+def set_all_location_rules(world: DKCRWorld) -> None:
     pass
 
-def set_completion_condition(world: DKCR) -> None:
+def set_completion_condition(world: DKCRWorld) -> None:
     if world.options.golden_temple:
         world.multiworld.completion_condition[world.player] = lambda state: state.has("Defeated Boss 8", world.player)
     else:

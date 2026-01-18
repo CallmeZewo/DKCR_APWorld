@@ -6,7 +6,7 @@ from worlds.AutoWorld import World
 from . import items, locations, regions, rules, web_world
 from . import options as dkcr_options
 
-class DKCR(World):
+class DKCRWorld(World):
     """
     Donkey Kong Country Returns is a Platform Collector
     Defeat the Tikis with your Pal Diddy Kong

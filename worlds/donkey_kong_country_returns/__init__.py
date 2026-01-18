@@ -1,1 +1,1 @@
-from .world import DKCR as DKCR
+from .world import DKCRWorld as DKCR

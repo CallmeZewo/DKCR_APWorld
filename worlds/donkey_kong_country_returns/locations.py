@@ -7,7 +7,7 @@ from BaseClasses import ItemClassification, Location
 from . import items
 
 if TYPE_CHECKING:
-    from .world import DKCR
+    from .world import DKCRWorld
 
 # WLLTT
 # W = World number
@@ -39,26 +39,26 @@ LOCATEN_NAME_TO_ID = {
     "Jungle cleared (Time Trial) [Silver]": 10041,
     "Jungle cleared (Time Trial) [Gold]": 10042,
     "Jungle Shop Key": 10050,
-    "1-1 Jungle Hijinx Puzzle Piece (1)": 10101,
-    "1-1 Jungle Hijinx Puzzle Piece (2)": 10102,
-    "1-1 Jungle Hijinx Puzzle Piece (3)": 10103,
-    "1-1 Jungle Hijinx Puzzle Piece (4)": 10104,
-    "1-1 Jungle Hijinx Puzzle Piece (5)": 10105,
-    "1-1 Jungle Hijinx Puzzle Piece (6)": 10106,
-    "1-1 Jungle Hijinx Puzzle Piece (7)": 10107,
-    "1-1 Jungle Hijinx Puzzle Piece (8)": 10108,
-    "1-1 Jungle Hijinx Puzzle Piece (9)": 10109,
-    "1-1 Jungle Hijinx Puzzle Piece Set": 10110,
-    "1-1 Jungle Hijinx Kong Letter (K)": 10120,
-    "1-1 Jungle Hijinx Kong Letter (O)": 10121,
-    "1-1 Jungle Hijinx Kong Letter (N)": 10122,
-    "1-1 Jungle Hijinx Kong Letter (G)": 10123,
-    "1-1 Jungle Hijinx Kong Letter Set": 10124,
-    "1-1 Jungle Hijinx cleared": 10130,
-    "1-1 Jungle Hijinx cleared (Mirror)": 10131,
-    "1-1 Jungle Hijinx cleared (Time Trial) [Bronze]": 10140,
-    "1-1 Jungle Hijinx cleared (Time Trial) [Silver]": 10141,
-    "1-1 Jungle Hijinx cleared (Time Trial) [Gold]": 10142,
+    "1-1 Jungle Hijinxs Puzzle Piece (1)": 10101,
+    "1-1 Jungle Hijinxs Puzzle Piece (2)": 10102,
+    "1-1 Jungle Hijinxs Puzzle Piece (3)": 10103,
+    "1-1 Jungle Hijinxs Puzzle Piece (4)": 10104,
+    "1-1 Jungle Hijinxs Puzzle Piece (5)": 10105,
+    "1-1 Jungle Hijinxs Puzzle Piece (6)": 10106,
+    "1-1 Jungle Hijinxs Puzzle Piece (7)": 10107,
+    "1-1 Jungle Hijinxs Puzzle Piece (8)": 10108,
+    "1-1 Jungle Hijinxs Puzzle Piece (9)": 10109,
+    "1-1 Jungle Hijinxs Puzzle Piece Set": 10110,
+    "1-1 Jungle Hijinxs Kong Letter (K)": 10120,
+    "1-1 Jungle Hijinxs Kong Letter (O)": 10121,
+    "1-1 Jungle Hijinxs Kong Letter (N)": 10122,
+    "1-1 Jungle Hijinxs Kong Letter (G)": 10123,
+    "1-1 Jungle Hijinxs Kong Letter Set": 10124,
+    "1-1 Jungle Hijinxs cleared": 10130,
+    "1-1 Jungle Hijinxs cleared (Mirror)": 10131,
+    "1-1 Jungle Hijinxs cleared (Time Trial) [Bronze]": 10140,
+    "1-1 Jungle Hijinxs cleared (Time Trial) [Silver]": 10141,
+    "1-1 Jungle Hijinxs cleared (Time Trial) [Gold]": 10142,
     "1-2 King of Cling Puzzle Piece (1)": 10201,
     "1-2 King of Cling Puzzle Piece (2)": 10202,
     "1-2 King of Cling Puzzle Piece (3)": 10203,
@@ -1170,29 +1170,26 @@ class DKCRLocation(Location):
 def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | None]:
         return {location_name: LOCATEN_NAME_TO_ID[location_name] for location_name in location_names}
 
-def create_all_locations(world: DKCR) -> None:
+def create_all_locations(world: DKCRWorld) -> None:
     create_regular_locations(world)
 
-def create_regular_locations(world: DKCR) -> None:
+def create_regular_locations(world: DKCRWorld) -> None:
     Jungle = world.get_region("Jungle")
-    SunsetShore = world.get_region("Sunset Shore")
+    Sunset_Shore = world.get_region("Sunset Shore")
     Beach = world.get_region("Beach")
-    BlowholeBound = world.get_region("Blowhole Bound")
+    Blowhole_Bound = world.get_region("Blowhole Bound")
     Ruins = world.get_region("Ruins")
-    DampDungeon = world.get_region("Damp Dungeon")
+    Damp_Dungeon = world.get_region("Damp Dungeon")
     Cave = world.get_region("Cave")
-    MolePatrol = world.get_region("Mole Patrol")
+    Mole_Patrol = world.get_region("Mole Patrol")
     Forest = world.get_region("Forest")
-    SpringySpores = world.get_region("Springy Spores")
+    Springy_Spores = world.get_region("Springy Spores")
     Cliff = world.get_region("Cliff")
-    PrecariousPlateau = world.get_region("Precarious Plateau")
+    Precarious_Plateau = world.get_region("Precarious Plateau")
     Factory = world.get_region("Factory")
-    HandyHazards = world.get_region("Handy Hazards")
+    Handy_Hazards = world.get_region("Handy Hazards")
     Volcano = world.get_region("Volcano")
-    SmokeyPeak = world.get_region("Smokey Peak")
-
-    if world.options.golden_temple:
-        GoldenTemple = world.get_region("Golden Temple")
+    Smokey_Peak = world.get_region("Smokey Peak")
 
     Jungle_locations = get_location_names_with_ids(
         [
@@ -1204,26 +1201,26 @@ def create_regular_locations(world: DKCR) -> None:
             "Jungle cleared (Time Trial) [Silver]",
             "Jungle cleared (Time Trial) [Gold]",
             "Jungle Shop Key",
-            "1-1 Jungle Hijinx Puzzle Piece (1)",
-            "1-1 Jungle Hijinx Puzzle Piece (2)",
-            "1-1 Jungle Hijinx Puzzle Piece (3)",
-            "1-1 Jungle Hijinx Puzzle Piece (4)",
-            "1-1 Jungle Hijinx Puzzle Piece (5)",
-            "1-1 Jungle Hijinx Puzzle Piece (6)",
-            "1-1 Jungle Hijinx Puzzle Piece (7)",
-            "1-1 Jungle Hijinx Puzzle Piece (8)",
-            "1-1 Jungle Hijinx Puzzle Piece (9)",
-            "1-1 Jungle Hijinx Puzzle Piece Set",
-            "1-1 Jungle Hijinx Kong Letter (K)",
-            "1-1 Jungle Hijinx Kong Letter (O)",
-            "1-1 Jungle Hijinx Kong Letter (N)",
-            "1-1 Jungle Hijinx Kong Letter (G)",
-            "1-1 Jungle Hijinx Kong Letter Set",
-            "1-1 Jungle Hijinx cleared",
-            "1-1 Jungle Hijinx cleared (Mirror)",
-            "1-1 Jungle Hijinx cleared (Time Trial) [Bronze]",
-            "1-1 Jungle Hijinx cleared (Time Trial) [Silver]",
-            "1-1 Jungle Hijinx cleared (Time Trial) [Gold]",
+            "1-1 Jungle Hijinxs Puzzle Piece (1)",
+            "1-1 Jungle Hijinxs Puzzle Piece (2)",
+            "1-1 Jungle Hijinxs Puzzle Piece (3)",
+            "1-1 Jungle Hijinxs Puzzle Piece (4)",
+            "1-1 Jungle Hijinxs Puzzle Piece (5)",
+            "1-1 Jungle Hijinxs Puzzle Piece (6)",
+            "1-1 Jungle Hijinxs Puzzle Piece (7)",
+            "1-1 Jungle Hijinxs Puzzle Piece (8)",
+            "1-1 Jungle Hijinxs Puzzle Piece (9)",
+            "1-1 Jungle Hijinxs Puzzle Piece Set",
+            "1-1 Jungle Hijinxs Kong Letter (K)",
+            "1-1 Jungle Hijinxs Kong Letter (O)",
+            "1-1 Jungle Hijinxs Kong Letter (N)",
+            "1-1 Jungle Hijinxs Kong Letter (G)",
+            "1-1 Jungle Hijinxs Kong Letter Set",
+            "1-1 Jungle Hijinxs cleared",
+            "1-1 Jungle Hijinxs cleared (Mirror)",
+            "1-1 Jungle Hijinxs cleared (Time Trial) [Bronze]",
+            "1-1 Jungle Hijinxs cleared (Time Trial) [Silver]",
+            "1-1 Jungle Hijinxs cleared (Time Trial) [Gold]",
             "1-2 King of Cling Puzzle Piece (1)",
             "1-2 King of Cling Puzzle Piece (2)",
             "1-2 King of Cling Puzzle Piece (3)",
@@ -2399,24 +2396,25 @@ def create_regular_locations(world: DKCR) -> None:
     )
 
     Jungle.add_locations(Jungle_locations, DKCRLocation)
-    SunsetShore.add_locations(Sunset_Shore_locations, DKCRLocation)
+    Sunset_Shore.add_locations(Sunset_Shore_locations, DKCRLocation)
     Beach.add_locations(Beach_locations, DKCRLocation)
-    BlowholeBound.add_locations(Blowhole_Bound_locations, DKCRLocation)
+    Blowhole_Bound.add_locations(Blowhole_Bound_locations, DKCRLocation)
     Ruins.add_locations(Ruins_locations, DKCRLocation)
-    DampDungeon.add_locations(Damp_Dungeon_locations, DKCRLocation)
+    Damp_Dungeon.add_locations(Damp_Dungeon_locations, DKCRLocation)
     Cave.add_locations(Cave_locations, DKCRLocation)
-    MolePatrol.add_locations(Mole_Patrol_locations, DKCRLocation)
+    Mole_Patrol.add_locations(Mole_Patrol_locations, DKCRLocation)
     Forest.add_locations(Forest_locations, DKCRLocation)
-    SpringySpores.add_locations(Springy_Spores_locations, DKCRLocation)
+    Springy_Spores.add_locations(Springy_Spores_locations, DKCRLocation)
     Cliff.add_locations(Cliff_locations, DKCRLocation)
-    PrecariousPlateau.add_locations(Precarious_Plateau_locations, DKCRLocation)
+    Precarious_Plateau.add_locations(Precarious_Plateau_locations, DKCRLocation)
     Factory.add_locations(Factory_locations, DKCRLocation)
-    HandyHazards.add_locations(Handy_Hazards_locations, DKCRLocation)
+    Handy_Hazards.add_locations(Handy_Hazards_locations, DKCRLocation)
     Volcano.add_locations(Volcano_locations, DKCRLocation)
-    SmokeyPeak.add_locations(Smokey_Peak_locations, DKCRLocation)
+    Smokey_Peak.add_locations(Smokey_Peak_locations, DKCRLocation)
 
     if world.options.golden_temple:
-        GoldenTemple_locations = get_location_names_with_ids(
+        Golden_Temple = world.get_region("Golden Temple")
+        Golden_Temple_locations = get_location_names_with_ids(
             [
                 "9-1 Golden Temple Puzzle Piece (1)",
                 "9-1 Golden Temple Puzzle Piece (2)",
@@ -2433,9 +2431,9 @@ def create_regular_locations(world: DKCR) -> None:
 
             ]
         )
-        GoldenTemple.add_locations(GoldenTemple_locations, DKCRLocation)
+        Golden_Temple.add_locations(Golden_Temple_locations, DKCRLocation)
 
-def create_events(world: DKCR) -> None:
+def create_events(world: DKCRWorld) -> None:
     Jungle = world.get_region("Jungle")
     Beach = world.get_region("Beach")
     Ruins = world.get_region("Ruins")
@@ -2466,7 +2464,7 @@ world_names = {
 
 worlds = {
     1: [
-        ("1", "Jungle Hijinx", 9, True),
+        ("1", "Jungle Hijinxs", 9, True),
         ("2", "King of Cling", 7, True),
         ("3", "Tree Top Bop", 5, True),
         ("4", "Sunset Shore", 5, True),

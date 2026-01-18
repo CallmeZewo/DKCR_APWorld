@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from BaseClasses import Item, ItemClassification
 
 if TYPE_CHECKING:
-    from .world import DKCR
+    from .world import DKCRWorld
 
 ITEM_NAME_TO_ID = {
     "Puzzle Piece": 1,
@@ -54,15 +54,15 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
 class DKCRItem(Item):
     game = "Donkey Kong Country Returns"
 
-def get_random_filler_item_name(world: DKCR) -> str:
+def get_random_filler_item_name(world: DKCRWorld) -> str:
     return "Balloon"
 
-def create_item_with_correct_classification(world: DKCR, name: str) -> DKCRItem:
+def create_item_with_correct_classification(world: DKCRWorld, name: str) -> DKCRItem:
     classification = DEFAULT_ITEM_CLASSIFICATIONS[name]
 
     return DKCRItem(name, classification, ITEM_NAME_TO_ID[name], world.player)
 
-def create_all_items(world: DKCR) -> None:
+def create_all_items(world: DKCRWorld) -> None:
     itempool: list[Item] = [
         world.create_item("Puzzle Piece"),
         world.create_item("Kong Letter"),
