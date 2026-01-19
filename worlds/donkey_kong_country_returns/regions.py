@@ -602,6 +602,10 @@ def connect_regions(world: DKCRWorld) -> None:
     Factory.exits.append(Factory_to_Treacherous_Track)
     Factory_to_Treacherous_Track.connect(Treacherous_Track)
 
+    Factory_to_Factory_Shop = Entrance(world.player, "Factory to Factory Shop", parent=Factory)
+    Factory.exits.append(Factory_to_Factory_Shop)
+    Factory_to_Factory_Shop.connect(Factory_Shop)
+
     Feather_Fiend_to_Volcano = Entrance(world.player, "Feather Fiend to Volcano", parent=Feather_Fiend)
     Feather_Fiend.exits.append(Feather_Fiend_to_Volcano)
     Feather_Fiend_to_Volcano.connect(Volcano)
@@ -641,6 +645,10 @@ def connect_regions(world: DKCRWorld) -> None:
     Volcano_to_Five_Monkey_Trial = Entrance(world.player, "Volcano to Five Monkey Trial", parent=Volcano)
     Volcano.exits.append(Volcano_to_Five_Monkey_Trial)
     Volcano_to_Five_Monkey_Trial.connect(Five_Monkey_Trial)
+
+    Volcano_to_Volcano_Shop = Entrance(world.player, "Volcano to Volcano Shop", parent=Volcano)
+    Volcano.exits.append(Volcano_to_Volcano_Shop)
+    Volcano_to_Volcano_Shop.connect(Volcano_Shop)
 
     if world.options.golden_temple:
         Golden_Temple = world.get_region("Golden Temple")
