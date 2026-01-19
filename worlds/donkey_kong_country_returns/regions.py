@@ -269,7 +269,7 @@ def connect_regions(world: DKCRWorld) -> None:
     Blast_n_Bounce = world.get_region("Blast 'n' Bounce")
 
     Cliff = world.get_region("Cliff")
-    Cliff_shop = world.get_region("Cliff Shop")
+    Cliff_Shop = world.get_region("Cliff Shop")
     Sticky_Situation = world.get_region("Sticky Situation")
     Prehistoric_Path = world.get_region("Prehistoric Path")
     Weighty_Way = world.get_region("Weighty Way")
@@ -556,7 +556,7 @@ def connect_regions(world: DKCRWorld) -> None:
 
     Cliff_to_Cliff_Shop = Entrance(world.player, "Cliff to Cliff Shop", parent=Cliff)
     Cliff.exits.append(Cliff_to_Cliff_Shop)
-    Cliff_to_Cliff_Shop.connect(Cliff_shop)
+    Cliff_to_Cliff_Shop.connect(Cliff_Shop)
 
     Thuglys_Highrise_to_Factory = Entrance(world.player, "Thugly's Highrise to Factory", parent=Thuglys_Highrise)
     Thuglys_Highrise.exits.append(Thuglys_Highrise_to_Factory)
