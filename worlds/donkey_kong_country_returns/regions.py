@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from BaseClasses import Entrance, Region
 
+from .strings import Region as R, RegionConnection as RC
+
 if TYPE_CHECKING:
     from .world import DKCRWorld
 
@@ -12,100 +14,108 @@ def create_and_connect_regions(world: DKCRWorld) -> None:
     connect_regions(world)
 
 def create_all_regions(world: DKCRWorld) -> None:
-    Jungle = Region("Jungle", world.player, world.multiworld)
-    Jungle_Shop = Region("Jungle Shop", world.player, world.multiworld)
-    Jungle_Hijinxs = Region("Jungle Hijinxs", world.player, world.mutliworld)
-    King_of_Cling = Region("King of Cling", world.player, world.multiworld)
-    Tree_Top_Bop = Region("Tree Top Bot", world.player, world.multiworld)
-    Sunset_Shore = Region("Sunset Shore", world.player, world.multiworld)
-    Canopy_Cannons = Region("Canopy Cannons", world.player, world.multiworld)
-    Crazy_Cart = Region("Crazy Cart", world.player, world.mutltiworld)
-    Muglys_Mound = Region("Mugly's Mound", world.player, world.multiworld)
-    Platform_Panic = Region("Platform Panic", world.player, world.multiworld)
+    # Jungle
+    Jungle = create_all_regions_helper(R.JUNGLE, world)
+    Jungle_Shop = create_all_regions_helper(R.JUNGLE_SHOP, world)
+    Jungle_Hijinxs = create_all_regions_helper(R.JUNGLE_HIJINXS, world)
+    King_of_Cling = create_all_regions_helper(R.KING_OF_CLING, world)
+    Tree_Top_Bop = create_all_regions_helper(R.TREE_TOP_BOP, world)
+    Sunset_Shore = create_all_regions_helper(R.SUNSET_SHORE, world)
+    Canopy_Cannons = create_all_regions_helper(R.CANOPY_CANNONS, world)
+    Crazy_Cart = create_all_regions_helper(R.CRAZY_CART, world)
+    Muglys_Mound = create_all_regions_helper(R.MUGLYS_MOUND, world)
+    Platform_Panic = create_all_regions_helper(R.PLATFORM_PANIC, world)
 
-    Beach = Region("Beach", world.player, world.multiworld)
-    Beach_Shop = Region("Beach Shop", world.player, world.multiworld)
-    Poppin_Planks = Region("Poppin' Planks", world.player, world.multiworld)
-    Sloppy_Sands = Region("Sloppy Sands", world.player, world.multiworld)
-    Peaceful_Pier = Region("Peaceful Pier",  world.player, world.multiworld)
-    Cannon_Cluster = Region("Cannon Cluster", world.player, world.multiworld)
-    Stormy_Shore = Region("Stormy Shore", world.player, world.multiworld)
-    Blowhole_Bound = Region("Blowhole Bound", world.player, world.multiworld)
-    Tidal_Terror = Region("Tidal Terror", world.player, world.multiworld)
-    Pichin_Pirates = Region("Pinchin' Pirates", world.player, world.multiworld)
-    Tumblin_Temple = Region("Tumblin' Temple", world.player, world.multiworld)
+    # Beach
+    Beach = create_all_regions_helper(R.BEACH, world)
+    Beach_Shop = create_all_regions_helper(R.BEACH_SHOP, world)
+    Poppin_Planks = create_all_regions_helper(R.POPPIN_PLANKS, world)
+    Sloppy_Sands = create_all_regions_helper(R.SLOPPY_SANDS, world)
+    Peaceful_Pier = create_all_regions_helper(R.PEACEFUL_PIER, world)
+    Cannon_Cluster = create_all_regions_helper(R.CANNON_CLUSTER, world)
+    Stormy_Shore = create_all_regions_helper(R.STORMY_SHORE, world)
+    Blowhole_Bound = create_all_regions_helper(R.BLOWHOLE_BOUND, world)
+    Tidal_Terror = create_all_regions_helper(R.TIDAL_TERROR, world)
+    Pinchin_Pirates = create_all_regions_helper(R.PINCHIN_PIRATES, world)
+    Tumblin_Temple = create_all_regions_helper(R.TUMBLIN_TEMPLE, world)
 
-    Ruins = Region("Ruins", world.player, world.multiworld)
-    Ruins_Shop = Region("Runs Shop", world.player, world.multiworld)
-    Wonky_Waterway = Region("Wonky Waterway", world.player, world.multiworld)
-    Button_Bash = Region("Button Bash", world.player, world.multiworld)
-    Mast_Blast = Region("Mast Blast", world.player, world.multiworld)
-    Damp_Dungeon = Region("Damp Dungeon", world.player, world.multiworld)
-    Itty_Bitty_Biters = Region("Itty Bitty Biters", world.player, world.multiworld)
-    Temple_Topple = Region("Temple Topple", world.player, world.multiworld)
-    Ruined_Roost = Region("Ruined Roost", world.player, world.multiworld)
-    Shifty_Smashers = Region("Shifty Smashers", world.player, world.multiworld)
+    # Ruins
+    Ruins = create_all_regions_helper(R.RUINS, world)
+    Ruins_Shop = create_all_regions_helper(R.RUINS_SHOP, world)
+    Wonky_Waterway = create_all_regions_helper(R.WONKY_WATERWAY, world)
+    Button_Bash = create_all_regions_helper(R.BUTTON_BASH, world)
+    Mast_Blast = create_all_regions_helper(R.MAST_BLAST, world)
+    Damp_Dungeon = create_all_regions_helper(R.DAMP_DUNGEON, world)
+    Itty_Bitty_Biters = create_all_regions_helper(R.ITTY_BITTY_BITERS, world)
+    Temple_Topple = create_all_regions_helper(R.TEMPLE_TOPPLE, world)
+    Ruined_Roost = create_all_regions_helper(R.RUINED_ROOST, world)
+    Shifty_Smashers = create_all_regions_helper(R.SHIFTY_SMASHERS, world)
 
-    Cave = Region("Cave", world.player, world.multiworld)
-    Cave_Shop = Region("Cave Shop", world.player, world.multiworld)
-    Rickety_Rails = Region("Rickety Rails", world.player, world.multiworld)
-    Grip_n_Trip = Region("Grip 'n' Trip", world.player, world.multiworld)
-    Bombs_Away = Region("Bombs Away", world.player, world.multiworld)
-    Mole_Patrol = Region("Mole Patrol", world.player, world.multiworld)
-    Crowded_Cavers = Region("Crowded Cavern", world.player, world.multiworld)
-    The_Mole_Train = Region("The Mole Train", world.player, world.multiworld)
-    Jagged_Jewels = Region("Jagged Jewels", world.player, world.multiworld)
+    # Cave
+    Cave = create_all_regions_helper(R.CAVE, world)
+    Cave_Shop = create_all_regions_helper(R.CAVE_SHOP, world)
+    Rickety_Rails = create_all_regions_helper(R.RICKETY_RAILS, world)
+    Grip_n_Trip = create_all_regions_helper(R.GRIP_N_TRIP, world)
+    Bombs_Away = create_all_regions_helper(R.BOMBS_AWAY, world)
+    Mole_Patrol = create_all_regions_helper(R.MOLE_PATROL, world)
+    Crowded_Cavern = create_all_regions_helper(R.CROWDED_CAVERN, world)
+    The_Mole_Train = create_all_regions_helper(R.THE_MOLE_TRAIN, world)
+    Jagged_Jewels = create_all_regions_helper(R.JAGGED_JEWELS, world)
 
-    Forest = Region("Forest", world.player, world.multiworld)
-    Forest_Shop = Region("Forest Shop", world.player, world.multiworld)
-    Vine_Valley = Region("Vine Valley", world.player, world.multiworld)
-    Clingy_Swingy = Region("Clingy Swingy", world.player, world.multiworld)
-    Flutter_Flyaway = Region("Flutter Flyaway", world.player, world.multiworld)
-    Tippin_Totems = Region("Tippin' Totems", world.player, world.multiworld)
-    Longshot_Launch = Region("Longshot Launch", world.player, world.multiworld)
-    Springy_Spores = Region("Springy Spores", world.player, world.multiworld)
-    Wigglevine_Wonders = Region("Wigglevine Wonders", world.player, world.multiworld)
-    Muncher_Marathon = Region("Muncher Marathon", world.player, world.multiworld)
-    Mangoruby_Run = Region("Mangoruby Run", world.player, world.multiworld)
-    Blast_n_Bounce = Region("Blast 'n' Bounce", world.player, world.multiworld)
+    # Forest
+    Forest = create_all_regions_helper(R.FOREST, world)
+    Forest_Shop = create_all_regions_helper(R.FOREST_SHOP, world)
+    Vine_Valley = create_all_regions_helper(R.VINE_VALLEY, world)
+    Clingy_Swingy = create_all_regions_helper(R.CLINGY_SWINGY, world)
+    Flutter_Flyaway = create_all_regions_helper(R.FLUTTER_FLYAWAY, world)
+    Tippin_Totems = create_all_regions_helper(R.TIPPIN_TOTEMS, world)
+    Longshot_Launch = create_all_regions_helper(R.LONGSHOT_LAUNCH, world)
+    Springy_Spores = create_all_regions_helper(R.SPRINGY_SPORES, world)
+    Wigglevine_Wonders = create_all_regions_helper(R.WIGGLEVINE_WONDERS, world)
+    Muncher_Marathon = create_all_regions_helper(R.MUNCHER_MARATHON, world)
+    Mangoruby_Run = create_all_regions_helper(R.MANGORUBY_RUN, world)
+    Blast_n_Bounce = create_all_regions_helper(R.BLAST_N_BOUNCE, world)
 
-    Cliff = Region("Cliff", world.player, world.multiworld)
-    Cliff_Shop = Region("Cliff Shop", world.player, world.multiworld)
-    Sticky_Situation = Region("Sticky Situation", world.player, world.multiworld)
-    Prehistoric_Path = Region("Prehistoric Path", world.player, world.multiworld)
-    Weighty_Way = Region("Weighty Way", world.player, world.multiworld)
-    Boulder_Roller = Region("Boulder Roller", world.player, world.multiworld)
-    Precarious_Plateau = Region("Precarious Plateau", world.player, world.multiworld)
-    Crumble_Canyon = Region("Crumble Canyon", world.player, world.multiworld)
-    Tippy_Shippy = Region("Trippy Shippy", world.player, world.multiworld)
-    Clifftop_Climb = Region("Clifftop Climb", world.player, world.multiworld)
-    Thuglys_Highrise = Region("Thugly's Highrise", world.player, world.multiworld)
-    Perilous_Passage = Region("Perilous Passage", world.player, world.multiworld)
+    # Cliff
+    Cliff = create_all_regions_helper(R.CLIFF, world)
+    Cliff_Shop = create_all_regions_helper(R.CLIFF_SHOP, world)
+    Sticky_Situation = create_all_regions_helper(R.STICKY_SITUATION, world)
+    Prehistoric_Path = create_all_regions_helper(R.PREHISTORIC_PATH, world)
+    Weighty_Way = create_all_regions_helper(R.WEIGHTY_WAY, world)
+    Boulder_Roller = create_all_regions_helper(R.BOULDER_ROLLER, world)
+    Precarious_Plateau = create_all_regions_helper(R.PRECARIOUS_PLATEAU, world)
+    Crumble_Canyon = create_all_regions_helper(R.CRUMBLE_CANYON, world)
+    Tippy_Shippy = create_all_regions_helper(R.TIPPY_SHIPPY, world)
+    Clifftop_Climb = create_all_regions_helper(R.CLIFFTOP_CLIMB, world)
+    Thuglys_Highrise = create_all_regions_helper(R.THUGLYS_HIGHRISE, world)
+    Perilous_Passage = create_all_regions_helper(R.PERILOUS_PASSAGE, world)
 
-    Factory = Region("Factory", world.player, world.multiworld)
-    Factory_Shop = Region("Factory Shop", world.player, world.multiworld)
-    Foggy_Fumes = Region("Foggy Fumes", world.player, world.multiworld)
-    Slammin_Steel = Region("Slammin' Steel", world.player, world.multiworld)
-    Handy_Hazards = Region("Handy Hazards", world.player, world.multiworld)
-    Gear_Getaway = Region("Gear Getaway", world.player, world.multiworld)
-    Cog_Jog = Region("Cog Jog", world.player, world.multiworld)
-    Switcheroo = Region("Switcheroo", world.player, world.multiworld)
-    Music_Madness = Region("Music Madness", world.player, world.multiworld)
-    Lift_Off_Launch = Region("Lift-Off_Launch", world.player, world.multiworld)
-    Feather_Fiend = Region("Feather Fiend", world.player, world.multiworld)
-    Treacherous_Track = Region("Treacherous_Track", world.player, world.multiworld)
+    # Factory
+    Factory = create_all_regions_helper(R.FACTORY, world)
+    Factory_Shop = create_all_regions_helper(R.FACTORY_SHOP, world)
+    Foggy_Fumes = create_all_regions_helper(R.FOGGY_FUMES, world)
+    Slammin_Steel = create_all_regions_helper(R.SLAMMIN_STEEL, world)
+    Handy_Hazards = create_all_regions_helper(R.HANDY_HAZARDS, world)
+    Gear_Getaway = create_all_regions_helper(R.GEAR_GETAWAY, world)
+    Cog_Jog = create_all_regions_helper(R.COG_JOG, world)
+    Switcheroo = create_all_regions_helper(R.SWITCHEROO, world)
+    Music_Madness = create_all_regions_helper(R.MUSIC_MADNESS, world)
+    Lift_Off_Launch = create_all_regions_helper(R.LIFT_OFF_LAUNCH, world)
+    Feather_Fiend = create_all_regions_helper(R.FEATHER_FIEND, world)
+    Treacherous_Track = create_all_regions_helper(R.TREACHEROUS_TRACK, world)
 
-    Volcano = Region("Volcano", world.player, world.multiworld)
-    Volcano_Shop = Region("Volcano Shop", world.player, world.multiworld)
-    Furious_Fire = Region("Furious Fire", world.player, world.multiworld)
-    Hot_Rocket = Region("Hot Rocket", world.player, world.multiworld)
-    Roasting_Rails = Region("Roasting Rails", world.player, world.multiworld)
-    Smokey_Peak = Region("Smokey Peak", world.player, world.multiworld)
-    Bobbing_Basalt = Region("Bobbing Basalt", world.player, world.multiworld)
-    Moving_Melters = Region("Moving Melters", world.player, world.multiworld)
-    Red_Red_Rising = Region("Red Red Rising", world.player, world.multiworld)
-    Tiki_Tong_Terror = Region("Tikit Tong Terror", world.player, world.multiworld)
-    Five_Monkey_Trial = Region("Five Monkey Trial", world.player, world.mutltiworld)
+    # Volcano
+    Volcano = create_all_regions_helper(R.VOLCANO, world)
+    Volcano_Shop = create_all_regions_helper(R.VOLCANO_SHOP, world)
+    Furious_Fire = create_all_regions_helper(R.FURIOUS_FIRE, world)
+    Hot_Rocket = create_all_regions_helper(R.HOT_ROCKET, world)
+    Roasting_Rails = create_all_regions_helper(R.ROASTING_RAILS, world)
+    Smokey_Peak = create_all_regions_helper(R.SMOKEY_PEAK, world)
+    Bobbing_Basalt = create_all_regions_helper(R.BOBBING_BASALT, world)
+    Moving_Melters = create_all_regions_helper(R.MOVING_MELTERS, world)
+    Red_Red_Rising = create_all_regions_helper(R.RED_RED_RISING, world)
+    Tiki_Tong_Terror = create_all_regions_helper(R.TIKI_TONG_TERROR, world)
+    Five_Monkey_Trial = create_all_regions_helper(R.FIVE_MONKEY_TRIAL, world)
 
     regions = [
         Jungle,
@@ -128,7 +138,7 @@ def create_all_regions(world: DKCRWorld) -> None:
         Stormy_Shore,
         Blowhole_Bound,
         Tidal_Terror,
-        Pichin_Pirates,
+        Pinchin_Pirates,
         Tumblin_Temple,
 
         Ruins,
@@ -148,7 +158,7 @@ def create_all_regions(world: DKCRWorld) -> None:
         Grip_n_Trip,
         Bombs_Away,
         Mole_Patrol,
-        Crowded_Cavers,
+        Crowded_Cavern,
         The_Mole_Train,
         Jagged_Jewels,
 
@@ -205,461 +215,234 @@ def create_all_regions(world: DKCRWorld) -> None:
     ]
 
     if world.options.golden_temple:
-        Golden_Temple = Region("Golden Temple", world.player, world.multiworld)
+        Golden_Temple = create_all_regions_helper(R.GOLDEN_TEMPLE, world)
         regions.append(Golden_Temple)
 
     world.multiworld.regions += regions
 
+def create_all_regions_helper(name: str, world: DKCRWorld) -> Region:
+    return Region(name, world.player, world.multiworld)
+
 def connect_regions(world: DKCRWorld) -> None:
-    Jungle = world.get_region("Jungle")
-    Jungle_Shop = world.get_region("Jungle Shop")
-    Jungle_Hijinxs = world.get_region("Jungle Hijinxs")
-    King_of_Cling = world.get_region("King of CLing")
-    Tree_Top_Bop = world.get_region("Tree Top Bop")
-    Sunset_Shore = world.get_region("Sunset Shore")
-    Canopy_Cannons = world.get_region("Canopy Cannons")
-    Crazy_Cart = world.get_region("Crazy Cart")
-    Muglys_Mound = world.get_region("Mugly's Mound")
-    Platform_Panic = world.get_region("Platform Panic")
-
-    Beach = world.get_region("Beach")
-    Beach_Shop = world.get_region("Beach Shop")
-    Poppin_Planks = world.get_region("Poppin' Planks")
-    Sloppy_Sands = world.get_region("Sloppy Sands")
-    Peaceful_Pier = world.get_region("Peaceful Pier")
-    Cannon_Cluster = world.get_region("Cannon Cluster")
-    Stormy_Shore = world.get_region("Stormy Shore")
-    Blowhole_Bound = world.get_region("Blowhole Bound")
-    Tidal_Terror = world.get_region("Tidal Terror")
-    Pinchin_Pirates = world.get_region("Pinchin' Pirates")
-    Tumblin_Temple = world.get_region("Tumlin' Temple")
-
-    Ruins = world.get_region("Ruins")
-    Ruins_Shop = world.get_region("Ruins Shop")
-    Wonky_Waterways = world.get_region("Wonky Waterways")
-    Button_Bash = world.get_region("Button Bash")
-    Mast_Blast = world.get_region("Mast Blast")
-    Damp_Dungeon = world.get_region("Damp Dungeon")
-    Itty_Bitty_Biters = world.get_region("Itty Bitty Biters")
-    Temple_Topple = world.get_region("Temple Topple")
-    Ruined_Roost = world.get_region("Ruined Roost")
-    Shifty_Smashers = world.get_region("Shifty Smashers")
-
-    Cave = world.get_region("Cave")
-    Cave_Shop = world.get_region("Cave Shop")
-    Rickety_Rails = world.get_region("Rickety Rails")
-    Grip_n_Trip = world.get_region("Grip 'n' Trip")
-    Bombs_Away = world.get_region("Bombs Away")
-    Mole_Patrol = world.get_region("Mole Patrol")
-    Crowded_Cavern = world.get_region("Crowded Cavern")
-    The_Mole_Train = world.get_region("The Mole Train")
-    Jagged_Jewels = world.get_region("Jagged Jewels")
-
-    Forest = world.get_region("Forest")
-    Forest_Shop = world.get_region("Forest Shop")
-    Vine_Valley = world.get_region("Vine Valley")
-    Clingy_Swingy = world.get_region("Clingy Swingy")
-    Flutter_Flyaway = world.get_region("Flutter Flyaway")
-    Tippin_Totems = world.get_region("Tippin' Totems")
-    Longshot_Launch = world.get_region("Longshot Launch")
-    Springy_Spores = world.get_region("Springy Spores")
-    Wigglevine_Wonders = world.get_region("Wigglevine Wonders")
-    Muncher_Marathon = world.get_region("Muncher Marathon")
-    Mangoruby_Run = world.get_region("Mangoruby Run")
-    Blast_n_Bounce = world.get_region("Blast 'n' Bounce")
-
-    Cliff = world.get_region("Cliff")
-    Cliff_Shop = world.get_region("Cliff Shop")
-    Sticky_Situation = world.get_region("Sticky Situation")
-    Prehistoric_Path = world.get_region("Prehistoric Path")
-    Weighty_Way = world.get_region("Weighty Way")
-    Boulder_Roller = world.get_region("Boulder Rollder")
-    Precarious_Plateau = world.get_region("Precarious Plateau")
-    Crumble_Canyon = world.get_region("Crumble Canyon")
-    Tippy_Shippy = world.get_region("Tippy Shippy")
-    Clifftop_Climb = world.get_region("Clifftop Climb")
-    Thuglys_Highrise = world.get_region("Thugly's Highrise")
-    Perilous_Passage = world.get_region("Perilous Passage")
-
-    Factory = world.get_region("Factory")
-    Factory_Shop = world.get_region("Factory Shop")
-    Foggy_Fumes = world.get_region("Foggy Fumes")
-    Slammin_Steel = world.get_region("Slammin' Steel")
-    Handy_Hazards = world.get_region("Handy Hazards")
-    Gear_Getaway = world.get_region("Gear Getaway")
-    Cog_Jog = world.get_region("Cog Jog")
-    Switcheroo = world.get_region("Switcheroo")
-    Music_Madness = world.get_region("Music Madness")
-    Lift_Off_Launch = world.get_region("Lift-Off_Launch")
-    Feather_Fiend = world.get_region("Feather Fiend")
-    Treacherous_Track = world.get_region("Treacherous Track")
-
-    Volcano = world.get_region("Volcano")
-    Volcano_Shop = world.get_region("Volcano Shop")
-    Furious_Fire = world.get_region("Furious Fire")
-    Hot_Rocket = world.get_region("Hot Rocket")
-    Roasting_Rails = world.get_region("Roasting Rails")
-    Smokey_Peak = world.get_region("Smokey Peak")
-    Bobbing_Basalt = world.get_region("Bobbing Basalt")
-    Moving_Melters = world.get_region("Moving Melters")
-    Red_Red_Rising = world.get_region("Red Red Rising")
-    Tiki_Tong_Terror = world.get_region("Wiki Tong Terror")
-    Five_Monkey_Trial = world.get_region("Five Monkey Trial")
-
-    Jungle_to_Jungle_Hijinxs = Entrance(world.player, "Jungle to Jungle Hijinxs", parent=Jungle)
-    Jungle.exits.append(Jungle_to_Jungle_Hijinxs)
-    Jungle_to_Jungle_Hijinxs.connect(Jungle_Hijinxs)
-
-    Jungle_to_King_of_Cling = Entrance(world.player, "Jungle to King of Cling", parent=Jungle)
-    Jungle.exits.append(Jungle_to_King_of_Cling)
-    Jungle_to_King_of_Cling.connect(King_of_Cling)
-
-    Jungle_to_Tree_Top_Bop = Entrance(world.player, "Jungle to Tree Top Bop", parent=Jungle)
-    Jungle.exits.append(Jungle_to_Tree_Top_Bop)
-    Jungle_to_Tree_Top_Bop.connect(Tree_Top_Bop)
-
-    Jungle_to_SunsetShore = Entrance(world.player, "Jungle to Sunset Shore", parent=Jungle)
-    Jungle.exits.append(Jungle_to_SunsetShore)
-    Jungle_to_SunsetShore.connect(Sunset_Shore)
-
-    Jungle_to_Canopy_Cannons = Entrance(world.player, "Jungle to Canopy Cannons", parent=Jungle)
-    Jungle.exits.append(Jungle_to_Canopy_Cannons)
-    Jungle_to_Canopy_Cannons.connect(Canopy_Cannons)
-
-    Jungle_to_Crazy_Cart = Entrance(world.player, "Jungle to Crazy Cart", parent=Jungle)
-    Jungle.exits.append(Jungle_to_Crazy_Cart)
-    Jungle_to_Crazy_Cart.connect(Crazy_Cart)
-
-    Jungle_to_Muglys_Mound = Entrance(world.player, "Jungle to Mugly's Mound", parent=Jungle)
-    Jungle.exits.append(Jungle_to_Muglys_Mound)
-    Jungle_to_Muglys_Mound.connect(Muglys_Mound)
-
-    Jungle_to_Platform_Panic = Entrance(world.player, "Jungle to Platform Panic", parent=Jungle)
-    Jungle.exits.append(Jungle_to_Platform_Panic)
-    Jungle_to_Platform_Panic.connect(Platform_Panic)
-
-    Jungle_to_Jungle_Shop = Entrance(world.player, "Jungle to Jungle Shop", parent=Jungle)
-    Jungle.exits.append(Jungle_to_Jungle_Shop)
-    Jungle_to_Jungle_Shop.connect(Jungle_Shop)
-
-    Muglys_Mound_to_Beach = Entrance(world.player, "Mugly's Mound to Beach", parent=Muglys_Mound)
-    Muglys_Mound.exits.append(Muglys_Mound_to_Beach)
-    Muglys_Mound_to_Beach.connect(Beach)
-
-    Beach_to_Poppin_Planks = Entrance(world.player, "Beach to Poppin' Planks", parent=Beach)
-    Beach.exits.append(Beach_to_Poppin_Planks)
-    Beach_to_Poppin_Planks.connect(Poppin_Planks)
-
-    Beach_to_Sloppy_Sands = Entrance(world.player, "Beach to Sloppy Sands", parent=Beach)
-    Beach.exits.append(Beach_to_Sloppy_Sands)
-    Beach_to_Sloppy_Sands.connect(Sloppy_Sands)
-
-    Beach_to_Peaceful_Pier = Entrance(world.player, "Beach to Peaceful Pier", parent=Beach)
-    Beach.exits.append(Beach_to_Peaceful_Pier)
-    Beach_to_Peaceful_Pier.connect(Peaceful_Pier)
-
-    Beach_to_Cannon_Cluster = Entrance(world.player, "Beach to Cannon Cluster", parent=Beach)
-    Beach.exits.append(Beach_to_Cannon_Cluster)
-    Beach_to_Cannon_Cluster.connect(Cannon_Cluster)
-
-    Beach_to_Stormy_Shore = Entrance(world.player, "Beach to Stormy Shore", parent=Beach)
-    Beach.exits.append(Beach_to_Stormy_Shore)
-    Beach_to_Stormy_Shore.connect(Stormy_Shore)
-
-    Beach_to_BlowholeBound = Entrance(world.player, "Beach to Blowhole Bound", parent=Beach)
-    Beach.exits.append(Beach_to_BlowholeBound)
-    Beach_to_BlowholeBound.connect(Blowhole_Bound)
-
-    Beach_to_Tidal_Terror = Entrance(world.player, "Beach to Tidal Terror", parent=Beach)
-    Beach.exits.append(Beach_to_Tidal_Terror)
-    Beach_to_Tidal_Terror.connect(Tidal_Terror)
-
-    Beach_to_Pinchin_Pirates = Entrance(world.player, "Beach to Pinchin' Pirates", parent=Beach)
-    Beach.exits.append(Beach_to_Pinchin_Pirates)
-    Beach_to_Pinchin_Pirates.connect(Pinchin_Pirates)
-
-    Beach_to_Tumblin_Temple = Entrance(world.player, "Beach to Tumblin' Temple", parent=Beach)
-    Beach.exits.append(Beach_to_Tumblin_Temple)
-    Beach_to_Tumblin_Temple.connect(Tumblin_Temple)
-
-    Beach_to_Beach_Shop = Entrance(world.player, "Beach to Beach Shop", parent=Beach)
-    Beach.exits.append(Beach_to_Beach_Shop)
-    Beach_to_Beach_Shop.connect(Beach_Shop)
-
-    Pinchin_Pirates_to_Ruins = Entrance(world.player, "Pinchin' Pirates to Ruins", parent=Pinchin_Pirates)
-    Pinchin_Pirates.exits.append(Pinchin_Pirates_to_Ruins)
-    Pinchin_Pirates_to_Ruins.connect(Ruins)
-
-    Ruins_to_Wonky_Waterway = Entrance(world.player, "Ruins to Wonky Waterway", parent=Ruins)
-    Ruins.exits.append(Ruins_to_Wonky_Waterway)
-    Ruins_to_Wonky_Waterway.connect(Wonky_Waterways)
-
-    Ruins_to_Button_Bash = Entrance(world.player, "Ruins to Button Bash", parent=Ruins)
-    Ruins.exits.append(Ruins_to_Button_Bash)
-    Ruins_to_Button_Bash.connect(Button_Bash)
-
-    Ruins_to_Mast_Blast = Entrance(world.player, "Ruins to Mast Blast", parent=Ruins)
-    Ruins.exits.append(Ruins_to_Mast_Blast)
-    Ruins_to_Mast_Blast.connect(Mast_Blast)
-
-    Ruins_to_DampDungeon = Entrance(world.player, "Ruins to Damp Dungeon", parent=Ruins)
-    Ruins.exits.append(Ruins_to_DampDungeon)
-    Ruins_to_DampDungeon.connect(Damp_Dungeon)
-
-    Ruins_to_Itty_Bitty_Biters = Entrance(world.player, "Ruins to Itty Bitty Biters", parent=Ruins)
-    Ruins.exits.append(Ruins_to_Itty_Bitty_Biters)
-    Ruins_to_Itty_Bitty_Biters.connect(Itty_Bitty_Biters)
-
-    Ruins_to_Temple_Topple = Entrance(world.player,"Ruins to Temple Topple", parent=Ruins)
-    Ruins.exits.append(Ruins_to_Temple_Topple)
-    Ruins_to_Temple_Topple.connect(Temple_Topple)
-
-    Ruins_to_Ruined_Roost = Entrance(world.player, "Ruins to Ruined Roost", parent=Ruins)
-    Ruins.exits.append(Ruins_to_Ruined_Roost)
-    Ruins_to_Ruined_Roost.connect(Ruined_Roost)
-
-    Ruins_to_Shifty_Smashers = Entrance(world.player, "Ruins to Shifty Smashers", parent=Ruins)
-    Ruins.exits.append(Ruins_to_Shifty_Smashers)
-    Ruins_to_Shifty_Smashers.connect(Shifty_Smashers)
-
-    Ruins_to_Ruins_Shop = Entrance(world.player, "Ruins to Ruins Shop", parent=Ruins)
-    Ruins.exits.append(Ruins_to_Ruins_Shop)
-    Ruins_to_Ruins_Shop.connect(Ruins_Shop)
-
-    Ruined_Roost_to_Cave = Entrance(world.player, "Ruined Roost to Cave", parent=Ruined_Roost)
-    Ruined_Roost.exits.append(Ruined_Roost_to_Cave)
-    Ruined_Roost_to_Cave.connect(Cave)
-
-    Cave_to_Rickety_Rails = Entrance(world.player, "Cave to Rickety Rails", parent=Cave)
-    Cave.exits.append(Cave_to_Rickety_Rails)
-    Cave_to_Rickety_Rails.connect(Rickety_Rails)
-
-    Cave_to_Grip_n_Trip = Entrance(world.player, "Cave to Grip 'n' Trip", parent=Cave)
-    Cave.exits.append(Cave_to_Grip_n_Trip)
-    Cave_to_Grip_n_Trip.connect(Grip_n_Trip)
-
-    Cave_to_Boms_Away = Entrance(world.player, "Cave to Bombs Away", parent=Cave)
-    Cave.exits.append(Cave_to_Boms_Away)
-    Cave_to_Boms_Away.connect(Bombs_Away)
-
-    Cave_to_MolePatrol = Entrance(world.player, "Cave to Mole Patrol", parent=Cave)
-    Cave.exits.append(Cave_to_MolePatrol)
-    Cave_to_MolePatrol.connect(Mole_Patrol)
-
-    Cave_to_Crowded_Cavern = Entrance(world.player, "Cave to Crowded Cavern", parent=Cave)
-    Cave.exits.append(Cave_to_Crowded_Cavern)
-    Cave_to_Crowded_Cavern.connect(Crowded_Cavern)
-
-    Cave_to_The_Mole_Train = Entrance(world.player, "Cave to The Mole Train", parent=Cave)
-    Cave.exits.append(Cave_to_The_Mole_Train)
-    Cave_to_The_Mole_Train.connect(The_Mole_Train)
-
-    Cave_to_Jagged_Jewels = Entrance(world.player, "Cave to Jagged Jewels", parent=Cave)
-    Cave.exits.append(Cave_to_Jagged_Jewels)
-    Cave_to_Jagged_Jewels.connect(Jagged_Jewels)
-
-    Cave_to_Cave_Shop = Entrance(world.player, "Cave to Cave Shop", parent=Cave)
-    Cave.exits.append(Cave_to_Cave_Shop)
-    Cave_to_Cave_Shop.connect(Cave_Shop)
-
-    The_Mole_Train_to_Forest = Entrance(world.player, "The Mole Train to Forest", parent=The_Mole_Train)
-    The_Mole_Train.exits.append(The_Mole_Train_to_Forest)
-    The_Mole_Train_to_Forest.connect(Forest)
-
-    Forest_to_Vine_Valley = Entrance(world.player, "Forest to Vine Valley", parent=Forest)
-    Forest.exits.append(Forest_to_Vine_Valley)
-    Forest_to_Vine_Valley.connect(Vine_Valley)
-
-    Forest_to_Clingy_Swingy = Entrance(world.player, "Forest to Clingy Swingy", parent=Forest)
-    Forest.exits.append(Forest_to_Clingy_Swingy)
-    Forest_to_Clingy_Swingy.connect(Clingy_Swingy)
-
-    Forest_to_Flutter_Flyaway = Entrance(world.player, "Forest to Flutter Flyaway", parent=Forest)
-    Forest.exits.append(Forest_to_Flutter_Flyaway)
-    Forest_to_Flutter_Flyaway.connect(Flutter_Flyaway)
-
-    Forest_to_Tippin_Totems = Entrance(world.player, "Forest to Tippin' Totems", parent=Forest)
-    Forest.exits.append(Forest_to_Tippin_Totems)
-    Forest_to_Tippin_Totems.connect(Tippin_Totems)
-
-    Forest_to_Longshot_Launch = Entrance(world.player, "Forest to Longshot Launch", parent=Forest)
-    Forest.exits.append(Forest_to_Longshot_Launch)
-    Forest_to_Longshot_Launch.connect(Longshot_Launch)
-
-    Forest_to_SpringySpores = Entrance(world.player, "Forest to Springy Spores", parent=Forest)
-    Forest.exits.append(Forest_to_SpringySpores)
-    Forest_to_SpringySpores.connect(Springy_Spores)
-
-    Forest_to_Wigglevine_Wonders = Entrance(world.player, "Forest to Wigglevine Wonders", parent=Forest)
-    Forest.exits.append(Forest_to_Wigglevine_Wonders)
-    Forest_to_Wigglevine_Wonders.connect(Wigglevine_Wonders)
-
-    Forest_to_Muncher_Marathon = Entrance(world.player, "Forest to Muncher Marathon", parent=Forest)
-    Forest.exits.append(Forest_to_Muncher_Marathon)
-    Forest_to_Muncher_Marathon.connect(Muncher_Marathon)
-
-    Forest_to_Mangoruby_Run = Entrance(world.player, "Forest to Mangoruby Run", parent=Forest)
-    Forest.exits.append(Forest_to_Mangoruby_Run)
-    Forest_to_Mangoruby_Run.connect(Mangoruby_Run)
-
-    Forest_to_Blast_n_Bounce = Entrance(world.player, "Forest to Blast 'n' Bounce",parent=Forest)
-    Forest.exits.append(Forest_to_Blast_n_Bounce)
-    Forest_to_Blast_n_Bounce.connect(Blast_n_Bounce)
-
-    Forest_to_Forest_Shop = Entrance(world.player, "Forest to Forest Shop", parent=Forest)
-    Forest.exits.append(Forest_to_Forest_Shop)
-    Forest_to_Forest_Shop.connect(Forest_Shop)
-
-    Mangoruby_Run_to_Cliff = Entrance(world.player, "Mangoruby Run to Cliff", parent=Mangoruby_Run)
-    Mangoruby_Run.exits.append(Mangoruby_Run_to_Cliff)
-    Mangoruby_Run_to_Cliff.connect(Cliff)
-
-    Cliff_to_Sticky_Situation = Entrance(world.player, "Cliff to Sticky Situation", parent=Cliff)
-    Cliff.exits.append(Cliff_to_Sticky_Situation)
-    Cliff_to_Sticky_Situation.connect(Sticky_Situation)
-
-    Cliff_to_Prehistoric_Path = Entrance(world.player,"Cliff to Prehistoric Path", parent=Cliff)
-    Cliff.exits.append(Cliff_to_Prehistoric_Path)
-    Cliff_to_Prehistoric_Path.connect(Prehistoric_Path)
-
-    Cliff_to_Weighty_Way = Entrance(world.player, "Cliff to Weighty Way", parent=Cliff)
-    Cliff.exits.append(Cliff_to_Weighty_Way)
-    Cliff_to_Weighty_Way.connect(Weighty_Way)
-
-    Cliff_to_Boulder_Roller = Entrance(world.player, "Cliff to Boulder Roller", parent=Cliff)
-    Cliff.exits.append(Cliff_to_Boulder_Roller)
-    Cliff_to_Boulder_Roller.connect(Boulder_Roller)
-
-    Cliff_to_Precarious_Plateau = Entrance(world.player, "Cliff to Precarious Plateau", parent=Cliff)
-    Cliff.exits.append(Cliff_to_Precarious_Plateau)
-    Cliff_to_Precarious_Plateau.connect(Precarious_Plateau)
-
-    Cliff_to_Crumble_Canyon = Entrance(world.player, "Cliff to Crumble Canyon", parent=Cliff)
-    Cliff.exits.append(Cliff_to_Crumble_Canyon)
-    Cliff_to_Crumble_Canyon.connect(Crumble_Canyon)
-
-    Cliff_to_Tippy_Shippy = Entrance(world.player, "Cliff to Tippy Shippy", parent=Cliff)
-    Cliff.exits.append(Cliff_to_Tippy_Shippy)
-    Cliff_to_Tippy_Shippy.connect(Tippy_Shippy)
-
-    Cliff_to_Clifftop_Climb = Entrance(world.player, "Cliff to Clifftop Climb", parent=Cliff)
-    Cliff.exits.append(Cliff_to_Clifftop_Climb)
-    Cliff_to_Clifftop_Climb.connect(Clifftop_Climb)
-
-    Cliff_to_Thuglys_Highrise = Entrance(world.player, "Cliff to Thugly's Highrise", parent=Cliff)
-    Cliff.exits.append(Cliff_to_Thuglys_Highrise)
-    Cliff_to_Thuglys_Highrise.connect(Thuglys_Highrise)
-
-    Cliff_to_Perilous_Passage = Entrance(world.player, "Cliff to Perilous Passage", parent=Cliff)
-    Cliff.exits.append(Cliff_to_Perilous_Passage)
-    Cliff_to_Perilous_Passage.connect(Perilous_Passage)
-
-    Cliff_to_Cliff_Shop = Entrance(world.player, "Cliff to Cliff Shop", parent=Cliff)
-    Cliff.exits.append(Cliff_to_Cliff_Shop)
-    Cliff_to_Cliff_Shop.connect(Cliff_Shop)
-
-    Thuglys_Highrise_to_Factory = Entrance(world.player, "Thugly's Highrise to Factory", parent=Thuglys_Highrise)
-    Thuglys_Highrise.exits.append(Thuglys_Highrise_to_Factory)
-    Thuglys_Highrise_to_Factory.connect(Factory)
-
-    Factory_to_Foggy_Fumes = Entrance(world.player, "Factory to Foggy Fumes", parent=Factory)
-    Factory.exits.append(Factory_to_Foggy_Fumes)
-    Factory_to_Foggy_Fumes.connect(Foggy_Fumes)
-
-    Factory_to_Slammin_Steel = Entrance(world.player, "Factory to Slammin' Steel", parent=Factory)
-    Factory.exits.append(Factory_to_Slammin_Steel)
-    Factory_to_Slammin_Steel.connect(Slammin_Steel)
-
-    Factory_to_Handy_Hazards = Entrance(world.player, "Factory to Handy Hazards", parent=Factory)
-    Factory.exits.append(Factory_to_Handy_Hazards)
-    Factory_to_Handy_Hazards.connect(Handy_Hazards)
-
-    Factory_to_Gear_Getaway = Entrance(world.player, "Factory to Gear Getaway", parent=Factory)
-    Factory.exits.append(Factory_to_Gear_Getaway)
-    Factory_to_Gear_Getaway.connect(Gear_Getaway)
-
-    Factory_to_Cog_Jog = Entrance(world.player, "Factory to Cog Jog", parent=Factory)
-    Factory.exits.append(Factory_to_Cog_Jog)
-    Factory_to_Cog_Jog.connect(Cog_Jog)
-
-    Factory_to_Switcheroo = Entrance(world.player, "Factory to Switcheroo", parent=Factory)
-    Factory.exits.append(Factory_to_Switcheroo)
-    Factory_to_Switcheroo.connect(Switcheroo)
-
-    Factory_to_Music_Madness = Entrance(world.player, "Factory to Music Madness", parent=Factory)
-    Factory.exits.append(Factory_to_Music_Madness)
-    Factory_to_Music_Madness.connect(Music_Madness)
-
-    Factory_to_Lift_Off_Launch = Entrance(world.player, "Factory to Lift-Off Launch", parent=Factory)
-    Factory.exits.append(Factory_to_Lift_Off_Launch)
-    Factory_to_Lift_Off_Launch.connect(Lift_Off_Launch)
-
-    Lift_Off_Launch_to_Feather_Fiend = Entrance(world.player, "Lift-Off Launch_to_Feather_Fiend", parent=Lift_Off_Launch)
-    Lift_Off_Launch.exits.append(Lift_Off_Launch_to_Feather_Fiend)
-    Lift_Off_Launch_to_Feather_Fiend.connect(Feather_Fiend)
-
-    Factory_to_Treacherous_Track = Entrance(world.player, "Factory to Treacherous Track", parent=Factory)
-    Factory.exits.append(Factory_to_Treacherous_Track)
-    Factory_to_Treacherous_Track.connect(Treacherous_Track)
-
-    Factory_to_Factory_Shop = Entrance(world.player, "Factory to Factory Shop", parent=Factory)
-    Factory.exits.append(Factory_to_Factory_Shop)
-    Factory_to_Factory_Shop.connect(Factory_Shop)
-
-    Feather_Fiend_to_Volcano = Entrance(world.player, "Feather Fiend to Volcano", parent=Feather_Fiend)
-    Feather_Fiend.exits.append(Feather_Fiend_to_Volcano)
-    Feather_Fiend_to_Volcano.connect(Volcano)
-
-    Volcano_to_Furious_Fire = Entrance(world.player, "Volcano to Furious Fire", parent=Volcano)
-    Volcano.exits.append(Volcano_to_Furious_Fire)
-    Volcano_to_Furious_Fire.connect(Furious_Fire)
-
-    Volcano_to_Hot_Rocket = Entrance(world.player, "Volcano to Hot Rocket", parent=Volcano)
-    Volcano.exits.append(Volcano_to_Hot_Rocket)
-    Volcano_to_Hot_Rocket.connect(Hot_Rocket)
-
-    Volcano_to_Roasting_Rails = Entrance(world.player, "Volcano to Roasting Rails", parent=Volcano)
-    Volcano.exits.append(Volcano_to_Roasting_Rails)
-    Volcano_to_Roasting_Rails.connect(Roasting_Rails)
-
-    Volcano_to_Smokey_Peak = Entrance(world.player, "Volcano to Smokey Peak", parent=Volcano)
-    Volcano.exits.append(Volcano_to_Smokey_Peak)
-    Volcano_to_Smokey_Peak.connect(Smokey_Peak)
-
-    Volcano_to_Bobbing_Basalt = Entrance(world.player, "Volcano to Bobbing Basalt", parent=Volcano)
-    Volcano.exits.append(Volcano_to_Bobbing_Basalt)
-    Volcano_to_Bobbing_Basalt.connect(Bobbing_Basalt)
-
-    Volcano_to_Moving_Melters = Entrance(world.player, "Volcano to Moving Melters", parent=Volcano)
-    Volcano.exits.append(Volcano_to_Moving_Melters)
-    Volcano_to_Moving_Melters.connect(Moving_Melters)
-
-    Volcano_to_Red_Red_Rising = Entrance(world.player, "Volcano to Red Red Rising", parent=Volcano)
-    Volcano.exits.append(Volcano_to_Red_Red_Rising)
-    Volcano_to_Red_Red_Rising.connect(Red_Red_Rising)
-
-    Volcano_to_Tiki_Tong_Terror = Entrance(world.player, "Volcano to Tiki Tong Terror", parent=Volcano)
-    Volcano.exits.append(Volcano_to_Tiki_Tong_Terror)
-    Volcano_to_Tiki_Tong_Terror.connect(Tiki_Tong_Terror)
-
-    Volcano_to_Five_Monkey_Trial = Entrance(world.player, "Volcano to Five Monkey Trial", parent=Volcano)
-    Volcano.exits.append(Volcano_to_Five_Monkey_Trial)
-    Volcano_to_Five_Monkey_Trial.connect(Five_Monkey_Trial)
-
-    Volcano_to_Volcano_Shop = Entrance(world.player, "Volcano to Volcano Shop", parent=Volcano)
-    Volcano.exits.append(Volcano_to_Volcano_Shop)
-    Volcano_to_Volcano_Shop.connect(Volcano_Shop)
+    Jungle = world.get_region(R.JUNGLE)
+    Jungle_Shop = world.get_region(R.JUNGLE_SHOP)
+    Jungle_Hijinxs = world.get_region(R.JUNGLE_HIJINXS)
+    King_of_Cling = world.get_region(R.KING_OF_CLING)
+    Tree_Top_Bop = world.get_region(R.TREE_TOP_BOP)
+    Sunset_Shore = world.get_region(R.SUNSET_SHORE)
+    Canopy_Cannons = world.get_region(R.CANOPY_CANNONS)
+    Crazy_Cart = world.get_region(R.CRAZY_CART)
+    Muglys_Mound = world.get_region(R.MUGLYS_MOUND)
+    Platform_Panic = world.get_region(R.PLATFORM_PANIC)
+
+    Beach = world.get_region(R.BEACH)
+    Beach_Shop = world.get_region(R.BEACH_SHOP)
+    Poppin_Planks = world.get_region(R.POPPIN_PLANKS)
+    Sloppy_Sands = world.get_region(R.SLOPPY_SANDS)
+    Peaceful_Pier = world.get_region(R.PEACEFUL_PIER)
+    Cannon_Cluster = world.get_region(R.CANNON_CLUSTER)
+    Stormy_Shore = world.get_region(R.STORMY_SHORE)
+    Blowhole_Bound = world.get_region(R.BLOWHOLE_BOUND)
+    Tidal_Terror = world.get_region(R.TIDAL_TERROR)
+    Pinchin_Pirates = world.get_region(R.PINCHIN_PIRATES)
+    Tumblin_Temple = world.get_region(R.TUMBLIN_TEMPLE)
+
+    Ruins = world.get_region(R.RUINS)
+    Ruins_Shop = world.get_region(R.RUINS_SHOP)
+    Wonky_Waterways = world.get_region(R.WONKY_WATERWAY)
+    Button_Bash = world.get_region(R.BUTTON_BASH)
+    Mast_Blast = world.get_region(R.MAST_BLAST)
+    Damp_Dungeon = world.get_region(R.DAMP_DUNGEON)
+    Itty_Bitty_Biters = world.get_region(R.ITTY_BITTY_BITERS)
+    Temple_Topple = world.get_region(R.TEMPLE_TOPPLE)
+    Ruined_Roost = world.get_region(R.RUINED_ROOST)
+    Shifty_Smashers = world.get_region(R.SHIFTY_SMASHERS)
+
+    Cave = world.get_region(R.CAVE)
+    Cave_Shop = world.get_region(R.CAVE_SHOP)
+    Rickety_Rails = world.get_region(R.RICKETY_RAILS)
+    Grip_n_Trip = world.get_region(R.GRIP_N_TRIP)
+    Bombs_Away = world.get_region(R.BOMBS_AWAY)
+    Mole_Patrol = world.get_region(R.MOLE_PATROL)
+    Crowded_Cavern = world.get_region(R.CROWDED_CAVERN)
+    The_Mole_Train = world.get_region(R.THE_MOLE_TRAIN)
+    Jagged_Jewels = world.get_region(R.JAGGED_JEWELS)
+
+    Forest = world.get_region(R.FOREST)
+    Forest_Shop = world.get_region(R.FOREST_SHOP)
+    Vine_Valley = world.get_region(R.VINE_VALLEY)
+    Clingy_Swingy = world.get_region(R.CLINGY_SWINGY)
+    Flutter_Flyaway = world.get_region(R.FLUTTER_FLYAWAY)
+    Tippin_Totems = world.get_region(R.TIPPIN_TOTEMS)
+    Longshot_Launch = world.get_region(R.LONGSHOT_LAUNCH)
+    Springy_Spores = world.get_region(R.SPRINGY_SPORES)
+    Wigglevine_Wonders = world.get_region(R.WIGGLEVINE_WONDERS)
+    Muncher_Marathon = world.get_region(R.MUNCHER_MARATHON)
+    Mangoruby_Run = world.get_region(R.MANGORUBY_RUN)
+    Blast_n_Bounce = world.get_region(R.BLAST_N_BOUNCE)
+
+    Cliff = world.get_region(R.CLIFF)
+    Cliff_Shop = world.get_region(R.CLIFF_SHOP)
+    Sticky_Situation = world.get_region(R.STICKY_SITUATION)
+    Prehistoric_Path = world.get_region(R.PREHISTORIC_PATH)
+    Weighty_Way = world.get_region(R.WEIGHTY_WAY)
+    Boulder_Roller = world.get_region(R.BOULDER_ROLLER)
+    Precarious_Plateau = world.get_region(R.PRECARIOUS_PLATEAU)
+    Crumble_Canyon = world.get_region(R.CRUMBLE_CANYON)
+    Tippy_Shippy = world.get_region(R.TIPPY_SHIPPY)
+    Clifftop_Climb = world.get_region(R.CLIFFTOP_CLIMB)
+    Thuglys_Highrise = world.get_region(R.THUGLYS_HIGHRISE)
+    Perilous_Passage = world.get_region(R.PERILOUS_PASSAGE)
+
+    Factory = world.get_region(R.FACTORY)
+    Factory_Shop = world.get_region(R.FACTORY_SHOP)
+    Foggy_Fumes = world.get_region(R.FOGGY_FUMES)
+    Slammin_Steel = world.get_region(R.SLAMMIN_STEEL)
+    Handy_Hazards = world.get_region(R.HANDY_HAZARDS)
+    Gear_Getaway = world.get_region(R.GEAR_GETAWAY)
+    Cog_Jog = world.get_region(R.COG_JOG)
+    Switcheroo = world.get_region(R.SWITCHEROO)
+    Music_Madness = world.get_region(R.MUSIC_MADNESS)
+    Lift_Off_Launch = world.get_region(R.LIFT_OFF_LAUNCH)
+    Feather_Fiend = world.get_region(R.FEATHER_FIEND)
+    Treacherous_Track = world.get_region(R.TREACHEROUS_TRACK)
+
+    Volcano = world.get_region(R.VOLCANO)
+    Volcano_Shop = world.get_region(R.VOLCANO_SHOP)
+    Furious_Fire = world.get_region(R.FURIOUS_FIRE)
+    Hot_Rocket = world.get_region(R.HOT_ROCKET)
+    Roasting_Rails = world.get_region(R.ROASTING_RAILS)
+    Smokey_Peak = world.get_region(R.SMOKEY_PEAK)
+    Bobbing_Basalt = world.get_region(R.BOBBING_BASALT)
+    Moving_Melters = world.get_region(R.MOVING_MELTERS)
+    Red_Red_Rising = world.get_region(R.RED_RED_RISING)
+    Tiki_Tong_Terror = world.get_region(R.TIKI_TONG_TERROR)
+    Five_Monkey_Trial = world.get_region(R.FIVE_MONKEY_TRIAL)
+
+    # Jungle
+    connect_regions_helper(world, RC.JUNGLE_TO_JUNGLE_HIJINXS, Jungle, Jungle_Hijinxs)
+    connect_regions_helper(world, RC.JUNGLE_TO_KING_OF_CLING, Jungle, King_of_Cling)
+    connect_regions_helper(world, RC.JUNGLE_TO_TREE_TOP_BOP, Jungle, Tree_Top_Bop)
+    connect_regions_helper(world, RC.JUNGLE_TO_SUNSET_SHORE, Jungle, Sunset_Shore)
+    connect_regions_helper(world, RC.JUNGLE_TO_CANOPY_CANNONS, Jungle, Canopy_Cannons)
+    connect_regions_helper(world, RC.JUNGLE_TO_CRAZY_CART, Jungle, Crazy_Cart)
+    connect_regions_helper(world, RC.JUNGLE_TO_MUGLYS_MOUND, Jungle, Muglys_Mound)
+    connect_regions_helper(world, RC.JUNGLE_TO_PLATFORM_PANIC, Jungle, Platform_Panic)
+    connect_regions_helper(world, RC.JUNGLE_TO_JUNGLE_SHOP, Jungle, Jungle_Shop)
+
+    # Mugly's Mound
+    connect_regions_helper(world, RC.MUGLYS_MOUND_TO_BEACH, Muglys_Mound, Beach)
+
+    # Beach
+    connect_regions_helper(world, RC.BEACH_TO_POPPIN_PLANKS, Beach, Poppin_Planks)
+    connect_regions_helper(world, RC.BEACH_TO_SLOPPY_SANDS, Beach, Sloppy_Sands)
+    connect_regions_helper(world, RC.BEACH_TO_PEACEFUL_PIER, Beach, Peaceful_Pier)
+    connect_regions_helper(world, RC.BEACH_TO_CANNON_CLUSTER, Beach, Cannon_Cluster)
+    connect_regions_helper(world, RC.BEACH_TO_STORMY_SHORE, Beach, Stormy_Shore)
+    connect_regions_helper(world, RC.BEACH_TO_BLOWHOLE_BOUND, Beach, Blowhole_Bound)
+    connect_regions_helper(world, RC.BEACH_TO_TIDAL_TERROR, Beach, Tidal_Terror)
+    connect_regions_helper(world, RC.BEACH_TO_PINCHIN_PIRATES, Beach, Pinchin_Pirates)
+    connect_regions_helper(world, RC.BEACH_TO_TUMBLIN_TEMPLE, Beach, Tumblin_Temple)
+    connect_regions_helper(world, RC.BEACH_TO_BEACH_SHOP, Beach, Beach_Shop)
+
+    # Pinchin' Pirates
+    connect_regions_helper(world, RC.PINCHIN_PIRATES_TO_RUINS, Pinchin_Pirates, Ruins)
+
+    # Ruins
+    connect_regions_helper(world, RC.RUINS_TO_WONKY_WATERWAY, Ruins, Wonky_Waterways)
+    connect_regions_helper(world, RC.RUINS_TO_BUTTON_BASH, Ruins, Button_Bash)
+    connect_regions_helper(world, RC.RUINS_TO_MAST_BLAST, Ruins, Mast_Blast)
+    connect_regions_helper(world, RC.RUINS_TO_DAMP_DUNGEON, Ruins, Damp_Dungeon)
+    connect_regions_helper(world, RC.RUINS_TO_ITTY_BITTY_BITERS, Ruins, Itty_Bitty_Biters)
+    connect_regions_helper(world, RC.RUINS_TO_TEMPLE_TOPPLE, Ruins, Temple_Topple)
+    connect_regions_helper(world, RC.RUINS_TO_RUINED_ROOST, Ruins, Ruined_Roost)
+    connect_regions_helper(world, RC.RUINS_TO_SHIFTY_SMASHERS, Ruins, Shifty_Smashers)
+    connect_regions_helper(world, RC.RUINS_TO_RUINS_SHOP, Ruins, Ruins_Shop)
+
+    # Ruined Roost
+    connect_regions_helper(world, RC.RUINED_ROOST_TO_CAVE, Ruined_Roost, Cave)
+
+    # Cave
+    connect_regions_helper(world, RC.CAVE_TO_RICKETY_RAILS, Cave, Rickety_Rails)
+    connect_regions_helper(world, RC.CAVE_TO_GRIP_N_TRIP, Cave, Grip_n_Trip)
+    connect_regions_helper(world, RC.CAVE_TO_BOMBS_AWAY, Cave, Bombs_Away)
+    connect_regions_helper(world, RC.CAVE_TO_MOLE_PATROL, Cave, Mole_Patrol)
+    connect_regions_helper(world, RC.CAVE_TO_CROWDED_CAVERN, Cave, Crowded_Cavern)
+    connect_regions_helper(world, RC.CAVE_TO_THE_MOLE_TRAIN, Cave, The_Mole_Train)
+    connect_regions_helper(world, RC.CAVE_TO_JAGGED_JEWELS, Cave, Jagged_Jewels)
+    connect_regions_helper(world, RC.CAVE_TO_CAVE_SHOP, Cave, Cave_Shop)
+
+    # The Mole Train
+    connect_regions_helper(world, RC.THE_MOLE_TRAIN_TO_FOREST, The_Mole_Train, Forest)
+
+    # Forest
+    connect_regions_helper(world, RC.FOREST_TO_VINE_VALLEY, Forest, Vine_Valley)
+    connect_regions_helper(world, RC.FOREST_TO_CLINGY_SWINGY, Forest, Clingy_Swingy)
+    connect_regions_helper(world, RC.FOREST_TO_FLUTTER_FLYAWAY, Forest, Flutter_Flyaway)
+    connect_regions_helper(world, RC.FOREST_TO_TIPPIN_TOTEMS, Forest, Tippin_Totems)
+    connect_regions_helper(world, RC.FOREST_TO_LONGSHOT_LAUNCH, Forest, Longshot_Launch)
+    connect_regions_helper(world, RC.FOREST_TO_SPRINGY_SPORES, Forest, Springy_Spores)
+    connect_regions_helper(world, RC.FOREST_TO_WIGGLEVINE_WONDERS, Forest, Wigglevine_Wonders)
+    connect_regions_helper(world, RC.FOREST_TO_MUNCHER_MARATHON, Forest, Muncher_Marathon)
+    connect_regions_helper(world, RC.FOREST_TO_MANGORUBY_RUN, Forest, Mangoruby_Run)
+    connect_regions_helper(world, RC.FOREST_TO_BLAST_N_BOUNCE, Forest, Blast_n_Bounce)
+    connect_regions_helper(world, RC.FOREST_TO_FOREST_SHOP, Forest, Forest_Shop)
+
+    # Mangoruby Run
+    connect_regions_helper(world, RC.MANGORUBY_RUN_TO_CLIFF, Mangoruby_Run, Cliff)
+
+    # Cliff
+    connect_regions_helper(world, RC.CLIFF_TO_STICKY_SITUATION, Cliff, Sticky_Situation)
+    connect_regions_helper(world, RC.CLIFF_TO_PREHISTORIC_PATH, Cliff, Prehistoric_Path)
+    connect_regions_helper(world, RC.CLIFF_TO_WEIGHTY_WAY, Cliff, Weighty_Way)
+    connect_regions_helper(world, RC.CLIFF_TO_BOULDER_ROLLER, Cliff, Boulder_Roller)
+    connect_regions_helper(world, RC.CLIFF_TO_PRECARIOUS_PLATEAU, Cliff, Precarious_Plateau)
+    connect_regions_helper(world, RC.CLIFF_TO_CRUMBLE_CANYON, Cliff, Crumble_Canyon)
+    connect_regions_helper(world, RC.CLIFF_TO_TIPPY_SHIPPY, Cliff, Tippy_Shippy)
+    connect_regions_helper(world, RC.CLIFF_TO_CLIFFTOP_CLIMB, Cliff, Clifftop_Climb)
+    connect_regions_helper(world, RC.CLIFF_TO_THUGLYS_HIGHRISE, Cliff, Thuglys_Highrise)
+    connect_regions_helper(world, RC.CLIFF_TO_PERILOUS_PASSAGE, Cliff, Perilous_Passage)
+    connect_regions_helper(world, RC.CLIFF_TO_CLIFF_SHOP, Cliff, Cliff_Shop)
+
+    # Thugly's Highrise
+    connect_regions_helper(world, RC.THUGLYS_HIGHRISE_TO_FACTORY, Thuglys_Highrise, Factory)
+
+    # Factory
+    connect_regions_helper(world, RC.FACTORY_TO_FOGGY_FUMES, Factory, Foggy_Fumes)
+    connect_regions_helper(world, RC.FACTORY_TO_SLAMMIN_STEEL, Factory, Slammin_Steel)
+    connect_regions_helper(world, RC.FACTORY_TO_HANDY_HAZARDS, Factory, Handy_Hazards)
+    connect_regions_helper(world, RC.FACTORY_TO_GEAR_GETAWAY, Factory, Gear_Getaway)
+    connect_regions_helper(world, RC.FACTORY_TO_COG_JOG, Factory, Cog_Jog)
+    connect_regions_helper(world, RC.FACTORY_TO_SWITCHEROO, Factory, Switcheroo)
+    connect_regions_helper(world, RC.FACTORY_TO_MUSIC_MADNESS, Factory, Music_Madness)
+    connect_regions_helper(world, RC.FACTORY_TO_LIFT_OFF_LAUNCH, Factory, Lift_Off_Launch)
+    connect_regions_helper(world, RC.FACTORY_TO_TREACHEROUS_TRACK, Factory, Treacherous_Track)
+    connect_regions_helper(world, RC.FACTORY_TO_FACTORY_SHOP, Factory, Factory_Shop)
+
+    # Lift-Off Launch
+    connect_regions_helper(world, RC.LIFT_OFF_LAUNCH_TO_FEATHER_FIEND, Lift_Off_Launch, Feather_Fiend)
+
+    # Feather Fiend
+    connect_regions_helper(world, RC.FEATHER_FIEND_TO_VOLCANO, Feather_Fiend, Volcano)
+
+    # Volcano
+    connect_regions_helper(world, RC.VOLCANO_TO_FURIOUS_FIRE, Volcano, Furious_Fire)
+    connect_regions_helper(world, RC.VOLCANO_TO_HOT_ROCKET, Volcano, Hot_Rocket)
+    connect_regions_helper(world, RC.VOLCANO_TO_ROASTING_RAILS, Volcano, Roasting_Rails)
+    connect_regions_helper(world, RC.VOLCANO_TO_SMOKEY_PEAK, Volcano, Smokey_Peak)
+    connect_regions_helper(world, RC.VOLCANO_TO_BOBBING_BASALT, Volcano, Bobbing_Basalt)
+    connect_regions_helper(world, RC.VOLCANO_TO_MOVING_MELTERS, Volcano, Moving_Melters)
+    connect_regions_helper(world, RC.VOLCANO_TO_RED_RED_RISING, Volcano, Red_Red_Rising)
+    connect_regions_helper(world, RC.VOLCANO_TO_TIKI_TONG_TERROR, Volcano, Tiki_Tong_Terror)
+    connect_regions_helper(world, RC.VOLCANO_TO_FIVE_MONKEY_TRIAL, Volcano, Five_Monkey_Trial)
+    connect_regions_helper(world, RC.VOLCANO_TO_VOLCANO_SHOP, Volcano, Volcano_Shop)
 
     if world.options.golden_temple:
-        Golden_Temple = world.get_region("Golden Temple")
+        Golden_Temple = world.get_region(R.GOLDEN_TEMPLE)
 
-        Tiki_Tong_Terror_to_Golden_Temple = Entrance(world.player, "Tiki Tong Terror to Golden Temple", parent=Tiki_Tong_Terror)
-        Tiki_Tong_Terror.exits.append(Tiki_Tong_Terror_to_Golden_Temple)
-        Tiki_Tong_Terror_to_Golden_Temple.connect(Golden_Temple)
+        connect_regions_helper(world, RC.TIKI_TONG_TERROR_TO_GOLDEN_TEMPLE, Tiki_Tong_Terror, Golden_Temple)
 
-        Volcano_to_Golden_Temple = Entrance(world.player, "Volcano to Golden Temple", parent=Volcano)
-        Volcano.exits.append(Volcano_to_Golden_Temple)
-        Volcano_to_Golden_Temple.connect(Golden_Temple)
-
-
-
+def connect_regions_helper(world:DKCRWorld, name: str, parent: Region, target: Region) -> None:
+    entrance = Entrance(world.player, name, parent=parent)
+    parent.exits.append(entrance)
+    entrance.connect(target)
