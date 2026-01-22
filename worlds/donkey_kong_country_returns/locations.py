@@ -33,9 +33,6 @@ if TYPE_CHECKING:
 # 51 Shop Balloon x 1
 # 52 Shop Balloon x 3
 # 53 Shop Balloon x 7
-# 54 Shop Squawks
-# 55 Shop Heart Boost
-# 56 Shop Banana Juice
 # 60 Mirror mode unlock
 
 LOCATION_NAME_TO_ID = {
@@ -50,9 +47,6 @@ LOCATION_NAME_TO_ID = {
     L.JUNGLE_SHOP_BALLOONSX1: 10051,
     L.JUNGLE_SHOP_BALLOONSX3: 10052,
     L.JUNGLE_SHOP_BALLOONSX7: 10053,
-    L.JUNGLE_SHOP_SQUAWKS: 10054,
-    L.JUNGLE_SHOP_HEART_BOOST: 10055,
-    L.JUNGLE_SHOP_BANANA_JUICE: 10056,
     L.JUNGLE_HIJINXS_PUZZLE_PIECE_1: 10101,
     L.JUNGLE_HIJINXS_PUZZLE_PIECE_2: 10102,
     L.JUNGLE_HIJINXS_PUZZLE_PIECE_3: 10103,
@@ -182,9 +176,6 @@ LOCATION_NAME_TO_ID = {
     L.BEACH_SHOP_BALLOONSX1: 20051,
     L.BEACH_SHOP_BALLOONSX3: 20052,
     L.BEACH_SHOP_BALLOONSX7: 20053,
-    L.BEACH_SHOP_SQUAWKS: 20054,
-    L.BEACH_SHOP_HEART_BOOST: 20055,
-    L.BEACH_SHOP_BANANA_JUICE: 20056,
     L.POPPIN_PLANKS_PUZZLE_PIECE_1: 20101,
     L.POPPIN_PLANKS_PUZZLE_PIECE_2: 20102,
     L.POPPIN_PLANKS_PUZZLE_PIECE_3: 20103,
@@ -328,9 +319,6 @@ LOCATION_NAME_TO_ID = {
     L.RUINS_SHOP_BALLOONSX1: 30051,
     L.RUINS_SHOP_BALLOONSX3: 30052,
     L.RUINS_SHOP_BALLOONSX7: 30053,
-    L.RUINS_SHOP_SQUAWKS: 30054,
-    L.RUINS_SHOP_HEART_BOOST: 30055,
-    L.RUINS_SHOP_BANANA_JUICE: 30056,
     L.WONKY_WATERWAY_PUZZLE_PIECE_1: 30101,
     L.WONKY_WATERWAY_PUZZLE_PIECE_2: 30102,
     L.WONKY_WATERWAY_PUZZLE_PIECE_3: 30103,
@@ -466,9 +454,6 @@ LOCATION_NAME_TO_ID = {
     L.CAVE_SHOP_BALLOONSX1: 40051,
     L.CAVE_SHOP_BALLOONSX3: 40052,
     L.CAVE_SHOP_BALLOONSX7: 40053,
-    L.CAVE_SHOP_SQUAWKS: 40054,
-    L.CAVE_SHOP_HEART_BOOST: 40055,
-    L.CAVE_SHOP_BANANA_JUICE: 40056,
     L.RICKETY_RAILS_PUZZLE_PIECE_1: 40101,
     L.RICKETY_RAILS_PUZZLE_PIECE_2: 40102,
     L.RICKETY_RAILS_PUZZLE_PIECE_3: 40103,
@@ -576,9 +561,6 @@ LOCATION_NAME_TO_ID = {
     L.FOREST_SHOP_BALLOONSX1: 50051,
     L.FOREST_SHOP_BALLOONSX3: 50052,
     L.FOREST_SHOP_BALLOONSX7: 50053,
-    L.FOREST_SHOP_SQUAWKS: 50054,
-    L.FOREST_SHOP_HEART_BOOST: 50055,
-    L.FOREST_SHOP_BANANA_JUICE: 50056,
     L.VINE_VALLEY_PUZZLE_PIECE_1: 50101,
     L.VINE_VALLEY_PUZZLE_PIECE_2: 50102,
     L.VINE_VALLEY_PUZZLE_PIECE_3: 50103,
@@ -746,9 +728,6 @@ LOCATION_NAME_TO_ID = {
     L.CLIFF_SHOP_BALLOONSX1: 60051,
     L.CLIFF_SHOP_BALLOONSX3: 60052,
     L.CLIFF_SHOP_BALLOONSX7: 60053,
-    L.CLIFF_SHOP_SQUAWKS: 60054,
-    L.CLIFF_SHOP_HEART_BOOST: 60055,
-    L.CLIFF_SHOP_BANANA_JUICE: 60056,
     L.STICKY_SITUATION_PUZZLE_PIECE_1: 60101,
     L.STICKY_SITUATION_PUZZLE_PIECE_2: 60102,
     L.STICKY_SITUATION_PUZZLE_PIECE_3: 60103,
@@ -914,9 +893,6 @@ LOCATION_NAME_TO_ID = {
     L.FACTORY_SHOP_BALLOONSX1: 70051,
     L.FACTORY_SHOP_BALLOONSX3: 70052,
     L.FACTORY_SHOP_BALLOONSX7: 70053,
-    L.FACTORY_SHOP_SQUAWKS: 70054,
-    L.FACTORY_SHOP_HEART_BOOST: 70055,
-    L.FACTORY_SHOP_BANANA_JUICE: 70056,
     L.FOGGY_FUMES_PUZZLE_PIECE_1: 70101,
     L.FOGGY_FUMES_PUZZLE_PIECE_2: 70102,
     L.FOGGY_FUMES_PUZZLE_PIECE_3: 70103,
@@ -1067,9 +1043,6 @@ LOCATION_NAME_TO_ID = {
     L.VOLCANO_SHOP_BALLOONSX1: 80051,
     L.VOLCANO_SHOP_BALLOONSX3: 80052,
     L.VOLCANO_SHOP_BALLOONSX7: 80053,
-    L.VOLCANO_SHOP_SQUAWKS: 80054,
-    L.VOLCANO_SHOP_HEART_BOOST: 80055,
-    L.VOLCANO_SHOP_BANANA_JUICE: 80056,
     L.FURIOUS_FIRE_PUZZLE_PIECE_1: 80101,
     L.FURIOUS_FIRE_PUZZLE_PIECE_2: 80102,
     L.FURIOUS_FIRE_PUZZLE_PIECE_3: 80103,
@@ -1495,9 +1468,6 @@ def create_regular_locations(world: DKCRWorld) -> None:
             L.JUNGLE_SHOP_BALLOONSX1,
             L.JUNGLE_SHOP_BALLOONSX3,
             L.JUNGLE_SHOP_BALLOONSX7,
-            L.JUNGLE_SHOP_SQUAWKS,
-            L.JUNGLE_SHOP_HEART_BOOST,
-            L.JUNGLE_SHOP_BANANA_JUICE,
         ]
     )
 
@@ -1696,9 +1666,6 @@ def create_regular_locations(world: DKCRWorld) -> None:
             L.BEACH_SHOP_BALLOONSX1,
             L.BEACH_SHOP_BALLOONSX3,
             L.BEACH_SHOP_BALLOONSX7,
-            L.BEACH_SHOP_SQUAWKS,
-            L.BEACH_SHOP_HEART_BOOST,
-            L.BEACH_SHOP_BANANA_JUICE,
         ]
     )
 
@@ -1884,9 +1851,6 @@ def create_regular_locations(world: DKCRWorld) -> None:
             L.RUINS_SHOP_BALLOONSX1,
             L.RUINS_SHOP_BALLOONSX3,
             L.RUINS_SHOP_BALLOONSX7,
-            L.RUINS_SHOP_SQUAWKS,
-            L.RUINS_SHOP_HEART_BOOST,
-            L.RUINS_SHOP_BANANA_JUICE,
         ]
     )
 
@@ -2039,9 +2003,6 @@ def create_regular_locations(world: DKCRWorld) -> None:
             L.CAVE_SHOP_BALLOONSX1,
             L.CAVE_SHOP_BALLOONSX3,
             L.CAVE_SHOP_BALLOONSX7,
-            L.CAVE_SHOP_SQUAWKS,
-            L.CAVE_SHOP_HEART_BOOST,
-            L.CAVE_SHOP_BANANA_JUICE,
         ]
     )
 
@@ -2269,9 +2230,6 @@ def create_regular_locations(world: DKCRWorld) -> None:
             L.FOREST_SHOP_BALLOONSX1,
             L.FOREST_SHOP_BALLOONSX3,
             L.FOREST_SHOP_BALLOONSX7,
-            L.FOREST_SHOP_SQUAWKS,
-            L.FOREST_SHOP_HEART_BOOST,
-            L.FOREST_SHOP_BANANA_JUICE,
         ]
     )
 
@@ -2497,9 +2455,6 @@ def create_regular_locations(world: DKCRWorld) -> None:
             L.CLIFF_SHOP_BALLOONSX1,
             L.CLIFF_SHOP_BALLOONSX3,
             L.CLIFF_SHOP_BALLOONSX7,
-            L.CLIFF_SHOP_SQUAWKS,
-            L.CLIFF_SHOP_HEART_BOOST,
-            L.CLIFF_SHOP_BANANA_JUICE,
         ]
     )
 
@@ -2710,9 +2665,6 @@ def create_regular_locations(world: DKCRWorld) -> None:
             L.FACTORY_SHOP_BALLOONSX1,
             L.FACTORY_SHOP_BALLOONSX3,
             L.FACTORY_SHOP_BALLOONSX7,
-            L.FACTORY_SHOP_SQUAWKS,
-            L.FACTORY_SHOP_HEART_BOOST,
-            L.FACTORY_SHOP_BANANA_JUICE,
         ]
     )
 
@@ -2909,9 +2861,6 @@ def create_regular_locations(world: DKCRWorld) -> None:
             L.VOLCANO_SHOP_BALLOONSX1,
             L.VOLCANO_SHOP_BALLOONSX3,
             L.VOLCANO_SHOP_BALLOONSX7,
-            L.VOLCANO_SHOP_SQUAWKS,
-            L.VOLCANO_SHOP_HEART_BOOST,
-            L.VOLCANO_SHOP_BANANA_JUICE,
         ]
     )
 
@@ -3001,7 +2950,7 @@ def create_regular_locations(world: DKCRWorld) -> None:
     Volcano.add_locations(Volcano_Locations, DKCRLocation)
     Furious_Fire.add_locations(Furious_Fire_Locations, DKCRLocation)
     Hot_Rocket.add_locations(Hot_Rocket_Locations, DKCRLocation)
-    Roasting_Rails.add_locations(Rickety_Rails_Locations, DKCRLocation)
+    Roasting_Rails.add_locations(Roasting_Rails_Locations, DKCRLocation)
     Smokey_Peak.add_locations(Smokey_Peak_Locations, DKCRLocation)
     Bobbing_Basalt.add_locations(Bobbing_Basalt_Locations, DKCRLocation)
     Moving_Melters.add_locations(Moving_Melters_Locations, DKCRLocation)
@@ -3040,10 +2989,6 @@ def create_events(world: DKCRWorld) -> None:
     Cliff = world.get_region("Cliff")
     Factory = world.get_region("Factory")
     Volcano = world.get_region("Volcano")
-
-    Jungle.add_event(
-        "Boss 1", "Defeated Boss 1", location_type=DKCRLocation, item_type=items.DKCRItem
-    )
 
 
 """
