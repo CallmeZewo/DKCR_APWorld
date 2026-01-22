@@ -19,7 +19,7 @@ class DKCRWorld(World):
     options_dataclass = dkcr_options.DKCROptions
     options: dkcr_options.DKCROptions
 
-    location_name_to_id = locations.LOCATEN_NAME_TO_ID
+    location_name_to_id = locations.LOCATION_NAME_TO_ID
     item_name_to_id = items.ITEM_NAME_TO_ID
 
     origin_region_name = "Jungle"
