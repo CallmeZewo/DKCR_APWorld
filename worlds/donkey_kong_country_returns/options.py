@@ -4,9 +4,21 @@ from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, De
 
 class GoldenTemple(Toggle):
     """
-    Adding the Golden Temple into the itempool
+    Adding the Golden Temple into the item pool
     """
     display_name = "Golden Temple"
+
+class RareOrbs(Range):
+    """
+    How many of the Rare Orbs found in K-levels are needed to enter the Golden Temple.
+    """
+    display_name = "Rare Orb amount"
+
+    range_start = 0
+    range_end = 8
+    # This value can not exceed 8
+
+    default = 8
 
 class Rambi(Toggle):
     """
@@ -16,9 +28,9 @@ class Rambi(Toggle):
 
 class Minecart(Toggle):
     """
-    When enabled, Mine Cart levels and sections require the item Mine Cart Key to access.
+    When enabled, Minecart levels and sections require the item Minecart Pass to access.
     """
-    display_name = "Mine Cart"
+    display_name = "Minecart"
 
 class RocketBarrel(Toggle):
     """
@@ -26,11 +38,57 @@ class RocketBarrel(Toggle):
     """
     display_name = "Rocket Barrel"
 
-class DiddyKong(Toggle):
+class KongBarrel(Toggle):
     """
-    When enabled, requires the item Diddy Kong's Jetpack for the use of Diddy Kong.
+    When enabled, requires the item Kong Barrel to be unlocked.
     """
-    display_name = "Diddy Kong"
+    display_name = "Kong Barrel"
+
+class Run(Toggle):
+    """
+    When enabled, shuffles your ability to run into the item pool.
+    """
+    display_name = "Randomize Run"
+
+class Roll(Toggle):
+    """
+    When enabled, shuffles your ability to roll into the item pool.
+    """
+    display_name = "Randomize Roll"
+
+class Grab(Toggle):
+    """
+    When enabled, shuffles your ability to grab into the item pool.
+    """
+    display_name = "Randomize Grab"
+
+class Blow(Toggle):
+    """
+    When enabled, shuffles your ability to blow into the item pool.
+    """
+    display_name = "Randomize Blow"
+
+class GroundPound(Toggle):
+    """
+    When enabled, shuffles your ability to Ground Pound into the item pool.
+    """
+    display_name = "Randomize Ground Pound"
+
+class MirrorMode(Toggle):
+    """
+    Completing a level in Mirror Mode is considered a check.
+    """
+    display_name = "Mirror Mode"
+
+class MirrorModeShards(Range):
+    """
+    Decides how many Mirror Shards are needed to unlock Mirror Mode.
+    """
+    display_name = "Mirror Mode Shard amount"
+
+    range_start = 0
+    range_end = 25
+    default = 8
 
 class SunsetShoreKey(Toggle):
     """
@@ -159,8 +217,8 @@ class FactoryBossAccess(Range):
     display_name = "Puzzle Piece requirement for Feather Fiend"
 
     range_start = 0
-    range_end = 326
-    # This Value can not exceed 326
+    range_end = 324
+    # This Value can not exceed 324
 
     default = 260
 
@@ -171,18 +229,26 @@ class VolcanoBossAccess(Range):
     display_name = "Puzzle Piece requirement for Tiki Tong Terror"
 
     range_start = 0
-    range_end = 368
-    # This Value can not exceed 368
+    range_end = 366
+    # This Value can not exceed 366
 
     default = 320
 
 @dataclass
 class DKCROptions(PerGameCommonOptions):
     golden_temple: GoldenTemple
+    rare_orbs: RareOrbs
     rambi: Rambi
-    mine_cart: Minecart
+    minecart: Minecart
     rocket_barrel: RocketBarrel
-    diddy_kong: DiddyKong
+    kong_barrel: KongBarrel
+    run: Run
+    roll: Roll
+    grab: Grab
+    blow: Blow
+    ground_pound: GroundPound
+    mirror_mode: MirrorMode
+    mirror_mode_shards: MirrorModeShards
     sunset_shore_key: SunsetShoreKey
     blowhole_bound_key: BlowholeBoundKey
     damp_dungeon_key: DampDungeonKey
@@ -202,28 +268,48 @@ class DKCROptions(PerGameCommonOptions):
 
 option_groups = [
     OptionGroup(
-        "Gameplay Options",
-        [GoldenTemple, Rambi, Minecart, RocketBarrel, DiddyKong]
+        "Gameplay options",
+        [GoldenTemple, RareOrbs]
     ),
     OptionGroup(
-        "Key Options",
+        "Key options",
         [SunsetShoreKey, BlowholeBoundKey, DampDungeonKey, MolePatrolKey, SpringySporesKey, PrecariousPlateauKey,
          HandyHazardsKey, SmokeyPeakKey]
     ),
     OptionGroup(
-        "Boss Access Options",
+        "Boss access options",
         [JungleBossAccess, BeachBossAccess, RuinsBossAccess, CaveBossAccess, ForestBossAccess, CliffBossAccess,
          FactoryBossAccess, VolcanoBossAccess]
+    ),
+    OptionGroup(
+        "Moveset options",
+        [Run, Roll, Grab, Blow, GroundPound]
+    ),
+    OptionGroup(
+        "Misc options",
+        [Rambi, Minecart, RocketBarrel, KongBarrel]
+    ),
+    OptionGroup(
+        "Mirror mode options",
+        [MirrorMode, MirrorModeShards]
     )
 ]
 
 option_presets = {
     "Full": {
+        "rare_orbs": True,
         "golden_temple": True,
         "rambi": True,
-        "mine_cart": True,
+        "minecart": True,
         "rocket_barrel": True,
-        "diddy_kong": True,
+        "kong_barrel": True,
+        "run": True,
+        "roll": True,
+        "grab": True,
+        "blow": True,
+        "ground_pound": True,
+        "mirror_mode": True,
+        "mirror_mode_shards": True,
         "sunset_shore_key": True,
         "blowhole_bound_key": True,
         "damp_dungeon_key": True,
@@ -242,11 +328,19 @@ option_presets = {
         "volcano_boss_access": True,
     },
     "Empty": {
+        "rare_orbs": False,
         "golden_temple": False,
         "rambi": False,
-        "mine_cart": False,
+        "minecart": False,
         "rocket_barrel": False,
-        "diddy_kong": False,
+        "kong_barrel": False,
+        "run": False,
+        "roll": False,
+        "grab": False,
+        "blow": False,
+        "ground_pound": False,
+        "mirror_mode": False,
+        "mirror_mode_shards": False,
         "sunset_shore_key": False,
         "blowhole_bound_key": False,
         "damp_dungeon_key": False,
