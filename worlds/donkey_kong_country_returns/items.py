@@ -1,54 +1,67 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, NamedTuple, Optional, Dict
 
-from BaseClasses import Item, ItemClassification
+from BaseClasses import Item, ItemClassification as IC
+
+from strings import Item as I
 
 if TYPE_CHECKING:
     from .world import DKCRWorld
 
-ITEM_NAME_TO_ID = {
-    "Puzzle Piece": 1,
-    "Kong Letter": 2,
-    "Jungle Shop Key": 3,
-    "Beach Shop Key": 4,
-    "Ruins Shop Key": 5,
-    "Cave Shop Key": 6,
-    "Forest Shop Key": 7,
-    "Cliff Shop Key": 8,
-    "Factory Shop Key": 9,
-    "Volcano Shop Key": 10,
-    "Balloon": 11,
-    "Defeated Boss 1": 12,
-    "Defeated Boss 2": 13,
-    "Defeated Boss 3": 14,
-    "Defeated Boss 4": 15,
-    "Defeated Boss 5": 16,
-    "Defeated Boss 6": 17,
-    "Defeated Boss 7": 18,
-    "Defeated Boss 8": 19,
+class ItemData(NamedTuple):
+    code: Optional[int]
+    classification: IC
+    amount: Optional[int] = 1
+
+item_table: Dict[str, ItemData] = {
+    I.PUZZLE_PIECE: ItemData(1, IC.progression, 366),
+    I.Kong_Letter.KONG_LETTER_JUNGLE: ItemData(2, IC.progression, 24),
+    I.Kong_Letter.KONG_LETTER_BEACH: ItemData(3, IC.progression, 28),
+    I.Kong_Letter.KONG_LETTER_RUINS: ItemData(4, IC.progression, 24),
+    I.Kong_Letter.KONG_LETTER_CAVE: ItemData(5, IC.progression, 20),
+    I.Kong_Letter.KONG_LETTER_FOREST: ItemData(6, IC.progression, 32),
+    I.Kong_Letter.KONG_LETTER_CLIFF: ItemData(7, IC.progression, 32),
+    I.Kong_Letter.KONG_LETTER_FACTORY: ItemData(8, IC.progression, 28),
+    I.Kong_Letter.KONG_LETTER_VOLCANO: ItemData(9, IC.progression, 28),
+    I.Key.JUNGLE_KEY: ItemData(10, IC.progression),
+    I.Key.Beach_KEY: ItemData(11, IC.progression),
+    I.Key.Ruins_KEY: ItemData(12, IC.progression),
+    I.Key.CAVE_KEY: ItemData(13, IC.progression),
+    I.Key.FOREST_KEY: ItemData(14, IC.progression),
+    I.Key.CLIFF_KEY: ItemData(15, IC.progression),
+    I.Key.FACTORY_KEY: ItemData(16, IC.progression),
+    I.Key.VOLCANO_KEY: ItemData(17, IC.progression),
+    I.Rare_Orb.GREEN_ORB_JUNGLE: ItemData(18, IC.progression),
+    I.Rare_Orb.BLUE_ORB_BEACH: ItemData(19, IC.progression),
+    I.Rare_Orb.WHITE_ORB_RUINS: ItemData(20, IC.progression),
+    I.Rare_Orb.MAGENTA_ORB_CAVE: ItemData(21, IC.progression),
+    I.Rare_Orb.YELLOW_ORB_FOREST: ItemData(22, IC.progression),
+    I.Rare_Orb.ORANGE_ORB_CLIFF: ItemData(23, IC.progression),
+    I.Rare_Orb.GRAY_ORB_FACTORY: ItemData(24, IC.progression),
+    I.Rare_Orb.RED_ORB_VOLCANO: ItemData(25, IC.progression),
+    I.Shop.BALLOONX1: ItemData(26, IC.useful, 8),
+    I.Shop.BALLOONX3: ItemData(27, IC.useful, 8),
+    I.Shop.BALLOONX7: ItemData(28, IC.useful, 8),
+    I.Shop.SQUAWKS: ItemData(29, IC.useful, 8),
+    I.Shop.HEART_BOOST: ItemData(30, IC.useful, 8),
+    I.Shop.BANANA_JUICE: ItemData(31, IC.useful, 8),
+    I.Unlockables.Moves.RUN: ItemData(32, IC.progression),
+    I.Unlockables.Moves.ROLL: ItemData(33, IC.progression),
+    I.Unlockables.Moves.GRAB: ItemData(34, IC.progression),
+    I.Unlockables.Moves.BLOW: ItemData(35, IC.progression),
+    I.Unlockables.Moves.GROUND_POUND: ItemData(36, IC.progression),
+    I.Unlockables.MISC.ROCKET_BARREL_FUEL: ItemData(37, IC.progression),
+    I.Unlockables.MISC.MINECART_PASS: ItemData(38, IC.progression),
+    I.Unlockables.MISC.RAMBIS_SADDLE: ItemData(39, IC.progression),
+    I.Unlockables.MISC.KONG_BARREL: ItemData(40, IC.progression),
+    I.Unlockables.MIRROR_SHARD: ItemData(41, IC.progression)
 }
 
+ITEM_NAME_TO_ID: Dict[str, int] = {}
+
 DEFAULT_ITEM_CLASSIFICATIONS = {
-    "Puzzle Piece": ItemClassification.progression,
-    "Kong Letter": ItemClassification.progression,
-    "Jungle Shop Key": ItemClassification.progression,
-    "Beach Shop Key": ItemClassification.progression,
-    "Ruins Shop Key": ItemClassification.progression,
-    "Cave Shop Key": ItemClassification.progression,
-    "Forest Shop Key": ItemClassification.progression,
-    "Cliff Shop Key": ItemClassification.progression,
-    "Factory Shop Key": ItemClassification.progression,
-    "Volcano Shop Key": ItemClassification.progression,
-    "Balloon": ItemClassification.filler,
-    "Defeated Boss 1": ItemClassification.progression,
-    "Defeated Boss 2": ItemClassification.progression,
-    "Defeated Boss 3": ItemClassification.progression,
-    "Defeated Boss 4": ItemClassification.progression,
-    "Defeated Boss 5": ItemClassification.progression,
-    "Defeated Boss 6": ItemClassification.progression,
-    "Defeated Boss 7": ItemClassification.progression,
-    "Defeated Boss 8": ItemClassification.progression,
+
 }
 
 class DKCRItem(Item):
