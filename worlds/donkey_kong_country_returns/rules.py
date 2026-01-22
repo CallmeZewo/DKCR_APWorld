@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING
 from BaseClasses import CollectionState
 from worlds.generic.Rules import add_rule, set_rule
 
+from .strings import RegionConnection as RC
+
 if TYPE_CHECKING:
     from .world import DKCRWorld
 
@@ -14,46 +16,48 @@ def set_all_rules(world: DKCRWorld) -> None:
     set_completion_condition(world)
 
 def set_all_entrance_rules(world: DKCRWorld) -> None:
-    Jungle_to_Beach = world.get_entrance("Jungle to Beach")
-    Jungle_to_SunsetShore = world.get_entrance("Jungle to Sunset Shore")
-    Beach_to_Ruins = world.get_entrance("Beach to Ruins")
-    Beach_to_BlowholeBound = world.get_entrance("Beach to Blowhole Bound")
-    Ruins_to_Cave = world.get_entrance("Ruins to Cave")
-    Ruins_to_DampDungeon = world.get_entrance("Ruins to Damp Dungeon")
-    Cave_to_Forest = world.get_entrance("Cave to Forest")
-    Cave_to_MolePatrol = world.get_entrance("Cave to Mole Patrol")
-    Forest_to_Cliff = world.get_entrance("Forest to Cliff")
-    Forest_to_SpringySpores = world.get_entrance("Forest to Springy Spores")
-    Cliff_to_Factory = world.get_entrance("Cliff to Factory")
-    Cliff_to_PrecariousPlateau = world.get_entrance("Cliff to Precarious Plateau")
-    Factory_to_Volcano = world.get_entrance("Factory to Volcano")
-    Factory_to_HandyHazards = world.get_entrance("Factory to Handy Hazards")
+
+    jungle_to_muglys_mound = world.get_entrance(RC.JUNGLE_TO_MUGLYS_MOUND)
+    jungle_to_platform_panic = world.get_entrance(RC.JUNGLE_TO_PLATFORM_PANIC)
+    muglys_mound_to_beach = world.get_entrance(RC.MUGLYS_MOUND_TO_BEACH)
+
+    beach_to_pinchin_pirates = world.get_entrance(RC.BEACH_TO_PINCHIN_PIRATES)
+    beach_to_tumblin_temple = world.get_entrance(RC.BEACH_TO_TUMBLIN_TEMPLE)
+    pinchin_pirates_to_ruins = world.get_entrance(RC.PINCHIN_PIRATES_TO_RUINS)
+
+    ruins_to_ruined_roost = world.get_entrance(RC.RUINS_TO_RUINED_ROOST)
+    ruins_to_shifty_smashers = world.get_entrance(RC.RUINS_TO_SHIFTY_SMASHERS)
+    ruined_roost_to_cave = world.get_entrance(RC.RUINED_ROOST_TO_CAVE)
+
+    cave_to_the_mole_train = world.get_entrance(RC.CAVE_TO_THE_MOLE_TRAIN)
+    cave_to_jagged_jewels = world.get_entrance(RC.CAVE_TO_JAGGED_JEWELS)
+    the_mole_train_to_forest = world.get_entrance(RC.THE_MOLE_TRAIN_TO_FOREST)
+
+    forest_to_mangoruby_run = world.get_entrance(RC.FOREST_TO_MANGORUBY_RUN)
+    forest_to_blast_n_bounce = world.get_entrance(RC.FOREST_TO_BLAST_N_BOUNCE)
+    mangoruby_run_to_cliff = world.get_entrance(RC.MANGORUBY_RUN_TO_CLIFF)
+
+    cliff_to_thuglys_highrise = world.get_entrance(RC.CLIFF_TO_THUGLYS_HIGHRISE)
+    cliff_to_perilous_passage = world.get_entrance(RC.CLIFF_TO_PERILOUS_PASSAGE)
+    thuglys_highrise_to_factory = world.get_entrance(RC.THUGLYS_HIGHRISE_TO_FACTORY)
+
+    factory_to_lift_off_launch = world.get_entrance(RC.FACTORY_TO_LIFT_OFF_LAUNCH)
+    factory_to_treacherous_track = world.get_entrance(RC.FACTORY_TO_TREACHEROUS_TRACK)
+    lift_off_launch_to_feather_fiend = world.get_entrance(RC.LIFT_OFF_LAUNCH_TO_FEATHER_FIEND)
+    feather_fiend_to_volcano = world.get_entrance(RC.FEATHER_FIEND_TO_VOLCANO)
+
+    volcano_to_tiki_tong_terror = world.get_entrance(RC.VOLCANO_TO_TIKI_TONG_TERROR)
+    volcano_to_five_monkey_trial = world.get_entrance(RC.VOLCANO_TO_FIVE_MONKEY_TRIAL)
 
     if world.options.golden_temple:
-        Volcano_to_GoldenTemple = world.get_entrance("Volcano to Golden Temple")
-        set_rule(Volcano_to_GoldenTemple, lambda state: state.has("Defeated Boss 8", world.player))
+        tiki_tong_terror_to_golden_temple = world.get_entrance(RC.TIKI_TONG_TERROR_TO_GOLDEN_TEMPLE)
 
-    set_rule(Jungle_to_Beach, lambda state: state.has("Defeated Boss 1", world.player))
-    set_rule(Jungle_to_SunsetShore, lambda state: state.has("Jungle Shop Key", world.player))
-    set_rule(Beach_to_Ruins, lambda state: state.has("Defeated Boss 2", world.player))
-    set_rule(Beach_to_BlowholeBound, lambda state: state.has("Beach Shop Key", world.player))
-    set_rule(Ruins_to_Cave, lambda state: state.has("Defeated Boss 3", world.player))
-    set_rule(Ruins_to_DampDungeon, lambda state: state.has("Ruins Shop Key", world.player))
-    set_rule(Cave_to_Forest, lambda state: state.has("Defeated Boss 4", world.player))
-    set_rule(Cave_to_MolePatrol, lambda state: state.has("Cave Shop Key", world.player))
-    set_rule(Forest_to_Cliff, lambda state: state.has("Defeated Boss 5", world.player))
-    set_rule(Forest_to_SpringySpores, lambda state: state.has("Forest Shop Key", world.player))
-    set_rule(Cliff_to_Factory, lambda state: state.has("Defeated Boss 6", world.player))
-    set_rule(Cliff_to_PrecariousPlateau, lambda state: state.has("Cliff Shop Key", world.player))
-    set_rule(Factory_to_Volcano, lambda state: state.has("Defeated Boss 7", world.player))
-    set_rule(Factory_to_HandyHazards, lambda state: state.has("Factory Shop Key", world.player))
-    set_rule(Factory_to_Volcano, lambda state: state.has("Volcano Shop Key", world.player))
 
 def set_all_location_rules(world: DKCRWorld) -> None:
     pass
 
 def set_completion_condition(world: DKCRWorld) -> None:
     if world.options.golden_temple:
-        world.multiworld.completion_condition[world.player] = lambda state: state.has("Defeated Boss 8", world.player)
+        world.multiworld.completion_condition[world.player] = lambda state: state.has("Puzzle Piece", world.player)
     else:
-        world.multiworld.completion_condition[world.player] = lambda state: state.has("9-1 Golden Temple cleared", world.player)
+        world.multiworld.completion_condition[world.player] = lambda state: state.has("Puzzle Piece", world.player)
