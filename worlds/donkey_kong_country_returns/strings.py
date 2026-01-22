@@ -230,9 +230,6 @@ class Location:
     JUNGLE_SHOP_BALLOONSX1 = "Jungle Shop Ballon x 1"
     JUNGLE_SHOP_BALLOONSX3 = "Jungle Shop Ballon x 3"
     JUNGLE_SHOP_BALLOONSX7 = "Jungle Shop Ballon x 7"
-    JUNGLE_SHOP_SQUAWKS = "Jungle Shop Squawks"
-    JUNGLE_SHOP_HEART_BOOST = "Jungle Shop Heart Boost"
-    JUNGLE_SHOP_BANANA_JUICE = "Jungle Shop Banana Juice"
 
     JUNGLE_HIJINXS_PUZZLE_PIECE_1 = "1-1 Jungle Hijinxs Puzzle Piece (1)"
     JUNGLE_HIJINXS_PUZZLE_PIECE_2 = "1-1 Jungle Hijinxs Puzzle Piece (2)"
@@ -371,9 +368,6 @@ class Location:
     BEACH_SHOP_BALLOONSX1 = "Beach Shop Ballon x 1"
     BEACH_SHOP_BALLOONSX3 = "Beach Shop Ballon x 3"
     BEACH_SHOP_BALLOONSX7 = "Beach Shop Ballon x 7"
-    BEACH_SHOP_SQUAWKS = "Beach Shop Squawks"
-    BEACH_SHOP_HEART_BOOST = "Beach Shop Heart Boost"
-    BEACH_SHOP_BANANA_JUICE = "Beach Shop Banana Juice"
 
     POPPIN_PLANKS_PUZZLE_PIECE_1 = "2-1 Poppin' Planks Puzzle Piece (1)"
     POPPIN_PLANKS_PUZZLE_PIECE_2 = "2-1 Poppin' Planks Puzzle Piece (2)"
@@ -527,9 +521,6 @@ class Location:
     RUINS_SHOP_BALLOONSX1 = "Ruins Shop Ballon x 1"
     RUINS_SHOP_BALLOONSX3 = "Ruins Shop Ballon x 3"
     RUINS_SHOP_BALLOONSX7 = "Ruins Shop Ballon x 7"
-    RUINS_SHOP_SQUAWKS = "Ruins Shop Squawks"
-    RUINS_SHOP_HEART_BOOST = "Ruins Shop Heart Boost"
-    RUINS_SHOP_BANANA_JUICE = "Ruins Shop Banana Juice"
 
     WONKY_WATERWAY_PUZZLE_PIECE_1 = "3-1 Wonky Waterway Puzzle Piece (1)"
     WONKY_WATERWAY_PUZZLE_PIECE_2 = "3-1 Wonky Waterway Puzzle Piece (2)"
@@ -674,9 +665,6 @@ class Location:
     CAVE_SHOP_BALLOONSX1 = "Cave Shop Ballon x 1"
     CAVE_SHOP_BALLOONSX3 = "Cave Shop Ballon x 3"
     CAVE_SHOP_BALLOONSX7 = "Cave Shop Ballon x 7"
-    CAVE_SHOP_SQUAWKS = "Cave Shop Squawks"
-    CAVE_SHOP_HEART_BOOST = "Cave Shop Heart Boost"
-    CAVE_SHOP_BANANA_JUICE = "Cave Shop Banana Juice"
 
     RICKETY_RAILS_PUZZLE_PIECE_1 = "4-1 Rickety Rails Puzzle Piece (1)"
     RICKETY_RAILS_PUZZLE_PIECE_2 = "4-1 Rickety Rails Puzzle Piece (2)"
@@ -792,9 +780,6 @@ class Location:
     FOREST_SHOP_BALLOONSX1 = "Forest Shop Ballon x 1"
     FOREST_SHOP_BALLOONSX3 = "Forest Shop Ballon x 3"
     FOREST_SHOP_BALLOONSX7 = "Forest Shop Ballon x 7"
-    FOREST_SHOP_SQUAWKS = "Forest Shop Squawks"
-    FOREST_SHOP_HEART_BOOST = "Forest Shop Heart Boost"
-    FOREST_SHOP_BANANA_JUICE = "Forest Shop Banana Juice"
 
 
     VINE_VALLEY_PUZZLE_PIECE_1 = "5-1 Vine Valley Puzzle Piece (1)"
@@ -974,9 +959,6 @@ class Location:
     CLIFF_SHOP_BALLOONSX1 = "Cliff Shop Ballon x 1"
     CLIFF_SHOP_BALLOONSX3 = "Cliff Shop Ballon x 3"
     CLIFF_SHOP_BALLOONSX7 = "Cliff Shop Ballon x 7"
-    CLIFF_SHOP_SQUAWKS = "Cliff Shop Squawks"
-    CLIFF_SHOP_HEART_BOOST = "Cliff Shop Heart Boost"
-    CLIFF_SHOP_BANANA_JUICE = "Cliff Shop Banana Juice"
 
     STICKY_SITUATION_PUZZLE_PIECE_1 = "6-1 Sticky Situation Puzzle Piece (1)"
     STICKY_SITUATION_PUZZLE_PIECE_2 = "6-1 Sticky Situation Puzzle Piece (2)"
@@ -1153,9 +1135,6 @@ class Location:
     FACTORY_SHOP_BALLOONSX1 = "Factory Shop Ballon x 1"
     FACTORY_SHOP_BALLOONSX3 = "Factory Shop Ballon x 3"
     FACTORY_SHOP_BALLOONSX7 = "Factory Shop Ballon x 7"
-    FACTORY_SHOP_SQUAWKS = "Factory Shop Squawks"
-    FACTORY_SHOP_HEART_BOOST = "Factory Shop Heart Boost"
-    FACTORY_SHOP_BANANA_JUICE = "Factory Shop Banana Juice"
 
     FOGGY_FUMES_PUZZLE_PIECE_1 = "7-1 Foggy Fumes Puzzle Piece (1)"
     FOGGY_FUMES_PUZZLE_PIECE_2 = "7-1 Foggy Fumes Puzzle Piece (2)"
@@ -1317,9 +1296,6 @@ class Location:
     VOLCANO_SHOP_BALLOONSX1 = "Volcano Shop Ballon x 1"
     VOLCANO_SHOP_BALLOONSX3 = "Volcano Shop Ballon x 3"
     VOLCANO_SHOP_BALLOONSX7 = "Volcano Shop Ballon x 7"
-    VOLCANO_SHOP_SQUAWKS = "Volcano Shop Squawks"
-    VOLCANO_SHOP_HEART_BOOST = "Volcano Shop Heart Boost"
-    VOLCANO_SHOP_BANANA_JUICE = "Volcano Shop Banana Juice"
 
     FURIOUS_FIRE_PUZZLE_PIECE_1 = "8-1 Furious Fire Puzzle Piece (1)"
     FURIOUS_FIRE_PUZZLE_PIECE_2 = "8-1 Furious Fire Puzzle Piece (2)"
@@ -1526,9 +1502,6 @@ class Item:
         BALLOONX1 = "Balloons x 1"
         BALLOONX3 = "Balloons x 3"
         BALLOONX7 = "Balloons x 7"
-        SQUAWKS = "Squawks"
-        HEART_BOOST = "Heart Boost"
-        BANANA_JUICE = "Banana Juice"
 
     class Unlockables:
 
