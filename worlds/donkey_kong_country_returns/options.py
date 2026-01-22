@@ -20,6 +20,13 @@ class RareOrbs(Range):
 
     default = 8
 
+class RandomizeLevels(Toggle):
+    """
+    When enabled, randomizes the levels with each other.
+    Excludes K levels and Bosses.
+    """
+    display_name = "Randomize Levels"
+
 class Rambi(Toggle):
     """
     When enabled, locks Rambi behind the Rambi’s Saddle item.
@@ -238,6 +245,7 @@ class VolcanoBossAccess(Range):
 class DKCROptions(PerGameCommonOptions):
     golden_temple: GoldenTemple
     rare_orbs: RareOrbs
+    randomize_levels: RandomizeLevels
     rambi: Rambi
     minecart: Minecart
     rocket_barrel: RocketBarrel
@@ -253,10 +261,10 @@ class DKCROptions(PerGameCommonOptions):
     blowhole_bound_key: BlowholeBoundKey
     damp_dungeon_key: DampDungeonKey
     mole_patrol_key: MolePatrolKey
-    springy_spores: SpringySporesKey
+    springy_spores_key: SpringySporesKey
     precarious_plateau_key: PrecariousPlateauKey
-    handy_hazards: HandyHazardsKey
-    smokey_peak: SmokeyPeakKey
+    handy_hazards_key: HandyHazardsKey
+    smokey_peak_key: SmokeyPeakKey
     jungle_boss_access: JungleBossAccess
     beach_boss_access: BeachBossAccess
     ruins_boss_access: RuinsBossAccess
@@ -269,7 +277,7 @@ class DKCROptions(PerGameCommonOptions):
 option_groups = [
     OptionGroup(
         "Gameplay options",
-        [GoldenTemple, RareOrbs]
+        [GoldenTemple, RareOrbs, RandomizeLevels]
     ),
     OptionGroup(
         "Key options",
@@ -314,10 +322,10 @@ option_presets = {
         "blowhole_bound_key": True,
         "damp_dungeon_key": True,
         "mole_patrol_key": True,
-        "springy_spores": True,
+        "springy_spores_key": True,
         "precarious_plateau_key": True,
-        "handy_hazards": True,
-        "smokey_peak": True,
+        "handy_hazards_key": True,
+        "smokey_peak_key": True,
         "jungle_boss_access": True,
         "beach_boss_access": True,
         "ruins_boss_access": True,
@@ -345,10 +353,10 @@ option_presets = {
         "blowhole_bound_key": False,
         "damp_dungeon_key": False,
         "mole_patrol_key": False,
-        "springy_spores": False,
+        "springy_spores_key": False,
         "precarious_plateau_key": False,
-        "handy_hazards": False,
-        "smokey_peak": False,
+        "handy_hazards_key": False,
+        "smokey_peak_key": False,
         "jungle_boss_access": False,
         "beach_boss_access": False,
         "ruins_boss_access": False,
