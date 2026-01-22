@@ -3,6 +3,8 @@ from typing import Any
 
 from worlds.AutoWorld import World
 
+from .strings import Region as R
+
 from . import items, locations, regions, rules, web_world
 from . import options as dkcr_options
 
@@ -22,7 +24,7 @@ class DKCRWorld(World):
     location_name_to_id = locations.LOCATION_NAME_TO_ID
     item_name_to_id = items.ITEM_NAME_TO_ID
 
-    origin_region_name = "Jungle"
+    origin_region_name = R.JUNGLE
 
     def create_regions(self) -> None:
         regions.create_and_connect_regions(self)
