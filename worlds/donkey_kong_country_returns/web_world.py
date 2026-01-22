@@ -10,7 +10,7 @@ class DKCRWebWorld(WebWorld):
 
     setup_en = Tutorial(
         "Multiworld Setup Guide",
-        "A guide to setting up DKCR for MultiWorld.",
+        "A guide to setting up Donkey Kong Country Returns for MultiWorld.",
         "English",
         "en_Donkey Kong Country Returns.md",
         "setup/en",
