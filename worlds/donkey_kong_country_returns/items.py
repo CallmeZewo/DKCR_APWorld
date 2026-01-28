@@ -1,19 +1,20 @@
 from __future__ import annotations
 
+import dataclasses
 from typing import TYPE_CHECKING, Dict
 
 from BaseClasses import Item, ItemClassification as IC
 
-from .strings import Item as I
+from worlds.donkey_kong_country_returns.DKCRNameConstants import Item as I
 
 if TYPE_CHECKING:
-    from .world import DKCRWorld
+    from . import DKCRWorld
 
+@dataclasses.dataclass
 class ItemData:
-    def __init__(self, code, classification: IC = IC.progression, amount=1):
-        self.code = code
-        self.classification = classification
-        self.amount = amount
+    code: int
+    classification: IC = IC.progression
+    amount: int = 1
 
 item_table: Dict[str, ItemData] = {
     I.PUZZLE_PIECE: ItemData(code=1, amount=366),
@@ -56,14 +57,10 @@ item_table: Dict[str, ItemData] = {
     I.Unlockables.MIRROR_SHARD: ItemData(code=38),
 }
 
-ITEM_NAME_TO_ID: Dict[str, int] = {}
-
-DEFAULT_ITEM_CLASSIFICATIONS = {
-
-}
+ITEM_NAME_TO_ID = {key: value.code for key, value in item_table.items()}
 
 class DKCRItem(Item):
-    game = "Donkey Kong Country Returns"
+    game: str = "Donkey Kong Country Returns"
 
 def get_random_filler_item_name(world: DKCRWorld) -> str:
     return I.Shop.BALLOONX1
@@ -75,7 +72,7 @@ def create_item_with_correct_classification(world: DKCRWorld, name: str) -> DKCR
     return DKCRItem(name, classification, id, world.player)
 
 def create_all_items(world: DKCRWorld) -> None:
-    itempool: list[Item] = []
+    itempool: list[DKCRItem] = []
     for item in item_table:
         for _ in range(item_table[item].amount):
             itempool.append(world.create_item(item))
