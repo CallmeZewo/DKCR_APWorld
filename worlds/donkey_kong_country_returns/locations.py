@@ -6,10 +6,10 @@ from BaseClasses import ItemClassification, Location
 
 from . import items
 
-from .strings import Location as L, Region as R
+from worlds.donkey_kong_country_returns.DKCRNameConstants import Location as L, Region as R
 
 if TYPE_CHECKING:
-    from .world import DKCRWorld
+    from . import DKCRWorld
 
 # WLLTT
 # W = World number

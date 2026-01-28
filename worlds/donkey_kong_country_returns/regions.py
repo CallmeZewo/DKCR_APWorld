@@ -4,10 +4,10 @@ from typing import TYPE_CHECKING
 
 from BaseClasses import Entrance, Region
 
-from .strings import Region as R, RegionConnection as RC
+from worlds.donkey_kong_country_returns.DKCRNameConstants import Region as R, RegionConnection as RC
 
 if TYPE_CHECKING:
-    from .world import DKCRWorld
+    from . import DKCRWorld
 
 def create_and_connect_regions(world: DKCRWorld) -> None:
     create_all_regions(world)
