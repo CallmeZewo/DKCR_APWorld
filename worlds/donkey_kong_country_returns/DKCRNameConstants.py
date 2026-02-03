@@ -1452,6 +1452,7 @@ class Location:
 class Item:
 
     PUZZLE_PIECE = "Puzzle Piece"
+    PROGRESSIVE_FACTORY_BUTTON = "Progressive Factory Button"
 
     class Kong_Letter:
         # Jungle
