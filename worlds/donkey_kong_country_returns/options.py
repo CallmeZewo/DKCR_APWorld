@@ -1,12 +1,20 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
+from typing import Any
+from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, DefaultOnToggle, Visibility
 
-from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, DefaultOnToggle
+class DeathLink(Toggle):
+    """
+    Syncing deaths among other clients that have this option enabled.
+    """
+    display_name = "Death Link"
+    visibility = Visibility.none
 
 class GoldenTemple(Toggle):
     """
     Adding the Golden Temple into the item pool
     """
     display_name = "Golden Temple"
+    visibility = Visibility.none
 
 class RareOrbs(Range):
     """
@@ -19,6 +27,7 @@ class RareOrbs(Range):
     # This value can not exceed 8
 
     default = 8
+    visibility = Visibility.none
 
 class RandomizeLevels(Toggle):
     """
@@ -26,72 +35,77 @@ class RandomizeLevels(Toggle):
     Excludes K levels and Bosses.
     """
     display_name = "Randomize Levels"
+    visibility = Visibility.none
 
 class Rambi(Toggle):
     """
     When enabled, locks Rambi behind the Rambi’s Saddle item.
     """
     display_name = "Rambi"
+    visibility = Visibility.none
 
 class Minecart(Toggle):
     """
     When enabled, Minecart levels and sections require the item Minecart Pass to access.
     """
     display_name = "Minecart"
+    visibility = Visibility.none
 
 class RocketBarrel(Toggle):
     """
     When enabled, Rocket Barrel levels and sections require the item Rocket Barrel Fuel to access.
     """
     display_name = "Rocket Barrel"
+    visibility = Visibility.none
 
 class KongBarrel(Toggle):
     """
     When enabled, requires the item Kong Barrel to be unlocked.
     """
     display_name = "Kong Barrel"
-
-class Run(Toggle):
-    """
-    When enabled, shuffles your ability to run into the item pool.
-    """
-    display_name = "Randomize Run"
+    visibility = Visibility.none
 
 class Roll(Toggle):
     """
     When enabled, shuffles your ability to roll into the item pool.
     """
     display_name = "Randomize Roll"
+    visibility = Visibility.none
 
 class Grab(Toggle):
     """
     When enabled, shuffles your ability to grab into the item pool.
     """
     display_name = "Randomize Grab"
+    visibility = Visibility.none
 
 class Blow(Toggle):
     """
     When enabled, shuffles your ability to blow into the item pool.
     """
     display_name = "Randomize Blow"
+    visibility = Visibility.none
 
 class GroundPound(Toggle):
     """
     When enabled, shuffles your ability to Ground Pound into the item pool.
     """
     display_name = "Randomize Ground Pound"
+    visibility = Visibility.none
 
 class MirrorMode(Toggle):
     """
     Completing a level in Mirror Mode is considered a check.
     """
     display_name = "Mirror Mode"
+    visibility = Visibility.none
 
 class MirrorModeShards(Range):
     """
     Decides how many Mirror Shards are needed to unlock Mirror Mode.
     """
     display_name = "Mirror Mode Shard amount"
+    visibility = Visibility.none
 
     range_start = 0
     range_end = 25
@@ -102,48 +116,56 @@ class SunsetShoreKey(Toggle):
     When enabled, adds the Jungle Shop Key for the level Sunset Shore as a location.
     """
     display_name = "Sunset Shore Key"
+    visibility = Visibility.none
 
 class BlowholeBoundKey(Toggle):
     """
     When enabled, adds the Beach Shop Key for the level Blowhole Bound as a location.
     """
     display_name = "Blowhole Bound Key"
+    visibility = Visibility.none
 
 class DampDungeonKey(Toggle):
     """
     When enabled, adds the Ruins Shop Key for the level Damp Dungeon as a location.
     """
     display_name = "Damp Dungeon Key"
+    visibility = Visibility.none
 
 class MolePatrolKey(Toggle):
     """
     When enabled, adds the Cave Shop Key for the level Mole Patrol as a location.
     """
     display_name = "Mole Patrol Key"
+    visibility = Visibility.none
 
 class SpringySporesKey(Toggle):
     """
     When enabled, adds the Forest Shop Key for the level Springy Spores as a location.
     """
     display_name = "Springy Spores Key"
+    visibility = Visibility.none
 
 class PrecariousPlateauKey(Toggle):
     """
     When enabled, adds the Cliff Shop Key for the level Precarious Plateau as a location.
     """
     display_name = "Precarious Plateau Key"
+    visibility = Visibility.none
 
 class HandyHazardsKey(Toggle):
     """
     When enabled, adds the Factory Shop Key for the level Handy Hazards as a location.
     """
     display_name = "Handy Hazards Key"
+    visibility = Visibility.none
 
 class SmokeyPeakKey(Toggle):
     """
     When enabled, adds the Volcano Shop Key for the level Smokey Peak as a location.
     """
     display_name = "Smokey Peak Key"
+    visibility = Visibility.none
 
 class JungleBossAccess(Range):
     """
@@ -243,6 +265,7 @@ class VolcanoBossAccess(Range):
 
 @dataclass
 class DKCROptions(PerGameCommonOptions):
+    death_link: DeathLink
     golden_temple: GoldenTemple
     rare_orbs: RareOrbs
     randomize_levels: RandomizeLevels
@@ -250,7 +273,6 @@ class DKCROptions(PerGameCommonOptions):
     minecart: Minecart
     rocket_barrel: RocketBarrel
     kong_barrel: KongBarrel
-    run: Run
     roll: Roll
     grab: Grab
     blow: Blow
@@ -274,10 +296,44 @@ class DKCROptions(PerGameCommonOptions):
     factory_boss_access: FactoryBossAccess
     volcano_boss_access: VolcanoBossAccess
 
+    def get_slot_data_dict(self) -> dict[str, Any]:
+        return self.as_dict(
+            "death_link",
+            "golden_temple",
+            "rare_orbs",
+            "randomize_levels",
+            "rambi",
+            "minecart",
+            "rocket_barrel",
+            "kong_barrel",
+            "roll",
+            "grab",
+            "blow",
+            "ground_pound",
+            "mirror_mode",
+            "mirror_mode_shards",
+            "sunset_shore_key",
+            "blowhole_bound_key",
+            "damp_dungeon_key",
+            "mole_patrol_key",
+            "springy_spores_key",
+            "precarious_plateau_key",
+            "handy_hazards_key",
+            "smokey_peak_key",
+            "jungle_boss_access",
+            "beach_boss_access",
+            "ruins_boss_access",
+            "cave_boss_access",
+            "forest_boss_access",
+            "cliff_boss_access",
+            "factory_boss_access",
+            "volcano_boss_access",
+        )
+
 option_groups = [
     OptionGroup(
         "Gameplay options",
-        [GoldenTemple, RareOrbs, RandomizeLevels]
+        [DeathLink, GoldenTemple, RareOrbs, RandomizeLevels]
     ),
     OptionGroup(
         "Key options",
@@ -291,7 +347,7 @@ option_groups = [
     ),
     OptionGroup(
         "Moveset options",
-        [Run, Roll, Grab, Blow, GroundPound]
+        [Roll, Grab, Blow, GroundPound]
     ),
     OptionGroup(
         "Misc options",
@@ -305,7 +361,7 @@ option_groups = [
 
 option_presets = {
     "Full": {
-        "rare_orbs": True,
+        "rare_orbs": 8,
         "golden_temple": True,
         "rambi": True,
         "minecart": True,
@@ -317,7 +373,7 @@ option_presets = {
         "blow": True,
         "ground_pound": True,
         "mirror_mode": True,
-        "mirror_mode_shards": True,
+        "mirror_mode_shards": 8,
         "sunset_shore_key": True,
         "blowhole_bound_key": True,
         "damp_dungeon_key": True,
@@ -326,17 +382,17 @@ option_presets = {
         "precarious_plateau_key": True,
         "handy_hazards_key": True,
         "smokey_peak_key": True,
-        "jungle_boss_access": True,
-        "beach_boss_access": True,
-        "ruins_boss_access": True,
-        "cave_boss_access": True,
-        "forest_boss_access": True,
-        "cliff_boss_access": True,
-        "factory_boss_access": True,
-        "volcano_boss_access": True,
+        "jungle_boss_access": 20,
+        "beach_boss_access": 50,
+        "ruins_boss_access": 80,
+        "cave_boss_access": 110,
+        "forest_boss_access": 150,
+        "cliff_boss_access": 200,
+        "factory_boss_access": 260,
+        "volcano_boss_access": 320,
     },
     "Empty": {
-        "rare_orbs": False,
+        "rare_orbs": 0,
         "golden_temple": False,
         "rambi": False,
         "minecart": False,
@@ -348,7 +404,7 @@ option_presets = {
         "blow": False,
         "ground_pound": False,
         "mirror_mode": False,
-        "mirror_mode_shards": False,
+        "mirror_mode_shards": 0,
         "sunset_shore_key": False,
         "blowhole_bound_key": False,
         "damp_dungeon_key": False,
@@ -357,13 +413,13 @@ option_presets = {
         "precarious_plateau_key": False,
         "handy_hazards_key": False,
         "smokey_peak_key": False,
-        "jungle_boss_access": False,
-        "beach_boss_access": False,
-        "ruins_boss_access": False,
-        "cave_boss_access": False,
-        "forest_boss_access": False,
-        "cliff_boss_access": False,
-        "factory_boss_access": False,
-        "volcano_boss_access": False,
+        "jungle_boss_access": 20,
+        "beach_boss_access": 50,
+        "ruins_boss_access": 80,
+        "cave_boss_access": 110,
+        "forest_boss_access": 150,
+        "cliff_boss_access": 200,
+        "factory_boss_access": 260,
+        "volcano_boss_access": 320,
     }
 }
