@@ -8,6 +8,7 @@ import dolphin_memory_engine as dme
 import Utils
 from CommonClient import ClientCommandProcessor, CommonContext, get_base_parser, gui_enabled, logger, server_loop
 from NetUtils import ClientStatus
+from worlds.alttp.EntranceShuffle import default_connections
 
 if TYPE_CHECKING:
     import kvui
@@ -25,10 +26,10 @@ CONNECTION_CONNECTED_STATUS = "Dolphin connected successfully."
 CONNECTION_INITIAL_STATUS = "Dolphin connection has not been initiated."
 
 # Custom DeathLink Flag
-DEATH_LINK_FLAG = 0x81800010
+DEATH_LINK_FLAG = 0x817f93b0
 
 # Player's slot name
-SLOT_NAME_ADDRESS = 0x81810000
+SLOT_NAME_ADDRESS = 0x817f93c0
 
 # Ingame Player Data #
 DONKEY_KONG_CURRENT_HEALTH_ADDRESS = 0x8080dd8f
@@ -48,6 +49,14 @@ class DKCRCommandProcessor(ClientCommandProcessor):
         if isinstance(self.ctx, DKCRContext):
             logger.info(f"Dolphin Status: {self.ctx.dolphin_status}")
 
+    def _cmd_puzzle(self) -> None:
+        """
+        current puzzle pieces of level
+        """
+        if isinstance(self.ctx, DKCRContext):
+            self.ctx.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD_POINTER = dme.read_word(dme.read_word(0x80820144) + 0x34)
+            logger.info(f"puzzle pieces: {format(dme.read_word(self.ctx.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD_POINTER), '09b')}")
+
 class DKCRContext(CommonContext):
     command_processor = DKCRCommandProcessor
     game: str = "Donkey Kong Country Returns"
@@ -58,37 +67,39 @@ class DKCRContext(CommonContext):
         self.dolphin_status: str = CONNECTION_INITIAL_STATUS
         self.awaiting_rom: bool = False
         self.has_send_death: bool = False
+        self.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD_POINTER = None
+        self.temp = None
 
-async def disconnect(self, allow_autoreconnect: bool = False) -> None:
-    self.auth = None
-    await super().disconnect(allow_autoreconnect)
+    async def disconnect(self, allow_autoreconnect: bool = False) -> None:
+        self.auth = None
+        await super().disconnect(allow_autoreconnect)
 
-async def server_auth(self, password_requested: bool = False) -> None:
-    if password_requested and not self.password:
-        await super().server_auth(password_requested)
-    if not self.auth:
-        if self.awaiting_rom:
+    async def server_auth(self, password_requested: bool = False) -> None:
+        if password_requested and not self.password:
+            await super().server_auth(password_requested)
+        if not self.auth:
+            if self.awaiting_rom:
+                return
+            self.awaiting_rom = True
+            logger.info("Awaiting connection to Dolphin to get player information.")
             return
-        self.awaiting_rom = True
-        logger.info("Awaiting connection to Dolphin to get player information.")
-        return
-    await self.send_connection()
+        await self.send_connect()
 
-def on_package(self, cmd: str, args: dict[str, Any]) -> None:
-    if cmd == "Connected":
-        if "death_link" in args["slot_data"]:
-            Utils.async_start(self.update_death_link(bool(args["slot_data"]["death_link"])))
-    elif cmd == "Retrieved":
-        requested_keys_dict = args["keys"]
+    def on_package(self, cmd: str, args: dict[str, Any]) -> None:
+        if cmd == "Connected":
+            if "death_link" in args["slot_data"]:
+                Utils.async_start(self.update_death_link(bool(args["slot_data"]["death_link"])))
+        elif cmd == "Retrieved":
+            requested_keys_dict = args["keys"]
 
-def on_deathlink(self, data: dict[str, Any]) -> None:
-    super().on_deathlink(data)
-    _give_death(self)
+    def on_deathlink(self, data: dict[str, Any]) -> None:
+        super().on_deathlink(data)
+        _give_death(self)
 
-def make_gui(self) -> type["kvui.GameManager"]:
-    ui = super().make_gui()
-    ui.base_title = "Archipelago Donkey Kong Country Returns"
-    return ui
+    def make_gui(self) -> type["kvui.GameManager"]:
+        ui = super().make_gui()
+        ui.base_title = "Archipelago Donkey Kong Country Returns"
+        return ui
 
 def read_byte(console_address: int) -> int:
     return int.from_bytes(dme.read_byte(console_address), byteorder="big")
@@ -96,8 +107,13 @@ def read_byte(console_address: int) -> int:
 def write_byte(console_address: int, value: int) -> None:
     dme.write_byte(console_address, value.to_bytes(byteorder="big"))
 
-def read_string(console_address: int, strlen: int) -> str:
-    return dme.read_bytes(console_address, strlen).split(b"\0", 1)[0].decode()
+def read_string(console_address: int) -> str:
+    return dme.read_bytes(console_address, 0x40).split(b"\0", 1)[0].decode()
+
+def write_string(console_address: int, value: str) -> None:
+    if "\0" in value:
+        raise ValueError("string contains null byte")
+    dme.write_bytes(console_address, value.encode() + b"\0")
 
 def _give_death(ctx: DKCRContext) -> None:
     if (
@@ -111,7 +127,7 @@ def _give_death(ctx: DKCRContext) -> None:
 
 async def check_alive() -> bool:
     currentHealth = read_byte(DONKEY_KONG_CURRENT_HEALTH_ADDRESS)
-    return currentHealth > 0 & check_ingame()
+    return currentHealth > 0 and check_ingame()
 
 async def check_death(ctx: DKCRContext) -> None:
     if ctx.slot is not None and check_ingame():
@@ -126,11 +142,18 @@ async def check_death(ctx: DKCRContext) -> None:
 def check_ingame() -> bool:
     return True
 
+def check_puzzle_update(ctx: DKCRContext) -> None:
+    ctx.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD_POINTER = dme.read_word(dme.read_word(dme.read_word(0x80820144) + 0x34))
+    if ctx.temp != ctx.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD_POINTER:
+        ctx.temp = ctx.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD_POINTER
+        logger.info(f"puzzle pieces: {format(ctx.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD_POINTER, '09b')}")
+
 async def dolphin_sync_task(ctx: DKCRContext) -> None:
     logger.info("Starting Dolphin connector. Use /dolphin for status information.")
     sleep_time= 0.0
-    while not ctx.exit_event_set():
+    while not ctx.exit_event.is_set():
         if sleep_time > 0.0:
+            check_puzzle_update(ctx)
             try:
                 await asyncio.wait_for(ctx.watcher_event.wait(),sleep_time)
             except asyncio.TimeoutError:
@@ -149,7 +172,7 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                         await check_death(ctx)
                 else:
                     if not ctx.auth:
-                        ctx.auth = read_string(SLOT_NAME_ADDRESS, strlen=0x40)
+                        ctx.auth = read_string(SLOT_NAME_ADDRESS)
                     if ctx.awaiting_rom:
                         await ctx.server_auth()
                 sleep_time = 0.1
