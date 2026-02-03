@@ -5,11 +5,12 @@ from worlds.AutoWorld import World
 
 from worlds.donkey_kong_country_returns.DKCRNameConstants import Region as R
 
-from worlds.LauncherComponents import components, Component, launch_subprocess, Type, SuffixIdentifier
+from worlds.LauncherComponents import components, Component, launch_subprocess, Type, SuffixIdentifier, icon_paths
 
 from . import items, locations, regions, rules, web_world
 from . import options as dkcr_options
 
+from Utils import visualize_regions
 
 def run_client() -> None:
     print("Running Donkey Kong Country Returns Client")
@@ -23,8 +24,10 @@ components.append(
         func=run_client,
         component_type=Type.CLIENT,
         file_identifier=SuffixIdentifier(".apdkcr"),
+        icon="DKCRIcon"
     )
 )
+icon_paths["DKCRIcon"] = "ap:worlds.donkey_kong_country_returns/assets/DKCRClientIcon.png"
 
 class DKCRWorld(World):
     """
@@ -62,6 +65,6 @@ class DKCRWorld(World):
         return items.get_random_filler_item_name(self)
 
     def fill_slot_data(self) -> Mapping[str, Any]:
-        return self.options.as_dict(
-            "golden_temple"
-        )
+        slot_data = self.options.get_slot_data_dict()
+        visualize_regions(self.multiworld.get_region(R.JUNGLE, self.player), f"Player{self.player}.puml", show_entrance_names=True, regions_to_highlight=self.multiworld.get_all_state(self.player).reachable_regions[self.player])
+        return slot_data
