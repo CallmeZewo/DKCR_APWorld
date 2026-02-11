@@ -16,6 +16,14 @@ class GoldenTemple(Toggle):
     display_name = "Golden Temple"
     visibility = Visibility.none
 
+class KongLetterCollectionCheckpoint(Toggle):
+    """
+    Locations for Kong Letters will be sent after a checkpoint instead of when they are picked up.
+    """
+
+    display_name = "Kong Letter collection upon checkpoint"
+    visibility = Visibility.none
+
 class RareOrbs(Range):
     """
     How many of the Rare Orbs found in K-levels are needed to enter the Golden Temple.
@@ -267,6 +275,7 @@ class VolcanoBossAccess(Range):
 class DKCROptions(PerGameCommonOptions):
     death_link: DeathLink
     golden_temple: GoldenTemple
+    kong_letter_collection_checkpoint: KongLetterCollectionCheckpoint
     rare_orbs: RareOrbs
     randomize_levels: RandomizeLevels
     rambi: Rambi
@@ -300,6 +309,7 @@ class DKCROptions(PerGameCommonOptions):
         return self.as_dict(
             "death_link",
             "golden_temple",
+            "kong_letter_collection_checkpoint",
             "rare_orbs",
             "randomize_levels",
             "rambi",
@@ -333,7 +343,7 @@ class DKCROptions(PerGameCommonOptions):
 option_groups = [
     OptionGroup(
         "Gameplay options",
-        [DeathLink, GoldenTemple, RareOrbs, RandomizeLevels]
+        [DeathLink, GoldenTemple, RareOrbs, RandomizeLevels, KongLetterCollectionCheckpoint]
     ),
     OptionGroup(
         "Key options",
