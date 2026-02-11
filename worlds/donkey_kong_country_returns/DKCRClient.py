@@ -6,10 +6,11 @@ from typing import TYPE_CHECKING, Any, Optional
 import dolphin_memory_engine as dme
 from dataclasses import dataclass
 
+from dolphin_memory_engine import read_word
+
 import Utils
 from CommonClient import ClientCommandProcessor, CommonContext, get_base_parser, gui_enabled, logger, server_loop
 from NetUtils import ClientStatus
-from worlds.alttp.EntranceShuffle import default_connections
 
 if TYPE_CHECKING:
     import kvui
@@ -26,7 +27,7 @@ CONNECTION_LOST_STATUS = \
 CONNECTION_CONNECTED_STATUS = "Dolphin connected successfully."
 CONNECTION_INITIAL_STATUS = "Dolphin connection has not been initiated."
 
-CUSTOM_BASE = 0x81600000
+CUSTOM_BASE = 0x93790000
 
 @dataclass
 class CustomRAM:
@@ -34,7 +35,6 @@ class CustomRAM:
 
     MAGIC: int = 0
     VERSION: int = 0
-    SLOT_NAME: int = 0
     DEATH_LINK_FLAG: int = 0
     SIZE: int = 0
 
@@ -51,6 +51,11 @@ RAM = CustomRAM()
 DONKEY_KONG_CURRENT_HEALTH_ADDRESS = 0x8080dd8f
 DIDDY_KONG_CURRENT_HEALTH_ADDRESS = 0x8080dd93
 
+K_LETTER_ADDRESS = 0x8080dda7
+O_LETTER_ADDRESS = 0x8080ddab
+N_LETTER_ADDRESS = 0x8080ddaf
+G_LETTER_ADDRESS = 0x8080ddb3
+
 # World / Level Data
 LAST_LOADED_WORLD = 0x8080b000  # World Loading Banner ID
 JUNGLE_ID = 5
@@ -62,7 +67,31 @@ CLIFF_ID = 2
 FACTORY_ID = 3
 VOLCANO_ID = 7
 GOLDEN_TEMPLE_ID = 8
+Worlds: dict[int, int] = {
+    JUNGLE_ID: 1,
+    BEACH_ID: 2,
+    RUINS_ID: 3,
+    CAVE_ID: 4,
+    FOREST_ID: 5,
+    CLIFF_ID: 6,
+    FACTORY_ID: 7,
+    VOLCANO_ID: 8,
+    GOLDEN_TEMPLE_ID: 9,
+}
 LAST_LOADED_LEVEL = 0x8080b004  # Level Number + 1
+Levels: dict[int, int] = {
+    0: 12,
+    1: 11,
+    2: 1,
+    3: 2,
+    4: 3,
+    5: 4,
+    6: 5,
+    7: 6,
+    8: 7,
+    9: 8,
+    10: 10,
+}
 # Bosses = 1
 # K Level = 0
 # 7-R = 10
@@ -75,8 +104,86 @@ LAST_LOADED_LEVEL = 0x8080b004  # Level Number + 1
 # IDK?????
 OPEN_MENU_WHILE_IN_GAME_ADDRESS = 0x80617ecc
 LEVEL_PUZZLE_COUNT = {
-    (JUNGLE_ID, 0): 5,
-    (JUNGLE_ID, 2): 5,
+    (Worlds[JUNGLE_ID], 1): 9,
+    (Worlds[JUNGLE_ID], 2): 7,
+    (Worlds[JUNGLE_ID], 3): 5,
+    (Worlds[JUNGLE_ID], 4): 5,
+    (Worlds[JUNGLE_ID], 5): 5,
+    (Worlds[JUNGLE_ID], 6): 5,
+    (Worlds[JUNGLE_ID], 11): 0,
+    (Worlds[JUNGLE_ID], 12): 5,
+
+    (Worlds[BEACH_ID], 1): 5,
+    (Worlds[BEACH_ID], 2): 7,
+    (Worlds[BEACH_ID], 3): 5,
+    (Worlds[BEACH_ID], 4): 7,
+    (Worlds[BEACH_ID], 5): 5,
+    (Worlds[BEACH_ID], 6): 5,
+    (Worlds[BEACH_ID], 7): 5,
+    (Worlds[BEACH_ID], 11): 0,
+    (Worlds[BEACH_ID], 12): 5,
+
+    (Worlds[RUINS_ID], 1): 7,
+    (Worlds[RUINS_ID], 2): 7,
+    (Worlds[RUINS_ID], 3): 7,
+    (Worlds[RUINS_ID], 4): 9,
+    (Worlds[RUINS_ID], 5): 7,
+    (Worlds[RUINS_ID], 6): 5,
+    (Worlds[RUINS_ID], 11): 0,
+    (Worlds[RUINS_ID], 12): 5,
+
+    (Worlds[CAVE_ID], 1): 5,
+    (Worlds[CAVE_ID], 2): 5,
+    (Worlds[CAVE_ID], 3): 5,
+    (Worlds[CAVE_ID], 4): 5,
+    (Worlds[CAVE_ID], 5): 5,
+    (Worlds[CAVE_ID], 11): 0,
+    (Worlds[CAVE_ID], 12): 5,
+
+    (Worlds[FOREST_ID], 1): 7,
+    (Worlds[FOREST_ID], 2): 5,
+    (Worlds[FOREST_ID], 3): 7,
+    (Worlds[FOREST_ID], 4): 7,
+    (Worlds[FOREST_ID], 5): 7,
+    (Worlds[FOREST_ID], 6): 7,
+    (Worlds[FOREST_ID], 7): 7,
+    (Worlds[FOREST_ID], 8): 5,
+    (Worlds[FOREST_ID], 11): 0,
+    (Worlds[FOREST_ID], 12): 5,
+
+    (Worlds[CLIFF_ID], 1): 9,
+    (Worlds[CLIFF_ID], 2): 5,
+    (Worlds[CLIFF_ID], 3): 5,
+    (Worlds[CLIFF_ID], 4): 7,
+    (Worlds[CLIFF_ID], 5): 5,
+    (Worlds[CLIFF_ID], 6): 9,
+    (Worlds[CLIFF_ID], 7): 5,
+    (Worlds[CLIFF_ID], 8): 5,
+    (Worlds[CLIFF_ID], 11): 0,
+    (Worlds[CLIFF_ID], 12): 5,
+
+    (Worlds[FACTORY_ID], 1): 7,
+    (Worlds[FACTORY_ID], 2): 5,
+    (Worlds[FACTORY_ID], 3): 7,
+    (Worlds[FACTORY_ID], 4): 7,
+    (Worlds[FACTORY_ID], 5): 9,
+    (Worlds[FACTORY_ID], 6): 5,
+    (Worlds[FACTORY_ID], 7): 5,
+    (Worlds[FACTORY_ID], 10): 0,
+    (Worlds[FACTORY_ID], 11): 0,
+    (Worlds[FACTORY_ID], 12): 5,
+
+    (Worlds[VOLCANO_ID], 1): 5,
+    (Worlds[VOLCANO_ID], 2): 5,
+    (Worlds[VOLCANO_ID], 3): 5,
+    (Worlds[VOLCANO_ID], 4): 5,
+    (Worlds[VOLCANO_ID], 5): 7,
+    (Worlds[VOLCANO_ID], 6): 5,
+    (Worlds[VOLCANO_ID], 7): 5,
+    (Worlds[VOLCANO_ID], 11): 0,
+    (Worlds[VOLCANO_ID], 12): 5,
+
+    (Worlds[GOLDEN_TEMPLE_ID], 1): 5,
 }
 
 class DKCRCommandProcessor(ClientCommandProcessor):
@@ -117,8 +224,9 @@ class DKCRContext(CommonContext):
         self.has_send_death: bool = False
         self.CURRENT_LEVEL_ID = None
         self.CURRENT_WORLD_ID = None
-        self.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD_POINTER = None
+        self.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD = None
         self.PUZZLE_PIECE_DICT: dict[tuple[int, int], tuple[int, bool]] = {}
+        self.KONG_LETTER_DICT: dict[tuple[int, int], tuple[list[int], bool]] = {}
 
     async def disconnect(self, allow_autoreconnect: bool = False) -> None:
         self.auth = None
@@ -181,7 +289,6 @@ VERSION_VALUE = 1
 def init_custom_ram():
     dme.write_word(RAM.MAGIC, MAGIC_VALUE)
     dme.write_word(RAM.VERSION, VERSION_VALUE)
-    dme.write_bytes(RAM.SLOT_NAME, b'\x00' * 64)
 
 def is_custom_ram_valid() -> bool:
     try:
@@ -228,33 +335,81 @@ def check_inrom() -> bool:
         return False
     return True
 
-def check_puzzle_update(ctx: DKCRContext) -> None:
-    pointer = dme.read_word(dme.read_word(dme.read_word(0x80820144) + 0x34))
-    ctx.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD_POINTER = pointer
+def check_puzzle_update(ctx: DKCRContext):
+    Bitfield = dme.read_word(dme.read_word(dme.read_word(0x80820144) + 0x34))
+    ctx.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD = Bitfield
 
-    if getattr(ctx, "temp", None) == pointer:
-        return
+    if getattr(ctx, "copyfield", None) == Bitfield:
+        return 0
 
-    ctx.temp = pointer
+    ctx.copyfield = Bitfield
 
-    world = ctx.CURRENT_WORLD_ID
-    level = ctx.CURRENT_LEVEL_ID
+    ctx.CURRENT_WORLD_ID = read_word(LAST_LOADED_WORLD)
+    ctx.CURRENT_LEVEL_ID = read_word(LAST_LOADED_LEVEL)
+
+    world = Worlds.get(ctx.CURRENT_WORLD_ID)
+    level = Levels.get(ctx.CURRENT_LEVEL_ID)
+
     if world is None or level is None:
-        return
+        return 0
 
-    current_bits = dme.read_word(pointer)
+    current_bits = Bitfield
 
     key = (world, level)
     if key not in ctx.PUZZLE_PIECE_DICT:
-        ctx.PUZZLE_PIECE_DICT[key] = (current_bits, False)
-    else:
-        old_bits, _ = ctx.PUZZLE_PIECE_DICT[key]
-        ctx.PUZZLE_PIECE_DICT[key] = (old_bits | current_bits, False)
+        ctx.PUZZLE_PIECE_DICT[key] = (0x000000000, False)
+    saved_bits, _ = ctx.PUZZLE_PIECE_DICT[key]
+    new_bits = saved_bits | current_bits
+    bit_changed = (saved_bits ^ new_bits).bit_length()
+    ctx.PUZZLE_PIECE_DICT[key] = (new_bits, False)
 
-    total_pieces = LEVEL_PUZZLE_COUNT.get(key, 0)
-    if total_pieces > 0:
-        all_collected = (ctx.PUZZLE_PIECE_DICT[key][0] & ((1 << total_pieces) - 1)) == ((1 << total_pieces) - 1)
+    max_pieces = LEVEL_PUZZLE_COUNT.get(key, 0)
+    if max_pieces > 0:
+        all_collected = (ctx.PUZZLE_PIECE_DICT[key][0] & ((1 << max_pieces) - 1)) == ((1 << max_pieces) - 1)
         ctx.PUZZLE_PIECE_DICT[key] = (ctx.PUZZLE_PIECE_DICT[key][0], all_collected)
+
+    if bit_changed != 0:
+        return 10000 * world + 100 * level + bit_changed
+    return 0
+
+def check_kong_letter_update(ctx: DKCRContext) -> int:
+    LetterK = dme.read_byte(K_LETTER_ADDRESS)
+    LetterO = dme.read_byte(O_LETTER_ADDRESS)
+    LetterN = dme.read_byte(N_LETTER_ADDRESS)
+    LetterG = dme.read_byte(G_LETTER_ADDRESS)
+
+    CurrentLetters: list[int] = [LetterK, LetterO, LetterN, LetterG]
+
+    if getattr(ctx, "lettercopy", None) == CurrentLetters:
+        return 0
+    if getattr(ctx, "lettercopy", None) is None:
+        ctx.lettercopy = CurrentLetters
+        return 0
+
+    LetterChanged = 99
+    LETTERID = [20, 21, 22, 23]
+    for name, old, new in zip(LETTERID, ctx.lettercopy, CurrentLetters):
+        if old == 0 and new != 0:
+            LetterChanged = name
+            break
+
+    ctx.lettercopy = CurrentLetters.copy()
+
+    ctx.CURRENT_WORLD_ID = read_word(LAST_LOADED_WORLD)
+    ctx.CURRENT_LEVEL_ID = read_word(LAST_LOADED_LEVEL)
+
+    world = Worlds.get(ctx.CURRENT_WORLD_ID)
+    level = Levels.get(ctx.CURRENT_LEVEL_ID)
+
+    if world is None or level is None:
+        return 0
+
+    key = (world, level)
+
+    all_collected = all(letter != 0 for letter in CurrentLetters)
+    ctx.KONG_LETTER_DICT[key] = (CurrentLetters, all_collected)
+
+    return 10000 * world + 100 * level + LetterChanged
 
 async def dolphin_sync_task(ctx: DKCRContext) -> None:
     logger.info("Starting Dolphin connector. Use /dolphin for status information.")
@@ -273,9 +428,12 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                     # Reset the give item array while not in the game.
                     sleep_time = 0.1
                     continue
-
-                check_puzzle_update(ctx)
-
+                loc_id: int = check_puzzle_update(ctx)
+                if loc_id > 0:
+                    await ctx.check_locations([loc_id])
+                loc_id: int = check_kong_letter_update(ctx)
+                if loc_id > 0:
+                    await ctx.check_locations([loc_id])
                 if ctx.slot is not None:
                     if "DeathLink" in ctx.tags:
                         await check_death(ctx)
@@ -299,6 +457,7 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                         else:
                             logger.info("Custom RAM failed to initialize, reconnecting to dolphin to try again...")
                             dme.un_hook()
+                            continue
                         logger.info(CONNECTION_CONNECTED_STATUS)
                         ctx.dolphin_status = CONNECTION_CONNECTED_STATUS
                         ctx.locations_checked = set()
