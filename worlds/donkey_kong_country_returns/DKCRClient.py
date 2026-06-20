@@ -57,41 +57,7 @@ N_LETTER_ADDRESS = 0x8080ddaf
 G_LETTER_ADDRESS = 0x8080ddb3
 
 # World / Level Data
-LAST_LOADED_WORLD = 0x8080b000  # World Loading Banner ID
-JUNGLE_ID = 5
-BEACH_ID = 0
-RUINS_ID = 6
-CAVE_ID = 1
-FOREST_ID = 4
-CLIFF_ID = 2
-FACTORY_ID = 3
-VOLCANO_ID = 7
-GOLDEN_TEMPLE_ID = 8
-Worlds: dict[int, int] = {
-    JUNGLE_ID: 1,
-    BEACH_ID: 2,
-    RUINS_ID: 3,
-    CAVE_ID: 4,
-    FOREST_ID: 5,
-    CLIFF_ID: 6,
-    FACTORY_ID: 7,
-    VOLCANO_ID: 8,
-    GOLDEN_TEMPLE_ID: 9,
-}
-LAST_LOADED_LEVEL = 0x8080b004  # Level Number + 1
-Levels: dict[int, int] = {
-    0: 12,
-    1: 11,
-    2: 1,
-    3: 2,
-    4: 3,
-    5: 4,
-    6: 5,
-    7: 6,
-    8: 7,
-    9: 8,
-    10: 10,
-}
+
 # Bosses = 1
 # K Level = 0
 # 7-R = 10
@@ -100,91 +66,6 @@ Levels: dict[int, int] = {
 #MIRROR_GRAPHICS_CODE = (0x800c2b4c, 0x800c2b50)
 #MIRROR_ON = (0x60000000, 0x38600001)
 #MIRROR_OFF = (0x4182000c, 0x38600000)
-
-# IDK?????
-OPEN_MENU_WHILE_IN_GAME_ADDRESS = 0x80617ecc
-LEVEL_PUZZLE_COUNT = {
-    (Worlds[JUNGLE_ID], 1): 9,
-    (Worlds[JUNGLE_ID], 2): 7,
-    (Worlds[JUNGLE_ID], 3): 5,
-    (Worlds[JUNGLE_ID], 4): 5,
-    (Worlds[JUNGLE_ID], 5): 5,
-    (Worlds[JUNGLE_ID], 6): 5,
-    (Worlds[JUNGLE_ID], 11): 0,
-    (Worlds[JUNGLE_ID], 12): 5,
-
-    (Worlds[BEACH_ID], 1): 5,
-    (Worlds[BEACH_ID], 2): 7,
-    (Worlds[BEACH_ID], 3): 5,
-    (Worlds[BEACH_ID], 4): 7,
-    (Worlds[BEACH_ID], 5): 5,
-    (Worlds[BEACH_ID], 6): 5,
-    (Worlds[BEACH_ID], 7): 5,
-    (Worlds[BEACH_ID], 11): 0,
-    (Worlds[BEACH_ID], 12): 5,
-
-    (Worlds[RUINS_ID], 1): 7,
-    (Worlds[RUINS_ID], 2): 7,
-    (Worlds[RUINS_ID], 3): 7,
-    (Worlds[RUINS_ID], 4): 9,
-    (Worlds[RUINS_ID], 5): 7,
-    (Worlds[RUINS_ID], 6): 5,
-    (Worlds[RUINS_ID], 11): 0,
-    (Worlds[RUINS_ID], 12): 5,
-
-    (Worlds[CAVE_ID], 1): 5,
-    (Worlds[CAVE_ID], 2): 5,
-    (Worlds[CAVE_ID], 3): 5,
-    (Worlds[CAVE_ID], 4): 5,
-    (Worlds[CAVE_ID], 5): 5,
-    (Worlds[CAVE_ID], 11): 0,
-    (Worlds[CAVE_ID], 12): 5,
-
-    (Worlds[FOREST_ID], 1): 7,
-    (Worlds[FOREST_ID], 2): 5,
-    (Worlds[FOREST_ID], 3): 7,
-    (Worlds[FOREST_ID], 4): 7,
-    (Worlds[FOREST_ID], 5): 7,
-    (Worlds[FOREST_ID], 6): 7,
-    (Worlds[FOREST_ID], 7): 7,
-    (Worlds[FOREST_ID], 8): 5,
-    (Worlds[FOREST_ID], 11): 0,
-    (Worlds[FOREST_ID], 12): 5,
-
-    (Worlds[CLIFF_ID], 1): 9,
-    (Worlds[CLIFF_ID], 2): 5,
-    (Worlds[CLIFF_ID], 3): 5,
-    (Worlds[CLIFF_ID], 4): 7,
-    (Worlds[CLIFF_ID], 5): 5,
-    (Worlds[CLIFF_ID], 6): 9,
-    (Worlds[CLIFF_ID], 7): 5,
-    (Worlds[CLIFF_ID], 8): 5,
-    (Worlds[CLIFF_ID], 11): 0,
-    (Worlds[CLIFF_ID], 12): 5,
-
-    (Worlds[FACTORY_ID], 1): 7,
-    (Worlds[FACTORY_ID], 2): 5,
-    (Worlds[FACTORY_ID], 3): 7,
-    (Worlds[FACTORY_ID], 4): 7,
-    (Worlds[FACTORY_ID], 5): 9,
-    (Worlds[FACTORY_ID], 6): 5,
-    (Worlds[FACTORY_ID], 7): 5,
-    (Worlds[FACTORY_ID], 10): 0,
-    (Worlds[FACTORY_ID], 11): 0,
-    (Worlds[FACTORY_ID], 12): 5,
-
-    (Worlds[VOLCANO_ID], 1): 5,
-    (Worlds[VOLCANO_ID], 2): 5,
-    (Worlds[VOLCANO_ID], 3): 5,
-    (Worlds[VOLCANO_ID], 4): 5,
-    (Worlds[VOLCANO_ID], 5): 7,
-    (Worlds[VOLCANO_ID], 6): 5,
-    (Worlds[VOLCANO_ID], 7): 5,
-    (Worlds[VOLCANO_ID], 11): 0,
-    (Worlds[VOLCANO_ID], 12): 5,
-
-    (Worlds[GOLDEN_TEMPLE_ID], 1): 5,
-}
 
 class DKCRCommandProcessor(ClientCommandProcessor):
     def __init__(self, ctx: CommonContext):
@@ -196,13 +77,6 @@ class DKCRCommandProcessor(ClientCommandProcessor):
         """
         if isinstance(self.ctx, DKCRContext):
             logger.info(f"Dolphin Status: {self.ctx.dolphin_status}")
-
-    def _cmd_puzzle(self) -> None:
-        """
-        current puzzle pieces of level
-        """
-        if isinstance(self.ctx, DKCRContext):
-            logger.info(f"puzzle pieces: {format(self.ctx.PUZZLE_PIECE_DICT[LAST_LOADED_WORLD, LAST_LOADED_LEVEL], '09b')}")
 
     #def _cmd_mirror(self) -> None:
     #    """
@@ -335,82 +209,6 @@ def check_inrom() -> bool:
         return False
     return True
 
-def check_puzzle_update(ctx: DKCRContext):
-    Bitfield = dme.read_word(dme.read_word(dme.read_word(0x80820144) + 0x34))
-    ctx.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD = Bitfield
-
-    if getattr(ctx, "copyfield", None) == Bitfield:
-        return 0
-
-    ctx.copyfield = Bitfield
-
-    ctx.CURRENT_WORLD_ID = read_word(LAST_LOADED_WORLD)
-    ctx.CURRENT_LEVEL_ID = read_word(LAST_LOADED_LEVEL)
-
-    world = Worlds.get(ctx.CURRENT_WORLD_ID)
-    level = Levels.get(ctx.CURRENT_LEVEL_ID)
-
-    if world is None or level is None:
-        return 0
-
-    current_bits = Bitfield
-
-    key = (world, level)
-    if key not in ctx.PUZZLE_PIECE_DICT:
-        ctx.PUZZLE_PIECE_DICT[key] = (0x000000000, False)
-    saved_bits, _ = ctx.PUZZLE_PIECE_DICT[key]
-    new_bits = saved_bits | current_bits
-    bit_changed = (saved_bits ^ new_bits).bit_length()
-    ctx.PUZZLE_PIECE_DICT[key] = (new_bits, False)
-
-    max_pieces = LEVEL_PUZZLE_COUNT.get(key, 0)
-    if max_pieces > 0:
-        all_collected = (ctx.PUZZLE_PIECE_DICT[key][0] & ((1 << max_pieces) - 1)) == ((1 << max_pieces) - 1)
-        ctx.PUZZLE_PIECE_DICT[key] = (ctx.PUZZLE_PIECE_DICT[key][0], all_collected)
-
-    if bit_changed != 0:
-        return 10000 * world + 100 * level + bit_changed
-    return 0
-
-def check_kong_letter_update(ctx: DKCRContext) -> int:
-    LetterK = dme.read_byte(K_LETTER_ADDRESS)
-    LetterO = dme.read_byte(O_LETTER_ADDRESS)
-    LetterN = dme.read_byte(N_LETTER_ADDRESS)
-    LetterG = dme.read_byte(G_LETTER_ADDRESS)
-
-    CurrentLetters: list[int] = [LetterK, LetterO, LetterN, LetterG]
-
-    if getattr(ctx, "lettercopy", None) == CurrentLetters:
-        return 0
-    if getattr(ctx, "lettercopy", None) is None:
-        ctx.lettercopy = CurrentLetters
-        return 0
-
-    LetterChanged = 99
-    LETTERID = [20, 21, 22, 23]
-    for name, old, new in zip(LETTERID, ctx.lettercopy, CurrentLetters):
-        if old == 0 and new != 0:
-            LetterChanged = name
-            break
-
-    ctx.lettercopy = CurrentLetters.copy()
-
-    ctx.CURRENT_WORLD_ID = read_word(LAST_LOADED_WORLD)
-    ctx.CURRENT_LEVEL_ID = read_word(LAST_LOADED_LEVEL)
-
-    world = Worlds.get(ctx.CURRENT_WORLD_ID)
-    level = Levels.get(ctx.CURRENT_LEVEL_ID)
-
-    if world is None or level is None:
-        return 0
-
-    key = (world, level)
-
-    all_collected = all(letter != 0 for letter in CurrentLetters)
-    ctx.KONG_LETTER_DICT[key] = (CurrentLetters, all_collected)
-
-    return 10000 * world + 100 * level + LetterChanged
-
 async def dolphin_sync_task(ctx: DKCRContext) -> None:
     logger.info("Starting Dolphin connector. Use /dolphin for status information.")
     sleep_time = 0.0
@@ -428,12 +226,6 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                     # Reset the give item array while not in the game.
                     sleep_time = 0.1
                     continue
-                loc_id: int = check_puzzle_update(ctx)
-                if loc_id > 0:
-                    await ctx.check_locations([loc_id])
-                loc_id: int = check_kong_letter_update(ctx)
-                if loc_id > 0:
-                    await ctx.check_locations([loc_id])
                 if ctx.slot is not None:
                     if "DeathLink" in ctx.tags:
                         await check_death(ctx)
