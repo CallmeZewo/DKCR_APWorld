@@ -1,3 +1,114 @@
+class World:
+    JUNGLE = "Jungle"
+    BEACH = "Beach"
+    RUINS = "Ruins"
+    CAVE = "Cave"
+    FOREST = "Forest"
+    CLIFF = "Cliff"
+    FACTORY = "Factory"
+    VOLCANO = "Volcano"
+    GOLDEN_TEMPLE = "Golden Temple World"
+
+
+class Level:
+    JUNGLE_SHOP = "Jungle Shop"
+    JUNGLE_HIJINXS = "Jungle Hijinxs"
+    KING_OF_CLING = "King of Cling"
+    TREE_TOP_BOP = "Tree Top Bop"
+    SUNSET_SHORE = "Sunset Shore"
+    CANOPY_CANNONS = "Canopy Cannons"
+    CRAZY_CART = "Crazy Cart"
+    MUGLYS_MOUND = "Mugly's Mound"
+    PLATFORM_PANIC = "Platform Panic"
+
+    # Beach
+    BEACH_SHOP = "Beach Shop"
+    POPPIN_PLANKS = "Poppin' Planks"
+    SLOPPY_SANDS = "Sloppy Sands"
+    PEACEFUL_PIER = "Peaceful Pier"
+    CANNON_CLUSTER = "Cannon Cluster"
+    STORMY_SHORE = "Stormy Shore"
+    BLOWHOLE_BOUND = "Blowhole Bound"
+    TIDAL_TERROR = "Tidal Terror"
+    PINCHIN_PIRATES = "Pinchin' Pirates"
+    TUMBLIN_TEMPLE = "Tumblin' Temple"
+
+    # Ruins
+    RUINS_SHOP = "Ruins Shop"
+    WONKY_WATERWAY = "Wonky Waterway"
+    BUTTON_BASH = "Button Bash"
+    MAST_BLAST = "Mast Blast"
+    DAMP_DUNGEON = "Damp Dungeon"
+    ITTY_BITTY_BITERS = "Itty Bitty Biters"
+    TEMPLE_TOPPLE = "Temple Topple"
+    RUINED_ROOST = "Ruined Roost"
+    SHIFTY_SMASHERS = "Shifty Smashers"
+
+    # Cave
+    CAVE_SHOP = "Cave Shop"
+    RICKETY_RAILS = "Rickety Rails"
+    GRIP_N_TRIP = "Grip 'n' Trip"
+    BOMBS_AWAY = "Bombs Away"
+    MOLE_PATROL = "Mole Patrol"
+    CROWDED_CAVERN = "Crowded Cavern"
+    THE_MOLE_TRAIN = "The Mole Train"
+    JAGGED_JEWELS = "Jagged Jewels"
+
+    # Forest
+    FOREST_SHOP = "Forest Shop"
+    VINE_VALLEY = "Vine Valley"
+    CLINGY_SWINGY = "Clingy Swingy"
+    FLUTTER_FLYAWAY = "Flutter Flyaway"
+    TIPPIN_TOTEMS = "Tippin' Totems"
+    LONGSHOT_LAUNCH = "Longshot Launch"
+    SPRINGY_SPORES = "Springy Spores"
+    WIGGLEVINE_WONDERS = "Wigglevine Wonders"
+    MUNCHER_MARATHON = "Muncher Marathon"
+    MANGORUBY_RUN = "Mangoruby Run"
+    BLAST_N_BOUNCE = "Blast 'n' Bounce"
+
+    # Cliff
+    CLIFF_SHOP = "Cliff Shop"
+    STICKY_SITUATION = "Sticky Situation"
+    PREHISTORIC_PATH = "Prehistoric Path"
+    WEIGHTY_WAY = "Weighty Way"
+    BOULDER_ROLLER = "Boulder Roller"
+    PRECARIOUS_PLATEAU = "Precarious Plateau"
+    CRUMBLE_CANYON = "Crumble Canyon"
+    TIPPY_SHIPPY = "Tippy Shippy"
+    CLIFFTOP_CLIMB = "Clifftop Climb"
+    THUGLYS_HIGHRISE = "Thugly's Highrise"
+    PERILOUS_PASSAGE = "Perilous Passage"
+
+    # Factory
+    FACTORY_SHOP = "Factory Shop"
+    FOGGY_FUMES = "Foggy Fumes"
+    SLAMMIN_STEEL = "Slammin' Steel"
+    HANDY_HAZARDS = "Handy Hazards"
+    GEAR_GETAWAY = "Gear Getaway"
+    COG_JOG = "Cog Jog"
+    SWITCHEROO = "Switcheroo"
+    MUSIC_MADNESS = "Music Madness"
+    LIFT_OFF_LAUNCH = "Lift-Off Launch"
+    FEATHER_FIEND = "Feather Fiend"
+    TREACHEROUS_TRACK = "Treacherous Track"
+
+    # Volcano
+    VOLCANO_SHOP = "Volcano Shop"
+    FURIOUS_FIRE = "Furious Fire"
+    HOT_ROCKET = "Hot Rocket"
+    ROASTING_RAILS = "Roasting Rails"
+    SMOKEY_PEAK = "Smokey Peak"
+    BOBBING_BASALT = "Bobbing Basalt"
+    MOVING_MELTERS = "Moving Melters"
+    RED_RED_RISING = "Red Red Rising"
+    TIKI_TONG_TERROR = "Tiki Tong Terror"
+    FIVE_MONKEY_TRIAL = "Five Monkey Trial"
+
+    # Golden Temple
+    GOLDEN_TEMPLE = "Golden Temple Level"
+
+
 class Region:
     # Jungle
     JUNGLE = "Jungle"
@@ -104,6 +215,7 @@ class Region:
 
     # Golden Temple
     GOLDEN_TEMPLE = "Golden Temple"
+
 
 class RegionConnection:
     # Jungle
@@ -217,6 +329,7 @@ class RegionConnection:
     VOLCANO_TO_VOLCANO_SHOP = "Volcano to Volcano Shop"
 
     TIKI_TONG_TERROR_TO_GOLDEN_TEMPLE = "Tiki Tong Terror to Golden Temple"
+
 
 class Location:
     JUNGLE_PUZZLE_BUNDLE = "Jungle Puzzle Bundle"
@@ -780,7 +893,6 @@ class Location:
     FOREST_SHOP_BALLOONSX1 = "Forest Shop Ballon x 1"
     FOREST_SHOP_BALLOONSX3 = "Forest Shop Ballon x 3"
     FOREST_SHOP_BALLOONSX7 = "Forest Shop Ballon x 7"
-
 
     VINE_VALLEY_PUZZLE_PIECE_1 = "5-1 Vine Valley Puzzle Piece (1)"
     VINE_VALLEY_PUZZLE_PIECE_2 = "5-1 Vine Valley Puzzle Piece (2)"
@@ -1449,8 +1561,8 @@ class Location:
     GOLDEN_TEMPLE_CLEARED_TIME_TRIAL_SILVER = "9-1 Golden Temple Cleared (Time Trial) [Silver]"
     GOLDEN_TEMPLE_CLEARED_TIME_TRIAL_GOLD = "9-1 Golden Temple Cleared (Time Trial) [Gold]"
 
-class Item:
 
+class Item:
     PUZZLE_PIECE = "Puzzle Piece"
     PROGRESSIVE_FACTORY_BUTTON = "Progressive Factory Button"
 
@@ -1464,7 +1576,7 @@ class Item:
         # Ruins
         KONG_LETTER_RUINS = "Kong Letter Ruins"
 
-        #Cave
+        # Cave
         KONG_LETTER_CAVE = "Kong Letter Cave"
 
         # Forest
@@ -1505,7 +1617,6 @@ class Item:
         BALLOONX7 = "Balloons x 7"
 
     class Unlockables:
-
         MIRROR_SHARD = "Mirror Shard"
 
         class Moves:
