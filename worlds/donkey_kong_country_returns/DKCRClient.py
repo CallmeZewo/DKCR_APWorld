@@ -12,6 +12,9 @@ import Utils
 from CommonClient import ClientCommandProcessor, CommonContext, get_base_parser, gui_enabled, logger, server_loop
 from NetUtils import ClientStatus
 
+from .data.addresses import *
+from .data.level_data import Levels
+
 if TYPE_CHECKING:
     import kvui
 
@@ -27,45 +30,25 @@ CONNECTION_LOST_STATUS = \
 CONNECTION_CONNECTED_STATUS = "Dolphin connected successfully."
 CONNECTION_INITIAL_STATUS = "Dolphin connection has not been initiated."
 
-CUSTOM_BASE = 0x93790000
+# CUSTOM_BASE = 0x93790000
 
-@dataclass
-class CustomRAM:
-    base: int = CUSTOM_BASE
-
-    MAGIC: int = 0
-    VERSION: int = 0
-    DEATH_LINK_FLAG: int = 0
-    SIZE: int = 0
-
-    def __post_init__(self):
-        offset = 0
-        self.MAGIC = self.base + offset; offset += 4
-        self.VERSION = self.base + offset; offset += 4
-        self.DEATH_LINK_FLAG = self.base + offset; offset += 4
-        self.SIZE = offset
-
-RAM = CustomRAM()
-
-# Ingame Player Data #
-DONKEY_KONG_CURRENT_HEALTH_ADDRESS = 0x8080dd8f
-DIDDY_KONG_CURRENT_HEALTH_ADDRESS = 0x8080dd93
-
-K_LETTER_ADDRESS = 0x8080dda7
-O_LETTER_ADDRESS = 0x8080ddab
-N_LETTER_ADDRESS = 0x8080ddaf
-G_LETTER_ADDRESS = 0x8080ddb3
-
-# World / Level Data
-
-# Bosses = 1
-# K Level = 0
-# 7-R = 10
-
-# Mirror Trap
-#MIRROR_GRAPHICS_CODE = (0x800c2b4c, 0x800c2b50)
-#MIRROR_ON = (0x60000000, 0x38600001)
-#MIRROR_OFF = (0x4182000c, 0x38600000)
+# @dataclass
+# class CustomRAM:
+#     base: int = CUSTOM_BASE
+#
+#     MAGIC: int = 0
+#     VERSION: int = 0
+#     DEATH_LINK_FLAG: int = 0
+#     SIZE: int = 0
+#
+#     def __post_init__(self):
+#         offset = 0
+#         self.MAGIC = self.base + offset; offset += 4
+#         self.VERSION = self.base + offset; offset += 4
+#         self.DEATH_LINK_FLAG = self.base + offset; offset += 4
+#         self.SIZE = offset
+#
+# RAM = CustomRAM()
 
 class DKCRCommandProcessor(ClientCommandProcessor):
     def __init__(self, ctx: CommonContext):
@@ -131,20 +114,14 @@ class DKCRContext(CommonContext):
         elif cmd == "Retrieved":
             requested_keys_dict = args.get("keys", {})
 
-    def on_deathlink(self, data: dict[str, Any]) -> None:
-        super().on_deathlink(data)
-        _give_death(self)
+    # def on_deathlink(self, data: dict[str, Any]) -> None:
+    #     super().on_deathlink(data)
+    #     _give_death(self)
 
     def make_gui(self) -> type["kvui.GameManager"]:
         ui = super().make_gui()
         ui.base_title = "Archipelago Donkey Kong Country Returns"
         return ui
-
-def read_byte(console_address: int) -> int:
-    return int.from_bytes(dme.read_byte(console_address), byteorder="big")
-
-def write_byte(console_address: int, value: int) -> None:
-    dme.write_byte(console_address, value.to_bytes(byteorder="big"))
 
 def read_string(console_address: int) -> str:
     return dme.read_bytes(console_address, 0x40).split(b"\0", 1)[0].decode()
@@ -157,39 +134,39 @@ def write_string64(console_address: int, value: str) -> None:
     data += b'\0' * (max_len - len(data))
     dme.write_bytes(console_address, data)
 
-MAGIC_VALUE = 0x444b4352
-VERSION_VALUE = 1
+# MAGIC_VALUE = 0x444b4352
+# VERSION_VALUE = 1
+#
+# def init_custom_ram():
+#     dme.write_word(RAM.MAGIC, MAGIC_VALUE)
+#     dme.write_word(RAM.VERSION, VERSION_VALUE)
 
-def init_custom_ram():
-    dme.write_word(RAM.MAGIC, MAGIC_VALUE)
-    dme.write_word(RAM.VERSION, VERSION_VALUE)
+# def is_custom_ram_valid() -> bool:
+#     try:
+#         return (
+#                 dme.read_word(RAM.MAGIC) == 0x444b4352 and
+#                 dme.read_word(RAM.VERSION) == 1
+#         )
+#     except RuntimeError:
+#         return False
 
-def is_custom_ram_valid() -> bool:
-    try:
-        return (
-                dme.read_word(RAM.MAGIC) == 0x444b4352 and
-                dme.read_word(RAM.VERSION) == 1
-        )
-    except RuntimeError:
-        return False
-
-def _give_death(ctx: DKCRContext) -> None:
-    if (
-        ctx.slot is not None
-        and dme.is_hooked()
-        and ctx.dolphin_status == CONNECTION_CONNECTED_STATUS
-        and check_ingame()
-    ):
-        ctx.has_send_death = True
-        write_byte(RAM.DEATH_LINK_FLAG, 1)
+# def _give_death(ctx: DKCRContext) -> None:
+#     if (
+#         ctx.slot is not None
+#         and dme.is_hooked()
+#         and ctx.dolphin_status == CONNECTION_CONNECTED_STATUS
+#         and check_ingame()
+#     ):
+#         ctx.has_send_death = True
+#         write_byte(RAM.DEATH_LINK_FLAG, 1)
 
 async def check_alive() -> bool:
-    currentHealth = read_byte(DONKEY_KONG_CURRENT_HEALTH_ADDRESS)
+    currentHealth = dme.read_byte(DK_HEALTH)
     return currentHealth > 0 and check_ingame()
 
 async def check_death(ctx: DKCRContext) -> None:
     if ctx.slot is not None and check_ingame():
-        currentHealth = read_byte(DONKEY_KONG_CURRENT_HEALTH_ADDRESS)
+        currentHealth = dme.read_byte(DK_HEALTH)
         if currentHealth <= 0:
             if not ctx.has_send_death and time.time() >= ctx.last_death_link + 3:
                 ctx.has_send_death = True
@@ -202,12 +179,25 @@ def check_ingame() -> bool:
 
 def check_inrom() -> bool:
     try:
-        dme.read_bytes(0x80000000, 6)
+        dme.read_bytes(MEM, 6)
     except RuntimeError:
         if dme.is_hooked():
             dme.un_hook()
         return False
     return True
+
+def get_level_data():
+    game_state = dme.read_bytes(MEM + GAME_STATE)
+    if game_state == {0x01, 0x03}:
+        level_data_address = dme.read_bytes(MEM + LEVEL_DATA_POINTER, 4)
+        for Level in Levels.values():
+            ptr = Level.pointer
+            cur_level_address = level_data_address + ptr
+            flags = dme.read_byte(cur_level_address + 0x3e)
+            flags |= 0b10000000
+            dme.write_byte(cur_level_address, flags)
+
+
 
 async def dolphin_sync_task(ctx: DKCRContext) -> None:
     logger.info("Starting Dolphin connector. Use /dolphin for status information.")
@@ -227,6 +217,8 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                     sleep_time = 0.1
                     continue
                 if ctx.slot is not None:
+                    # Loop
+
                     if "DeathLink" in ctx.tags:
                         await check_death(ctx)
                 sleep_time = 0.1
@@ -237,19 +229,12 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                 logger.info("Attempting to connect to Dolphin...")
                 dme.hook()
                 if dme.is_hooked():
-                    if dme.read_bytes(0x80000000, 6) != b"SF8E01":
+                    if dme.read_bytes(MEM + GAME_ID, 6) != b"SF8E01" and dme.read_byte(MEM + REV_NUMBER) != 0x01:
                         logger.info(CONNECTION_REFUSED_GAME_STATUS)
                         ctx.dolphin_status = CONNECTION_REFUSED_GAME_STATUS
                         dme.un_hook()
                         sleep_time = 5
                     else:
-                        init_custom_ram()
-                        if is_custom_ram_valid():
-                            logger.info("Custom RAM successfully initialized")
-                        else:
-                            logger.info("Custom RAM failed to initialize, reconnecting to dolphin to try again...")
-                            dme.un_hook()
-                            continue
                         logger.info(CONNECTION_CONNECTED_STATUS)
                         ctx.dolphin_status = CONNECTION_CONNECTED_STATUS
                         ctx.locations_checked = set()

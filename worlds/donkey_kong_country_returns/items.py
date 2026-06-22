@@ -19,7 +19,7 @@ class ItemData:
     amount: int = 1
 
 item_table: Dict[str, ItemData] = {
-    # I.PUZZLE_PIECE: ItemData(code=1, amount=366),
+    I.PUZZLE_PIECE: ItemData(code=1, amount=366),
     I.Kong_Letter.KONG_LETTER_JUNGLE: ItemData(code=2, amount=24),
     I.Kong_Letter.KONG_LETTER_BEACH: ItemData(code=3, amount=28),
     I.Kong_Letter.KONG_LETTER_RUINS: ItemData(code=4, amount=24),

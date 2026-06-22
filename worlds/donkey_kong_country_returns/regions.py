@@ -27,6 +27,7 @@ def create_all_regions(world: DKCRWorld) -> None:
                 regions.append(create_regions_helper(level_name, world))
                 if level_data.index == 0x2 or level_name == LV.GOLDEN_TEMPLE:
                     connect_regions(world, world_name, level_name, f"{world_name} to {level_name}")
+                    connect_regions(world, level_name, world_name, f"{level_name} to {world_name}")
 
         for level_name_from, level_data_from in Levels.items():
             if level_data_from.world_name != world_name:
@@ -65,9 +66,7 @@ def create_all_regions(world: DKCRWorld) -> None:
                         break
 
         connect_regions(world, "Menu", world_name, f"Menu to {world_name}")
-
-
-
+        connect_regions(world, world_name,"Menu" , f"{world_name} to Menu")
 
 def create_regions_helper(name: str, world: DKCRWorld) -> Region:
     return Region(name, world.player, world.multiworld)
@@ -78,7 +77,7 @@ def connect_regions(world, from_name: str, to_name: str, entrance_name: str):
     entrance = from_region.connect(to_region, entrance_name)
     print(entrance_name)
     return entrance
-def connect_regions_with_rule(world, from_name: str, to_name: str, entrance_name: str, rule: Mapping[str, int]):
+def connect_regions_with_rule(world, from_name: str, to_name: str, entrance_name: str, rule: dict[str, int]):
     from_region = world.get_region(from_name)
     to_region = world.get_region(to_name)
     entrance = from_region.connect(to_region, entrance_name)

@@ -22,6 +22,15 @@ has_all_cliff_letters = {I.Kong_Letter.KONG_LETTER_CLIFF: 32}
 has_all_factory_letters = {I.Kong_Letter.KONG_LETTER_FACTORY: 28}
 has_all_volcano_letters = {I.Kong_Letter.KONG_LETTER_VOLCANO: 28}
 
+has_enough_pp_jungle = {I.PUZZLE_PIECE: 20}
+has_enough_pp_beach = {I.PUZZLE_PIECE: 50}
+has_enough_pp_ruins = {I.PUZZLE_PIECE: 80}
+has_enough_pp_cave = {I.PUZZLE_PIECE: 110}
+has_enough_pp_forest = {I.PUZZLE_PIECE: 150}
+has_enough_pp_cliff = {I.PUZZLE_PIECE: 200}
+has_enough_pp_factory = {I.PUZZLE_PIECE: 260}
+has_enough_pp_volcano = {I.PUZZLE_PIECE: 320}
+
 
 def set_completion_condition(world: DKCRWorld) -> None:
     world.multiworld.completion_condition[world.player] = lambda state: state.can_reach_location(L.TIKI_TONG_TERROR_CLEARED, world.player)
