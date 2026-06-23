@@ -2959,6 +2959,10 @@ def create_regular_locations(world: DKCRWorld) -> None:
     Five_Monkey_Trial.add_locations(Five_Monkey_Trial_Locations, DKCRLocation)
     Volcano_Shop.add_locations(Volcano_Shop_Locations, DKCRLocation)
 
+    Tiki_Tong_Terror.add_event(
+        L.TIKI_TONG_TERROR_CLEARED, "Victory", location_type=DKCRLocation, item_type=items.DKCRItem
+    )
+
     # if world.options.golden_temple and True:
     #     Golden_Temple = world.get_region(LV.GOLDEN_TEMPLE)
     #     Golden_Temple_Locations = get_location_names_with_ids(

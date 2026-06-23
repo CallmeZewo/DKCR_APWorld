@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from BaseClasses import CollectionState
-from rule_builder.rules import HasAllCounts
+from rule_builder.rules import Has
 
 from worlds.donkey_kong_country_returns.DKCRNameConstants import RegionConnection as RC, Item as I, Location as L
 
@@ -33,4 +33,4 @@ has_enough_pp_volcano = {I.PUZZLE_PIECE: 320}
 
 
 def set_completion_condition(world: DKCRWorld) -> None:
-    world.multiworld.completion_condition[world.player] = lambda state: state.can_reach_location(L.TIKI_TONG_TERROR_CLEARED, world.player)
+    world.set_completion_rule(Has("Victory"))
