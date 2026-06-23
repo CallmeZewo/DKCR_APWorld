@@ -18,16 +18,18 @@ class ItemData:
     classification: IC = IC.progression
     amount: int = 1
 
+WorldOffset = 0x100
+
 item_table: Dict[str, ItemData] = {
     I.PUZZLE_PIECE: ItemData(code=1, amount=366),
-    I.Kong_Letter.KONG_LETTER_JUNGLE: ItemData(code=2, amount=24),
-    I.Kong_Letter.KONG_LETTER_BEACH: ItemData(code=3, amount=28),
-    I.Kong_Letter.KONG_LETTER_RUINS: ItemData(code=4, amount=24),
-    I.Kong_Letter.KONG_LETTER_CAVE: ItemData(code=5, amount=20),
-    I.Kong_Letter.KONG_LETTER_FOREST: ItemData(code=6, amount=32),
-    I.Kong_Letter.KONG_LETTER_CLIFF: ItemData(code=7, amount=32),
-    I.Kong_Letter.KONG_LETTER_FACTORY: ItemData(code=8, amount=28),
-    I.Kong_Letter.KONG_LETTER_VOLCANO: ItemData(code=9, amount=28),
+    I.Kong_Letter.KONG_LETTER_JUNGLE: ItemData(code=0x05 + WorldOffset, amount=24),
+    I.Kong_Letter.KONG_LETTER_BEACH: ItemData(code=0x00 + WorldOffset, amount=28),
+    I.Kong_Letter.KONG_LETTER_RUINS: ItemData(code=0x06 + WorldOffset, amount=24),
+    I.Kong_Letter.KONG_LETTER_CAVE: ItemData(code=0x01 + WorldOffset, amount=20),
+    I.Kong_Letter.KONG_LETTER_FOREST: ItemData(code=0x04 + WorldOffset, amount=32),
+    I.Kong_Letter.KONG_LETTER_CLIFF: ItemData(code=0x02 + WorldOffset, amount=32),
+    I.Kong_Letter.KONG_LETTER_FACTORY: ItemData(code=0x03 + WorldOffset, amount=28),
+    I.Kong_Letter.KONG_LETTER_VOLCANO: ItemData(code=0x07 + WorldOffset, amount=28),
     #I.Key.JUNGLE_KEY: ItemData(code=10),
     #I.Key.Beach_KEY: ItemData(code=11),
     #I.Key.Ruins_KEY: ItemData(code=12),

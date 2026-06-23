@@ -6,8 +6,6 @@ from typing import TYPE_CHECKING, Any, Optional
 import dolphin_memory_engine as dme
 from dataclasses import dataclass
 
-from dolphin_memory_engine import read_word
-
 import Utils
 from CommonClient import ClientCommandProcessor, CommonContext, get_base_parser, gui_enabled, logger, server_loop
 from NetUtils import ClientStatus
@@ -29,6 +27,43 @@ CONNECTION_LOST_STATUS = \
 
 CONNECTION_CONNECTED_STATUS = "Dolphin connected successfully."
 CONNECTION_INITIAL_STATUS = "Dolphin connection has not been initiated."
+
+WorldNameToIndex: dict[str, int] = {
+    "Beach": 0x00,
+    "Cave": 0x01,
+    "Cliff": 0x02,
+    "Factory": 0x03,
+    "Forest": 0x04,
+    "Jungle": 0x05,
+    "Ruins": 0x06,
+    "Volcano": 0x07,
+    "Golden Temple World": 0x08,
+}
+
+WorldIndexToName: dict[int, str] = {
+    0x00: "Beach",
+    0x01: "Cave",
+    0x02: "Cliff",
+    0x03: "Factory",
+    0x04: "Forest",
+    0x05: "Jungle",
+    0x06: "Ruins",
+    0x07: "Volcano",
+    0x08: "Golden Temple World",
+}
+
+WorldIDToReal: dict[int, int] = {
+    0x05: 1,
+    0x00: 2,
+    0x06: 3,
+    0x01: 4,
+    0x04: 5,
+    0x02: 6,
+    0x03: 7,
+    0x07: 8,
+    0x08: 9,
+}
+
 
 # CUSTOM_BASE = 0x93790000
 
@@ -79,11 +114,9 @@ class DKCRContext(CommonContext):
         self.dolphin_sync_task: Optional[asyncio.Task[None]] = None
         self.dolphin_status: str = CONNECTION_INITIAL_STATUS
         self.has_send_death: bool = False
-        self.CURRENT_LEVEL_ID = None
-        self.CURRENT_WORLD_ID = None
-        self.CURRENT_LEVELS_PUZZLE_PIECE_BITFIELD = None
-        self.PUZZLE_PIECE_DICT: dict[tuple[int, int], tuple[int, bool]] = {}
-        self.KONG_LETTER_DICT: dict[tuple[int, int], tuple[list[int], bool]] = {}
+        self.last_letters: list[int] = []
+        self.last_puzzle_field_dict = {}
+        self.exited_level = True
 
     async def disconnect(self, allow_autoreconnect: bool = False) -> None:
         self.auth = None
@@ -186,16 +219,102 @@ def check_inrom() -> bool:
         return False
     return True
 
-def get_level_data():
-    game_state = dme.read_bytes(MEM + GAME_STATE)
-    if game_state == {0x01, 0x03}:
-        level_data_address = dme.read_bytes(MEM + LEVEL_DATA_POINTER, 4)
-        for Level in Levels.values():
-            ptr = Level.pointer
-            cur_level_address = level_data_address + ptr
-            flags = dme.read_byte(cur_level_address + 0x3e)
-            flags |= 0b10000000
-            dme.write_byte(cur_level_address, flags)
+# def get_level_data():
+#     game_state = int.from_bytes(dme.read_bytes(MEM + GAME_STATE, 4), byteorder="big")
+#     if game_state == 0x03 or game_state == 0x01:
+#         level_data_address = int.from_bytes(dme.read_bytes(MEM + LEVEL_DATA_POINTER, 4), byteorder="big")
+#         for Level in Levels.values():
+#             ptr = Level.pointer
+#             cur_level_address = level_data_address + ptr
+#             flags = dme.read_byte(cur_level_address + 0x3e)
+#             flags |= 0b10000000
+#             dme.write_byte(cur_level_address, flags)
+
+def check_puzzle_piece(ctx: DKCRContext, levelID: int, worldID: int):
+    bit = dme.read_word(dme.read_word(dme.read_word(0x80820144) + 0x34))
+
+    if levelID not in ctx.last_puzzle_field_dict:
+        ctx.last_puzzle_field_dict[levelID] = bit
+        return 0
+
+    last = ctx.last_puzzle_field_dict.get(levelID, 0)
+
+    new_bits = bit & ~last
+
+    ctx.last_puzzle_field_dict[levelID] = bit
+
+    if new_bits == 0:
+        return 0
+
+    changed_bit = new_bits & -new_bits
+
+    pos = 1
+    temp = changed_bit
+
+    while temp > 1:
+        temp >>= 1
+        pos += 1
+
+    return 10000 * WorldIDToReal[worldID] + 100 * (levelID - 1) + pos
+
+def check_letters(ctx: DKCRContext, levelID: int, worldID: int):
+    LETTER_IDS = [20, 21, 22, 23]
+    CurrentLetters = [
+        dme.read_byte(K_LETTER + MEM),
+        dme.read_byte(O_LETTER + MEM),
+        dme.read_byte(N_LETTER + MEM),
+        dme.read_byte(G_LETTER + MEM),
+    ]
+
+    if ctx.last_letters == CurrentLetters:
+        return 0
+
+    if not ctx.last_letters:
+        ctx.last_letters = CurrentLetters
+        return 0
+
+    changed = 0
+    for i in range(len(LETTER_IDS)):
+        if ctx.last_letters[i] == 0 and CurrentLetters[i] == 1:
+            changed = LETTER_IDS[i]
+
+    ctx.last_letters = CurrentLetters
+
+    return 10000 * WorldIDToReal[worldID] + 100 * (levelID - 1) + changed
+
+def check_level_clear(ctx: DKCRContext):
+    returning = []
+    main_level_data_ptr = int.from_bytes(dme.read_bytes(LEVEL_DATA_POINTER + MEM, 4), byteorder="big")
+    for name, data in Levels.items():
+        if data.index != int.from_bytes(dme.read_bytes(CURRENT_LEVEL, 4), "big"):
+            if data.world_name != int.from_bytes(dme.read_bytes(WORLD_OF_CURRENT_LEVEL, 4), "big"):
+                continue
+        level_data = int.from_bytes(dme.read_bytes(data.pointer + main_level_data_ptr, 4), byteorder="big")
+        flags = dme.read_byte(level_data + 0x3e)
+        print(flags)
+        if flags & 0x40:
+            world = WorldIDToReal[WorldNameToIndex[data.world_name]]
+            level = data.index
+            if level == 0x01:
+                level = 0x12
+            if level == 0x00:
+                level = 0x13
+            returning.append(10000 * world + (level - 1) * 100 + 30)
+
+        if flags & 0x10:
+            world = WorldIDToReal[WorldNameToIndex[data.world_name]]
+            level = data.index
+            if level == 0x00:
+                level = 0x13
+            returning.append(10000 * world + (level - 1) * 100 + 10)
+
+        if flags & 0x08:
+            world = WorldIDToReal[WorldNameToIndex[data.world_name]]
+            level = data.index
+            returning.append(10000 * world + (level - 1) * 100 + 24)
+    if not returning:
+        return 0
+    return returning
 
 
 
@@ -218,7 +337,24 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                     continue
                 if ctx.slot is not None:
                     # Loop
-
+                    game_state = int.from_bytes(dme.read_bytes(MEM + GAME_STATE, 4), byteorder="big")
+                    if (game_state == 0x1 or game_state == 0x3) and ctx.exited_level:
+                        ctx.exited_level = False
+                        loc_id = check_level_clear(ctx)
+                        if loc_id != 0:
+                            await ctx.check_locations(loc_id)
+                    if game_state == 0x0:
+                        ctx.exited_level = True
+                        current_level_index = int.from_bytes(dme.read_bytes(MEM + CURRENT_LEVEL, 4), byteorder="big")
+                        current_world_index = int.from_bytes(dme.read_bytes(MEM + WORLD_OF_CURRENT_LEVEL, 4), byteorder="big")
+                        for name, data in Levels.items():
+                            if data.world_name == WorldIndexToName[current_world_index] and data.index == current_level_index:
+                                loc_id = check_letters(ctx, data.index, current_world_index)
+                                if loc_id > 0:
+                                    await ctx.check_locations([loc_id])
+                                loc_id = check_puzzle_piece(ctx, data.index, current_world_index)
+                                if loc_id > 0:
+                                    await ctx.check_locations([loc_id])
                     if "DeathLink" in ctx.tags:
                         await check_death(ctx)
                 sleep_time = 0.1

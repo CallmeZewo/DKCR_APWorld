@@ -100,7 +100,7 @@ CUTSCENE_IDENTIFIER = 0x61fc04
 # +++++0x1e0 No pointer (back: 80decee0)
 # ++++++0x34c = [32-bit BE] Location selected on world map 0x1=Freelook, 0x2-9 = Worlds in alphabetical order, 0xa = Golden Temple, 0xb = Zooming
 
-WORLD_CURRENT_LEVEL = 0x80b000
+WORLD_OF_CURRENT_LEVEL = 0x80b000
 # [32-bit BE] (EU) World of current level, updates on entry / file select. Worlds are in alphabetical order instead of numerical-except for Golden Temple
 # 0x00 = Beach (2)
 # 0x01 = Cave (4)
@@ -227,7 +227,7 @@ PP_CURRENT_LEVEL = 0x80dda3
 K_LETTER = 0x80dda7
 O_LETTER = 0x80ddab
 N_LETTER = 0x80ddaf
-G_LETTER = 0x80dda3
+G_LETTER = 0x80ddb3
 SQUAWKS = 0x80ddc0
 HEART_BOOST_DK = 0x80ddc4
 HEART_BOOST_DIDDY = 0x80ddc8

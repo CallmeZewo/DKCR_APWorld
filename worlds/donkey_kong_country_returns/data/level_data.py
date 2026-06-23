@@ -8,7 +8,7 @@ from ..rules import *
 class LevelData:
     world_name: str
     pointer: int
-    index: int | None = None
+    index: int
     puzzle_piece_amount: int | None = None
     kong_letter_amount: int | None = None
     connections: list[int | None  | list[int | Mapping[str, int]]] = None
