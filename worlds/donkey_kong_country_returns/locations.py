@@ -1179,9 +1179,9 @@ def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | No
     return {location_name: LOCATION_NAME_TO_ID[location_name] for location_name in location_names}
 
 def create_all_locations(world: DKCRWorld) -> None:
-    for name, id in LOCATION_NAME_TO_ID.items():
-        if not name.__contains__("Shop"):
-            print(f"{hex(id)} \t {name}")
+    # for name, id in LOCATION_NAME_TO_ID.items():
+    #     if not name.__contains__("Shop"):
+    #         print(f"{hex(id)} \t {name}")
     create_regular_locations(world)
 
 def create_regular_locations(world: DKCRWorld) -> None:
