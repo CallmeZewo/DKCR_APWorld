@@ -18,10 +18,14 @@ class ItemData:
     classification: IC = IC.progression
     amount: int = 1
 
-WorldOffset = 0x100
+WorldOffset = 0x1000
+ItemOffset = 0x2000
+KeyOffset = 0x3000
+OrbOffset = 0x4000
+AbilityOffset = 0x5000
 
 item_table: Dict[str, ItemData] = {
-    I.PUZZLE_PIECE: ItemData(code=1, amount=366),
+    I.PUZZLE_PIECE: ItemData(code=0x1 + ItemOffset, amount=371),
     I.Kong_Letter.KONG_LETTER_JUNGLE: ItemData(code=0x05 + WorldOffset, amount=24),
     I.Kong_Letter.KONG_LETTER_BEACH: ItemData(code=0x00 + WorldOffset, amount=28),
     I.Kong_Letter.KONG_LETTER_RUINS: ItemData(code=0x06 + WorldOffset, amount=24),
@@ -30,6 +34,14 @@ item_table: Dict[str, ItemData] = {
     I.Kong_Letter.KONG_LETTER_CLIFF: ItemData(code=0x02 + WorldOffset, amount=32),
     I.Kong_Letter.KONG_LETTER_FACTORY: ItemData(code=0x03 + WorldOffset, amount=28),
     I.Kong_Letter.KONG_LETTER_VOLCANO: ItemData(code=0x07 + WorldOffset, amount=28),
+    I.BALLOONX1: ItemData(code=26, classification=IC.filler),
+    I.BALLOONX3: ItemData(code=27, classification=IC.filler),
+    I.BALLOONX7: ItemData(code=28, classification=IC.filler),
+    I.BANANA: ItemData(code=29, classification=IC.filler),
+    I.BANANA_BUNCH: ItemData(code=30, classification=IC.filler),
+    I.BIG_BANANA_BUNCH: ItemData(code=31, classification=IC.filler),
+    I.BANANA_COIN: ItemData(code=32, classification=IC.filler),
+    I.HEART: ItemData(code=33, classification=IC.filler),
     #I.Key.JUNGLE_KEY: ItemData(code=10),
     #I.Key.Beach_KEY: ItemData(code=11),
     #I.Key.Ruins_KEY: ItemData(code=12),
@@ -46,9 +58,6 @@ item_table: Dict[str, ItemData] = {
     #I.Rare_Orb.ORANGE_ORB_CLIFF: ItemData(code=23),
     #I.Rare_Orb.GRAY_ORB_FACTORY: ItemData(code=24),
     #I.Rare_Orb.RED_ORB_VOLCANO: ItemData(code=25),
-    I.Shop.BALLOONX1: ItemData(code=26, classification=IC.filler, amount=8),
-    I.Shop.BALLOONX3: ItemData(code=27, classification=IC.filler, amount=8),
-    I.Shop.BALLOONX7: ItemData(code=28, classification=IC.filler, amount=8),
     #I.Unlockables.Moves.ROLL: ItemData(code=29),
     #I.Unlockables.Moves.GRAB: ItemData(code=30),
     #I.Unlockables.Moves.BLOW: ItemData(code=31),
@@ -67,8 +76,8 @@ class DKCRItem(Item):
     game: str = "Donkey Kong Country Returns"
 
 def get_random_filler_item_name(world: DKCRWorld) -> str:
-    filler_list = [I.Shop.BALLOONX1, I.Shop.BALLOONX3, I.Shop.BALLOONX7]
-    return filler_list[random.randrange(0,2)]
+    filler_list = [I.BALLOONX1, I.BALLOONX3, I.BALLOONX7, I.BANANA, I.BANANA_BUNCH, I.BIG_BANANA_BUNCH, I.BANANA_COIN]
+    return filler_list[random.randrange(0, len(filler_list))]
 
 def create_item_with_correct_classification(world: DKCRWorld, name: str) -> DKCRItem:
     classification = item_table[name].classification
