@@ -3,7 +3,7 @@ from typing import Any
 
 from worlds.AutoWorld import World
 
-from worlds.donkey_kong_country_returns.DKCRNameConstants import Region as R
+from worlds.donkey_kong_country_returns.DKCRNameConstants import Generic as G
 
 from worlds.LauncherComponents import components, Component, launch_subprocess, Type, SuffixIdentifier, icon_paths
 
@@ -35,7 +35,7 @@ class DKCRWorld(World):
     Defeat the Tikis with your Pal Diddy Kong
     """
 
-    game: str = "Donkey Kong Country Returns"
+    game: str = G.GAME_NAME
     patch_file_ending: str = ".apdkcr"
 
     web = web_world.DKCRWebWorld()
