@@ -1,6 +1,8 @@
-from dataclasses import dataclass, fields
+from dataclasses import dataclass
 from typing import Any
-from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, DefaultOnToggle, Visibility
+
+from Options import OptionGroup, PerGameCommonOptions, Range, Toggle, Visibility
+
 
 class DeathLink(Toggle):
     """
@@ -9,12 +11,14 @@ class DeathLink(Toggle):
     display_name = "Death Link"
     visibility = Visibility.none
 
+
 class GoldenTemple(Toggle):
     """
     Adding the Golden Temple into the item pool
     """
     display_name = "Golden Temple"
     visibility = Visibility.none
+
 
 class KongLetterCollectionCheckpoint(Toggle):
     """
@@ -23,6 +27,7 @@ class KongLetterCollectionCheckpoint(Toggle):
 
     display_name = "Kong Letter collection upon checkpoint"
     visibility = Visibility.none
+
 
 class RareOrbs(Range):
     """
@@ -37,6 +42,7 @@ class RareOrbs(Range):
     default = 8
     visibility = Visibility.none
 
+
 class RandomizeLevels(Toggle):
     """
     When enabled, randomizes the levels with each other.
@@ -45,12 +51,14 @@ class RandomizeLevels(Toggle):
     display_name = "Randomize Levels"
     visibility = Visibility.none
 
+
 class Rambi(Toggle):
     """
     When enabled, locks Rambi behind the Rambi’s Saddle item.
     """
     display_name = "Rambi"
     visibility = Visibility.none
+
 
 class Minecart(Toggle):
     """
@@ -59,12 +67,14 @@ class Minecart(Toggle):
     display_name = "Minecart"
     visibility = Visibility.none
 
+
 class RocketBarrel(Toggle):
     """
     When enabled, Rocket Barrel levels and sections require the item Rocket Barrel Fuel to access.
     """
     display_name = "Rocket Barrel"
     visibility = Visibility.none
+
 
 class KongBarrel(Toggle):
     """
@@ -73,12 +83,14 @@ class KongBarrel(Toggle):
     display_name = "Kong Barrel"
     visibility = Visibility.none
 
+
 class Roll(Toggle):
     """
     When enabled, shuffles your ability to roll into the item pool.
     """
     display_name = "Randomize Roll"
     visibility = Visibility.none
+
 
 class Grab(Toggle):
     """
@@ -87,12 +99,14 @@ class Grab(Toggle):
     display_name = "Randomize Grab"
     visibility = Visibility.none
 
+
 class Blow(Toggle):
     """
     When enabled, shuffles your ability to blow into the item pool.
     """
     display_name = "Randomize Blow"
     visibility = Visibility.none
+
 
 class GroundPound(Toggle):
     """
@@ -101,12 +115,14 @@ class GroundPound(Toggle):
     display_name = "Randomize Ground Pound"
     visibility = Visibility.none
 
+
 class MirrorMode(Toggle):
     """
     Completing a level in Mirror Mode is considered a check.
     """
     display_name = "Mirror Mode"
     visibility = Visibility.none
+
 
 class MirrorModeShards(Range):
     """
@@ -119,12 +135,14 @@ class MirrorModeShards(Range):
     range_end = 25
     default = 8
 
+
 class SunsetShoreKey(Toggle):
     """
     When enabled, adds the Jungle Shop Key for the level Sunset Shore as a location.
     """
     display_name = "Sunset Shore Key"
     visibility = Visibility.none
+
 
 class BlowholeBoundKey(Toggle):
     """
@@ -133,12 +151,14 @@ class BlowholeBoundKey(Toggle):
     display_name = "Blowhole Bound Key"
     visibility = Visibility.none
 
+
 class DampDungeonKey(Toggle):
     """
     When enabled, adds the Ruins Shop Key for the level Damp Dungeon as a location.
     """
     display_name = "Damp Dungeon Key"
     visibility = Visibility.none
+
 
 class MolePatrolKey(Toggle):
     """
@@ -147,12 +167,14 @@ class MolePatrolKey(Toggle):
     display_name = "Mole Patrol Key"
     visibility = Visibility.none
 
+
 class SpringySporesKey(Toggle):
     """
     When enabled, adds the Forest Shop Key for the level Springy Spores as a location.
     """
     display_name = "Springy Spores Key"
     visibility = Visibility.none
+
 
 class PrecariousPlateauKey(Toggle):
     """
@@ -161,6 +183,7 @@ class PrecariousPlateauKey(Toggle):
     display_name = "Precarious Plateau Key"
     visibility = Visibility.none
 
+
 class HandyHazardsKey(Toggle):
     """
     When enabled, adds the Factory Shop Key for the level Handy Hazards as a location.
@@ -168,12 +191,14 @@ class HandyHazardsKey(Toggle):
     display_name = "Handy Hazards Key"
     visibility = Visibility.none
 
+
 class SmokeyPeakKey(Toggle):
     """
     When enabled, adds the Volcano Shop Key for the level Smokey Peak as a location.
     """
     display_name = "Smokey Peak Key"
     visibility = Visibility.none
+
 
 class JungleBossAccess(Range):
     """
@@ -187,6 +212,7 @@ class JungleBossAccess(Range):
 
     default = 20
 
+
 class BeachBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Beach.
@@ -198,6 +224,7 @@ class BeachBossAccess(Range):
     # This Value can not exceed 85
 
     default = 50
+
 
 class RuinsBossAccess(Range):
     """
@@ -211,6 +238,7 @@ class RuinsBossAccess(Range):
 
     default = 80
 
+
 class CaveBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Cave.
@@ -222,6 +250,7 @@ class CaveBossAccess(Range):
     # This Value can not exceed 162
 
     default = 110
+
 
 class ForestBossAccess(Range):
     """
@@ -235,6 +264,7 @@ class ForestBossAccess(Range):
 
     default = 150
 
+
 class CliffBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Cliff.
@@ -246,6 +276,7 @@ class CliffBossAccess(Range):
     # This Value can not exceed 274
 
     default = 200
+
 
 class FactoryBossAccess(Range):
     """
@@ -259,6 +290,7 @@ class FactoryBossAccess(Range):
 
     default = 260
 
+
 class VolcanoBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Volcano.
@@ -270,6 +302,7 @@ class VolcanoBossAccess(Range):
     # This Value can not exceed 371
 
     default = 320
+
 
 @dataclass
 class DKCROptions(PerGameCommonOptions):
@@ -339,6 +372,7 @@ class DKCROptions(PerGameCommonOptions):
             "factory_boss_access",
             "volcano_boss_access",
         )
+
 
 option_groups = [
     OptionGroup(
