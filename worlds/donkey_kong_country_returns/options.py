@@ -266,8 +266,8 @@ class VolcanoBossAccess(Range):
     display_name = "Puzzle Piece requirement for Tiki Tong Terror"
 
     range_start = 0
-    range_end = 366
-    # This Value can not exceed 366
+    range_end = 371
+    # This Value can not exceed 371
 
     default = 320
 
