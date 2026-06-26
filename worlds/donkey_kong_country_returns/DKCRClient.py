@@ -9,10 +9,12 @@ from dataclasses import dataclass
 import Utils
 from CommonClient import ClientCommandProcessor, CommonContext, get_base_parser, gui_enabled, logger, server_loop
 from NetUtils import ClientStatus
+from worlds.donkey_kong_country_returns.data.indexes import *
 
 from .data.addresses import *
 from .data.level_data import Levels
-import utils
+from .utils import *
+from .rules import *
 
 if TYPE_CHECKING:
     import kvui
@@ -255,16 +257,12 @@ def check_puzzle_piece(ctx: DKCRContext, levelID: int, worldID: int):
     while temp > 1:
         temp >>= 1
         pos += 1
-
-    if levelID == 0x00:
-        levelID = 13
-
-    return 10000 * WorldIDToReal[worldID] + 100 * (levelID - 1) + pos
+    return 0x10000 * worldID + 0x100 * levelID + pos
 
 def check_letters(ctx: DKCRContext, levelID: int, worldID: int):
     if levelID == 0x00 or levelID == 0x01:
         return 0
-    LETTER_IDS = [20, 21, 22, 23]
+    LETTER_IDS = [KONG_LETTER_K, KONG_LETTER_O, KONG_LETTER_N, KONG_LETTER_G]
     CurrentLetters = [
         dme.read_byte(K_LETTER + MEM),
         dme.read_byte(O_LETTER + MEM),
@@ -286,38 +284,33 @@ def check_letters(ctx: DKCRContext, levelID: int, worldID: int):
 
     ctx.last_letters = CurrentLetters
 
-    return 10000 * WorldIDToReal[worldID] + 100 * (levelID - 1) + changed
+    return 0x10000 * worldID + 0x100 * levelID + changed
 
 def check_level_clear(ctx: DKCRContext):
     returning = []
     main_level_data_ptr = int.from_bytes(dme.read_bytes(LEVEL_DATA_POINTER + MEM, 4), byteorder="big")
     for name, data in Levels.items():
         if data.index != int.from_bytes(dme.read_bytes(CURRENT_LEVEL, 4), "big"):
-            if data.world_name != int.from_bytes(dme.read_bytes(WORLD_OF_CURRENT_LEVEL, 4), "big"):
+            if data.world_index != int.from_bytes(dme.read_bytes(WORLD_OF_CURRENT_LEVEL, 4), "big"):
                 continue
         level_data = int.from_bytes(dme.read_bytes(data.pointer + main_level_data_ptr, 4), byteorder="big")
         flags = dme.read_byte(level_data + 0x3e)
-        print(flags)
+
         if flags & 0x40:
-            world = WorldIDToReal[WorldNameToIndex[data.world_name]]
+            world = data.world_index
             level = data.index
-            if level == 0x01:
-                level = 12
-            if level == 0x00:
-                level = 13
-            returning.append(10000 * world + (level - 1) * 100 + 30)
+            returning.append(0x10000 * world + level * 0x100 + CLEARED)
 
         if flags & 0x10:
-            world = WorldIDToReal[WorldNameToIndex[data.world_name]]
+            world = data.world_index
             level = data.index
-            if level == 0x00:
-                level = 13
-            returning.append(10000 * world + (level - 1) * 100 + 10)
+            returning.append(0x10000 * world + level * 0x100 + KONG_LETTER_SET)
 
         if flags & 0x08:
-            world = WorldIDToReal[WorldNameToIndex[data.world_name]]
+            world = data.world_index
             level = data.index
-            returning.append(10000 * world + (level - 1) * 100 + 24)
+            returning.append(0x10000 * world + level * 0x100 + PUZZLE_PIECE_SET)
+
     if not returning:
         return 0
     return returning
@@ -343,18 +336,19 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                     continue
                 if ctx.slot is not None:
                     # Loop
-                    game_state = utils.get_game_state()
-                    if (game_state == 0x1 or game_state == 0x3) and ctx.exited_level:
+                    dme.write_byte(MEM + P1_INPUTFIELD, 0x0)
+                    game_state = get_game_state()
+                    if (game_state == STATE_WORLD_MAP or game_state == STATE_WORLD_MAP_AFTER_QUIT) and ctx.exited_level:
                         ctx.exited_level = False
                         loc_id = check_level_clear(ctx)
                         if loc_id != 0:
                             await ctx.check_locations(loc_id)
-                    if game_state == 0x0:
+                    if game_state == STATE_IN_LEVEL:
                         ctx.exited_level = True
                         current_level_index = int.from_bytes(dme.read_bytes(MEM + CURRENT_LEVEL, 4), byteorder="big")
                         current_world_index = int.from_bytes(dme.read_bytes(MEM + WORLD_OF_CURRENT_LEVEL, 4), byteorder="big")
                         for name, data in Levels.items():
-                            if data.world_name == WorldIndexToName[current_world_index] and data.index == current_level_index:
+                            if data.world_index == current_world_index and data.index == current_level_index:
                                 loc_id = check_letters(ctx, data.index, current_world_index)
                                 if loc_id > 0:
                                     await ctx.check_locations([loc_id])
