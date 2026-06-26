@@ -1,3 +1,6 @@
+class Generic:
+    GAME_NAME = "Donkey Kong Country Returns"
+
 class World:
     JUNGLE = "Jungle"
     BEACH = "Beach"
@@ -11,18 +14,20 @@ class World:
 
 
 class Level:
-    JUNGLE_SHOP = "Jungle Shop"
+    # Jungle
+    PLATFORM_PANIC = "Platform Panic"
+    MUGLYS_MOUND = "Mugly's Mound"
     JUNGLE_HIJINXS = "Jungle Hijinxs"
     KING_OF_CLING = "King of Cling"
     TREE_TOP_BOP = "Tree Top Bop"
     SUNSET_SHORE = "Sunset Shore"
     CANOPY_CANNONS = "Canopy Cannons"
     CRAZY_CART = "Crazy Cart"
-    MUGLYS_MOUND = "Mugly's Mound"
-    PLATFORM_PANIC = "Platform Panic"
+    JUNGLE_SHOP = "Jungle Shop"
 
     # Beach
-    BEACH_SHOP = "Beach Shop"
+    TUMBLIN_TEMPLE = "Tumblin' Temple"
+    PINCHIN_PIRATES = "Pinchin' Pirates"
     POPPIN_PLANKS = "Poppin' Planks"
     SLOPPY_SANDS = "Sloppy Sands"
     PEACEFUL_PIER = "Peaceful Pier"
@@ -30,32 +35,32 @@ class Level:
     STORMY_SHORE = "Stormy Shore"
     BLOWHOLE_BOUND = "Blowhole Bound"
     TIDAL_TERROR = "Tidal Terror"
-    PINCHIN_PIRATES = "Pinchin' Pirates"
-    TUMBLIN_TEMPLE = "Tumblin' Temple"
+    BEACH_SHOP = "Beach Shop"
 
     # Ruins
-    RUINS_SHOP = "Ruins Shop"
+    SHIFTY_SMASHERS = "Shifty Smashers"
+    RUINED_ROOST = "Ruined Roost"
     WONKY_WATERWAY = "Wonky Waterway"
     BUTTON_BASH = "Button Bash"
     MAST_BLAST = "Mast Blast"
     DAMP_DUNGEON = "Damp Dungeon"
     ITTY_BITTY_BITERS = "Itty Bitty Biters"
     TEMPLE_TOPPLE = "Temple Topple"
-    RUINED_ROOST = "Ruined Roost"
-    SHIFTY_SMASHERS = "Shifty Smashers"
+    RUINS_SHOP = "Ruins Shop"
 
     # Cave
-    CAVE_SHOP = "Cave Shop"
+    JAGGED_JEWELS = "Jagged Jewels"
+    THE_MOLE_TRAIN = "The Mole Train"
     RICKETY_RAILS = "Rickety Rails"
     GRIP_N_TRIP = "Grip 'n' Trip"
     BOMBS_AWAY = "Bombs Away"
     MOLE_PATROL = "Mole Patrol"
     CROWDED_CAVERN = "Crowded Cavern"
-    THE_MOLE_TRAIN = "The Mole Train"
-    JAGGED_JEWELS = "Jagged Jewels"
+    CAVE_SHOP = "Cave Shop"
 
     # Forest
-    FOREST_SHOP = "Forest Shop"
+    BLAST_N_BOUNCE = "Blast 'n' Bounce"
+    MANGORUBY_RUN = "Mangoruby Run"
     VINE_VALLEY = "Vine Valley"
     CLINGY_SWINGY = "Clingy Swingy"
     FLUTTER_FLYAWAY = "Flutter Flyaway"
@@ -64,11 +69,11 @@ class Level:
     SPRINGY_SPORES = "Springy Spores"
     WIGGLEVINE_WONDERS = "Wigglevine Wonders"
     MUNCHER_MARATHON = "Muncher Marathon"
-    MANGORUBY_RUN = "Mangoruby Run"
-    BLAST_N_BOUNCE = "Blast 'n' Bounce"
+    FOREST_SHOP = "Forest Shop"
 
     # Cliff
-    CLIFF_SHOP = "Cliff Shop"
+    PERILOUS_PASSAGE = "Perilous Passage"
+    THUGLYS_HIGHRISE = "Thugly's Highrise"
     STICKY_SITUATION = "Sticky Situation"
     PREHISTORIC_PATH = "Prehistoric Path"
     WEIGHTY_WAY = "Weighty Way"
@@ -77,11 +82,11 @@ class Level:
     CRUMBLE_CANYON = "Crumble Canyon"
     TIPPY_SHIPPY = "Tippy Shippy"
     CLIFFTOP_CLIMB = "Clifftop Climb"
-    THUGLYS_HIGHRISE = "Thugly's Highrise"
-    PERILOUS_PASSAGE = "Perilous Passage"
+    CLIFF_SHOP = "Cliff Shop"
 
     # Factory
-    FACTORY_SHOP = "Factory Shop"
+    TREACHEROUS_TRACK = "Treacherous Track"
+    FEATHER_FIEND = "Feather Fiend"
     FOGGY_FUMES = "Foggy Fumes"
     SLAMMIN_STEEL = "Slammin' Steel"
     HANDY_HAZARDS = "Handy Hazards"
@@ -90,11 +95,11 @@ class Level:
     SWITCHEROO = "Switcheroo"
     MUSIC_MADNESS = "Music Madness"
     LIFT_OFF_LAUNCH = "Lift-Off Launch"
-    FEATHER_FIEND = "Feather Fiend"
-    TREACHEROUS_TRACK = "Treacherous Track"
+    FACTORY_SHOP = "Factory Shop"
 
     # Volcano
-    VOLCANO_SHOP = "Volcano Shop"
+    FIVE_MONKEY_TRIAL = "Five Monkey Trial"
+    TIKI_TONG_TERROR = "Tiki Tong Terror"
     FURIOUS_FIRE = "Furious Fire"
     HOT_ROCKET = "Hot Rocket"
     ROASTING_RAILS = "Roasting Rails"
@@ -102,8 +107,7 @@ class Level:
     BOBBING_BASALT = "Bobbing Basalt"
     MOVING_MELTERS = "Moving Melters"
     RED_RED_RISING = "Red Red Rising"
-    TIKI_TONG_TERROR = "Tiki Tong Terror"
-    FIVE_MONKEY_TRIAL = "Five Monkey Trial"
+    VOLCANO_SHOP = "Volcano Shop"
 
     # Golden Temple
     GOLDEN_TEMPLE = "Golden Temple Level"
@@ -440,7 +444,7 @@ class Location:
     CRAZY_CART_PUZZLE_PIECE_3 = "1-6 Crazy Cart Puzzle Piece (3)"
     CRAZY_CART_PUZZLE_PIECE_4 = "1-6 Crazy Cart Puzzle Piece (4)"
     CRAZY_CART_PUZZLE_PIECE_5 = "1-6 Crazy Cart Puzzle Piece (5)"
-    CRAZY_CART_PUZZLE_PIECE_SET = "1-6 Crazy_Cart Puzzle Piece Set"
+    CRAZY_CART_PUZZLE_PIECE_SET = "1-6 Crazy Cart Puzzle Piece Set"
     CRAZY_CART_KONG_LETTER_K = "1-6 Crazy Cart Kong Letter (K)"
     CRAZY_CART_KONG_LETTER_O = "1-6 Crazy Cart Kong Letter (O)"
     CRAZY_CART_KONG_LETTER_N = "1-6 Crazy Cart Kong Letter (N)"
@@ -452,6 +456,7 @@ class Location:
     CRAZY_CART_CLEARED_TIME_TRIAL_SILVER = "1-6 Crazy Cart cleared (Time Trial) [Silver]"
     CRAZY_CART_CLEARED_TIME_TRIAL_GOLD = "1-6 Crazy Cart cleared (Time Trial) [Gold]"
 
+    MUGLYS_MOUND_EVENT = "1-B Mugly's Mound event"
     MUGLYS_MOUND_CLEARED = "1-B Mugly's Mound cleared"
     MUGLYS_MOUND_CLEARED_MIRROR = "1-B Mugly's Mound cleared (Mirror)"
     MUGLYS_MOUND_CLEARED_TIME_TRIAL_BRONZE = "1-B Mugly's Mound cleared (Time Trial) [Bronze]"
@@ -605,6 +610,7 @@ class Location:
     TIDAL_TERROR_CLEARED_TIME_TRIAL_SILVER = "2-7 Tidal Terror cleared (Time Trial) [Silver]"
     TIDAL_TERROR_CLEARED_TIME_TRIAL_GOLD = "2-7 Tidal Terror cleared (Time Trial) [Gold]"
 
+    PINCHIN_PIRATES_EVENT = "2-B Pinchin' Pirates event"
     PINCHIN_PIRATES_CLEARED = "2-B Pinchin' Pirates cleared"
     PINCHIN_PIRATES_CLEARED_MIRROR = "2-B Pinchin' Pirates cleared (Mirror)"
     PINCHIN_PIRATES_CLEARED_TIME_TRIAL_BRONZE = "2-B Pinchin' Pirates cleared (Time Trial) [Bronze]"
@@ -749,6 +755,7 @@ class Location:
     TEMPLE_TOPPLE_CLEARED_TIME_TRIAL_SILVER = "3-6 Temple Topple cleared (Time Trial) [Silver]"
     TEMPLE_TOPPLE_CLEARED_TIME_TRIAL_GOLD = "3-6 Temple Topple cleared (Time Trial) [Gold]"
 
+    RUINED_ROOST_EVENT = "3-B Ruined Roost event"
     RUINED_ROOST_CLEARED = "3-B Ruined Roost cleared"
     RUINED_ROOST_CLEARED_MIRROR = "3-B Ruined Roost cleared (Mirror)"
     RUINED_ROOST_CLEARED_TIME_TRIAL_BRONZE = "3-B Ruined Roost cleared (Time Trial) [Bronze]"
@@ -774,6 +781,7 @@ class Location:
     CAVE_CLEARED_TIME_TRIAL_BRONZE = "Cave cleared (Time Trial) [Bronze]"
     CAVE_CLEARED_TIME_TRIAL_SILVER = "Cave cleared (Time Trial) [Silver]"
     CAVE_CLEARED_TIME_TRIAL_GOLD = "Cave cleared (Time Trial) [Gold]"
+
     CAVE_SHOP_KEY = "Cave Shop Key"
     CAVE_SHOP_BALLOONSX1 = "Cave Shop Ballon x 1"
     CAVE_SHOP_BALLOONSX3 = "Cave Shop Ballon x 3"
@@ -864,6 +872,7 @@ class Location:
     CROWDED_CAVERN_CLEARED_TIME_TRIAL_SILVER = "4-5 Crowded Cavern cleared (Time Trial) [Silver]"
     CROWDED_CAVERN_CLEARED_TIME_TRIAL_GOLD = "4-5 Crowded Cavern cleared (Time Trial) [Gold]"
 
+    THE_MOLE_TRAIN_EVENT = "4-B The Mole Train event"
     THE_MOLE_TRAIN_CLEARED = "4-B The Mole Train cleared"
     THE_MOLE_TRAIN_CLEARED_MIRROR = "4-B The Mole Train cleared (Mirror)"
     THE_MOLE_TRAIN_CLEARED_TIME_TRIAL_BRONZE = "4-B The Mole Train cleared (Time Trial) [Bronze]"
@@ -913,22 +922,22 @@ class Location:
     VINE_VALLEY_CLEARED_TIME_TRIAL_SILVER = "5-1 Vine Valley cleared (Time Trial) [Silver]"
     VINE_VALLEY_CLEARED_TIME_TRIAL_GOLD = "5-1 Vine Valley cleared (Time Trial) [Gold]"
 
-    CLINGY_SWINGY_PUZZLE_PIECE_1 = "5-2 Clingy_Swingy Puzzle Piece (1)"
-    CLINGY_SWINGY_PUZZLE_PIECE_2 = "5-2 Clingy_Swingy Puzzle Piece (2)"
-    CLINGY_SWINGY_PUZZLE_PIECE_3 = "5-2 Clingy_Swingy Puzzle Piece (3)"
-    CLINGY_SWINGY_PUZZLE_PIECE_4 = "5-2 Clingy_Swingy Puzzle Piece (4)"
-    CLINGY_SWINGY_PUZZLE_PIECE_5 = "5-2 Clingy_Swingy Puzzle Piece (5)"
-    CLINGY_SWINGY_PUZZLE_PIECE_SET = "5-2 Clingy_Swingy Puzzle Piece Set"
-    CLINGY_SWINGY_KONG_LETTER_K = "5-2 Clingy_Swingy Kong Letter (K)"
-    CLINGY_SWINGY_KONG_LETTER_O = "5-2 Clingy_Swingy Kong Letter (O)"
-    CLINGY_SWINGY_KONG_LETTER_N = "5-2 Clingy_Swingy Kong Letter (N)"
-    CLINGY_SWINGY_KONG_LETTER_G = "5-2 Clingy_Swingy Kong Letter (G)"
-    CLINGY_SWINGY_KONG_LETTER_SET = "5-2 Clingy_Swingy Kong Letter Set"
-    CLINGY_SWINGY_CLEARED = "5-2 Clingy_Swingy cleared"
-    CLINGY_SWINGY_CLEARED_MIRROR = "5-2 Clingy_Swingy cleared (Mirror)"
-    CLINGY_SWINGY_CLEARED_TIME_TRIAL_BRONZE = "5-2 Clingy_Swingy cleared (Time Trial) [Bronze]"
-    CLINGY_SWINGY_CLEARED_TIME_TRIAL_SILVER = "5-2 Clingy_Swingy cleared (Time Trial) [Silver]"
-    CLINGY_SWINGY_CLEARED_TIME_TRIAL_GOLD = "5-2 Clingy_Swingy cleared (Time Trial) [Gold]"
+    CLINGY_SWINGY_PUZZLE_PIECE_1 = "5-2 Clingy Swingy Puzzle Piece (1)"
+    CLINGY_SWINGY_PUZZLE_PIECE_2 = "5-2 Clingy Swingy Puzzle Piece (2)"
+    CLINGY_SWINGY_PUZZLE_PIECE_3 = "5-2 Clingy Swingy Puzzle Piece (3)"
+    CLINGY_SWINGY_PUZZLE_PIECE_4 = "5-2 Clingy Swingy Puzzle Piece (4)"
+    CLINGY_SWINGY_PUZZLE_PIECE_5 = "5-2 Clingy Swingy Puzzle Piece (5)"
+    CLINGY_SWINGY_PUZZLE_PIECE_SET = "5-2 Clingy Swingy Puzzle Piece Set"
+    CLINGY_SWINGY_KONG_LETTER_K = "5-2 Clingy Swingy Kong Letter (K)"
+    CLINGY_SWINGY_KONG_LETTER_O = "5-2 Clingy Swingy Kong Letter (O)"
+    CLINGY_SWINGY_KONG_LETTER_N = "5-2 Clingy Swingy Kong Letter (N)"
+    CLINGY_SWINGY_KONG_LETTER_G = "5-2 Clingy Swingy Kong Letter (G)"
+    CLINGY_SWINGY_KONG_LETTER_SET = "5-2 Clingy Swingy Kong Letter Set"
+    CLINGY_SWINGY_CLEARED = "5-2 Clingy Swingy cleared"
+    CLINGY_SWINGY_CLEARED_MIRROR = "5-2 Clingy Swingy cleared (Mirror)"
+    CLINGY_SWINGY_CLEARED_TIME_TRIAL_BRONZE = "5-2 Clingy Swingy cleared (Time Trial) [Bronze]"
+    CLINGY_SWINGY_CLEARED_TIME_TRIAL_SILVER = "5-2 Clingy Swingy cleared (Time Trial) [Silver]"
+    CLINGY_SWINGY_CLEARED_TIME_TRIAL_GOLD = "5-2 Clingy Swingy cleared (Time Trial) [Gold]"
 
     FLUTTER_FLYAWAY_PUZZLE_PIECE_1 = "5-3 Flutter Flyaway Puzzle Piece (1)"
     FLUTTER_FLYAWAY_PUZZLE_PIECE_2 = "5-3 Flutter Flyaway Puzzle Piece (2)"
@@ -1042,6 +1051,7 @@ class Location:
     MUNCHER_MARATHON_CLEARED_TIME_TRIAL_SILVER = "5-8 Muncher Marathon cleared (Time Trial) [Silver]"
     MUNCHER_MARATHON_CLEARED_TIME_TRIAL_GOLD = "5-8 Muncher Marathon cleared (Time Trial) [Gold]"
 
+    MANGORUBY_RUN_EVENT = "5-B Mangoruby Run event"
     MANGORUBY_RUN_CLEARED = "5-B Mangoruby Run cleared"
     MANGORUBY_RUN_CLEARED_MIRROR = "5-B Mangoruby Run cleared (Mirror)"
     MANGORUBY_RUN_CLEARED_TIME_TRIAL_BRONZE = "5-B Mangoruby Run cleared (Time Trial) [Bronze]"
@@ -1157,7 +1167,7 @@ class Location:
     PRECARIOUS_PLATEAU_KONG_LETTER_N = "6-5 Precarious Plateau Kong Letter (N)"
     PRECARIOUS_PLATEAU_KONG_LETTER_G = "6-5 Precarious Plateau Kong Letter (G)"
     PRECARIOUS_PLATEAU_KONG_LETTER_SET = "6-5 Precarious Plateau Kong Letter Set"
-    PRECARIOUS_PLATEAU_CLEARED = "6-5 Precarious_Plateau cleared"
+    PRECARIOUS_PLATEAU_CLEARED = "6-5 Precarious Plateau cleared"
     PRECARIOUS_PLATEAU_CLEARED_MIRROR = "6-5 Precarious Plateau cleared (Mirror)"
     PRECARIOUS_PLATEAU_CLEARED_TIME_TRIAL_BRONZE = "6-5 Precarious Plateau cleared (Time Trial) [Bronze]"
     PRECARIOUS_PLATEAU_CLEARED_TIME_TRIAL_SILVER = "6-5 Precarious Plateau cleared (Time Trial) [Silver]"
@@ -1178,7 +1188,7 @@ class Location:
     CRUMBLE_CANYON_KONG_LETTER_N = "6-6 Crumble Canyon Kong Letter (N)"
     CRUMBLE_CANYON_KONG_LETTER_G = "6-6 Crumble Canyon Kong Letter (G)"
     CRUMBLE_CANYON_KONG_LETTER_SET = "6-6 Crumble Canyon Kong Letter Set"
-    CRUMBLE_CANYON_CLEARED = "6-6 Crumble_Canyon cleared"
+    CRUMBLE_CANYON_CLEARED = "6-6 Crumble Canyon cleared"
     CRUMBLE_CANYON_CLEARED_MIRROR = "6-6 Crumble Canyon cleared (Mirror)"
     CRUMBLE_CANYON_CLEARED_TIME_TRIAL_BRONZE = "6-6 Crumble Canyon cleared (Time Trial) [Bronze]"
     CRUMBLE_CANYON_CLEARED_TIME_TRIAL_SILVER = "6-6 Crumble Canyon cleared (Time Trial) [Silver]"
@@ -1218,8 +1228,9 @@ class Location:
     CLIFFTOP_CLIMB_CLEARED_TIME_TRIAL_SILVER = "6-8 Clifftop Climb cleared (Time Trial) [Silver]"
     CLIFFTOP_CLIMB_CLEARED_TIME_TRIAL_GOLD = "6-8 Clifftop Climb cleared (Time Trial) [Gold]"
 
-    THUGLYS_HIGHRISE_CLEARED_MIRROR = "6-B Thugly's Highrise cleared (Mirror)"
+    THUGLYS_HIGHRISE_EVENT = "6-B Thugly's Highrise event"
     THUGLYS_HIGHRISE_CLEARED = "6-B Thugly's Highrise cleared"
+    THUGLYS_HIGHRISE_CLEARED_MIRROR = "6-B Thugly's Highrise cleared (Mirror)"
     THUGLYS_HIGHRISE_CLEARED_TIME_TRIAL_BRONZE = "6-B Thugly's Highrise cleared (Time Trial) [Bronze]"
     THUGLYS_HIGHRISE_CLEARED_TIME_TRIAL_SILVER = "6-B Thugly's Highrise cleared (Time Trial) [Silver]"
     THUGLYS_HIGHRISE_CLEARED_TIME_TRIAL_GOLD = "6-B Thugly's Highrise cleared (Time Trial) [Gold]"
@@ -1379,6 +1390,7 @@ class Location:
 
     LIFT_OFF_LAUNCH_CLEARED = "7-R Lift Off Launch cleared"
 
+    FEATHER_FIEND_EVENT = "7-B Feather Fiend event"
     FEATHER_FIEND_CLEARED = "7-B Feather Fiend cleared"
     FEATHER_FIEND_CLEARED_MIRROR = "7-B Feather Fiend cleared (Mirror)"
     FEATHER_FIEND_CLEARED_TIME_TRIAL_BRONZE = "7-B Feather Fiend cleared (Time Trial) [Bronze]"
@@ -1530,6 +1542,7 @@ class Location:
     RED_RED_RISING_CLEARED_TIME_TRIAL_SILVER = "8-7 Red Red Rising cleared (Time Trial) [Silver]"
     RED_RED_RISING_CLEARED_TIME_TRIAL_GOLD = "8-7 Red Red Rising cleared (Time Trial) [Gold]"
 
+    TIKI_TONG_TERROR_EVENT = "8-B Tiki Tong Terror event"
     TIKI_TONG_TERROR_CLEARED = "8-B Tiki Tong Terror cleared"
     TIKI_TONG_TERROR_CLEARED_MIRROR = "8-B Tiki Tong Terror cleared (Mirror)"
     TIKI_TONG_TERROR_CLEARED_TIME_TRIAL_BRONZE = "8-B Tiki Tong Terror cleared (Time Trial) [Bronze]"
@@ -1564,31 +1577,24 @@ class Location:
 
 class Item:
     PUZZLE_PIECE = "Puzzle Piece"
-    PROGRESSIVE_FACTORY_BUTTON = "Progressive Factory Button"
+
+    BALLOONX1 = "Balloons x 1"
+    BALLOONX3 = "Balloons x 3"
+    BALLOONX7 = "Balloons x 7"
+    BANANA = "Banana"
+    BANANA_BUNCH = "Banana Bunch"
+    BIG_BANANA_BUNCH = "Big Banana Bunch"
+    BANANA_COIN = "Banana Coin"
+    HEART = "Heart"
 
     class Kong_Letter:
-        # Jungle
         KONG_LETTER_JUNGLE = "Kong Letter Jungle"
-
-        # Beach
         KONG_LETTER_BEACH = "Kong Letter Beach"
-
-        # Ruins
         KONG_LETTER_RUINS = "Kong Letter Ruins"
-
-        # Cave
         KONG_LETTER_CAVE = "Kong Letter Cave"
-
-        # Forest
         KONG_LETTER_FOREST = "Kong Letter Forest"
-
-        # Cliff
         KONG_LETTER_CLIFF = "Kong Letter Cliff"
-
-        # Factory
         KONG_LETTER_FACTORY = "Kong Letter Factory"
-
-        # Volcano
         KONG_LETTER_VOLCANO = "Kong Letter Volcano"
 
     class Key:
@@ -1612,22 +1618,21 @@ class Item:
         RED_ORB_VOLCANO = "Red Orb Volcano"
 
     class Shop:
-        BALLOONX1 = "Balloons x 1"
-        BALLOONX3 = "Balloons x 3"
-        BALLOONX7 = "Balloons x 7"
+        HEART_BOOST = "Heart Boost"
+        SQUAWKS = "Squawks"
+        BANANA_JUICE = "Banana Juice"
 
     class Unlockables:
+        PROGRESSIVE_FACTORY_BUTTON = "Progressive Factory Button"
         MIRROR_SHARD = "Mirror Shard"
+        ROCKET_BARREL_FUEL = "Rocket Barrel Fuel"
+        MINECART_PASS = "Minecart Pass"
+        RAMBIS_SADDLE = "Rambi's Saddle"
+        KONG_BARREL = "Kong Barrel"
 
-        class Moves:
-            RUN = "Run"
-            ROLL = "Roll"
-            GRAB = "Grab"
-            BLOW = "Blow"
-            GROUND_POUND = "Ground Pound"
-
-        class MISC:
-            ROCKET_BARREL_FUEL = "Rocket Barrel Fuel"
-            MINECART_PASS = "Minecart Pass"
-            RAMBIS_SADDLE = "Rambi's Saddle"
-            KONG_BARREL = "Kong Barrel"
+    class Moves:
+        RUN = "Run"
+        ROLL = "Roll"
+        GRAB = "Grab"
+        BLOW = "Blow"
+        GROUND_POUND = "Ground Pound"
