@@ -12,6 +12,7 @@ from NetUtils import ClientStatus
 
 from .data.addresses import *
 from .data.level_data import Levels
+import utils
 
 if TYPE_CHECKING:
     import kvui
@@ -255,9 +256,14 @@ def check_puzzle_piece(ctx: DKCRContext, levelID: int, worldID: int):
         temp >>= 1
         pos += 1
 
+    if levelID == 0x00:
+        levelID = 13
+
     return 10000 * WorldIDToReal[worldID] + 100 * (levelID - 1) + pos
 
 def check_letters(ctx: DKCRContext, levelID: int, worldID: int):
+    if levelID == 0x00 or levelID == 0x01:
+        return 0
     LETTER_IDS = [20, 21, 22, 23]
     CurrentLetters = [
         dme.read_byte(K_LETTER + MEM),
@@ -296,16 +302,16 @@ def check_level_clear(ctx: DKCRContext):
             world = WorldIDToReal[WorldNameToIndex[data.world_name]]
             level = data.index
             if level == 0x01:
-                level = 0x12
+                level = 12
             if level == 0x00:
-                level = 0x13
+                level = 13
             returning.append(10000 * world + (level - 1) * 100 + 30)
 
         if flags & 0x10:
             world = WorldIDToReal[WorldNameToIndex[data.world_name]]
             level = data.index
             if level == 0x00:
-                level = 0x13
+                level = 13
             returning.append(10000 * world + (level - 1) * 100 + 10)
 
         if flags & 0x08:
@@ -337,7 +343,7 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                     continue
                 if ctx.slot is not None:
                     # Loop
-                    game_state = int.from_bytes(dme.read_bytes(MEM + GAME_STATE, 4), byteorder="big")
+                    game_state = utils.get_game_state()
                     if (game_state == 0x1 or game_state == 0x3) and ctx.exited_level:
                         ctx.exited_level = False
                         loc_id = check_level_clear(ctx)
