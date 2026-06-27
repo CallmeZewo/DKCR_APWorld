@@ -18,27 +18,27 @@ def set_all_rules(world: DKCRWorld) -> None:
     set_completion_condition(world)
 
 
-@dataclasses.dataclass(kw_only=True)
-class BossAccess(Rule[DKCRWorld], game=G.GAME_NAME):
-    world_index: int
-
-    @override
-    def _instantiate(self, world: DKCRWorld) -> Rule.Resolved:
-        # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
-        boss_access_options = {
-            JUNGLE_WORLD_INDEX: world.options.jungle_boss_access.value,
-            BEACH_WORLD_INDEX: world.options.beach_boss_access.value,
-            RUINS_WORLD_INDEX: world.options.ruins_boss_access.value,
-            CAVE_WORLD_INDEX: world.options.cave_boss_access.value,
-            FOREST_WORLD_INDEX: world.options.forest_boss_access.value,
-            CLIFF_WORLD_INDEX: world.options.cliff_boss_access.value,
-            FACTORY_WORLD_INDEX: world.options.factory_boss_access.value,
-            VOLCANO_WORLD_INDEX: world.options.volcano_boss_access.value,
-        }
-
-        puzzle_pieces_requirement = boss_access_options[self.world_index]
-
-        return Has(I.PUZZLE_PIECE, count=puzzle_pieces_requirement).resolve(world=world)
+# @dataclasses.dataclass(kw_only=True)
+# class BossAccess(Rule[DKCRWorld], game=G.GAME_NAME):
+#     world_index: int
+#
+#     @override
+#     def _instantiate(self, world: DKCRWorld) -> Rule.Resolved:
+#         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
+#         boss_access_options = {
+#             JUNGLE_WORLD_INDEX: world.options.jungle_boss_access.value,
+#             BEACH_WORLD_INDEX: world.options.beach_boss_access.value,
+#             RUINS_WORLD_INDEX: world.options.ruins_boss_access.value,
+#             CAVE_WORLD_INDEX: world.options.cave_boss_access.value,
+#             FOREST_WORLD_INDEX: world.options.forest_boss_access.value,
+#             CLIFF_WORLD_INDEX: world.options.cliff_boss_access.value,
+#             FACTORY_WORLD_INDEX: world.options.factory_boss_access.value,
+#             VOLCANO_WORLD_INDEX: world.options.volcano_boss_access.value,
+#         }
+#
+#         puzzle_pieces_requirement = boss_access_options[self.world_index]
+#
+#         return Has(I.PUZZLE_PIECE, count=puzzle_pieces_requirement).resolve(world=world)
 
 
 def CanEnterMuglysMound():
