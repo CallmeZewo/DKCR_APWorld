@@ -5,8 +5,8 @@ from typing import TYPE_CHECKING, override
 
 from BaseClasses import CollectionState
 from rule_builder.field_resolvers import FromOption
-from rule_builder.rules import Has
-from worlds.donkey_kong_country_returns.DKCRNameConstants import Item as I
+from rule_builder.rules import Has, Rule
+from worlds.donkey_kong_country_returns.DKCRNameConstants import Item as I, Generic as G
 from .data.indexes import *
 from .options import *
 
@@ -18,34 +18,27 @@ def set_all_rules(world: DKCRWorld) -> None:
     set_completion_condition(world)
 
 
-# @dataclasses.dataclass(kw_only=True)
-# class BossAccess(Rule[DKCRWorld], game=GAME_NAME):
-#     world_index: int
-#
-#     @override
-#     def _instantiate(self, world: DKCRWorld) -> Rule.Resolved:
-#         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
-#         boss_access_options = {
-#             JUNGLE_WORLD_INDEX: world.options.jungle_boss_access.value,
-#             BEACH_WORLD_INDEX: world.options.beach_boss_access.value,
-#             RUINS_WORLD_INDEX: world.options.ruins_boss_access.value,
-#             CAVE_WORLD_INDEX: world.options.cave_boss_access.value,
-#             FOREST_WORLD_INDEX: world.options.forest_boss_access.value,
-#             CLIFF_WORLD_INDEX: world.options.cliff_boss_access.value,
-#             FACTORY_WORLD_INDEX: world.options.factory_boss_access.value,
-#             VOLCANO_WORLD_INDEX: world.options.volcano_boss_access.value,
-#         }
-#
-#         puzzle_pieces_requirement = boss_access_options[self.world_index]
-#
-#         return self.Resolved(puzzle_pieces_requirement=puzzle_pieces_requirement, player=world.player, caching_enabled=False)
-#
-#     class Resolved(Rule.Resolved):
-#         puzzle_pieces_requirement: int
-#
-#         @override
-#         def _evaluate(self, state: CollectionState) -> bool:
-#             return state.has(I.PUZZLE_PIECE, self.player, self.puzzle_pieces_requirement)
+@dataclasses.dataclass(kw_only=True)
+class BossAccess(Rule[DKCRWorld], game=G.GAME_NAME):
+    world_index: int
+
+    @override
+    def _instantiate(self, world: DKCRWorld) -> Rule.Resolved:
+        # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
+        boss_access_options = {
+            JUNGLE_WORLD_INDEX: world.options.jungle_boss_access.value,
+            BEACH_WORLD_INDEX: world.options.beach_boss_access.value,
+            RUINS_WORLD_INDEX: world.options.ruins_boss_access.value,
+            CAVE_WORLD_INDEX: world.options.cave_boss_access.value,
+            FOREST_WORLD_INDEX: world.options.forest_boss_access.value,
+            CLIFF_WORLD_INDEX: world.options.cliff_boss_access.value,
+            FACTORY_WORLD_INDEX: world.options.factory_boss_access.value,
+            VOLCANO_WORLD_INDEX: world.options.volcano_boss_access.value,
+        }
+
+        puzzle_pieces_requirement = boss_access_options[self.world_index]
+
+        return Has(I.PUZZLE_PIECE, count=puzzle_pieces_requirement).resolve(world=world)
 
 
 def CanEnterMuglysMound():
