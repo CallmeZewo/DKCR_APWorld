@@ -1,4 +1,73 @@
-### The APWorld for Donkey Kong Country Returns is currently in development, and a playable version has not been released yet.
+# Donkey Kong Country Returns Archipelago World
+
+An Archipelago world for **Donkey Kong Country Returns**. It uses memory injection to randomize items, so no game patch or modified ISO is required.
+
+## Features
+
+### Checks
+
+The AP World currently tracks:
+
+* Level completion
+* Individual Puzzle Pieces
+* Full Puzzle Piece collection for a level
+* Individual KONG Letters
+* Full KONG Letter collection for a level
+
+### Items
+
+Players currently receive:
+
+* Puzzle Pieces
+* KONG Letters (per world)
+
+> **Note**
+> These items currently don't affect gameplay. They're used for Archipelago progression logic while the world's logic and balancing continue to be refined.
+
+## Requirements
+
+You'll need the following:
+
+* **Dolphin Emulator**
+  https://github.com/dolphin-emu/dolphin
+* **Archipelago Launcher**
+  https://github.com/ArchipelagoMW/Archipelago
+* **Latest DKCR AP World**
+  https://github.com/CallmeZewo/DKCR_APWorld
+
+## Installation
+
+1. Download the latest release of the DKCR AP World.
+2. Install the `.apworld` file by either:
+
+   * Double-clicking it, or
+   * Placing it in the `custom_worlds` folder inside your Archipelago installation.
+3. Launch **Donkey Kong Country Returns** in Dolphin.
+4. Make sure you're using **Donkey Kong Country Returns (USA Rev 1.1)**.
+
+   * You can verify this by right-clicking the game in Dolphin and selecting **Properties**.
+
+## PopTracker
+
+A PopTracker pack is available for the AP World:
+
+https://github.com/MagicMason1000/DKCR-AP-PopTracker-Package/releases
+
+## Notes
+
+* No game patch is required.
+* The AP World runs entirely through memory injection on an unmodified game.
+* Puzzle Piece requirements for boss access are planned but haven't been implemented yet.
+
+## Community
+
+If you have questions, run into issues, or just want to keep up with development, join the Archipelago Discord and check out the DKCR thread:
+
+https://discord.gg/8Z65BR2
+
+## Thanks
+
+Thanks to everyone who's helped with PopTracker development, testing, and early logic documentation. The feedback and contributions have made this project much easier to build.
 
 # [Archipelago](https://archipelago.gg) ![Discord Shield](https://discordapp.com/api/guilds/731205301247803413/widget.png?style=shield) | [Install](https://github.com/ArchipelagoMW/Archipelago/releases)
 
