@@ -1,6 +1,7 @@
 import asyncio
 import time
 import traceback
+from time import sleep
 from typing import Optional
 
 import Utils
@@ -198,39 +199,31 @@ def check_inrom() -> bool:
 #             flags |= 0b10000000
 #             dme.write_byte(cur_level_address, flags)
 
-def check_puzzle_piece(ctx: DKCRContext):
-    main_level_data_ptr = int.from_bytes(dme.read_bytes(LEVEL_DATA_POINTER + MEM, 4), byteorder="big")
-    for name, data in Levels.items():
-        if data.index != int.from_bytes(dme.read_bytes(CURRENT_LEVEL, 4), "big"):
-            continue
-        if data.world_index != int.from_bytes(dme.read_bytes(WORLD_OF_CURRENT_LEVEL, 4), "big"):
-            continue
-        level_data = int.from_bytes(dme.read_bytes(data.pointer + main_level_data_ptr, 4), byteorder="big")
-        flag = dme.read_byte(level_data + 0x34)
+def check_puzzle_piece(ctx: DKCRContext, levelID: int, worldID: int):
+    bit = dme.read_word(dme.read_word(dme.read_word(0x80820144) + 0x34))
 
-        if data.index + data.world_index not in ctx.last_puzzle_field_dict:
-            ctx.last_puzzle_field_dict[data.index] = flag
-            return 0
+    if levelID + worldID not in ctx.last_puzzle_field_dict:
+        ctx.last_puzzle_field_dict[levelID + worldID] = bit
+        return 0
 
-        last = ctx.last_puzzle_field_dict.get(data.index + data.world_index, 0)
+    last = ctx.last_puzzle_field_dict.get(levelID + worldID, 0)
 
-        new_bits = flag & ~last
+    new_bits = bit & ~last
 
-        ctx.last_puzzle_field_dict[data.index + data.world_index] = flag
+    ctx.last_puzzle_field_dict[levelID + worldID] = bit
 
-        if new_bits == 0:
-            return 0
+    if new_bits == 0:
+        return 0
 
-        changed_bit = new_bits & -new_bits
+    changed_bit = new_bits & -new_bits
 
-        pos = 1
-        temp = changed_bit
+    pos = 1
+    temp = changed_bit
 
-        while temp > 1:
-            temp >>= 1
-            pos += 1
-        return 0x10000 * data.world_index + 0x100 * data.index + pos
-    return 0
+    while temp > 1:
+        temp >>= 1
+        pos += 1
+    return 0x10000 * worldID + 0x100 * levelID + pos
 
 
 def check_letters(ctx: DKCRContext, levelID: int, worldID: int):
@@ -327,7 +320,7 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                                 loc_id = check_letters(ctx, data.index, current_world_index)
                                 if loc_id > 0:
                                     await ctx.check_locations([loc_id])
-                                loc_id = check_puzzle_piece(ctx)
+                                loc_id = check_puzzle_piece(ctx, data.index, data.world_index)
                                 if loc_id > 0:
                                     await ctx.check_locations([loc_id])
                     if "DeathLink" in ctx.tags:
