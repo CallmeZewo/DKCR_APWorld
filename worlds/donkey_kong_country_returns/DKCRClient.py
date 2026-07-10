@@ -325,7 +325,7 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                                 loc_id = check_puzzle_piece(ctx, data.index, data.world_index)
                                 if loc_id > 0:
                                     await ctx.check_locations([loc_id])
-                    if Has(beaten_boss_volcano).Resolved:
+                    if dme.read_word(MEM + CUTSCENE_IDENTIFIER) == VICTORY_CUTSCENE_DK or dme.read_word(MEM + CUTSCENE_IDENTIFIER) == VICTORY_CUTSCENE_DK_AND_DD:
                         await ctx.send_msgs([{
                             "cmd": "StatusUpdate",
                             "status": NetUtils.ClientStatus.CLIENT_GOAL,
