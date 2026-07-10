@@ -87,9 +87,9 @@ CUTSCENE_IDENTIFIER = 0x61fc04
 # 0x319120 = Golden Temple (Solo DK)
 # 0x319220 = Golden Temple (DK & Diddy or Solo Diddy)
 # 0x31a740 = Golden Temple reveal
-# 0x31b100 = Victory (Solo DK)
+VICTORY_CUTSCENE_DK = 0x31b100 # = Victory (Solo DK)
 # 0x31b380 = Game start
-# 0x31b900 = Victory (DK & Diddy or Solo Diddy)
+VICTORY_CUTSCENE_DK_AND_DD = 0x31b900 # = Victory (DK & Diddy or Solo Diddy)
 
 
 # WORLD_MAP_POS = 0x630B64
