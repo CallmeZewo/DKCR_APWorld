@@ -4,11 +4,13 @@ import traceback
 from time import sleep
 from typing import Optional
 
+import NetUtils
 import Utils
 from CommonClient import ClientCommandProcessor, CommonContext, get_base_parser, gui_enabled, logger, server_loop
 from .data.level_data import Levels
 from .rules import *
 from .utils import *
+from .world import DKCRWorld
 
 if TYPE_CHECKING:
     import kvui
@@ -323,6 +325,11 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                                 loc_id = check_puzzle_piece(ctx, data.index, data.world_index)
                                 if loc_id > 0:
                                     await ctx.check_locations([loc_id])
+                    if Has(beaten_boss_volcano).Resolved:
+                        await ctx.send_msgs([{
+                            "cmd": "StatusUpdate",
+                            "status": NetUtils.ClientStatus.CLIENT_GOAL,
+                        }])
                     if "DeathLink" in ctx.tags:
                         await check_death(ctx)
                 sleep_time = 0.1
