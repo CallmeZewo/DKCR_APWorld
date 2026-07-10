@@ -142,4 +142,4 @@ beaten_boss_volcano = Has("Volcano boss beaten")
 
 
 def set_completion_condition(world: DKCRWorld) -> None:
-    world.set_completion_rule(Has("Volcano boss beaten"))
+    world.set_completion_rule(CanEnterTikiTongTerror())
