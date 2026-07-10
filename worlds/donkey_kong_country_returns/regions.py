@@ -9,6 +9,7 @@ from .data.level_data import Levels
 from .data.indexes import *
 from .data.world_data import Worlds
 from .DKCRNameConstants import Level
+from .DKCRNameConstants import World as W
 
 if TYPE_CHECKING:
     from . import DKCRWorld
@@ -50,8 +51,19 @@ def create_all_regions(world: DKCRWorld) -> None:
                             if connection_from.to_level_index == level_data_to_rule.index:
                                 connect_regions_with_rule(world, level_name_from, level_name_to_rule, f"{level_name_from} to {level_name_to_rule}", connection_from.rule)
 
-        connect_regions(world, "Menu", world_name, f"Menu to {world_name}")
-        connect_regions(world, world_name,"Menu" , f"{world_name} to Menu")
+    for world_name_from, world_data_from in Worlds.items():
+        for world_connection_from in world_data_from.connection:
+            if world_connection_from is None:
+                continue
+            if world_data_from.world_index == JUNGLE_WORLD_INDEX:
+                connect_regions(world, "Menu", world_name_from, f"Menu to {world_name_from}")
+            if world_connection_from.rule is None:
+                continue
+            else:
+                for world_name_to_rule, world_data_to_rule in Worlds.items():
+                    if world_connection_from.to_world_index == world_data_to_rule.world_index:
+                        connect_regions_with_rule(world, world_name_from, world_name_to_rule, f"{world_name_from} to {world_name_to_rule}", world_connection_from.rule)
+
 
 def create_regions_helper(name: str, world: DKCRWorld) -> Region:
     return Region(name, world.player, world.multiworld)
