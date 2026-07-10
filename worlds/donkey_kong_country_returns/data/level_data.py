@@ -20,10 +20,10 @@ class LevelData:
         return (
             4
             if (
-                    self.index >= FIRST_LEVEL_INDEX
-                    and self.index != SHOP_LEVEL_INDEX
-                    and self.index != K_LEVEL_INDEX
-                    and self.index != BOSS_LEVEL_INDEX
+                self.index >= FIRST_LEVEL_INDEX
+                and self.index != SHOP_LEVEL_INDEX
+                and self.index != K_LEVEL_INDEX
+                and self.index != BOSS_LEVEL_INDEX
             )
             else 0
         )
