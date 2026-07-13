@@ -7,10 +7,11 @@ from typing import Optional
 import NetUtils
 import Utils
 from CommonClient import ClientCommandProcessor, CommonContext, get_base_parser, gui_enabled, logger, server_loop
+from .items import ITEM_NAME_TO_ID
 from .data.level_data import Levels
 from .rules import *
 from .utils import *
-from .world import DKCRWorld
+from .items import item_table
 
 if TYPE_CHECKING:
     import kvui
@@ -59,6 +60,13 @@ class DKCRCommandProcessor(ClientCommandProcessor):
         if isinstance(self.ctx, DKCRContext):
             logger.info(f"Dolphin Status: {self.ctx.dolphin_status}")
 
+    def _cmd_squawks(self) -> None:
+        """
+        Toggling Squawks once you unlocked him.
+        """
+        if isinstance(self.ctx, DKCRContext):
+            self.ctx.toggle_squawks()
+
     # def _cmd_mirror(self) -> None:
     #    """
     #    Mirrors the Graphics of the Game
@@ -74,13 +82,32 @@ class DKCRContext(CommonContext):
 
     def __init__(self, server_address: Optional[str], password: Optional[str]) -> None:
         super().__init__(server_address, password)
-        self.items_handling: int = 3
+        self.items_handling: int = 0b111
         self.dolphin_sync_task: Optional[asyncio.Task[None]] = None
         self.dolphin_status: str = CONNECTION_INITIAL_STATUS
         self.has_send_death: bool = False
         self.last_letters: list[int] = []
         self.last_puzzle_field_dict = {}
         self.exited_level = True
+        self.last_received_item_index = 0
+        self.jungle_boss_access_amount = 0
+        self.beach_boss_access_amount = 0
+        self.ruins_boss_access_amount = 0
+        self.cave_boss_access_amount = 0
+        self.forest_boss_access_amount = 0
+        self.cliff_boss_access_amount = 0
+        self.factory_boss_access_amount = 0
+        self.volcano_boss_access_amount = 0
+        self.current_puzzle_piece_amount = 0
+        self.jungle_k_level_access_amount = 0
+        self.beach_k_level_access_amount = 0
+        self.ruins_k_level_access_amount = 0
+        self.cave_k_level_access_amount = 0
+        self.forest_k_level_access_amount = 0
+        self.cliff_k_level_access_amount = 0
+        self.factory_k_level_access_amount = 0
+        self.volcano_k_level_access_amount = 0
+        self.current_pk_levele_piece_amount = 0
 
     async def disconnect(self, allow_autoreconnect: bool = False) -> None:
         self.auth = None
@@ -104,12 +131,32 @@ class DKCRContext(CommonContext):
             slot_data = args.get("slot_data")
             if slot_data is None:
                 return
-
+            jungle_boss_access_amount = slot_data["jungle_boss_access"]
+            beach_boss_access_amount = slot_data["beach_boss_access"]
+            ruins_boss_access_amount = slot_data["ruins_boss_access"]
+            cave_boss_access_amount = slot_data["cave_boss_access"]
+            forest_boss_access_amount = slot_data["forest_boss_access"]
+            cliff_boss_access_amount = slot_data["cliff_boss_access"]
+            factory_boss_access_amount = slot_data["factory_boss_access"]
+            volcano_boss_access_amount = slot_data["volcano_boss_access"]
+            jungle_boss_k_level_amount = slot_data["jungle_k_level_access"]
+            beach_boss_k_level_amount = slot_data["beach_k_level_access"]
+            ruins_boss_k_level_amount = slot_data["ruins_k_level_access"]
+            cave_boss_k_level_amount = slot_data["cave_k_level_access"]
+            forest_boss_k_level_amount = slot_data["forest_k_level_access"]
+            cliff_boss_k_level_amount = slot_data["cliff_k_level_access"]
+            factory_boss_k_level_amount = slot_data["factory_k_level_access"]
+            volcano_boss_k_level_amount = slot_data["volcano_k_level_access"]
             if slot_data.get("death_link") is not None:
                 Utils.async_start(self.update_death_link(bool(args["slot_data"]["death_link"])))
 
         elif cmd == "Retrieved":
             requested_keys_dict = args.get("keys", {})
+
+        elif cmd == "ReceivedItems":
+            index = args.get("index")
+            items = args.get("items")
+            print(index, items)
 
     # def on_deathlink(self, data: dict[str, Any]) -> None:
     #     super().on_deathlink(data)
@@ -119,6 +166,92 @@ class DKCRContext(CommonContext):
         ui = super().make_gui()
         ui.base_title = "Archipelago Donkey Kong Country Returns"
         return ui
+
+    async def give_dk_items(self):
+        data = dme.read_word(MEM + LEVEL_DATA_POINTER)
+        last_recv_item_idx = dme.read_word(data + 0x8)
+        if len(self.items_received) == last_recv_item_idx:
+            return
+
+        self.last_received_item_index = last_recv_item_idx
+        recv_items = self.items_received[last_recv_item_idx:]
+        for item in recv_items:
+            last_recv_item_idx += 1
+            item_name = self.item_names.lookup_in_game(item.item)
+            dk_item = ITEM_NAME_TO_ID[item_name]
+
+            if dk_item == item_table[I.PUZZLE_PIECE].code:
+                await self.update_slot_data()
+
+            elif dk_item == item_table[I.BANANA].code:
+                await self.add_bananas(1)
+            elif dk_item == item_table[I.BANANA_BUNCH].code:
+                await self.add_bananas(10)
+            elif dk_item == item_table[I.BIG_BANANA_BUNCH].code:
+                await self.add_bananas(25)
+            elif dk_item == item_table[I.BANANA_COIN].code:
+                await  self.add_banana_coins(1)
+            elif dk_item == item_table[I.BALLOONX1].code:
+                await self.add_extra_lives(1)
+            elif dk_item == item_table[I.BALLOONX3].code:
+                await self.add_extra_lives(3)
+            elif dk_item == item_table[I.BALLOONX7].code:
+                await self.add_extra_lives(7)
+
+        await self.update_recv_idx(last_recv_item_idx)
+
+    async def update_recv_idx(self, last_idx: int):
+        self.last_received_item_index = last_idx
+        dme.write_word(dme.read_word(MEM + LEVEL_DATA_POINTER) + 0x8, last_idx)
+
+
+    async def update_slot_data(self):
+        await self.send_msgs([{
+            "cmd": "Set",
+            "key": "current_puzzle_piece_amount",
+            "default": 0,
+            "want_reply": True,
+            "operations": [{"operation": "add", "value": 1}]
+        }])
+
+    async def add_bananas(self, amount: int):
+        current_bananas = dme.read_word(BANANAS)
+        new_amount = current_bananas + amount
+        extra_lives_to_get = 0
+        while new_amount >= 100:
+            new_amount -= 100
+            extra_lives_to_get += 1
+
+        dme.write_word(BANANAS, new_amount)
+
+        if extra_lives_to_get > 0:
+            await self.add_extra_lives(extra_lives_to_get)
+
+    async def add_banana_coins(self, amount: int):
+        current_coins = dme.read_word(BANANA_COINS)
+        new_amount = current_coins + amount
+        if new_amount > 999:
+            new_amount = 999
+
+        dme.write_word(BANANA_COINS, new_amount)
+
+    async def add_extra_lives(self, amount: int):
+        current_extra_lives = dme.read_word(LIVES)
+        new_amount = current_extra_lives + amount
+        if new_amount > 99:
+            new_amount = 99
+
+        dme.write_word(LIVES, new_amount)
+
+    def toggle_squawks(self):
+        current_state = dme.read_word(SQUAWKS)
+        current_state = 1 if current_state == 0 else 0
+        dme.write_word(SQUAWKS, current_state)
+
+    async def check_boss_access(self):
+        data = dme.read_word(MEM + LEVEL_DATA_POINTER)
+        boss_jgl = dme.read_word(data + SIXTH_LEVEL_INDEX)
+        dme.write_byte(boss_jgl + 0x3e, 0x98)
 
 
 def read_string(console_address: int) -> str:
@@ -305,6 +438,7 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                     continue
                 if ctx.slot is not None:
                     # Loop
+                    await ctx.give_dk_items()
                     dme.write_byte(MEM + P1_INPUTFIELD, 0x0)
                     game_state = get_game_state()
                     if (game_state == STATE_WORLD_MAP or game_state == STATE_WORLD_MAP_AFTER_QUIT) and ctx.exited_level:
