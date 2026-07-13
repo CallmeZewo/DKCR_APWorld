@@ -70,6 +70,16 @@ item_table: Dict[str, ItemData] = {
     #I.PROGRESSIVE_FACTORY_BUTTON: ItemData(code=38, amount=3)
 }
 
+filler_dict = {
+    I.BALLOONX1: 5,
+    I.BALLOONX3: 3,
+    I.BALLOONX7: 1,
+    I.BANANA: 25,
+    I.BANANA_BUNCH: 20,
+    I.BIG_BANANA_BUNCH: 10,
+    I.BANANA_COIN: 15,
+}
+
 ITEM_NAME_TO_ID = {key: value.code for key, value in item_table.items()}
 
 class DKCRItem(Item):
@@ -97,6 +107,10 @@ def create_all_items(world: DKCRWorld) -> None:
 
     needed_number_of_filler_items = number_of_unfilled_locations - number_of_items
 
-    itempool += [world.create_filler() for _ in range(needed_number_of_filler_items)]
+    itempool += random.choices(
+        population=list(filler_dict.keys()),
+        weights=list(filler_dict.values()),
+        k=needed_number_of_filler_items
+    )
 
     world.multiworld.itempool += itempool
