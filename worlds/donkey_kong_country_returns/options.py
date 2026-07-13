@@ -135,6 +135,13 @@ class MirrorModeShards(Range):
     range_end = 25
     default = 8
 
+class Squawks(Toggle):
+    """
+    Adds Squawks as an item which will enable Squawks as a permanent helper.
+    Can be toggled in the client after receiving him.
+    """
+    display_name = "Feathery Companion"
+    visibility = Visibility.none
 
 class SunsetShoreKey(Toggle):
     """
@@ -304,6 +311,110 @@ class VolcanoBossAccess(Range):
     default = 320
 
 
+class JungleKLevelAccess(Range):
+    """
+    Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Jungle.
+    """
+    display_name = "Puzzle Piece requirement for Platform Panic"
+
+    range_start = 0
+    range_end = 24
+    # This Value can not exceed 24
+
+    default = 24
+
+
+class BeachKLevelAccess(Range):
+    """
+    Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Beach.
+    """
+    display_name = "Puzzle Piece requirement for Tumblin' Temple"
+
+    range_start = 0
+    range_end = 28
+    # This Value can not exceed 28
+
+    default = 28
+
+
+class RuinsKLevelAccess(Range):
+    """
+    Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Ruins.
+    """
+    display_name = "Puzzle Piece requirement for Shifty Smashers"
+
+    range_start = 0
+    range_end = 24
+    # This Value can not exceed 24
+
+    default = 24
+
+
+class CaveKLevelAccess(Range):
+    """
+    Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Cave.
+    """
+    display_name = "Puzzle Piece requirement for Jagged Jewels"
+
+    range_start = 0
+    range_end = 20
+    # This Value can not exceed 20
+
+    default = 20
+
+
+class ForestKLevelAccess(Range):
+    """
+    Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Forest.
+    """
+    display_name = "Puzzle Piece requirement for Blast & Bounce"
+
+    range_start = 0
+    range_end = 32
+    # This Value can not exceed 32
+
+    default = 32
+
+
+class CliffKLevelAccess(Range):
+    """
+    Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Cliff.
+    """
+    display_name = "Puzzle Piece requirement for Perilous Passage"
+
+    range_start = 0
+    range_end = 32
+    # This Value can not exceed 32
+
+    default = 32
+
+
+class FactoryKLevelAccess(Range):
+    """
+    Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Factory.
+    """
+    display_name = "Puzzle Piece requirement for Treacherous Track"
+
+    range_start = 0
+    range_end = 28
+    # This Value can not exceed 28
+
+    default = 28
+
+
+class VolcanoKLevelAccess(Range):
+    """
+    Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Volcano.
+    """
+    display_name = "Puzzle Piece requirement for Five Monkey Trial"
+
+    range_start = 0
+    range_end = 28
+    # This Value can not exceed 28
+
+    default = 28
+
+
 @dataclass
 class DKCROptions(PerGameCommonOptions):
     death_link: DeathLink
@@ -321,6 +432,7 @@ class DKCROptions(PerGameCommonOptions):
     ground_pound: GroundPound
     mirror_mode: MirrorMode
     mirror_mode_shards: MirrorModeShards
+    squawks: Squawks
     sunset_shore_key: SunsetShoreKey
     blowhole_bound_key: BlowholeBoundKey
     damp_dungeon_key: DampDungeonKey
@@ -337,6 +449,14 @@ class DKCROptions(PerGameCommonOptions):
     cliff_boss_access: CliffBossAccess
     factory_boss_access: FactoryBossAccess
     volcano_boss_access: VolcanoBossAccess
+    jungle_k_level_access: JungleKLevelAccess
+    beach_k_level_access: BeachKLevelAccess
+    ruins_k_level_access: RuinsKLevelAccess
+    cave_k_level_access: CaveKLevelAccess
+    forest_k_level_access: ForestKLevelAccess
+    cliff_k_level_access: CliffKLevelAccess
+    factory_k_level_access: FactoryKLevelAccess
+    volcano_k_level_access: VolcanoKLevelAccess
 
     def get_slot_data_dict(self) -> dict[str, Any]:
         return self.as_dict(
@@ -355,6 +475,7 @@ class DKCROptions(PerGameCommonOptions):
             "ground_pound",
             "mirror_mode",
             "mirror_mode_shards",
+            "squawks",
             "sunset_shore_key",
             "blowhole_bound_key",
             "damp_dungeon_key",
@@ -371,6 +492,14 @@ class DKCROptions(PerGameCommonOptions):
             "cliff_boss_access",
             "factory_boss_access",
             "volcano_boss_access",
+            "jungle_k_level_access",
+            "beach_k_level_access",
+            "ruins_k_level_access",
+            "cave_k_level_access",
+            "forest_k_level_access",
+            "cliff_k_level_access",
+            "factory_k_level_access",
+            "volcano_k_level_access",
         )
 
 
@@ -390,12 +519,17 @@ option_groups = [
          FactoryBossAccess, VolcanoBossAccess]
     ),
     OptionGroup(
+        "K Level access options",
+        [JungleKLevelAccess, BeachKLevelAccess, RuinsKLevelAccess, CaveKLevelAccess, ForestKLevelAccess, CliffKLevelAccess,
+         FactoryKLevelAccess, VolcanoKLevelAccess]
+    ),
+    OptionGroup(
         "Moveset options",
         [Roll, Grab, Blow, GroundPound]
     ),
     OptionGroup(
         "Misc options",
-        [Rambi, Minecart, RocketBarrel, KongBarrel]
+        [Rambi, Minecart, RocketBarrel, KongBarrel, Squawks]
     ),
     OptionGroup(
         "Mirror mode options",
