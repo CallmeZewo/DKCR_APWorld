@@ -7,8 +7,6 @@ from BaseClasses import Item, ItemClassification as IC
 
 from worlds.donkey_kong_country_returns.DKCRNameConstants import Item as I
 
-import random
-
 if TYPE_CHECKING:
     from . import DKCRWorld
 
@@ -23,6 +21,9 @@ ItemOffset = 0x2000
 KeyOffset = 0x3000
 OrbOffset = 0x4000
 AbilityOffset = 0x5000
+UnlockableOffset = 0x6000
+ProgressiveOffset = 0x7000
+ShopOffset = 0x8000
 
 item_table: Dict[str, ItemData] = {
     I.PUZZLE_PIECE: ItemData(code=0x1 + ItemOffset, amount=371),
@@ -41,23 +42,23 @@ item_table: Dict[str, ItemData] = {
     I.BANANA_BUNCH: ItemData(code=0x30, classification=IC.filler),
     I.BIG_BANANA_BUNCH: ItemData(code=0x31, classification=IC.filler),
     I.BANANA_COIN: ItemData(code=0x32, classification=IC.filler),
-    I.HEART: ItemData(code=0x33, classification=IC.filler),
-    #I.Key.JUNGLE_KEY: ItemData(code=10),
-    #I.Key.Beach_KEY: ItemData(code=11),
-    #I.Key.Ruins_KEY: ItemData(code=12),
-    #I.Key.CAVE_KEY: ItemData(code=13),
-    #I.Key.FOREST_KEY: ItemData(code=14),
-    #I.Key.CLIFF_KEY: ItemData(code=15),
-    #I.Key.FACTORY_KEY: ItemData(code=16),
-    #I.Key.VOLCANO_KEY: ItemData(code=17),
-    #I.Rare_Orb.GREEN_ORB_JUNGLE: ItemData(code=18),
-    #I.Rare_Orb.BLUE_ORB_BEACH: ItemData(code=19),
-    #I.Rare_Orb.WHITE_ORB_RUINS: ItemData(code=20),
-    #I.Rare_Orb.MAGENTA_ORB_CAVE: ItemData(code=21),
-    #I.Rare_Orb.YELLOW_ORB_FOREST: ItemData(code=22),
-    #I.Rare_Orb.ORANGE_ORB_CLIFF: ItemData(code=23),
-    #I.Rare_Orb.GRAY_ORB_FACTORY: ItemData(code=24),
-    #I.Rare_Orb.RED_ORB_VOLCANO: ItemData(code=25),
+    I.RECOVERY_HEART: ItemData(code=0x33, classification=IC.filler),
+    I.Key.JUNGLE_KEY: ItemData(code=0x8 + KeyOffset),
+    I.Key.Beach_KEY: ItemData(code=0x7 + KeyOffset),
+    I.Key.Ruins_KEY: ItemData(code=0x6 + KeyOffset),
+    I.Key.CAVE_KEY: ItemData(code=0x5 + KeyOffset),
+    I.Key.FOREST_KEY: ItemData(code=0x4 + KeyOffset),
+    I.Key.CLIFF_KEY: ItemData(code=0x3 + KeyOffset),
+    I.Key.FACTORY_KEY: ItemData(code=0x2 + KeyOffset),
+    I.Key.VOLCANO_KEY: ItemData(code=0x1 + KeyOffset),
+    I.Rare_Orb.GREEN_ORB_JUNGLE: ItemData(code=0x18 + OrbOffset),
+    I.Rare_Orb.BLUE_ORB_BEACH: ItemData(code=0x19 + OrbOffset),
+    I.Rare_Orb.WHITE_ORB_RUINS: ItemData(code=0x20 + OrbOffset),
+    I.Rare_Orb.MAGENTA_ORB_CAVE: ItemData(code=0x21 + OrbOffset),
+    I.Rare_Orb.YELLOW_ORB_FOREST: ItemData(code=0x22 + OrbOffset),
+    I.Rare_Orb.ORANGE_ORB_CLIFF: ItemData(code=0x23 + OrbOffset),
+    I.Rare_Orb.GRAY_ORB_FACTORY: ItemData(code=0x24 + OrbOffset),
+    I.Rare_Orb.RED_ORB_VOLCANO: ItemData(code=0x25 + OrbOffset),
     #I.Unlockables.Moves.ROLL: ItemData(code=29),
     #I.Unlockables.Moves.GRAB: ItemData(code=30),
     #I.Unlockables.Moves.BLOW: ItemData(code=31),
@@ -66,8 +67,10 @@ item_table: Dict[str, ItemData] = {
     #I.Unlockables.MISC.MINECART_PASS: ItemData(code=34),
     #I.Unlockables.MISC.RAMBIS_SADDLE: ItemData(code=35),
     #I.Unlockables.MISC.KONG_BARREL: ItemData(code=36),
-    #I.Unlockables.MIRROR_SHARD: ItemData(code=37),
-    #I.PROGRESSIVE_FACTORY_BUTTON: ItemData(code=38, amount=3)
+    I.Unlockables.MIRROR_SHARD: ItemData(code=UnlockableOffset + 0x1),
+    I.Unlockables.MIRROR_MODE: ItemData(code=UnlockableOffset + 0x2),
+    I.PROGRESSIVE_FACTORY_BUTTON: ItemData(code=38 + ProgressiveOffset),
+    I.Shop.SQUAWKS: ItemData(code=1 + ShopOffset)
 }
 
 filler_dict = {
@@ -78,6 +81,7 @@ filler_dict = {
     I.BANANA_BUNCH: 20,
     I.BIG_BANANA_BUNCH: 10,
     I.BANANA_COIN: 15,
+    I.RECOVERY_HEART: 20,
 }
 
 ITEM_NAME_TO_ID = {key: value.code for key, value in item_table.items()}
@@ -87,7 +91,7 @@ class DKCRItem(Item):
 
 def get_random_filler_item_name(world: DKCRWorld) -> str:
     filler_list = [I.BALLOONX1, I.BALLOONX3, I.BALLOONX7, I.BANANA, I.BANANA_BUNCH, I.BIG_BANANA_BUNCH, I.BANANA_COIN]
-    return filler_list[random.randrange(0, len(filler_list))]
+    return filler_list[world.random.randrange(0, len(filler_list))]
 
 def create_item_with_correct_classification(world: DKCRWorld, name: str) -> DKCRItem:
     classification = item_table[name].classification
@@ -97,7 +101,39 @@ def create_item_with_correct_classification(world: DKCRWorld, name: str) -> DKCR
 
 def create_all_items(world: DKCRWorld) -> None:
     itempool: list[DKCRItem] = []
-    for item in item_table:
+    for item in item_table.keys():
+        if item == I.Key.JUNGLE_KEY and world.options.sunset_shore_key == 0:
+            continue
+        if item == I.Key.Beach_KEY and world.options.blowhole_bound_key == 0:
+            continue
+        if item == I.Key.Ruins_KEY and world.options.damp_dungeon_key == 0:
+            continue
+        if item == I.Key.CAVE_KEY and world.options.mole_patrol_key == 0:
+            continue
+        if item == I.Key.FOREST_KEY and world.options.springy_spores_key == 0:
+            continue
+        if item == I.Key.CLIFF_KEY and world.options.precarious_plateau_key == 0:
+            continue
+        if item == I.Key.FACTORY_KEY and world.options.handy_hazards_key == 0:
+            continue
+        if item == I.Key.VOLCANO_KEY and world.options.smokey_peak_key == 0:
+            continue
+        if item in filler_dict.keys():
+            continue
+        if item == I.Shop.SQUAWKS and (world.options.squawks == 0):
+            continue
+        if item == I.Unlockables.MIRROR_MODE and (world.options.mirror_mode_shards.value > 0 or world.options.mirror_mode == 0):
+            continue
+        if item == I.Unlockables.MIRROR_SHARD:
+            if world.options.mirror_mode == 0:
+                continue
+            for _ in range(world.options.mirror_mode_shards.value):
+                itempool.append(world.create_item(item))
+            continue
+        if item == I.PROGRESSIVE_FACTORY_BUTTON:
+            for _ in range(world.options.factory_buttons):
+                itempool.append(world.create_item(item))
+            continue
         for _ in range(item_table[item].amount):
             itempool.append(world.create_item(item))
 
@@ -107,10 +143,13 @@ def create_all_items(world: DKCRWorld) -> None:
 
     needed_number_of_filler_items = number_of_unfilled_locations - number_of_items
 
-    itempool += random.choices(
+    fillers = world.random.choices(
         population=list(filler_dict.keys()),
         weights=list(filler_dict.values()),
         k=needed_number_of_filler_items
     )
+
+    for filler in fillers:
+        itempool.append(world.create_item(filler))
 
     world.multiworld.itempool += itempool
