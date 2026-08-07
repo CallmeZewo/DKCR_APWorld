@@ -557,6 +557,14 @@ class DKCRContext(CommonContext):
         dme.write_bytes(CUSTOM_LEVEL_BITFLAG_ADDR, flag_bytes)
 
     def should_enable(self, level: str):
+        jungle_key = dme.read_byte(WORLD_MAP_KEY_JUNGLE)
+        beach_key = dme.read_byte(WORLD_MAP_KEY_BEACH)
+        ruins_key = dme.read_byte(WORLD_MAP_KEY_RUINS)
+        cave_key = dme.read_byte(WORLD_MAP_KEY_CAVE)
+        forest_key = dme.read_byte(WORLD_MAP_KEY_FOREST)
+        cliff_key = dme.read_byte(WORLD_MAP_KEY_CLIFF)
+        factory_key = dme.read_byte(WORLD_MAP_KEY_FACTORY)
+        volcano_key = dme.read_byte(WORLD_MAP_KEY_VOLCANO)
         match level:
             case L.PLATFORM_PANIC:
                 if dme.read_byte(CUSTOM_KL_AMOUNT_ADDR + JGL_KL_OFFSET) == 0xFF:
@@ -571,7 +579,7 @@ class DKCRContext(CommonContext):
             case L.TREE_TOP_BOP:
                 return True
             case L.SUNSET_SHORE:
-                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["jungle"] or self.keys_option["jungle"] == 0:
+                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["jungle"] or jungle_key == 0x1:
                     return True
             case L.CANOPY_CANNONS:
                 return True
@@ -596,7 +604,7 @@ class DKCRContext(CommonContext):
             case L.STORMY_SHORE:
                 return True
             case L.BLOWHOLE_BOUND:
-                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["beach"] or self.keys_option["beach"] == 0:
+                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["beach"] or beach_key == 0x1:
                     return True
             case L.TIDAL_TERROR:
                 return True
@@ -615,7 +623,7 @@ class DKCRContext(CommonContext):
             case L.MAST_BLAST:
                 return True
             case L.DAMP_DUNGEON:
-                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["ruins"] or self.keys_option["ruins"] == 0:
+                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["ruins"] or ruins_key == 0x1:
                     return True
             case L.ITTY_BITTY_BITERS:
                 return True
@@ -636,7 +644,7 @@ class DKCRContext(CommonContext):
             case L.BOMBS_AWAY:
                 return True
             case L.MOLE_PATROL:
-                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["cave"] or self.keys_option["cave"] == 0:
+                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["cave"] or cave_key == 0x1:
                     return True
             case L.CROWDED_CAVERN:
                 return True
@@ -659,7 +667,7 @@ class DKCRContext(CommonContext):
             case L.LONGSHOT_LAUNCH:
                 return True
             case L.SPRINGY_SPORES:
-                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["forest"] or self.keys_option["forest"] == 0:
+                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["forest"] or forest_key == 0x1:
                     return True
             case L.WIGGLEVINE_WONDERS:
                 if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["forest"]:
@@ -683,7 +691,7 @@ class DKCRContext(CommonContext):
             case L.BOULDER_ROLLER:
                 return True
             case L.PRECARIOUS_PLATEAU:
-                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["cliff"] or self.keys_option["cliff"] == 0:
+                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["cliff"] or cliff_key == 0x1:
                     return True
             case L.CRUMBLE_CANYON:
                 return True
@@ -710,7 +718,7 @@ class DKCRContext(CommonContext):
                 elif self.factory_smog_option == 1 and self.check_level_cleared(FOGGY_FUMES_POINTER):
                     return True
             case L.HANDY_HAZARDS:
-                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["factory"] or self.keys_option["factory"] == 0:
+                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["factory"] or factory_key == 0x1:
                     return True
             case L.GEAR_GETAWAY:
                 return True
@@ -738,7 +746,7 @@ class DKCRContext(CommonContext):
             case L.ROASTING_RAILS:
                 return True
             case L.SMOKEY_PEAK:
-                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["volcano"] or self.keys_option["volcano"] == 0:
+                if dme.read_word(CUSTOM_KEY_BITFLAG_ADDR) & CUSTOM_KEY_BITS["volcano"] or volcano_key == 0x1:
                     return True
             case L.BOBBING_BASALT:
                 return True
