@@ -66,12 +66,20 @@ def CanEnterThuglysHighrise():
 
 
 def CanEnterFeatherFiend():
+    if FromOption(LiftOffLaunch) == 1:
+        return Has(I.PUZZLE_PIECE, count=FromOption(FactoryBossAccess)) & can_access_feathery_fiend
     return Has(I.PUZZLE_PIECE, count=FromOption(FactoryBossAccess))
-
 
 def CanEnterTikiTongTerror():
     return Has(I.PUZZLE_PIECE, count=FromOption(VolcanoBossAccess))
 
+def CanEnterGoldenTemple():
+    return beaten_boss_volcano
+
+def SmogBlocksFactory():
+    if FromOption(SmogClear) == 1:
+        return can_access_factory
+    return None
 
 # @dataclasses.dataclass(kw_only=True)
 # class CanEnterMuglysMounds(Rule[DKCRWorld], game=G.GAME_NAME):
@@ -122,14 +130,14 @@ def CanEnterTikiTongTerror():
 #     def _instantiate(self, world: DKCRWorld) -> Rule.Resolved:
 #         return Has(I.PUZZLE_PIECE, world.options.volcano_boss_access.value).resolve(world)
 
-has_all_jungle_letters = Has(I.Kong_Letter.KONG_LETTER_JUNGLE, 24)
-has_all_beach_letters = Has(I.Kong_Letter.KONG_LETTER_BEACH, 28)
-has_all_ruins_letters = Has(I.Kong_Letter.KONG_LETTER_RUINS, 24)
-has_all_cave_letters = Has(I.Kong_Letter.KONG_LETTER_CAVE, 20)
-has_all_forest_letters = Has(I.Kong_Letter.KONG_LETTER_FOREST, 32)
-has_all_cliff_letters = Has(I.Kong_Letter.KONG_LETTER_CLIFF, 32)
-has_all_factory_letters = Has(I.Kong_Letter.KONG_LETTER_FACTORY, 28)
-has_all_volcano_letters = Has(I.Kong_Letter.KONG_LETTER_VOLCANO, 28)
+has_all_jungle_letters = Has(I.Kong_Letter.KONG_LETTER_JUNGLE, FromOption(JungleKLevelAccess))
+has_all_beach_letters = Has(I.Kong_Letter.KONG_LETTER_BEACH, FromOption(BeachKLevelAccess))
+has_all_ruins_letters = Has(I.Kong_Letter.KONG_LETTER_RUINS, FromOption(RuinsKLevelAccess))
+has_all_cave_letters = Has(I.Kong_Letter.KONG_LETTER_CAVE, FromOption(CaveKLevelAccess))
+has_all_forest_letters = Has(I.Kong_Letter.KONG_LETTER_FOREST, FromOption(ForestKLevelAccess))
+has_all_cliff_letters = Has(I.Kong_Letter.KONG_LETTER_CLIFF, FromOption(CliffKLevelAccess))
+has_all_factory_letters = Has(I.Kong_Letter.KONG_LETTER_FACTORY, FromOption(FactoryKLevelAccess))
+has_all_volcano_letters = Has(I.Kong_Letter.KONG_LETTER_VOLCANO, FromOption(VolcanoKLevelAccess))
 
 beaten_boss_jungle = Has("Jungle boss beaten")
 beaten_boss_beach = Has("Beach boss beaten")
@@ -140,6 +148,24 @@ beaten_boss_cliff = Has("Cliff boss beaten")
 beaten_boss_factory = Has("Factory boss beaten")
 beaten_boss_volcano = Has("Volcano boss beaten")
 
+has_jungle_key = Has("Jungle Key")
+has_beach_key = Has("Beach Key")
+has_ruins_key = Has("Ruins Key")
+has_cave_key = Has("Cave Key")
+has_forest_key = Has("Forest Key")
+has_cliff_key = Has("Cliff Key")
+has_factory_key = Has("Factory Key")
+has_volcano_key = Has("Volcano Key")
+
+has_all_mirror_shards = Has("Mirror Shard", FromOption(MirrorModeShards))
+has_mirror_mode = Has("Mirror Mode")
+
+can_enter_Lift_Off_Launch = Has("Progressive Factory Button", FromOption(FactoryButtons))
+can_access_feathery_fiend = Has("Cleared 7-R")
+can_access_factory = Has("Cleared smog")
 
 def set_completion_condition(world: DKCRWorld) -> None:
+    if FromOption(GoldenTemple) == 1:
+        world.set_completion_rule(CanEnterGoldenTemple())
+        return
     world.set_completion_rule(CanEnterTikiTongTerror())
