@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, TYPE_CHECKING
 
-from Options import OptionGroup, PerGameCommonOptions, Range, Toggle, Visibility
+from Options import OptionGroup, PerGameCommonOptions, Range, Toggle, Visibility, Choice, OptionSet, DefaultOnToggle
 
 
 class DeathLink(Toggle):
@@ -14,20 +14,10 @@ class DeathLink(Toggle):
 
 class GoldenTemple(Toggle):
     """
-    Adding the Golden Temple into the item pool
+    Adding the Golden Temple into the item pool.
     """
     display_name = "Golden Temple"
     visibility = Visibility.none
-
-
-class KongLetterCollectionCheckpoint(Toggle):
-    """
-    Locations for Kong Letters will be sent after a checkpoint instead of when they are picked up.
-    """
-
-    display_name = "Kong Letter collection upon checkpoint"
-    visibility = Visibility.none
-
 
 class RareOrbs(Range):
     """
@@ -42,6 +32,37 @@ class RareOrbs(Range):
     default = 8
     visibility = Visibility.none
 
+class TimeAttackMedals(OptionSet):
+    """
+    Creates a location for each selected medal.
+
+    "Bronze", "Silver", "Gold", and "Shiny Gold" always include their respective
+    medals.
+    "Full" includes all medals.
+
+    "RandomAll" randomly selects additional medals from those not already selected.
+    "RandomOne" randomly selects one additional medal from those not already
+    selected.
+
+    "Bronzeless", "Silverless", "Goldless", and "Shiny Goldless" restrict the
+    random selection pool by excluding those medals. These options have no effect
+    unless "RandomAll" or "RandomOne" is selected.
+    """
+
+    display_name = "Time Attack Medals"
+    valid_keys = {
+        "Bronze", "Silver", "Gold", "Shiny Gold", "Full", "RandomAll", "RandomOne",
+        "Bronzeless", "Silverless", "Goldless", "Shiny Goldless"
+    }
+
+class KongLetterCollectionCheckpoint(Toggle):
+    """
+    Locations for Kong Letters will be sent after a checkpoint instead of when they are picked up.
+    """
+
+    display_name = "Kong Letter collection upon checkpoint"
+    visibility = Visibility.none
+
 
 class RandomizeLevels(Toggle):
     """
@@ -51,6 +72,31 @@ class RandomizeLevels(Toggle):
     display_name = "Randomize Levels"
     visibility = Visibility.none
 
+class SmogClear(DefaultOnToggle):
+    """
+    When enabled, requires to beat 7-1 to clear the smog covering the Factory world to move through it.
+    If disabled, DK will be able to traverse the Factory world even with the smog present.
+    """
+    display_name = "Smog Clear"
+
+class LiftOffLaunch(DefaultOnToggle):
+    """
+    When enabled, requires to beat 7-R to access Feather Fiend.
+    If disabled, DK will be able to access Feather Fiend without the need to beat 7-R.
+    """
+    display_name = "Lift-off Launch"
+
+class FactoryButtons(Range):
+    """
+    Amount of Factory Buttons that are required to access 7-R. (Default = 3
+    Choosing 0 will disable this option and make 7-R always available.
+    """
+    display_name = "Factory Buttons"
+    range_start = 0
+    range_end = 15
+    # This value can not exceed 15
+
+    default = 3
 
 class Rambi(Toggle):
     """
@@ -121,15 +167,14 @@ class MirrorMode(Toggle):
     Completing a level in Mirror Mode is considered a check.
     """
     display_name = "Mirror Mode"
-    visibility = Visibility.none
 
 
 class MirrorModeShards(Range):
     """
     Decides how many Mirror Shards are needed to unlock Mirror Mode.
+    Setting this option to 0 will disable the Mirror Shards and Mirror Mode will get its own item.
     """
     display_name = "Mirror Mode Shard amount"
-    visibility = Visibility.none
 
     range_start = 0
     range_end = 25
@@ -138,73 +183,65 @@ class MirrorModeShards(Range):
 class Squawks(Toggle):
     """
     Adds Squawks as an item which will enable Squawks as a permanent helper.
-    Can be toggled in the client after receiving him.
+    Disabling this option makes Squawks available from the start.
+    Squawks can be toggled in the Client as soon as he is available.
     """
     display_name = "Feathery Companion"
-    visibility = Visibility.none
 
-class SunsetShoreKey(Toggle):
+class SunsetShoreKey(DefaultOnToggle):
     """
     When enabled, adds the Jungle Shop Key for the level Sunset Shore as a location.
     """
     display_name = "Sunset Shore Key"
-    visibility = Visibility.none
 
 
-class BlowholeBoundKey(Toggle):
+class BlowholeBoundKey(DefaultOnToggle):
     """
     When enabled, adds the Beach Shop Key for the level Blowhole Bound as a location.
     """
     display_name = "Blowhole Bound Key"
-    visibility = Visibility.none
 
 
-class DampDungeonKey(Toggle):
+class DampDungeonKey(DefaultOnToggle):
     """
     When enabled, adds the Ruins Shop Key for the level Damp Dungeon as a location.
     """
     display_name = "Damp Dungeon Key"
-    visibility = Visibility.none
 
 
-class MolePatrolKey(Toggle):
+class MolePatrolKey(DefaultOnToggle):
     """
     When enabled, adds the Cave Shop Key for the level Mole Patrol as a location.
     """
     display_name = "Mole Patrol Key"
-    visibility = Visibility.none
 
 
-class SpringySporesKey(Toggle):
+class SpringySporesKey(DefaultOnToggle):
     """
     When enabled, adds the Forest Shop Key for the level Springy Spores as a location.
     """
     display_name = "Springy Spores Key"
-    visibility = Visibility.none
 
 
-class PrecariousPlateauKey(Toggle):
+class PrecariousPlateauKey(DefaultOnToggle):
     """
     When enabled, adds the Cliff Shop Key for the level Precarious Plateau as a location.
     """
     display_name = "Precarious Plateau Key"
-    visibility = Visibility.none
 
 
-class HandyHazardsKey(Toggle):
+class HandyHazardsKey(DefaultOnToggle):
     """
     When enabled, adds the Factory Shop Key for the level Handy Hazards as a location.
     """
     display_name = "Handy Hazards Key"
-    visibility = Visibility.none
 
 
-class SmokeyPeakKey(Toggle):
+class SmokeyPeakKey(DefaultOnToggle):
     """
     When enabled, adds the Volcano Shop Key for the level Smokey Peak as a location.
     """
     display_name = "Smokey Peak Key"
-    visibility = Visibility.none
 
 
 class JungleBossAccess(Range):
@@ -419,9 +456,13 @@ class VolcanoKLevelAccess(Range):
 class DKCROptions(PerGameCommonOptions):
     death_link: DeathLink
     golden_temple: GoldenTemple
-    kong_letter_collection_checkpoint: KongLetterCollectionCheckpoint
     rare_orbs: RareOrbs
+    time_attack_medal: TimeAttackMedals
+    kong_letter_collection_checkpoint: KongLetterCollectionCheckpoint
     randomize_levels: RandomizeLevels
+    smog_clear: SmogClear
+    lift_off_launch: LiftOffLaunch
+    factory_buttons: FactoryButtons
     rambi: Rambi
     minecart: Minecart
     rocket_barrel: RocketBarrel
@@ -462,9 +503,13 @@ class DKCROptions(PerGameCommonOptions):
         return self.as_dict(
             "death_link",
             "golden_temple",
-            "kong_letter_collection_checkpoint",
             "rare_orbs",
+            "time_attack_medal",
+            "kong_letter_collection_checkpoint",
             "randomize_levels",
+            "smog_clear",
+            "lift_off_launch",
+            "factory_buttons",
             "rambi",
             "minecart",
             "rocket_barrel",
@@ -506,7 +551,7 @@ class DKCROptions(PerGameCommonOptions):
 option_groups = [
     OptionGroup(
         "Gameplay options",
-        [DeathLink, GoldenTemple, RareOrbs, RandomizeLevels, KongLetterCollectionCheckpoint]
+        [DeathLink, GoldenTemple, RareOrbs, RandomizeLevels, KongLetterCollectionCheckpoint, TimeAttackMedals]
     ),
     OptionGroup(
         "Key options",
@@ -529,7 +574,7 @@ option_groups = [
     ),
     OptionGroup(
         "Misc options",
-        [Rambi, Minecart, RocketBarrel, KongBarrel, Squawks]
+        [SmogClear, LiftOffLaunch, FactoryButtons, Rambi, Minecart, RocketBarrel, KongBarrel, Squawks]
     ),
     OptionGroup(
         "Mirror mode options",
@@ -601,3 +646,50 @@ option_presets = {
         "volcano_boss_access": 320,
     }
 }
+
+
+def handle_ut_yamless(world, slot_data: dict[str, Any] | None) -> dict[str, Any] | None:
+    if (
+            not slot_data
+            and hasattr(world.multiworld, "re_gen_passthrough")
+            and isinstance(world.multiworld.re_gen_passthrough, dict)
+            and world.game in world.multiworld.re_gen_passthrough
+    ):
+        slot_data = world.multiworld.re_gen_passthrough[world.game]
+
+    if not slot_data:
+        return None
+
+    world.ut_medals = set(slot_data["time_attack_resolved"])
+    world.options.smog_clear.value = slot_data["smog_clear"]
+    world.options.lift_off_launch.value = slot_data["lift_off_launch"]
+    world.options.factory_buttons.value = slot_data["factory_buttons"]
+    world.options.mirror_mode.value = slot_data["mirror_mode"]
+    world.options.mirror_mode_shards.value = slot_data["mirror_mode_shards"]
+    world.options.squawks.value = slot_data["squawks"]
+    world.options.sunset_shore_key.value = slot_data["sunset_shore_key"]
+    world.options.blowhole_bound_key.value = slot_data["blowhole_bound_key"]
+    world.options.damp_dungeon_key.value = slot_data["damp_dungeon_key"]
+    world.options.mole_patrol_key.value = slot_data["mole_patrol_key"]
+    world.options.springy_spores_key.value = slot_data["springy_spores_key"]
+    world.options.precarious_plateau_key.value = slot_data["precarious_plateau_key"]
+    world.options.handy_hazards_key.value = slot_data["handy_hazards_key"]
+    world.options.smokey_peak_key.value = slot_data["smokey_peak_key"]
+    world.options.jungle_boss_access.value = slot_data["jungle_boss_access"]
+    world.options.beach_boss_access.value = slot_data["beach_boss_access"]
+    world.options.ruins_boss_access.value = slot_data["ruins_boss_access"]
+    world.options.cave_boss_access.value = slot_data["cave_boss_access"]
+    world.options.forest_boss_access.value = slot_data["forest_boss_access"]
+    world.options.cliff_boss_access.value = slot_data["cliff_boss_access"]
+    world.options.factory_boss_access.value = slot_data["factory_boss_access"]
+    world.options.volcano_boss_access.value = slot_data["volcano_boss_access"]
+    world.options.jungle_k_level_access.value = slot_data["jungle_k_level_access"]
+    world.options.beach_k_level_access.value = slot_data["beach_k_level_access"]
+    world.options.ruins_k_level_access.value = slot_data["ruins_k_level_access"]
+    world.options.cave_k_level_access.value = slot_data["cave_k_level_access"]
+    world.options.forest_k_level_access.value = slot_data["forest_k_level_access"]
+    world.options.cliff_k_level_access.value = slot_data["cliff_k_level_access"]
+    world.options.factory_k_level_access.value = slot_data["factory_k_level_access"]
+    world.options.volcano_k_level_access.value = slot_data["volcano_k_level_access"]
+
+    return slot_data
