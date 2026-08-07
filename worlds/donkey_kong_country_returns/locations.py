@@ -3244,7 +3244,7 @@ def create_regular_locations(world: DKCRWorld, medal_filter: set[str]) -> None:
     Crazy_Cart.add_locations(Crazy_Cart_Locations, DKCRLocation)
     Muglys_Mound.add_locations(Muglys_Mound_Locations, DKCRLocation)
     Platform_Panic.add_locations(Platform_Panic_Locations, DKCRLocation)
-    if FromOption(options.SunsetShoreKey) == 1:
+    if world.options.sunset_shore_key.value == 1:
         Jungle_Shop.add_locations(Jungle_Shop_Locations, DKCRLocation)
 
     Beach.add_locations(Beach_Locations, DKCRLocation)
@@ -3257,7 +3257,7 @@ def create_regular_locations(world: DKCRWorld, medal_filter: set[str]) -> None:
     Tidal_Terror.add_locations(Tidal_Terror_Locations, DKCRLocation)
     Pinchin_Pirates.add_locations(Pinchin_Pirates_Locations, DKCRLocation)
     Tumblin_Temple.add_locations(Tumblin_Temple_Locations, DKCRLocation)
-    if FromOption(options.BlowholeBoundKey) == 1:
+    if world.options.blowhole_bound_key.value == 1:
         Beach_Shop.add_locations(Beach_Shop_Locations, DKCRLocation)
 
     Ruins.add_locations(Ruins_Locations, DKCRLocation)
@@ -3269,7 +3269,7 @@ def create_regular_locations(world: DKCRWorld, medal_filter: set[str]) -> None:
     Temple_Topple.add_locations(Temple_Topple_Locations, DKCRLocation)
     Ruined_Roost.add_locations(Ruined_Roost_Locations, DKCRLocation)
     Shifty_Smashers.add_locations(Shifty_Smashers_Locations, DKCRLocation)
-    if FromOption(options.DampDungeonKey) == 1:
+    if world.options.damp_dungeon_key == 1:
         Ruins_Shop.add_locations(Ruins_Shop_Locations, DKCRLocation)
 
     Cave.add_locations(Cave_Locations, DKCRLocation)
@@ -3280,7 +3280,7 @@ def create_regular_locations(world: DKCRWorld, medal_filter: set[str]) -> None:
     Crowded_Cavern.add_locations(Crowded_Cavern_Locations, DKCRLocation)
     The_Mole_Train.add_locations(The_Mole_Train_Locations, DKCRLocation)
     Jagged_Jewels.add_locations(Jagged_Jewels_Locations, DKCRLocation)
-    if FromOption(options.MolePatrolKey) == 1:
+    if world.options.mole_patrol_key == 1:
         Cave_Shop.add_locations(Cave_Shop_Locations)
 
     Forest.add_locations(Forest_Locations, DKCRLocation)
@@ -3294,7 +3294,7 @@ def create_regular_locations(world: DKCRWorld, medal_filter: set[str]) -> None:
     Muncher_Marathon.add_locations(Muncher_Marathon_Locations, DKCRLocation)
     Mangoruby_Run.add_locations(Mangoruby_Run_Locations, DKCRLocation)
     Blast_n_Bounce.add_locations(Blast_n_Bounce_Locations, DKCRLocation)
-    if FromOption(options.SpringySporesKey) == 1:
+    if world.options.springy_spores_key == 1:
         Forest_Shop.add_locations(Forest_Shop_Locations, DKCRLocation)
 
     Cliff.add_locations(Cliff_Locations, DKCRLocation)
@@ -3308,7 +3308,7 @@ def create_regular_locations(world: DKCRWorld, medal_filter: set[str]) -> None:
     Clifftop_Climb.add_locations(Clifftop_Climb_Locations, DKCRLocation)
     Thuglys_Highrise.add_locations(Thuglys_Highrise_Locations, DKCRLocation)
     Perilous_Passage.add_locations(Perilous_Passage_Locations, DKCRLocation)
-    if FromOption(options.PrecariousPlateauKey) == 1:
+    if world.options.precarious_plateau_key == 1:
         Cliff_Shop.add_locations(Cliff_Shop_Locations, DKCRLocation)
 
     Factory.add_locations(Factory_Locations, DKCRLocation)
@@ -3322,7 +3322,7 @@ def create_regular_locations(world: DKCRWorld, medal_filter: set[str]) -> None:
     Lift_Off_Launch.add_locations(Lift_Off_Launch_Locations, DKCRLocation)
     Feather_Fiend.add_locations(Feather_Fiend_Locations, DKCRLocation)
     Treacherous_Track.add_locations(Treacherous_Track_Locations, DKCRLocation)
-    if FromOption(options.HandyHazardsKey) == 1:
+    if world.options.handy_hazards_key == 1:
         Factory_Shop.add_locations(Factory_Shop_Locations, DKCRLocation)
 
     Volcano.add_locations(Volcano_Locations, DKCRLocation)
@@ -3335,7 +3335,7 @@ def create_regular_locations(world: DKCRWorld, medal_filter: set[str]) -> None:
     Red_Red_Rising.add_locations(Red_Red_Rising_Locations, DKCRLocation)
     Tiki_Tong_Terror.add_locations(Tiki_Tong_Terror_Locations, DKCRLocation)
     Five_Monkey_Trial.add_locations(Five_Monkey_Trial_Locations, DKCRLocation)
-    if FromOption(options.SmokeyPeakKey) == 1:
+    if world.options.smokey_peak_key == 1:
         Volcano_Shop.add_locations(Volcano_Shop_Locations, DKCRLocation)
 
     for location in world.get_locations():
