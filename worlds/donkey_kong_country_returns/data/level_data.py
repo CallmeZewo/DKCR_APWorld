@@ -104,6 +104,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=THIRD_LEVEL_INDEX,
                 to_level_index=FOURTH_LEVEL_INDEX,
+                rule=has_jungle_key,
             ),
             LevelConnection(
                 from_level_index=THIRD_LEVEL_INDEX,
@@ -152,6 +153,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=SIXTH_LEVEL_INDEX,
                 to_level_index=FOURTH_LEVEL_INDEX,
+                rule=has_jungle_key,
             ),
             LevelConnection(
                 from_level_index=SIXTH_LEVEL_INDEX,
@@ -249,6 +251,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=THIRD_LEVEL_INDEX,
                 to_level_index=SIXTH_LEVEL_INDEX,
+                rule=has_beach_key,
             ),
         ]
     ),
@@ -281,6 +284,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=FIFTH_LEVEL_INDEX,
                 to_level_index=SIXTH_LEVEL_INDEX,
+                rule=has_beach_key,
             ),
             LevelConnection(
                 from_level_index=FIFTH_LEVEL_INDEX,
@@ -375,6 +379,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=FIRST_LEVEL_INDEX,
                 to_level_index=FOURTH_LEVEL_INDEX,
+                rule=has_ruins_key,
             ),
         ]
     ),
@@ -411,6 +416,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=THIRD_LEVEL_INDEX,
                 to_level_index=FOURTH_LEVEL_INDEX,
+                rule=has_ruins_key,
             ),
             LevelConnection(
                 from_level_index=THIRD_LEVEL_INDEX,
@@ -468,6 +474,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=SIXTH_LEVEL_INDEX,
                 to_level_index=FOURTH_LEVEL_INDEX,
+                rule=has_ruins_key,
             ),
             LevelConnection(
                 from_level_index=SIXTH_LEVEL_INDEX,
@@ -513,6 +520,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=BOSS_LEVEL_INDEX,
                 to_level_index=FOURTH_LEVEL_INDEX,
+                rule=has_cave_key,
             ),
             LevelConnection(
                 from_level_index=BOSS_LEVEL_INDEX,
@@ -549,6 +557,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=SECOND_LEVEL_INDEX,
                 to_level_index=FOURTH_LEVEL_INDEX,
+                rule=has_cave_key,
             ),
             LevelConnection(
                 from_level_index=SECOND_LEVEL_INDEX,
@@ -692,6 +701,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=SECOND_LEVEL_INDEX,
                 to_level_index=SIXTH_LEVEL_INDEX,
+                rule=has_forest_key,
             ),
             LevelConnection(
                 from_level_index=SECOND_LEVEL_INDEX,
@@ -797,6 +807,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=EIGHTH_LEVEL_INDEX,
                 to_level_index=SEVENTH_LEVEL_INDEX,
+                rule=has_forest_key,
             ),
             LevelConnection(
                 from_level_index=EIGHTH_LEVEL_INDEX,
@@ -891,6 +902,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=THIRD_LEVEL_INDEX,
                 to_level_index=FIFTH_LEVEL_INDEX,
+                rule=has_cliff_key,
             ),
             LevelConnection(
                 from_level_index=THIRD_LEVEL_INDEX,
@@ -943,6 +955,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=SIXTH_LEVEL_INDEX,
                 to_level_index=FIFTH_LEVEL_INDEX,
+                rule=has_cliff_key,
             ),
             LevelConnection(
                 from_level_index=SIXTH_LEVEL_INDEX,
@@ -1028,6 +1041,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=FIRST_LEVEL_INDEX,
                 to_level_index=SECOND_LEVEL_INDEX,
+                rule=SmogBlocksFactory()
             ),
         ]
     ),
@@ -1149,6 +1163,7 @@ Levels: dict[str, LevelData] = {
             LevelConnection(
                 from_level_index=SEVENTH_LEVEL_INDEX,
                 to_level_index=LIFT_OFF_LAUNCH_LEVEL_INDEX,
+                rule=can_enter_Lift_Off_Launch
             ),
         ]
     ),
