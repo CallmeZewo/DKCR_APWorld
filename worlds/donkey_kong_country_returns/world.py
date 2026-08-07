@@ -45,8 +45,12 @@ class DKCRWorld(World):
 
     location_name_to_id = locations.LOCATION_NAME_TO_ID
     item_name_to_id = items.ITEM_NAME_TO_ID
-
+    ut_can_gen_without_yaml = True
     origin_region_name = "Menu"
+
+    @staticmethod
+    def interpret_slot_data(slot_data: dict[str, Any]) -> dict[str, Any]:
+        return slot_data
 
     def create_regions(self) -> None:
         regions.create_and_connect_regions(self)
@@ -54,7 +58,6 @@ class DKCRWorld(World):
 
     def set_rules(self) -> None:
         rules.set_all_rules(self)
-        visualize_regions(self.multiworld.get_region("Menu", self.player), f"Player{self.player}.puml", show_entrance_names=True, regions_to_highlight=self.multiworld.get_all_state(self.player).reachable_regions[self.player])
 
     def create_items(self) -> None:
         items.create_all_items(self)
@@ -67,5 +70,17 @@ class DKCRWorld(World):
 
     def fill_slot_data(self) -> Mapping[str, Any]:
         slot_data = self.options.get_slot_data_dict()
-        visualize_regions(self.multiworld.get_region("Menu", self.player), f"Player{self.player}.puml", show_entrance_names=True, regions_to_highlight=self.multiworld.get_all_state(self.player).reachable_regions[self.player])
+        medals = {
+            "Bronze": 0,
+            "Silver": 0,
+            "Gold": 0,
+            "Shiny Gold": 0
+        }
+        for medal in locations.resolve_option_set_medals(self):
+            medals[medal] = 1
+        slot_data["time_attack_resolved"] = medals
+        # visualize_regions(self.multiworld.get_region("Menu", self.player), f"Player{self.player}.puml", show_entrance_names=True, regions_to_highlight=self.multiworld.get_all_state(self.player).reachable_regions[self.player])
         return slot_data
+
+    def generate_early(self) -> None:
+        dkcr_options.handle_ut_yamless(self, None)
