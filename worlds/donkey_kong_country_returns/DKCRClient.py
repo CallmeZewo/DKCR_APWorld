@@ -90,7 +90,7 @@ class DKCRContext(CommonContext):
         self.exited_level = True
         self.has_squawks = False
         self.squawks_option = 0
-        self.squawks_state = 1
+        self.squawks_state = 0
         self.last_bitfield = (-1, -1)
         self.last_received_item_index = 0
         self.current_puzzle_piece_amount = 0
@@ -542,7 +542,7 @@ class DKCRContext(CommonContext):
             self.squawks_state = 1 if self.squawks_state == 0 else 0
 
     def check_squawks(self):
-        dme.write_word(SQUAWKS, self.squawks_state)
+        dme.write_word(MEM + SQUAWKS, self.squawks_state)
 
     def make_level_bitflag(self):
         flag = 0
@@ -557,14 +557,14 @@ class DKCRContext(CommonContext):
         dme.write_bytes(CUSTOM_LEVEL_BITFLAG_ADDR, flag_bytes)
 
     def should_enable(self, level: str):
-        jungle_key_vanilla = dme.read_byte(WORLD_MAP_KEY_JUNGLE) == 0x1 and self.keys_option["jungle"] == 0
-        beach_key_vanilla = dme.read_byte(WORLD_MAP_KEY_BEACH) == 0x1 and self.keys_option["beach"] == 0
-        ruins_key_vanilla = dme.read_byte(WORLD_MAP_KEY_RUINS) == 0x1 and self.keys_option["ruins"] == 0
-        cave_key_vanilla = dme.read_byte(WORLD_MAP_KEY_CAVE) == 0x1 and self.keys_option["cave"] == 0
-        forest_key_vanilla = dme.read_byte(WORLD_MAP_KEY_FOREST) == 0x1 and self.keys_option["forest"] == 0
-        cliff_key_vanilla = dme.read_byte(WORLD_MAP_KEY_CLIFF) == 0x1 and self.keys_option["cliff"] == 0
-        factory_key_vanilla = dme.read_byte(WORLD_MAP_KEY_FACTORY) == 0x1 and self.keys_option["factory"] == 0
-        volcano_key_vanilla = dme.read_byte(WORLD_MAP_KEY_VOLCANO) == 0x1 and self.keys_option["volcano"] == 0
+        jungle_key_vanilla = dme.read_byte(MEM + WORLD_MAP_KEY_JUNGLE) == 0x1 and self.keys_option["jungle"] == 0
+        beach_key_vanilla = dme.read_byte(MEM + WORLD_MAP_KEY_BEACH) == 0x1 and self.keys_option["beach"] == 0
+        ruins_key_vanilla = dme.read_byte(MEM + WORLD_MAP_KEY_RUINS) == 0x1 and self.keys_option["ruins"] == 0
+        cave_key_vanilla = dme.read_byte(MEM + WORLD_MAP_KEY_CAVE) == 0x1 and self.keys_option["cave"] == 0
+        forest_key_vanilla = dme.read_byte(MEM + WORLD_MAP_KEY_FOREST) == 0x1 and self.keys_option["forest"] == 0
+        cliff_key_vanilla = dme.read_byte(MEM + WORLD_MAP_KEY_CLIFF) == 0x1 and self.keys_option["cliff"] == 0
+        factory_key_vanilla = dme.read_byte(MEM + WORLD_MAP_KEY_FACTORY) == 0x1 and self.keys_option["factory"] == 0
+        volcano_key_vanilla = dme.read_byte(MEM + WORLD_MAP_KEY_VOLCANO) == 0x1 and self.keys_option["volcano"] == 0
         match level:
             case L.PLATFORM_PANIC:
                 if dme.read_byte(CUSTOM_KL_AMOUNT_ADDR + JGL_KL_OFFSET) == 0xFF:
