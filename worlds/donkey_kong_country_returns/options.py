@@ -352,7 +352,7 @@ class JungleKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Jungle.
     """
-    display_name = "Puzzle Piece requirement for Platform Panic"
+    display_name = "Kong Letter requirement for Platform Panic"
 
     range_start = 0
     range_end = 24
@@ -365,7 +365,7 @@ class BeachKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Beach.
     """
-    display_name = "Puzzle Piece requirement for Tumblin' Temple"
+    display_name = "Kong Letter requirement for Tumblin' Temple"
 
     range_start = 0
     range_end = 28
@@ -378,7 +378,7 @@ class RuinsKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Ruins.
     """
-    display_name = "Puzzle Piece requirement for Shifty Smashers"
+    display_name = "Kong Letter requirement for Shifty Smashers"
 
     range_start = 0
     range_end = 24
@@ -391,7 +391,7 @@ class CaveKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Cave.
     """
-    display_name = "Puzzle Piece requirement for Jagged Jewels"
+    display_name = "Kong Letter requirement for Jagged Jewels"
 
     range_start = 0
     range_end = 20
@@ -404,7 +404,7 @@ class ForestKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Forest.
     """
-    display_name = "Puzzle Piece requirement for Blast & Bounce"
+    display_name = "Kong Letter requirement for Blast & Bounce"
 
     range_start = 0
     range_end = 32
@@ -417,7 +417,7 @@ class CliffKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Cliff.
     """
-    display_name = "Puzzle Piece requirement for Perilous Passage"
+    display_name = "Kong Letter requirement for Perilous Passage"
 
     range_start = 0
     range_end = 32
@@ -430,7 +430,7 @@ class FactoryKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Factory.
     """
-    display_name = "Puzzle Piece requirement for Treacherous Track"
+    display_name = "Kong Letter requirement for Treacherous Track"
 
     range_start = 0
     range_end = 28
@@ -443,7 +443,7 @@ class VolcanoKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective, World needed to gain access to the K Level in the Volcano.
     """
-    display_name = "Puzzle Piece requirement for Five Monkey Trial"
+    display_name = "Kong Letter requirement for Five Monkey Trial"
 
     range_start = 0
     range_end = 28
