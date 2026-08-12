@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, override
 
 from BaseClasses import CollectionState
 from rule_builder.field_resolvers import FromOption
-from rule_builder.rules import Has, Rule
+from rule_builder.rules import Has, Rule, True_
 from worlds.donkey_kong_country_returns.DKCRNameConstants import Item as I, Generic as G
 from .data.indexes import *
 from .options import *
@@ -148,14 +148,14 @@ beaten_boss_cliff = Has("Cliff boss beaten")
 beaten_boss_factory = Has("Factory boss beaten")
 beaten_boss_volcano = Has("Volcano boss beaten")
 
-has_jungle_key = Has("Jungle Key")
-has_beach_key = Has("Beach Key")
-has_ruins_key = Has("Ruins Key")
-has_cave_key = Has("Cave Key")
-has_forest_key = Has("Forest Key")
-has_cliff_key = Has("Cliff Key")
-has_factory_key = Has("Factory Key")
-has_volcano_key = Has("Volcano Key")
+has_jungle_key = Has("Jungle Key") if FromOption(SunsetShoreKey) == 1 else True_()
+has_beach_key = Has("Beach Key") if FromOption(BlowholeBoundKey) == 1 else True_()
+has_ruins_key = Has("Ruins Key") if FromOption(DampDungeonKey) == 1 else True_()
+has_cave_key = Has("Cave Key") if FromOption(MolePatrolKey) == 1 else True_()
+has_forest_key = Has("Forest Key") if FromOption(SpringySporesKey) == 1 else True_()
+has_cliff_key = Has("Cliff Key") if FromOption(PrecariousPlateauKey) == 1 else True_()
+has_factory_key = Has("Factory Key") if FromOption(HandyHazardsKey) == 1 else True_()
+has_volcano_key = Has("Volcano Key") if FromOption(SmokeyPeakKey) == 1 else True_()
 
 has_all_mirror_shards = Has("Mirror Shard", FromOption(MirrorModeShards))
 has_mirror_mode = Has("Mirror Mode")
