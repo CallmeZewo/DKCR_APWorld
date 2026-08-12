@@ -3,8 +3,6 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from BaseClasses import Location
-from rule_builder.field_resolvers import FromOption
-from rule_builder.rules import Has
 from worlds.donkey_kong_country_returns.DKCRNameConstants import Location as L, World as W, Level as LV
 from .data.indexes import *
 from . import items
@@ -1282,47 +1280,8 @@ def get_location_names_with_ids(location_names: list[str], mirror_mode_filter = 
 
 
 def create_all_locations(world: DKCRWorld) -> None:
-    medal_filter = resolve_option_set_medals(world)
+    medal_filter = world.selected_medals
     create_regular_locations(world, medal_filter)
-
-
-def resolve_option_set_medals(world: DKCRWorld) -> set[str]:
-    available_medals = {"Bronze", "Silver", "Gold", "Shiny Gold"}
-    selected_medals = set()
-    values = world.options.time_attack_medal
-    is_ut = getattr(world.multiworld, "generation_is_fake", False)
-    if is_ut:
-        return world.ut_medals
-    if "Full" in values:
-        return available_medals
-
-    for medal in available_medals:
-        if medal in values:
-            selected_medals.add(medal)
-
-    if "RandomAll" in values or "RandomOne" in values:
-        available_medals -= selected_medals
-
-        exclusions = {
-            "Bronzeless": "Bronze",
-            "Silverless": "Silver",
-            "Goldless": "Gold",
-            "Shiny Goldless": "Shiny Gold",
-        }
-
-        for option, medal in exclusions.items():
-            if option in values:
-                available_medals.discard(medal)
-
-        if "RandomAll" in values:
-            for medal in available_medals:
-                if world.random.choice([True, False]):
-                    selected_medals.add(medal)
-
-        elif "RandomOne" in values and available_medals:
-            selected_medals.add(world.random.choice(list(available_medals)))
-
-    return selected_medals
 
 
 def create_regular_locations(world: DKCRWorld, medal_filter: set[str]) -> None:
