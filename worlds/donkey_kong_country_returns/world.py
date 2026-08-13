@@ -47,8 +47,8 @@ class DKCRWorld(World):
     item_name_to_id = items.ITEM_NAME_TO_ID
     ut_can_gen_without_yaml = True
     origin_region_name = "Menu"
-    def __init__(self):
-        super().__init__(self.multiworld, self.player)
+    def __init__(self, multiworld, player):
+        super().__init__(multiworld, player)
         self.selected_medals = set()
 
     @staticmethod
