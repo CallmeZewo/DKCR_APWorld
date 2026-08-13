@@ -1,26 +1,34 @@
 # Donkey Kong Country Returns Archipelago World
 
-An Archipelago world for **Donkey Kong Country Returns (Wii)**. It uses memory injection to randomize items and locations, so no game patch or modified ISO is required.
+An Archipelago world for **Donkey Kong Country Returns (Wii)**. The world uses memory injection through Dolphin to randomize items and locations, so no game patch or modified ISO is required.
+
+The project is currently in **beta**. Expect changes, new features, and the occasional bug as development and testing continue.
 
 ## Requirements
 
 You'll need the following:
 
-* [**Dolphin Emulator**](https://github.com/dolphin-emu/dolphin)
-* [**Archipelago Launcher**](https://github.com/ArchipelagoMW/Archipelago)
-* [**Latest DKCR AP World**](https://github.com/CallmeZewo/DKCR_APWorld)
+- [**Dolphin Emulator**](https://github.com/dolphin-emu/dolphin)
+- [**Archipelago Launcher**](https://github.com/ArchipelagoMW/Archipelago)
+- [**Latest DKCR AP World**](https://github.com/CallmeZewo/DKCR_APWorld/releases)
+
+For installation and Dolphin setup, see the [**Setup Guide**](https://github.com/CallmeZewo/DKCR_APWorld/blob/main/worlds/donkey_kong_country_returns/docs/guide_en.md).
+
+For an overview of how the world works and its available options, see the [**DKCR Archipelago Overview**](https://github.com/CallmeZewo/DKCR_APWorld/blob/main/worlds/donkey_kong_country_returns/docs/en_Donkey%20Kong%20Country%20Returns.md).
 
 ## PopTracker
 
-A [PopTracker pack](https://github.com/MagicMason1000/DKCR-AP-PopTracker-Package/releases) is available for the AP World.
+A [**PopTracker pack**](https://github.com/MagicMason1000/DKCR-AP-PopTracker-Package/releases) is available for the AP World.
 
 ## Community
 
-If you have questions, run into issues, or want to follow development, join the [Archipelago Discord](https://discord.gg/8Z65BR2) and check out the DKCR thread.
+If you have questions, run into issues, or want to follow development, join the [**Archipelago Discord**](https://discord.gg/8Z65BR2) and check out the DKCR thread.
+
+Bug reports and feedback are especially useful while the world is still in beta.
 
 ## Thanks
 
-Thanks to everyone who has helped with PopTracker development, testing, and early logic documentation. The feedback and contributions have been a huge help in building this project.
+Thanks to everyone who has helped with PopTracker development, testing, and early logic documentation. The feedback, testing, and contributions have been a huge help in getting the DKCR Archipelago world to this point.
 
 # [Archipelago](https://archipelago.gg) ![Discord Shield](https://discordapp.com/api/guilds/731205301247803413/widget.png?style=shield) | [Install](https://github.com/ArchipelagoMW/Archipelago/releases)
 
