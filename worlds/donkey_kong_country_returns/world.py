@@ -86,8 +86,8 @@ class DKCRWorld(World):
         return slot_data
 
     def generate_early(self) -> None:
-        self.selected_medals = self.resolve_option_set_medals()
         dkcr_options.handle_ut_yamless(self, None)
+        self.selected_medals = self.resolve_option_set_medals()
 
     def resolve_option_set_medals(self) -> set[str]:
         available_medals = {"Bronze", "Silver", "Gold", "Shiny Gold"}
