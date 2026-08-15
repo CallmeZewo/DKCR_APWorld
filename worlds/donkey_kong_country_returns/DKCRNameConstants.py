@@ -356,7 +356,7 @@ class Location:
     JUNGLE_CLEARED_TIME_ATTACK_BRONZE = "Jungle cleared (Time Attack) [Bronze]"
     JUNGLE_CLEARED_TIME_ATTACK_SILVER = "Jungle cleared (Time Attack) [Silver]"
     JUNGLE_CLEARED_TIME_ATTACK_GOLD = "Jungle cleared (Time Attack) [Gold]"
-    JUNGLE_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-1 Jungle Hijinxs cleared (Time Attack) [Shiny Gold]"
+    JUNGLE_CLEARED_TIME_ATTACK_SHINY_GOLD = "Jungle cleared (Time Attack) [Shiny Gold]"
     JUNGLE_SHOP_KEY = "Jungle Shop Key"
     JUNGLE_SHOP_BALLOONSX1 = "Jungle Shop Balloon x 1"
     JUNGLE_SHOP_BALLOONSX3 = "Jungle Shop Balloon x 3"
@@ -382,7 +382,7 @@ class Location:
     JUNGLE_HIJINXS_CLEARED_TIME_ATTACK_BRONZE = "1-1 Jungle Hijinxs cleared (Time Attack) [Bronze]"
     JUNGLE_HIJINXS_CLEARED_TIME_ATTACK_SILVER = "1-1 Jungle Hijinxs cleared (Time Attack) [Silver]"
     JUNGLE_HIJINXS_CLEARED_TIME_ATTACK_GOLD = "1-1 Jungle Hijinxs cleared (Time Attack) [Gold]"
-    JUNGLE_HIJINXS_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-2 King of Cling cleared (Time Attack) [Shiny Gold]"
+    JUNGLE_HIJINXS_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-1 Jungle Hijinxs cleared (Time Attack) [Shiny Gold]"
 
 
     KING_OF_CLING_PUZZLE_PIECE_1 = "1-2 King of Cling Puzzle Piece (1)"
@@ -403,7 +403,7 @@ class Location:
     KING_OF_CLING_CLEARED_TIME_ATTACK_BRONZE = "1-2 King of Cling cleared (Time Attack) [Bronze]"
     KING_OF_CLING_CLEARED_TIME_ATTACK_SILVER = "1-2 King of Cling cleared (Time Attack) [Silver]"
     KING_OF_CLING_CLEARED_TIME_ATTACK_GOLD = "1-2 King of Cling cleared (Time Attack) [Gold]"
-    KING_OF_CLING_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-3 Tree Top Bop cleared (Time Attack) [Shiny Gold]"
+    KING_OF_CLING_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-2 King of Cling cleared (Time Attack) [Shiny Gold]"
 
 
     TREE_TOP_BOP_PUZZLE_PIECE_1 = "1-3 Tree Top Bop Puzzle Piece (1)"
@@ -422,7 +422,7 @@ class Location:
     TREE_TOP_BOP_CLEARED_TIME_ATTACK_BRONZE = "1-3 Tree Top Bop cleared (Time Attack) [Bronze]"
     TREE_TOP_BOP_CLEARED_TIME_ATTACK_SILVER = "1-3 Tree Top Bop cleared (Time Attack) [Silver]"
     TREE_TOP_BOP_CLEARED_TIME_ATTACK_GOLD = "1-3 Tree Top Bop cleared (Time Attack) [Gold]"
-    TREE_TOP_BOP_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-4 Sunset Shore cleared (Time Attack) [Shiny Gold]"
+    TREE_TOP_BOP_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-3 Tree Top Bop cleared (Time Attack) [Shiny Gold]"
 
 
     SUNSET_SHORE_PUZZLE_PIECE_1 = "1-4 Sunset Shore Puzzle Piece (1)"
@@ -441,7 +441,7 @@ class Location:
     SUNSET_SHORE_CLEARED_TIME_ATTACK_BRONZE = "1-4 Sunset Shore cleared (Time Attack) [Bronze]"
     SUNSET_SHORE_CLEARED_TIME_ATTACK_SILVER = "1-4 Sunset Shore cleared (Time Attack) [Silver]"
     SUNSET_SHORE_CLEARED_TIME_ATTACK_GOLD = "1-4 Sunset Shore cleared (Time Attack) [Gold]"
-    SUNSET_SHORE_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-5 Canopy Cannons cleared (Time Attack) [Shiny Gold]"
+    SUNSET_SHORE_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-4 Sunset Shore cleared (Time Attack) [Shiny Gold]"
 
 
     CANOPY_CANNONS_PUZZLE_PIECE_1 = "1-5 Canopy Cannons Puzzle Piece (1)"
@@ -460,7 +460,7 @@ class Location:
     CANOPY_CANNONS_CLEARED_TIME_ATTACK_BRONZE = "1-5 Canopy Cannons cleared (Time Attack) [Bronze]"
     CANOPY_CANNONS_CLEARED_TIME_ATTACK_SILVER = "1-5 Canopy Cannons cleared (Time Attack) [Silver]"
     CANOPY_CANNONS_CLEARED_TIME_ATTACK_GOLD = "1-5 Canopy Cannons cleared (Time Attack) [Gold]"
-    CANOPY_CANNONS_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-6 Crazy Cart cleared (Time Attack) [Shiny Gold]"
+    CANOPY_CANNONS_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-5 Canopy Cannons cleared (Time Attack) [Shiny Gold]"
 
 
     CRAZY_CART_PUZZLE_PIECE_1 = "1-6 Crazy Cart Puzzle Piece (1)"
@@ -479,7 +479,7 @@ class Location:
     CRAZY_CART_CLEARED_TIME_ATTACK_BRONZE = "1-6 Crazy Cart cleared (Time Attack) [Bronze]"
     CRAZY_CART_CLEARED_TIME_ATTACK_SILVER = "1-6 Crazy Cart cleared (Time Attack) [Silver]"
     CRAZY_CART_CLEARED_TIME_ATTACK_GOLD = "1-6 Crazy Cart cleared (Time Attack) [Gold]"
-    CRAZY_CART_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-B Mugly's Mound cleared (Time Attack) [Shiny Gold]"
+    CRAZY_CART_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-6 Crazy Cart cleared (Time Attack) [Shiny Gold]"
 
 
     MUGLYS_MOUND_EVENT = "1-B Mugly's Mound event"
@@ -488,7 +488,7 @@ class Location:
     MUGLYS_MOUND_CLEARED_TIME_ATTACK_BRONZE = "1-B Mugly's Mound cleared (Time Attack) [Bronze]"
     MUGLYS_MOUND_CLEARED_TIME_ATTACK_SILVER = "1-B Mugly's Mound cleared (Time Attack) [Silver]"
     MUGLYS_MOUND_CLEARED_TIME_ATTACK_GOLD = "1-B Mugly's Mound cleared (Time Attack) [Gold]"
-    MUGLYS_MOUND_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-K Platform Panic cleared (Time Attack) [Shiny Gold]"
+    MUGLYS_MOUND_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-B Mugly's Mound cleared (Time Attack) [Shiny Gold]"
 
 
     PLATFORM_PANIC_PUZZLE_PIECE_1 = "1-K Platform Panic Puzzle Piece (1)"
@@ -503,7 +503,7 @@ class Location:
     PLATFORM_PANIC_CLEARED_TIME_ATTACK_BRONZE = "1-K Platform Panic cleared (Time Attack) [Bronze]"
     PLATFORM_PANIC_CLEARED_TIME_ATTACK_SILVER = "1-K Platform Panic cleared (Time Attack) [Silver]"
     PLATFORM_PANIC_CLEARED_TIME_ATTACK_GOLD = "1-K Platform Panic cleared (Time Attack) [Gold]"
-    PLATFORM_PANIC_CLEARED_TIME_ATTACK_SHINY_GOLD = "Beach cleared (Time Attack) [Shiny Gold]"
+    PLATFORM_PANIC_CLEARED_TIME_ATTACK_SHINY_GOLD = "1-K Platform Panic cleared (Time Attack) [Shiny Gold]"
 
 
     BEACH_PUZZLE_BUNDLE = "Beach Puzzle Bundle"
@@ -513,7 +513,7 @@ class Location:
     BEACH_CLEARED_TIME_ATTACK_BRONZE = "Beach cleared (Time Attack) [Bronze]"
     BEACH_CLEARED_TIME_ATTACK_SILVER = "Beach cleared (Time Attack) [Silver]"
     BEACH_CLEARED_TIME_ATTACK_GOLD = "Beach cleared (Time Attack) [Gold]"
-    BEACH_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-1 Poppin' Planks cleared (Time Attack) [Shiny Gold]"
+    BEACH_CLEARED_TIME_ATTACK_SHINY_GOLD = "Beach cleared (Time Attack) [Shiny Gold]"
 
     BEACH_SHOP_KEY = "Beach Shop Key"
     BEACH_SHOP_BALLOONSX1 = "Beach Shop Balloon x 1"
@@ -536,7 +536,7 @@ class Location:
     POPPIN_PLANKS_CLEARED_TIME_ATTACK_BRONZE = "2-1 Poppin' Planks cleared (Time Attack) [Bronze]"
     POPPIN_PLANKS_CLEARED_TIME_ATTACK_SILVER = "2-1 Poppin' Planks cleared (Time Attack) [Silver]"
     POPPIN_PLANKS_CLEARED_TIME_ATTACK_GOLD = "2-1 Poppin' Planks cleared (Time Attack) [Gold]"
-    POPPIN_PLANKS_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-2 Sloppy Sands cleared (Time Attack) [Shiny Gold]"
+    POPPIN_PLANKS_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-1 Poppin' Planks cleared (Time Attack) [Shiny Gold]"
 
 
     SLOPPY_SANDS_PUZZLE_PIECE_1 = "2-2 Sloppy Sands Puzzle Piece (1)"
@@ -557,7 +557,7 @@ class Location:
     SLOPPY_SANDS_CLEARED_TIME_ATTACK_BRONZE = "2-2 Sloppy Sands cleared (Time Attack) [Bronze]"
     SLOPPY_SANDS_CLEARED_TIME_ATTACK_SILVER = "2-2 Sloppy Sands cleared (Time Attack) [Silver]"
     SLOPPY_SANDS_CLEARED_TIME_ATTACK_GOLD = "2-2 Sloppy Sands cleared (Time Attack) [Gold]"
-    SLOPPY_SANDS_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-3 Peaceful Pier cleared (Time Attack) [Shiny Gold]"
+    SLOPPY_SANDS_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-2 Sloppy Sands cleared (Time Attack) [Shiny Gold]"
 
 
     PEACEFUL_PIER_PUZZLE_PIECE_1 = "2-3 Peaceful Pier Puzzle Piece (1)"
@@ -576,7 +576,7 @@ class Location:
     PEACEFUL_PIER_CLEARED_TIME_ATTACK_BRONZE = "2-3 Peaceful Pier cleared (Time Attack) [Bronze]"
     PEACEFUL_PIER_CLEARED_TIME_ATTACK_SILVER = "2-3 Peaceful Pier cleared (Time Attack) [Silver]"
     PEACEFUL_PIER_CLEARED_TIME_ATTACK_GOLD = "2-3 Peaceful Pier cleared (Time Attack) [Gold]"
-    PEACEFUL_PIER_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-4 Cannon Cluster cleared (Time Attack) [Shiny Gold]"
+    PEACEFUL_PIER_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-3 Peaceful Pier cleared (Time Attack) [Shiny Gold]"
 
 
     CANNON_CLUSTER_PUZZLE_PIECE_1 = "2-4 Cannon Cluster Puzzle Piece (1)"
@@ -597,7 +597,7 @@ class Location:
     CANNON_CLUSTER_CLEARED_TIME_ATTACK_BRONZE = "2-4 Cannon Cluster cleared (Time Attack) [Bronze]"
     CANNON_CLUSTER_CLEARED_TIME_ATTACK_SILVER = "2-4 Cannon Cluster cleared (Time Attack) [Silver]"
     CANNON_CLUSTER_CLEARED_TIME_ATTACK_GOLD = "2-4 Cannon Cluster cleared (Time Attack) [Gold]"
-    CANNON_CLUSTER_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-5 Stormy Shore cleared (Time Attack) [Shiny Gold]"
+    CANNON_CLUSTER_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-4 Cannon Cluster cleared (Time Attack) [Shiny Gold]"
 
 
     STORMY_SHORE_PUZZLE_PIECE_1 = "2-5 Stormy Shore Puzzle Piece (1)"
@@ -616,7 +616,7 @@ class Location:
     STORMY_SHORE_CLEARED_TIME_ATTACK_BRONZE = "2-5 Stormy Shore cleared (Time Attack) [Bronze]"
     STORMY_SHORE_CLEARED_TIME_ATTACK_SILVER = "2-5 Stormy Shore cleared (Time Attack) [Silver]"
     STORMY_SHORE_CLEARED_TIME_ATTACK_GOLD = "2-5 Stormy Shore cleared (Time Attack) [Gold]"
-    STORMY_SHORE_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-6 Blowhole Bound cleared (Time Attack) [Shiny Gold]"
+    STORMY_SHORE_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-5 Stormy Shore cleared (Time Attack) [Shiny Gold]"
 
 
     BLOWHOLE_BOUND_PUZZLE_PIECE_1 = "2-6 Blowhole Bound Puzzle Piece (1)"
@@ -635,7 +635,7 @@ class Location:
     BLOWHOLE_BOUND_CLEARED_TIME_ATTACK_BRONZE = "2-6 Blowhole Bound cleared (Time Attack) [Bronze]"
     BLOWHOLE_BOUND_CLEARED_TIME_ATTACK_SILVER = "2-6 Blowhole Bound cleared (Time Attack) [Silver]"
     BLOWHOLE_BOUND_CLEARED_TIME_ATTACK_GOLD = "2-6 Blowhole Bound cleared (Time Attack) [Gold]"
-    BLOWHOLE_BOUND_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-7 Tidal Terror cleared (Time Attack) [Shiny Gold]"
+    BLOWHOLE_BOUND_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-6 Blowhole Bound cleared (Time Attack) [Shiny Gold]"
 
 
     TIDAL_TERROR_PUZZLE_PIECE_1 = "2-7 Tidal Terror Puzzle Piece (1)"
@@ -654,7 +654,7 @@ class Location:
     TIDAL_TERROR_CLEARED_TIME_ATTACK_BRONZE = "2-7 Tidal Terror cleared (Time Attack) [Bronze]"
     TIDAL_TERROR_CLEARED_TIME_ATTACK_SILVER = "2-7 Tidal Terror cleared (Time Attack) [Silver]"
     TIDAL_TERROR_CLEARED_TIME_ATTACK_GOLD = "2-7 Tidal Terror cleared (Time Attack) [Gold]"
-    TIDAL_TERROR_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-B Pinchin' Pirates cleared (Time Attack) [Shiny Gold]"
+    TIDAL_TERROR_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-7 Tidal Terror cleared (Time Attack) [Shiny Gold]"
 
 
     PINCHIN_PIRATES_EVENT = "2-B Pinchin' Pirates event"
@@ -663,7 +663,7 @@ class Location:
     PINCHIN_PIRATES_CLEARED_TIME_ATTACK_BRONZE = "2-B Pinchin' Pirates cleared (Time Attack) [Bronze]"
     PINCHIN_PIRATES_CLEARED_TIME_ATTACK_SILVER = "2-B Pinchin' Pirates cleared (Time Attack) [Silver]"
     PINCHIN_PIRATES_CLEARED_TIME_ATTACK_GOLD = "2-B Pinchin' Pirates cleared (Time Attack) [Gold]"
-    PINCHIN_PIRATES_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-K Tumblin' Temple cleared (Time Attack) [Shiny Gold]"
+    PINCHIN_PIRATES_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-B Pinchin' Pirates cleared (Time Attack) [Shiny Gold]"
 
 
     TUMBLIN_TEMPLE_PUZZLE_PIECE_1 = "2-K Tumblin' Temple Puzzle Piece (1)"
@@ -678,7 +678,7 @@ class Location:
     TUMBLIN_TEMPLE_CLEARED_TIME_ATTACK_BRONZE = "2-K Tumblin' Temple cleared (Time Attack) [Bronze]"
     TUMBLIN_TEMPLE_CLEARED_TIME_ATTACK_SILVER = "2-K Tumblin' Temple cleared (Time Attack) [Silver]"
     TUMBLIN_TEMPLE_CLEARED_TIME_ATTACK_GOLD = "2-K Tumblin' Temple cleared (Time Attack) [Gold]"
-    TUMBLIN_TEMPLE_CLEARED_TIME_ATTACK_SHINY_GOLD = "Ruins cleared (Time Attack) [Shiny Gold]"
+    TUMBLIN_TEMPLE_CLEARED_TIME_ATTACK_SHINY_GOLD = "2-K Tumblin' Temple cleared (Time Attack) [Shiny Gold]"
 
 
     RUINS_PUZZLE_BUNDLE = "Ruins Puzzle Bundle"
@@ -688,7 +688,7 @@ class Location:
     RUINS_CLEARED_TIME_ATTACK_BRONZE = "Ruins cleared (Time Attack) [Bronze]"
     RUINS_CLEARED_TIME_ATTACK_SILVER = "Ruins cleared (Time Attack) [Silver]"
     RUINS_CLEARED_TIME_ATTACK_GOLD = "Ruins cleared (Time Attack) [Gold]"
-    RUINS_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-1 Wonky Waterway cleared (Time Attack) [Shiny Gold]"
+    RUINS_CLEARED_TIME_ATTACK_SHINY_GOLD = "Ruins cleared (Time Attack) [Shiny Gold]"
 
     RUINS_SHOP_KEY = "Ruins Shop Key"
     RUINS_SHOP_BALLOONSX1 = "Ruins Shop Balloon x 1"
@@ -713,7 +713,7 @@ class Location:
     WONKY_WATERWAY_CLEARED_TIME_ATTACK_BRONZE = "3-1 Wonky Waterway cleared (Time Attack) [Bronze]"
     WONKY_WATERWAY_CLEARED_TIME_ATTACK_SILVER = "3-1 Wonky Waterway cleared (Time Attack) [Silver]"
     WONKY_WATERWAY_CLEARED_TIME_ATTACK_GOLD = "3-1 Wonky Waterway cleared (Time Attack) [Gold]"
-    WONKY_WATERWAY_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-2 Button Bash cleared (Time Attack) [Shiny Gold]"
+    WONKY_WATERWAY_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-1 Wonky Waterway cleared (Time Attack) [Shiny Gold]"
 
 
     BUTTON_BASH_PUZZLE_PIECE_1 = "3-2 Button Bash Puzzle Piece (1)"
@@ -734,7 +734,7 @@ class Location:
     BUTTON_BASH_CLEARED_TIME_ATTACK_BRONZE = "3-2 Button Bash cleared (Time Attack) [Bronze]"
     BUTTON_BASH_CLEARED_TIME_ATTACK_SILVER = "3-2 Button Bash cleared (Time Attack) [Silver]"
     BUTTON_BASH_CLEARED_TIME_ATTACK_GOLD = "3-2 Button Bash cleared (Time Attack) [Gold]"
-    BUTTON_BASH_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-3 Mast Blast cleared (Time Attack) [Shiny Gold]"
+    BUTTON_BASH_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-2 Button Bash cleared (Time Attack) [Shiny Gold]"
 
 
     MAST_BLAST_PUZZLE_PIECE_1 = "3-3 Mast Blast Puzzle Piece (1)"
@@ -755,7 +755,7 @@ class Location:
     MAST_BLAST_CLEARED_TIME_ATTACK_BRONZE = "3-3 Mast Blast cleared (Time Attack) [Bronze]"
     MAST_BLAST_CLEARED_TIME_ATTACK_SILVER = "3-3 Mast Blast cleared (Time Attack) [Silver]"
     MAST_BLAST_CLEARED_TIME_ATTACK_GOLD = "3-3 Mast Blast cleared (Time Attack) [Gold]"
-    MAST_BLAST_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-4 Damp Dungeon cleared (Time Attack) [Shiny Gold]"
+    MAST_BLAST_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-3 Mast Blast cleared (Time Attack) [Shiny Gold]"
 
 
     DAMP_DUNGEON_PUZZLE_PIECE_1 = "3-4 Damp Dungeon Puzzle Piece (1)"
@@ -778,7 +778,7 @@ class Location:
     DAMP_DUNGEON_CLEARED_TIME_ATTACK_BRONZE = "3-4 Damp Dungeon cleared (Time Attack) [Bronze]"
     DAMP_DUNGEON_CLEARED_TIME_ATTACK_SILVER = "3-4 Damp Dungeon cleared (Time Attack) [Silver]"
     DAMP_DUNGEON_CLEARED_TIME_ATTACK_GOLD = "3-4 Damp Dungeon cleared (Time Attack) [Gold]"
-    DAMP_DUNGEON_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-5 Itty Bitty Biters cleared (Time Attack) [Shiny Gold]"
+    DAMP_DUNGEON_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-4 Damp Dungeon cleared (Time Attack) [Shiny Gold]"
 
 
     ITTY_BITTY_BITERS_PUZZLE_PIECE_1 = "3-5 Itty Bitty Biters Puzzle Piece (1)"
@@ -799,7 +799,7 @@ class Location:
     ITTY_BITTY_BITERS_CLEARED_TIME_ATTACK_BRONZE = "3-5 Itty Bitty Biters cleared (Time Attack) [Bronze]"
     ITTY_BITTY_BITERS_CLEARED_TIME_ATTACK_SILVER = "3-5 Itty Bitty Biters cleared (Time Attack) [Silver]"
     ITTY_BITTY_BITERS_CLEARED_TIME_ATTACK_GOLD = "3-5 Itty Bitty Biters cleared (Time Attack) [Gold]"
-    ITTY_BITTY_BITERS_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-6 Temple Topple cleared (Time Attack) [Shiny Gold]"
+    ITTY_BITTY_BITERS_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-5 Itty Bitty Biters cleared (Time Attack) [Shiny Gold]"
 
 
     TEMPLE_TOPPLE_PUZZLE_PIECE_1 = "3-6 Temple Topple Puzzle Piece (1)"
@@ -818,7 +818,7 @@ class Location:
     TEMPLE_TOPPLE_CLEARED_TIME_ATTACK_BRONZE = "3-6 Temple Topple cleared (Time Attack) [Bronze]"
     TEMPLE_TOPPLE_CLEARED_TIME_ATTACK_SILVER = "3-6 Temple Topple cleared (Time Attack) [Silver]"
     TEMPLE_TOPPLE_CLEARED_TIME_ATTACK_GOLD = "3-6 Temple Topple cleared (Time Attack) [Gold]"
-    TEMPLE_TOPPLE_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-B Ruined Roost cleared (Time Attack) [Shiny Gold]"
+    TEMPLE_TOPPLE_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-6 Temple Topple cleared (Time Attack) [Shiny Gold]"
 
 
     RUINED_ROOST_EVENT = "3-B Ruined Roost event"
@@ -827,7 +827,7 @@ class Location:
     RUINED_ROOST_CLEARED_TIME_ATTACK_BRONZE = "3-B Ruined Roost cleared (Time Attack) [Bronze]"
     RUINED_ROOST_CLEARED_TIME_ATTACK_SILVER = "3-B Ruined Roost cleared (Time Attack) [Silver]"
     RUINED_ROOST_CLEARED_TIME_ATTACK_GOLD = "3-B Ruined Roost cleared (Time Attack) [Gold]"
-    RUINED_ROOST_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-K Shifty Smashers cleared (Time Attack) [Shiny Gold]"
+    RUINED_ROOST_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-B Ruined Roost cleared (Time Attack) [Shiny Gold]"
 
 
     SHIFTY_SMASHERS_PUZZLE_PIECE_1 = "3-K Shifty Smashers Puzzle Piece (1)"
@@ -842,7 +842,7 @@ class Location:
     SHIFTY_SMASHERS_CLEARED_TIME_ATTACK_BRONZE = "3-K Shifty Smashers cleared (Time Attack) [Bronze]"
     SHIFTY_SMASHERS_CLEARED_TIME_ATTACK_SILVER = "3-K Shifty Smashers cleared (Time Attack) [Silver]"
     SHIFTY_SMASHERS_CLEARED_TIME_ATTACK_GOLD = "3-K Shifty Smashers cleared (Time Attack) [Gold]"
-    SHIFTY_SMASHERS_CLEARED_TIME_ATTACK_SHINY_GOLD = "Cave cleared (Time Attack) [Shiny Gold]"
+    SHIFTY_SMASHERS_CLEARED_TIME_ATTACK_SHINY_GOLD = "3-K Shifty Smashers cleared (Time Attack) [Shiny Gold]"
 
 
     CAVE_PUZZLE_BUNDLE = "Cave Puzzle Bundle"
@@ -852,7 +852,7 @@ class Location:
     CAVE_CLEARED_TIME_ATTACK_BRONZE = "Cave cleared (Time Attack) [Bronze]"
     CAVE_CLEARED_TIME_ATTACK_SILVER = "Cave cleared (Time Attack) [Silver]"
     CAVE_CLEARED_TIME_ATTACK_GOLD = "Cave cleared (Time Attack) [Gold]"
-    CAVE_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-1 Rickety Rails cleared (Time Attack) [Shiny Gold]"
+    CAVE_CLEARED_TIME_ATTACK_SHINY_GOLD = "Cave cleared (Time Attack) [Shiny Gold]"
 
 
     CAVE_SHOP_KEY = "Cave Shop Key"
@@ -876,7 +876,7 @@ class Location:
     RICKETY_RAILS_CLEARED_TIME_ATTACK_BRONZE = "4-1 Rickety Rails cleared (Time Attack) [Bronze]"
     RICKETY_RAILS_CLEARED_TIME_ATTACK_SILVER = "4-1 Rickety Rails cleared (Time Attack) [Silver]"
     RICKETY_RAILS_CLEARED_TIME_ATTACK_GOLD = "4-1 Rickety Rails cleared (Time Attack) [Gold]"
-    RICKETY_RAILS_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-2 Grip 'n' Trip cleared (Time Attack) [Shiny Gold]"
+    RICKETY_RAILS_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-1 Rickety Rails cleared (Time Attack) [Shiny Gold]"
 
 
     GRIP_N_TRIP_PUZZLE_PIECE_1 = "4-2 Grip 'n' Trip Puzzle Piece (1)"
@@ -895,7 +895,7 @@ class Location:
     GRIP_N_TRIP_CLEARED_TIME_ATTACK_BRONZE = "4-2 Grip 'n' Trip cleared (Time Attack) [Bronze]"
     GRIP_N_TRIP_CLEARED_TIME_ATTACK_SILVER = "4-2 Grip 'n' Trip cleared (Time Attack) [Silver]"
     GRIP_N_TRIP_CLEARED_TIME_ATTACK_GOLD = "4-2 Grip 'n' Trip cleared (Time Attack) [Gold]"
-    GRIP_N_TRIP_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-3 Bombs Away cleared (Time Attack) [Shiny Gold]"
+    GRIP_N_TRIP_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-2 Grip 'n' Trip cleared (Time Attack) [Shiny Gold]"
 
 
     BOMBS_AWAY_PUZZLE_PIECE_1 = "4-3 Bombs Away Puzzle Piece (1)"
@@ -914,7 +914,7 @@ class Location:
     BOMBS_AWAY_CLEARED_TIME_ATTACK_BRONZE = "4-3 Bombs Away cleared (Time Attack) [Bronze]"
     BOMBS_AWAY_CLEARED_TIME_ATTACK_SILVER = "4-3 Bombs Away cleared (Time Attack) [Silver]"
     BOMBS_AWAY_CLEARED_TIME_ATTACK_GOLD = "4-3 Bombs Away cleared (Time Attack) [Gold]"
-    BOMBS_AWAY_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-4 Mole Patrol cleared (Time Attack) [Shiny Gold]"
+    BOMBS_AWAY_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-3 Bombs Away cleared (Time Attack) [Shiny Gold]"
 
 
     MOLE_PATROL_PUZZLE_PIECE_1 = "4-4 Mole Patrol Puzzle Piece (1)"
@@ -933,7 +933,7 @@ class Location:
     MOLE_PATROL_CLEARED_TIME_ATTACK_BRONZE = "4-4 Mole Patrol cleared (Time Attack) [Bronze]"
     MOLE_PATROL_CLEARED_TIME_ATTACK_SILVER = "4-4 Mole Patrol cleared (Time Attack) [Silver]"
     MOLE_PATROL_CLEARED_TIME_ATTACK_GOLD = "4-4 Mole Patrol cleared (Time Attack) [Gold]"
-    MOLE_PATROL_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-5 Crowded Cavern cleared (Time Attack) [Shiny Gold]"
+    MOLE_PATROL_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-4 Mole Patrol cleared (Time Attack) [Shiny Gold]"
 
 
     CROWDED_CAVERN_PUZZLE_PIECE_1 = "4-5 Crowded Cavern Puzzle Piece (1)"
@@ -952,7 +952,7 @@ class Location:
     CROWDED_CAVERN_CLEARED_TIME_ATTACK_BRONZE = "4-5 Crowded Cavern cleared (Time Attack) [Bronze]"
     CROWDED_CAVERN_CLEARED_TIME_ATTACK_SILVER = "4-5 Crowded Cavern cleared (Time Attack) [Silver]"
     CROWDED_CAVERN_CLEARED_TIME_ATTACK_GOLD = "4-5 Crowded Cavern cleared (Time Attack) [Gold]"
-    CROWDED_CAVERN_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-B The Mole Train cleared (Time Attack) [Shiny Gold]"
+    CROWDED_CAVERN_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-5 Crowded Cavern cleared (Time Attack) [Shiny Gold]"
 
 
     THE_MOLE_TRAIN_EVENT = "4-B The Mole Train event"
@@ -961,7 +961,7 @@ class Location:
     THE_MOLE_TRAIN_CLEARED_TIME_ATTACK_BRONZE = "4-B The Mole Train cleared (Time Attack) [Bronze]"
     THE_MOLE_TRAIN_CLEARED_TIME_ATTACK_SILVER = "4-B The Mole Train cleared (Time Attack) [Silver]"
     THE_MOLE_TRAIN_CLEARED_TIME_ATTACK_GOLD = "4-B The Mole Train cleared (Time Attack) [Gold]"
-    THE_MOLE_TRAIN_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-K Jagged Jewels cleared (Time Attack) [Shiny Gold]"
+    THE_MOLE_TRAIN_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-B The Mole Train cleared (Time Attack) [Shiny Gold]"
 
 
     JAGGED_JEWELS_PUZZLE_PIECE_1 = "4-K Jagged Jewels Puzzle Piece (1)"
@@ -976,7 +976,7 @@ class Location:
     JAGGED_JEWELS_CLEARED_TIME_ATTACK_BRONZE = "4-K Jagged Jewels cleared (Time Attack) [Bronze]"
     JAGGED_JEWELS_CLEARED_TIME_ATTACK_SILVER = "4-K Jagged Jewels cleared (Time Attack) [Silver]"
     JAGGED_JEWELS_CLEARED_TIME_ATTACK_GOLD = "4-K Jagged Jewels cleared (Time Attack) [Gold]"
-    JAGGED_JEWELS_CLEARED_TIME_ATTACK_SHINY_GOLD = "Forest cleared (Time Attack) [Shiny Gold]"
+    JAGGED_JEWELS_CLEARED_TIME_ATTACK_SHINY_GOLD = "4-K Jagged Jewels cleared (Time Attack) [Shiny Gold]"
 
 
     FOREST_PUZZLE_BUNDLE = "Forest Puzzle Bundle"
@@ -986,7 +986,7 @@ class Location:
     FOREST_CLEARED_TIME_ATTACK_BRONZE = "Forest cleared (Time Attack) [Bronze]"
     FOREST_CLEARED_TIME_ATTACK_SILVER = "Forest cleared (Time Attack) [Silver]"
     FOREST_CLEARED_TIME_ATTACK_GOLD = "Forest cleared (Time Attack) [Gold]"
-    FOREST_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-1 Vine Valley cleared (Time Attack) [Shiny Gold]"
+    FOREST_CLEARED_TIME_ATTACK_SHINY_GOLD = "Forest cleared (Time Attack) [Shiny Gold]"
 
     FOREST_SHOP_KEY = "Forest Shop Key"
     FOREST_SHOP_BALLOONSX1 = "Forest Shop Balloon x 1"
@@ -1011,7 +1011,7 @@ class Location:
     VINE_VALLEY_CLEARED_TIME_ATTACK_BRONZE = "5-1 Vine Valley cleared (Time Attack) [Bronze]"
     VINE_VALLEY_CLEARED_TIME_ATTACK_SILVER = "5-1 Vine Valley cleared (Time Attack) [Silver]"
     VINE_VALLEY_CLEARED_TIME_ATTACK_GOLD = "5-1 Vine Valley cleared (Time Attack) [Gold]"
-    VINE_VALLEY_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-2 Clingy Swingy cleared (Time Attack) [Shiny Gold]"
+    VINE_VALLEY_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-1 Vine Valley cleared (Time Attack) [Shiny Gold]"
 
 
     CLINGY_SWINGY_PUZZLE_PIECE_1 = "5-2 Clingy Swingy Puzzle Piece (1)"
@@ -1030,7 +1030,7 @@ class Location:
     CLINGY_SWINGY_CLEARED_TIME_ATTACK_BRONZE = "5-2 Clingy Swingy cleared (Time Attack) [Bronze]"
     CLINGY_SWINGY_CLEARED_TIME_ATTACK_SILVER = "5-2 Clingy Swingy cleared (Time Attack) [Silver]"
     CLINGY_SWINGY_CLEARED_TIME_ATTACK_GOLD = "5-2 Clingy Swingy cleared (Time Attack) [Gold]"
-    CLINGY_SWINGY_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-3 Flutter Flyaway cleared (Time Attack) [Shiny Gold]"
+    CLINGY_SWINGY_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-2 Clingy Swingy cleared (Time Attack) [Shiny Gold]"
 
 
     FLUTTER_FLYAWAY_PUZZLE_PIECE_1 = "5-3 Flutter Flyaway Puzzle Piece (1)"
@@ -1051,7 +1051,7 @@ class Location:
     FLUTTER_FLYAWAY_CLEARED_TIME_ATTACK_BRONZE = "5-3 Flutter Flyaway cleared (Time Attack) [Bronze]"
     FLUTTER_FLYAWAY_CLEARED_TIME_ATTACK_SILVER = "5-3 Flutter Flyaway cleared (Time Attack) [Silver]"
     FLUTTER_FLYAWAY_CLEARED_TIME_ATTACK_GOLD = "5-3 Flutter Flyaway cleared (Time Attack) [Gold]"
-    FLUTTER_FLYAWAY_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-4 Tippin' Totems cleared (Time Attack) [Shiny Gold]"
+    FLUTTER_FLYAWAY_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-3 Flutter Flyaway cleared (Time Attack) [Shiny Gold]"
 
 
     TIPPIN_TOTEMS_PUZZLE_PIECE_1 = "5-4 Tippin' Totems Puzzle Piece (1)"
@@ -1072,7 +1072,7 @@ class Location:
     TIPPIN_TOTEMS_CLEARED_TIME_ATTACK_BRONZE = "5-4 Tippin' Totems cleared (Time Attack) [Bronze]"
     TIPPIN_TOTEMS_CLEARED_TIME_ATTACK_SILVER = "5-4 Tippin' Totems cleared (Time Attack) [Silver]"
     TIPPIN_TOTEMS_CLEARED_TIME_ATTACK_GOLD = "5-4 Tippin' Totems cleared (Time Attack) [Gold]"
-    TIPPIN_TOTEMS_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-5 Longshot Launch cleared (Time Attack) [Shiny Gold]"
+    TIPPIN_TOTEMS_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-4 Tippin' Totems cleared (Time Attack) [Shiny Gold]"
 
 
     LONGSHOT_LAUNCH_PUZZLE_PIECE_1 = "5-5 Longshot Launch Puzzle Piece (1)"
@@ -1093,7 +1093,7 @@ class Location:
     LONGSHOT_LAUNCH_CLEARED_TIME_ATTACK_BRONZE = "5-5 Longshot Launch cleared (Time Attack) [Bronze]"
     LONGSHOT_LAUNCH_CLEARED_TIME_ATTACK_SILVER = "5-5 Longshot Launch cleared (Time Attack) [Silver]"
     LONGSHOT_LAUNCH_CLEARED_TIME_ATTACK_GOLD = "5-5 Longshot Launch cleared (Time Attack) [Gold]"
-    LONGSHOT_LAUNCH_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-6 Springy Spores cleared (Time Attack) [Shiny Gold]"
+    LONGSHOT_LAUNCH_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-5 Longshot Launch cleared (Time Attack) [Shiny Gold]"
 
 
     SPRINGY_SPORES_PUZZLE_PIECE_1 = "5-6 Springy Spores Puzzle Piece (1)"
@@ -1114,7 +1114,7 @@ class Location:
     SPRINGY_SPORES_CLEARED_TIME_ATTACK_BRONZE = "5-6 Springy Spores cleared (Time Attack) [Bronze]"
     SPRINGY_SPORES_CLEARED_TIME_ATTACK_SILVER = "5-6 Springy Spores cleared (Time Attack) [Silver]"
     SPRINGY_SPORES_CLEARED_TIME_ATTACK_GOLD = "5-6 Springy Spores cleared (Time Attack) [Gold]"
-    SPRINGY_SPORES_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-7 Wigglevine Wonders cleared (Time Attack) [Shiny Gold]"
+    SPRINGY_SPORES_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-6 Springy Spores cleared (Time Attack) [Shiny Gold]"
 
 
     WIGGLEVINE_WONDERS_PUZZLE_PIECE_1 = "5-7 Wigglevine Wonders Puzzle Piece (1)"
@@ -1135,7 +1135,7 @@ class Location:
     WIGGLEVINE_WONDERS_CLEARED_TIME_ATTACK_BRONZE = "5-7 Wigglevine Wonders cleared (Time Attack) [Bronze]"
     WIGGLEVINE_WONDERS_CLEARED_TIME_ATTACK_SILVER = "5-7 Wigglevine Wonders cleared (Time Attack) [Silver]"
     WIGGLEVINE_WONDERS_CLEARED_TIME_ATTACK_GOLD = "5-7 Wigglevine Wonders cleared (Time Attack) [Gold]"
-    WIGGLEVINE_WONDERS_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-8 Muncher Marathon cleared (Time Attack) [Shiny Gold]"
+    WIGGLEVINE_WONDERS_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-7 Wigglevine Wonders cleared (Time Attack) [Shiny Gold]"
 
 
     MUNCHER_MARATHON_PUZZLE_PIECE_1 = "5-8 Muncher Marathon Puzzle Piece (1)"
@@ -1154,7 +1154,7 @@ class Location:
     MUNCHER_MARATHON_CLEARED_TIME_ATTACK_BRONZE = "5-8 Muncher Marathon cleared (Time Attack) [Bronze]"
     MUNCHER_MARATHON_CLEARED_TIME_ATTACK_SILVER = "5-8 Muncher Marathon cleared (Time Attack) [Silver]"
     MUNCHER_MARATHON_CLEARED_TIME_ATTACK_GOLD = "5-8 Muncher Marathon cleared (Time Attack) [Gold]"
-    MUNCHER_MARATHON_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-B Mangoruby Run cleared (Time Attack) [Shiny Gold]"
+    MUNCHER_MARATHON_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-8 Muncher Marathon cleared (Time Attack) [Shiny Gold]"
 
 
     MANGORUBY_RUN_EVENT = "5-B Mangoruby Run event"
@@ -1163,7 +1163,7 @@ class Location:
     MANGORUBY_RUN_CLEARED_TIME_ATTACK_BRONZE = "5-B Mangoruby Run cleared (Time Attack) [Bronze]"
     MANGORUBY_RUN_CLEARED_TIME_ATTACK_SILVER = "5-B Mangoruby Run cleared (Time Attack) [Silver]"
     MANGORUBY_RUN_CLEARED_TIME_ATTACK_GOLD = "5-B Mangoruby Run cleared (Time Attack) [Gold]"
-    MANGORUBY_RUN_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-K Blast 'n' Bounce cleared (Time Attack) [Shiny Gold]"
+    MANGORUBY_RUN_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-B Mangoruby Run cleared (Time Attack) [Shiny Gold]"
 
 
     BLAST_N_BOUNCE_PUZZLE_PIECE_1 = "5-K Blast 'n' Bounce Puzzle Piece (1)"
@@ -1178,7 +1178,7 @@ class Location:
     BLAST_N_BOUNCE_CLEARED_TIME_ATTACK_BRONZE = "5-K Blast 'n' Bounce cleared (Time Attack) [Bronze]"
     BLAST_N_BOUNCE_CLEARED_TIME_ATTACK_SILVER = "5-K Blast 'n' Bounce cleared (Time Attack) [Silver]"
     BLAST_N_BOUNCE_CLEARED_TIME_ATTACK_GOLD = "5-K Blast 'n' Bounce cleared (Time Attack) [Gold]"
-    BLAST_N_BOUNCE_CLEARED_TIME_ATTACK_SHINY_GOLD = "Cliff cleared (Time Attack) [Shiny Gold]"
+    BLAST_N_BOUNCE_CLEARED_TIME_ATTACK_SHINY_GOLD = "5-K Blast 'n' Bounce cleared (Time Attack) [Shiny Gold]"
 
 
     CLIFF_PUZZLE_BUNDLE = "Cliff Puzzle Bundle"
@@ -1188,7 +1188,7 @@ class Location:
     CLIFF_CLEARED_TIME_ATTACK_BRONZE = "Cliff cleared (Time Attack) [Bronze]"
     CLIFF_CLEARED_TIME_ATTACK_SILVER = "Cliff cleared (Time Attack) [Silver]"
     CLIFF_CLEARED_TIME_ATTACK_GOLD = "Cliff cleared (Time Attack) [Gold]"
-    CLIFF_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-1 Sticky Situation cleared (Time Attack) [Shiny Gold]"
+    CLIFF_CLEARED_TIME_ATTACK_SHINY_GOLD = "Cliff cleared (Time Attack) [Shiny Gold]"
 
     CLIFF_SHOP_KEY = "Cliff Shop Key"
     CLIFF_SHOP_BALLOONSX1 = "Cliff Shop Balloon x 1"
@@ -1215,7 +1215,7 @@ class Location:
     STICKY_SITUATION_CLEARED_TIME_ATTACK_BRONZE = "6-1 Sticky Situation cleared (Time Attack) [Bronze]"
     STICKY_SITUATION_CLEARED_TIME_ATTACK_SILVER = "6-1 Sticky Situation cleared (Time Attack) [Silver]"
     STICKY_SITUATION_CLEARED_TIME_ATTACK_GOLD = "6-1 Sticky Situation cleared (Time Attack) [Gold]"
-    STICKY_SITUATION_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-2 Prehistoric Path cleared (Time Attack) [Shiny Gold]"
+    STICKY_SITUATION_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-1 Sticky Situation cleared (Time Attack) [Shiny Gold]"
 
 
     PREHISTORIC_PATH_PUZZLE_PIECE_1 = "6-2 Prehistoric Path Puzzle Piece (1)"
@@ -1234,7 +1234,7 @@ class Location:
     PREHISTORIC_PATH_CLEARED_TIME_ATTACK_BRONZE = "6-2 Prehistoric Path cleared (Time Attack) [Bronze]"
     PREHISTORIC_PATH_CLEARED_TIME_ATTACK_SILVER = "6-2 Prehistoric Path cleared (Time Attack) [Silver]"
     PREHISTORIC_PATH_CLEARED_TIME_ATTACK_GOLD = "6-2 Prehistoric Path cleared (Time Attack) [Gold]"
-    PREHISTORIC_PATH_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-3 Weighty Way cleared (Time Attack) [Shiny Gold]"
+    PREHISTORIC_PATH_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-2 Prehistoric Path cleared (Time Attack) [Shiny Gold]"
 
 
     WEIGHTY_WAY_PUZZLE_PIECE_1 = "6-3 Weighty Way Puzzle Piece (1)"
@@ -1253,7 +1253,7 @@ class Location:
     WEIGHTY_WAY_CLEARED_TIME_ATTACK_BRONZE = "6-3 Weighty Way cleared (Time Attack) [Bronze]"
     WEIGHTY_WAY_CLEARED_TIME_ATTACK_SILVER = "6-3 Weighty Way cleared (Time Attack) [Silver]"
     WEIGHTY_WAY_CLEARED_TIME_ATTACK_GOLD = "6-3 Weighty Way cleared (Time Attack) [Gold]"
-    WEIGHTY_WAY_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-4 Boulder Roller cleared (Time Attack) [Shiny Gold]"
+    WEIGHTY_WAY_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-3 Weighty Way cleared (Time Attack) [Shiny Gold]"
 
 
     BOULDER_ROLLER_PUZZLE_PIECE_1 = "6-4 Boulder Roller Puzzle Piece (1)"
@@ -1274,7 +1274,7 @@ class Location:
     BOULDER_ROLLER_CLEARED_TIME_ATTACK_BRONZE = "6-4 Boulder Roller cleared (Time Attack) [Bronze]"
     BOULDER_ROLLER_CLEARED_TIME_ATTACK_SILVER = "6-4 Boulder Roller cleared (Time Attack) [Silver]"
     BOULDER_ROLLER_CLEARED_TIME_ATTACK_GOLD = "6-4 Boulder Roller cleared (Time Attack) [Gold]"
-    BOULDER_ROLLER_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-5 Precarious Plateau cleared (Time Attack) [Shiny Gold]"
+    BOULDER_ROLLER_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-4 Boulder Roller cleared (Time Attack) [Shiny Gold]"
 
 
     PRECARIOUS_PLATEAU_PUZZLE_PIECE_1 = "6-5 Precarious Plateau Puzzle Piece (1)"
@@ -1293,7 +1293,7 @@ class Location:
     PRECARIOUS_PLATEAU_CLEARED_TIME_ATTACK_BRONZE = "6-5 Precarious Plateau cleared (Time Attack) [Bronze]"
     PRECARIOUS_PLATEAU_CLEARED_TIME_ATTACK_SILVER = "6-5 Precarious Plateau cleared (Time Attack) [Silver]"
     PRECARIOUS_PLATEAU_CLEARED_TIME_ATTACK_GOLD = "6-5 Precarious Plateau cleared (Time Attack) [Gold]"
-    PRECARIOUS_PLATEAU_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-6 Crumble Canyon cleared (Time Attack) [Shiny Gold]"
+    PRECARIOUS_PLATEAU_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-5 Precarious Plateau cleared (Time Attack) [Shiny Gold]"
 
 
     CRUMBLE_CANYON_PUZZLE_PIECE_1 = "6-6 Crumble Canyon Puzzle Piece (1)"
@@ -1316,7 +1316,7 @@ class Location:
     CRUMBLE_CANYON_CLEARED_TIME_ATTACK_BRONZE = "6-6 Crumble Canyon cleared (Time Attack) [Bronze]"
     CRUMBLE_CANYON_CLEARED_TIME_ATTACK_SILVER = "6-6 Crumble Canyon cleared (Time Attack) [Silver]"
     CRUMBLE_CANYON_CLEARED_TIME_ATTACK_GOLD = "6-6 Crumble Canyon cleared (Time Attack) [Gold]"
-    CRUMBLE_CANYON_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-7 Tippy Shippy cleared (Time Attack) [Shiny Gold]"
+    CRUMBLE_CANYON_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-6 Crumble Canyon cleared (Time Attack) [Shiny Gold]"
 
 
     TIPPY_SHIPPY_PUZZLE_PIECE_1 = "6-7 Tippy Shippy Puzzle Piece (1)"
@@ -1335,7 +1335,7 @@ class Location:
     TIPPY_SHIPPY_CLEARED_TIME_ATTACK_BRONZE = "6-7 Tippy Shippy cleared (Time Attack) [Bronze]"
     TIPPY_SHIPPY_CLEARED_TIME_ATTACK_SILVER = "6-7 Tippy Shippy cleared (Time Attack) [Silver]"
     TIPPY_SHIPPY_CLEARED_TIME_ATTACK_GOLD = "6-7 Tippy Shippy cleared (Time Attack) [Gold]"
-    TIPPY_SHIPPY_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-8 Clifftop Climb cleared (Time Attack) [Shiny Gold]"
+    TIPPY_SHIPPY_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-7 Tippy Shippy cleared (Time Attack) [Shiny Gold]"
 
 
     CLIFFTOP_CLIMB_PUZZLE_PIECE_1 = "6-8 Clifftop Climb Puzzle Piece (1)"
@@ -1354,7 +1354,7 @@ class Location:
     CLIFFTOP_CLIMB_CLEARED_TIME_ATTACK_BRONZE = "6-8 Clifftop Climb cleared (Time Attack) [Bronze]"
     CLIFFTOP_CLIMB_CLEARED_TIME_ATTACK_SILVER = "6-8 Clifftop Climb cleared (Time Attack) [Silver]"
     CLIFFTOP_CLIMB_CLEARED_TIME_ATTACK_GOLD = "6-8 Clifftop Climb cleared (Time Attack) [Gold]"
-    CLIFFTOP_CLIMB_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-B Thugly's Highrise cleared (Time Attack) [Shiny Gold]"
+    CLIFFTOP_CLIMB_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-8 Clifftop Climb cleared (Time Attack) [Shiny Gold]"
 
 
     THUGLYS_HIGHRISE_EVENT = "6-B Thugly's Highrise event"
@@ -1363,7 +1363,7 @@ class Location:
     THUGLYS_HIGHRISE_CLEARED_TIME_ATTACK_BRONZE = "6-B Thugly's Highrise cleared (Time Attack) [Bronze]"
     THUGLYS_HIGHRISE_CLEARED_TIME_ATTACK_SILVER = "6-B Thugly's Highrise cleared (Time Attack) [Silver]"
     THUGLYS_HIGHRISE_CLEARED_TIME_ATTACK_GOLD = "6-B Thugly's Highrise cleared (Time Attack) [Gold]"
-    THUGLYS_HIGHRISE_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-K Perilous Passage cleared (Time Attack) [Shiny Gold]"
+    THUGLYS_HIGHRISE_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-B Thugly's Highrise cleared (Time Attack) [Shiny Gold]"
 
 
     PERILOUS_PASSAGE_PUZZLE_PIECE_1 = "6-K Perilous Passage Puzzle Piece (1)"
@@ -1378,7 +1378,7 @@ class Location:
     PERILOUS_PASSAGE_CLEARED_TIME_ATTACK_BRONZE = "6-K Perilous Passage cleared (Time Attack) [Bronze]"
     PERILOUS_PASSAGE_CLEARED_TIME_ATTACK_SILVER = "6-K Perilous Passage cleared (Time Attack) [Silver]"
     PERILOUS_PASSAGE_CLEARED_TIME_ATTACK_GOLD = "6-K Perilous Passage cleared (Time Attack) [Gold]"
-    PERILOUS_PASSAGE_CLEARED_TIME_ATTACK_SHINY_GOLD = "Factory cleared (Time Attack) [Shiny Gold]"
+    PERILOUS_PASSAGE_CLEARED_TIME_ATTACK_SHINY_GOLD = "6-K Perilous Passage cleared (Time Attack) [Shiny Gold]"
 
 
     FACTORY_PUZZLE_BUNDLE = "Factory Puzzle Bundle"
@@ -1388,7 +1388,7 @@ class Location:
     FACTORY_CLEARED_TIME_ATTACK_BRONZE = "Factory cleared (Time Attack) [Bronze]"
     FACTORY_CLEARED_TIME_ATTACK_SILVER = "Factory cleared (Time Attack) [Silver]"
     FACTORY_CLEARED_TIME_ATTACK_GOLD = "Factory cleared (Time Attack) [Gold]"
-    FACTORY_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-1 Foggy Fumes cleared (Time Attack) [Shiny Gold]"
+    FACTORY_CLEARED_TIME_ATTACK_SHINY_GOLD = "Factory cleared (Time Attack) [Shiny Gold]"
 
     FACTORY_SHOP_KEY = "Factory Shop Key"
     FACTORY_SHOP_BALLOONSX1 = "Factory Shop Balloon x 1"
@@ -1414,7 +1414,7 @@ class Location:
     FOGGY_FUMES_CLEARED_TIME_ATTACK_BRONZE = "7-1 Foggy Fumes cleared (Time Attack) [Bronze]"
     FOGGY_FUMES_CLEARED_TIME_ATTACK_SILVER = "7-1 Foggy Fumes cleared (Time Attack) [Silver]"
     FOGGY_FUMES_CLEARED_TIME_ATTACK_GOLD = "7-1 Foggy Fumes cleared (Time Attack) [Gold]"
-    FOGGY_FUMES_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-2 Slammin' Steel cleared (Time Attack) [Shiny Gold]"
+    FOGGY_FUMES_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-1 Foggy Fumes cleared (Time Attack) [Shiny Gold]"
 
 
     SLAMMIN_STEEL_PUZZLE_PIECE_1 = "7-2 Slammin' Steel Puzzle Piece (1)"
@@ -1433,7 +1433,7 @@ class Location:
     SLAMMIN_STEEL_CLEARED_TIME_ATTACK_BRONZE = "7-2 Slammin' Steel cleared (Time Attack) [Bronze]"
     SLAMMIN_STEEL_CLEARED_TIME_ATTACK_SILVER = "7-2 Slammin' Steel cleared (Time Attack) [Silver]"
     SLAMMIN_STEEL_CLEARED_TIME_ATTACK_GOLD = "7-2 Slammin' Steel cleared (Time Attack) [Gold]"
-    SLAMMIN_STEEL_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-3 Handy Hazards cleared (Time Attack) [Shiny Gold]"
+    SLAMMIN_STEEL_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-2 Slammin' Steel cleared (Time Attack) [Shiny Gold]"
 
 
     HANDY_HAZARDS_PUZZLE_PIECE_1 = "7-3 Handy Hazards Puzzle Piece (1)"
@@ -1454,7 +1454,7 @@ class Location:
     HANDY_HAZARDS_CLEARED_TIME_ATTACK_BRONZE = "7-3 Handy Hazards cleared (Time Attack) [Bronze]"
     HANDY_HAZARDS_CLEARED_TIME_ATTACK_SILVER = "7-3 Handy Hazards cleared (Time Attack) [Silver]"
     HANDY_HAZARDS_CLEARED_TIME_ATTACK_GOLD = "7-3 Handy Hazards cleared (Time Attack) [Gold]"
-    HANDY_HAZARDS_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-4 Gear Getaway cleared (Time Attack) [Shiny Gold]"
+    HANDY_HAZARDS_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-3 Handy Hazards cleared (Time Attack) [Shiny Gold]"
 
 
     GEAR_GETAWAY_PUZZLE_PIECE_1 = "7-4 Gear Getaway Puzzle Piece (1)"
@@ -1475,7 +1475,7 @@ class Location:
     GEAR_GETAWAY_CLEARED_TIME_ATTACK_BRONZE = "7-4 Gear Getaway cleared (Time Attack) [Bronze]"
     GEAR_GETAWAY_CLEARED_TIME_ATTACK_SILVER = "7-4 Gear Getaway cleared (Time Attack) [Silver]"
     GEAR_GETAWAY_CLEARED_TIME_ATTACK_GOLD = "7-4 Gear Getaway cleared (Time Attack) [Gold]"
-    GEAR_GETAWAY_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-5 Cog Jog cleared (Time Attack) [Shiny Gold]"
+    GEAR_GETAWAY_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-4 Gear Getaway cleared (Time Attack) [Shiny Gold]"
 
 
     COG_JOG_PUZZLE_PIECE_1 = "7-5 Cog Jog Puzzle Piece (1)"
@@ -1498,7 +1498,7 @@ class Location:
     COG_JOG_CLEARED_TIME_ATTACK_BRONZE = "7-5 Cog Jog cleared (Time Attack) [Bronze]"
     COG_JOG_CLEARED_TIME_ATTACK_SILVER = "7-5 Cog Jog cleared (Time Attack) [Silver]"
     COG_JOG_CLEARED_TIME_ATTACK_GOLD = "7-5 Cog Jog cleared (Time Attack) [Gold]"
-    COG_JOG_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-6 Switcheroo cleared (Time Attack) [Shiny Gold]"
+    COG_JOG_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-5 Cog Jog cleared (Time Attack) [Shiny Gold]"
 
 
     SWITCHEROO_PUZZLE_PIECE_1 = "7-6 Switcheroo Puzzle Piece (1)"
@@ -1517,7 +1517,7 @@ class Location:
     SWITCHEROO_CLEARED_TIME_ATTACK_BRONZE = "7-6 Switcheroo cleared (Time Attack) [Bronze]"
     SWITCHEROO_CLEARED_TIME_ATTACK_SILVER = "7-6 Switcheroo cleared (Time Attack) [Silver]"
     SWITCHEROO_CLEARED_TIME_ATTACK_GOLD = "7-6 Switcheroo cleared (Time Attack) [Gold]"
-    SWITCHEROO_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-7 Music Madness cleared (Time Attack) [Shiny Gold]"
+    SWITCHEROO_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-6 Switcheroo cleared (Time Attack) [Shiny Gold]"
 
 
     MUSIC_MADNESS_PUZZLE_PIECE_1 = "7-7 Music Madness Puzzle Piece (1)"
@@ -1536,7 +1536,7 @@ class Location:
     MUSIC_MADNESS_CLEARED_TIME_ATTACK_BRONZE = "7-7 Music Madness cleared (Time Attack) [Bronze]"
     MUSIC_MADNESS_CLEARED_TIME_ATTACK_SILVER = "7-7 Music Madness cleared (Time Attack) [Silver]"
     MUSIC_MADNESS_CLEARED_TIME_ATTACK_GOLD = "7-7 Music Madness cleared (Time Attack) [Gold]"
-    MUSIC_MADNESS_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-B Feather Fiend cleared (Time Attack) [Shiny Gold]"
+    MUSIC_MADNESS_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-7 Music Madness cleared (Time Attack) [Shiny Gold]"
 
 
     LIFT_OFF_LAUNCH_EVENT = "7-R Lift-off Launch event"
@@ -1548,7 +1548,7 @@ class Location:
     FEATHER_FIEND_CLEARED_TIME_ATTACK_BRONZE = "7-B Feather Fiend cleared (Time Attack) [Bronze]"
     FEATHER_FIEND_CLEARED_TIME_ATTACK_SILVER = "7-B Feather Fiend cleared (Time Attack) [Silver]"
     FEATHER_FIEND_CLEARED_TIME_ATTACK_GOLD = "7-B Feather Fiend cleared (Time Attack) [Gold]"
-    FEATHER_FIEND_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-K Treacherous Track cleared (Time Attack) [Shiny Gold]"
+    FEATHER_FIEND_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-B Feather Fiend cleared (Time Attack) [Shiny Gold]"
 
 
     TREACHEROUS_TRACK_PUZZLE_PIECE_1 = "7-K Treacherous Track Puzzle Piece (1)"
@@ -1563,7 +1563,7 @@ class Location:
     TREACHEROUS_TRACK_CLEARED_TIME_ATTACK_BRONZE = "7-K Treacherous Track cleared (Time Attack) [Bronze]"
     TREACHEROUS_TRACK_CLEARED_TIME_ATTACK_SILVER = "7-K Treacherous Track cleared (Time Attack) [Silver]"
     TREACHEROUS_TRACK_CLEARED_TIME_ATTACK_GOLD = "7-K Treacherous Track cleared (Time Attack) [Gold]"
-    TREACHEROUS_TRACK_CLEARED_TIME_ATTACK_SHINY_GOLD = "Volcano cleared (Time Attack) [Shiny Gold]"
+    TREACHEROUS_TRACK_CLEARED_TIME_ATTACK_SHINY_GOLD = "7-K Treacherous Track cleared (Time Attack) [Shiny Gold]"
 
 
     VOLCANO_PUZZLE_BUNDLE = "Volcano Puzzle Bundle"
@@ -1573,7 +1573,7 @@ class Location:
     VOLCANO_CLEARED_TIME_ATTACK_BRONZE = "Volcano cleared (Time Attack) [Bronze]"
     VOLCANO_CLEARED_TIME_ATTACK_SILVER = "Volcano cleared (Time Attack) [Silver]"
     VOLCANO_CLEARED_TIME_ATTACK_GOLD = "Volcano cleared (Time Attack) [Gold]"
-    VOLCANO_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-1 Furious Fire cleared (Time Attack) [Shiny Gold]"
+    VOLCANO_CLEARED_TIME_ATTACK_SHINY_GOLD = "Volcano cleared (Time Attack) [Shiny Gold]"
 
     VOLCANO_SHOP_KEY = "Volcano Shop Key"
     VOLCANO_SHOP_BALLOONSX1 = "Volcano Shop Balloon x 1"
@@ -1596,7 +1596,7 @@ class Location:
     FURIOUS_FIRE_CLEARED_TIME_ATTACK_BRONZE = "8-1 Furious Fire cleared (Time Attack) [Bronze]"
     FURIOUS_FIRE_CLEARED_TIME_ATTACK_SILVER = "8-1 Furious Fire cleared (Time Attack) [Silver]"
     FURIOUS_FIRE_CLEARED_TIME_ATTACK_GOLD = "8-1 Furious Fire cleared (Time Attack) [Gold]"
-    FURIOUS_FIRE_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-2 Hot Rocket cleared (Time Attack) [Shiny Gold]"
+    FURIOUS_FIRE_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-1 Furious Fire cleared (Time Attack) [Shiny Gold]"
 
 
     HOT_ROCKET_PUZZLE_PIECE_1 = "8-2 Hot Rocket Puzzle Piece (1)"
@@ -1615,7 +1615,7 @@ class Location:
     HOT_ROCKET_CLEARED_TIME_ATTACK_BRONZE = "8-2 Hot Rocket cleared (Time Attack) [Bronze]"
     HOT_ROCKET_CLEARED_TIME_ATTACK_SILVER = "8-2 Hot Rocket cleared (Time Attack) [Silver]"
     HOT_ROCKET_CLEARED_TIME_ATTACK_GOLD = "8-2 Hot Rocket cleared (Time Attack) [Gold]"
-    HOT_ROCKET_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-3 Roasting Rails cleared (Time Attack) [Shiny Gold]"
+    HOT_ROCKET_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-2 Hot Rocket cleared (Time Attack) [Shiny Gold]"
 
 
     ROASTING_RAILS_PUZZLE_PIECE_1 = "8-3 Roasting Rails Puzzle Piece (1)"
@@ -1634,7 +1634,7 @@ class Location:
     ROASTING_RAILS_CLEARED_TIME_ATTACK_BRONZE = "8-3 Roasting Rails cleared (Time Attack) [Bronze]"
     ROASTING_RAILS_CLEARED_TIME_ATTACK_SILVER = "8-3 Roasting Rails cleared (Time Attack) [Silver]"
     ROASTING_RAILS_CLEARED_TIME_ATTACK_GOLD = "8-3 Roasting Rails cleared (Time Attack) [Gold]"
-    ROASTING_RAILS_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-4 Smokey Peak cleared (Time Attack) [Shiny Gold]"
+    ROASTING_RAILS_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-3 Roasting Rails cleared (Time Attack) [Shiny Gold]"
 
 
     SMOKEY_PEAK_PUZZLE_PIECE_1 = "8-4 Smokey Peak Puzzle Piece (1)"
@@ -1653,7 +1653,7 @@ class Location:
     SMOKEY_PEAK_CLEARED_TIME_ATTACK_BRONZE = "8-4 Smokey Peak cleared (Time Attack) [Bronze]"
     SMOKEY_PEAK_CLEARED_TIME_ATTACK_SILVER = "8-4 Smokey Peak cleared (Time Attack) [Silver]"
     SMOKEY_PEAK_CLEARED_TIME_ATTACK_GOLD = "8-4 Smokey Peak cleared (Time Attack) [Gold]"
-    SMOKEY_PEAK_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-5 Bobbing Basalt cleared (Time Attack) [Shiny Gold]"
+    SMOKEY_PEAK_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-4 Smokey Peak cleared (Time Attack) [Shiny Gold]"
 
 
     BOBBING_BASALT_PUZZLE_PIECE_1 = "8-5 Bobbing Basalt Puzzle Piece (1)"
@@ -1674,7 +1674,7 @@ class Location:
     BOBBING_BASALT_CLEARED_TIME_ATTACK_BRONZE = "8-5 Bobbing Basalt cleared (Time Attack) [Bronze]"
     BOBBING_BASALT_CLEARED_TIME_ATTACK_SILVER = "8-5 Bobbing Basalt cleared (Time Attack) [Silver]"
     BOBBING_BASALT_CLEARED_TIME_ATTACK_GOLD = "8-5 Bobbing Basalt cleared (Time Attack) [Gold]"
-    BOBBING_BASALT_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-6 Moving Melters cleared (Time Attack) [Shiny Gold]"
+    BOBBING_BASALT_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-5 Bobbing Basalt cleared (Time Attack) [Shiny Gold]"
 
 
     MOVING_MELTERS_PUZZLE_PIECE_1 = "8-6 Moving Melters Puzzle Piece (1)"
@@ -1693,7 +1693,7 @@ class Location:
     MOVING_MELTERS_CLEARED_TIME_ATTACK_BRONZE = "8-6 Moving Melters cleared (Time Attack) [Bronze]"
     MOVING_MELTERS_CLEARED_TIME_ATTACK_SILVER = "8-6 Moving Melters cleared (Time Attack) [Silver]"
     MOVING_MELTERS_CLEARED_TIME_ATTACK_GOLD = "8-6 Moving Melters cleared (Time Attack) [Gold]"
-    MOVING_MELTERS_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-7 Red Red Rising cleared (Time Attack) [Shiny Gold]"
+    MOVING_MELTERS_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-6 Moving Melters cleared (Time Attack) [Shiny Gold]"
 
 
     RED_RED_RISING_PUZZLE_PIECE_1 = "8-7 Red Red Rising Puzzle Piece (1)"
@@ -1712,7 +1712,7 @@ class Location:
     RED_RED_RISING_CLEARED_TIME_ATTACK_BRONZE = "8-7 Red Red Rising cleared (Time Attack) [Bronze]"
     RED_RED_RISING_CLEARED_TIME_ATTACK_SILVER = "8-7 Red Red Rising cleared (Time Attack) [Silver]"
     RED_RED_RISING_CLEARED_TIME_ATTACK_GOLD = "8-7 Red Red Rising cleared (Time Attack) [Gold]"
-    RED_RED_RISING_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-B Tiki Tong Terror cleared (Time Attack) [Shiny Gold]"
+    RED_RED_RISING_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-7 Red Red Rising cleared (Time Attack) [Shiny Gold]"
 
 
     TIKI_TONG_TERROR_EVENT = "8-B Tiki Tong Terror event"
@@ -1721,7 +1721,7 @@ class Location:
     TIKI_TONG_TERROR_CLEARED_TIME_ATTACK_BRONZE = "8-B Tiki Tong Terror cleared (Time Attack) [Bronze]"
     TIKI_TONG_TERROR_CLEARED_TIME_ATTACK_SILVER = "8-B Tiki Tong Terror cleared (Time Attack) [Silver]"
     TIKI_TONG_TERROR_CLEARED_TIME_ATTACK_GOLD = "8-B Tiki Tong Terror cleared (Time Attack) [Gold]"
-    TIKI_TONG_TERROR_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-K Five Monkey Trial cleared (Time Attack) [Shiny Gold]"
+    TIKI_TONG_TERROR_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-B Tiki Tong Terror cleared (Time Attack) [Shiny Gold]"
 
 
     FIVE_MONKEY_TRIAL_PUZZLE_PIECE_1 = "8-K Five Monkey Trial Puzzle Piece (1)"
@@ -1736,7 +1736,7 @@ class Location:
     FIVE_MONKEY_TRIAL_CLEARED_TIME_ATTACK_BRONZE = "8-K Five Monkey Trial cleared (Time Attack) [Bronze]"
     FIVE_MONKEY_TRIAL_CLEARED_TIME_ATTACK_SILVER = "8-K Five Monkey Trial cleared (Time Attack) [Silver]"
     FIVE_MONKEY_TRIAL_CLEARED_TIME_ATTACK_GOLD = "8-K Five Monkey Trial cleared (Time Attack) [Gold]"
-    FIVE_MONKEY_TRIAL_CLEARED_TIME_ATTACK_SHINY_GOLD = "9-1 Golden Temple Cleared (Time Attack) [Shiny Gold]"
+    FIVE_MONKEY_TRIAL_CLEARED_TIME_ATTACK_SHINY_GOLD = "8-K Five Monkey Trial cleared (Time Attack) [Shiny Gold]"
 
 
     GOLDEN_TEMPLE_PUZZLE_PIECE_1 = "9-1 Golden Temple Puzzle Piece (1)"
