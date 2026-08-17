@@ -33,6 +33,7 @@
 *.BIN
 *.puml
 
+worlds/tracker
 setups
 build
 bundle/components.wxs
