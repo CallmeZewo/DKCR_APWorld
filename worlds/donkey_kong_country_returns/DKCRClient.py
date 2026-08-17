@@ -1055,6 +1055,7 @@ async def dolphin_sync_task(ctx: DKCRContext) -> None:
                         for loc_id in await ctx.check_key():
                             await ctx.check_locations([loc_id])
                         await ctx.check_mirror_mode()
+                        ctx.make_level_bitflag()
                     if game_state == STATE_TIME_ATTACK:
                         ctx.exited_level = True
                     if game_state == STATE_IN_LEVEL:
