@@ -1,4 +1,4 @@
-from ..DKCRNameConstants import Level as L
+from ..data.levels import GameLevels as L
 
 EU_OFFSET = -0x1000
 US_REV_1_0_OFFSET = -0x2000
