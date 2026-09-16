@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, TYPE_CHECKING
+from typing import Any
 
 from Options import OptionGroup, PerGameCommonOptions, Range, Toggle, Visibility, Choice, OptionSet, DefaultOnToggle
 
@@ -17,7 +17,6 @@ class GoldenTemple(Toggle):
     Adding the Golden Temple into the item pool.
     """
     display_name = "Golden Temple"
-    visibility = Visibility.none
 
 class RareOrbs(Range):
     """
@@ -30,7 +29,6 @@ class RareOrbs(Range):
     # This value can not exceed 8
 
     default = 8
-    visibility = Visibility.none
 
 class TimeAttackMedals(OptionSet):
     """
@@ -47,6 +45,8 @@ class TimeAttackMedals(OptionSet):
     "Bronzeless", "Silverless", "Goldless", and "Shiny Goldless" restrict the
     random selection pool by excluding those medals. These options have no effect
     unless "RandomAll" or "RandomOne" is selected.
+
+    If Time Attack clear type is not in generation, this option will be disregarded.
     """
 
     display_name = "Time Attack Medals"
@@ -162,22 +162,93 @@ class GroundPound(Toggle):
     visibility = Visibility.none
 
 
-class MirrorMode(Toggle):
+class LevelClearType(OptionSet):
     """
-    Completing a level in Mirror Mode is considered a check.
+    Creates a location for each selected level clear type.
+
+    "Normal", "Time Attack" / "Time" and "Mirror Mode" / "Mirror" always include their respective
+    clear types.
+    "Full" includes all clear types.
+
+    "RandomAll" randomly selects additional clear types from those not already selected.
+    "RandomOne" randomly selects one additional clear type from those not already
+    selected.
+
+    "Normalless", "Time Attackless" / "Timeless" and "Mirror Modeless" / Mirrorless restrict the
+    random selection pool by excluding those clear types. These options have no effect
+    unless "RandomAll" or "RandomOne" is selected.
     """
-    display_name = "Mirror Mode"
+
+    display_name = "Level Clear Type"
+    valid_keys = {
+        "Normal", "Time Attack", "Time", "Mirror Mode", "Mirror", "Full", "RandomAll", "RandomOne",
+        "Normalless", "Time Attackless", "Timeless", "Mirror Modeless", "Mirrorless"
+    }
+    default = {"Normal"}
+
+class KLevel(Toggle):
+    """
+    Creates Locations for the K Levels as well as for every Kong Letter.
+    """
+    display_name = "K Levels and Kong Letters"
+
+class PuzzlePieces(Toggle):
+    """
+    Creates Locations for the Puzzle Pieces as well as setting Puzzle Pieces as a requirement to unlock the bosses.
+    If this option is disabled, "Progressive Boss Unlock" Items will be put in pool instead.
+    """
+    display_name = "Puzzle Pieces and Boss Unlocks"
+
+class WorldPuzzlePieceBundle(Toggle):
+    """
+    Creates locations for each world for getting every puzzle piece location in that world.
+    """
+    display_name = "World Puzzle Piece Bundle"
+    visibility = Visibility.none
+
+class WorldKongBundle(Toggle):
+    """
+    Creates locations for each world for getting every kong letter location in that world.
+    The K Level option takes priority over this.
+    """
+    display_name = "World Kong Bundle"
+    visibility = Visibility.none
+
+class WorldCleared(Toggle):
+    """
+    Creates locations for each world for clearing every level in that world.
+    The "Level Clear Type" option takes priority over this.
+    """
+    display_name = "World Cleared"
+    visibility = Visibility.none
+
+class WorldClearedMirror(Toggle):
+    """
+    Creates locations for each world for clearing every level in mirror mode in that world.
+    The "Level Clear Type" option takes priority over this.
+    """
+    display_name = "World Cleared Mirror"
+    visibility = Visibility.none
+
+class WorldClearedTimeAttack(Toggle):
+    """
+    Creates locations for each world for clearing every level in time attack with the set medal in that world.
+    The "Level Clear Type" option takes priority over this.
+    """
+    display_name = "World Cleared Time Attack"
+    visibility = Visibility.none
 
 
 class MirrorModeShards(Range):
     """
     Decides how many Mirror Shards are needed to unlock Mirror Mode.
     Setting this option to 0 will disable the Mirror Shards and Mirror Mode will get its own item.
+    If Mirror Mode clear type is not in generation is option will be disregarded.
     """
     display_name = "Mirror Mode Shard amount"
 
     range_start = 0
-    range_end = 25
+    range_end = 15
     default = 8
 
 class Squawks(Toggle):
@@ -247,12 +318,12 @@ class SmokeyPeakKey(DefaultOnToggle):
 class JungleBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Jungle.
+    The "Puzzle Piece" option takes priority over this option.
     """
     display_name = "Puzzle Piece requirement for Mugly's Mound"
 
     range_start = 0
-    range_end = 41
-    # This Value can not exceed 41
+    range_end = 40
 
     default = 20
 
@@ -260,92 +331,92 @@ class JungleBossAccess(Range):
 class BeachBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Beach.
+    The "Puzzle Piece" option takes priority over this option.
     """
     display_name = "Puzzle Piece requirement for Pinchin' Pirates"
 
     range_start = 0
-    range_end = 85
-    # This Value can not exceed 85
+    range_end = 80
 
-    default = 50
+    default = 45
 
 
 class RuinsBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Ruins.
+    The "Puzzle Piece" option takes priority over this option.
     """
     display_name = "Puzzle Piece requirement for Ruined Roost"
 
     range_start = 0
-    range_end = 132
-    # This Value can not exceed 132
+    range_end = 120
 
-    default = 80
+    default = 70
 
 
 class CaveBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Cave.
+    The "Puzzle Piece" option takes priority over this option.
     """
     display_name = "Puzzle Piece requirement for The Mole Train"
 
     range_start = 0
-    range_end = 162
-    # This Value can not exceed 162
+    range_end = 160
 
-    default = 110
+    default = 100
 
 
 class ForestBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Forest.
+    The "Puzzle Piece" option takes priority over this option.
     """
     display_name = "Puzzle Piece requirement for Mangoruby Run"
 
     range_start = 0
-    range_end = 219
-    # This Value can not exceed 219
+    range_end = 210
 
-    default = 150
+    default = 135
 
 
 class CliffBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Cliff.
+    The "Puzzle Piece" option takes priority over this option.
     """
     display_name = "Puzzle Piece requirement for Thugly's Highrise"
 
     range_start = 0
-    range_end = 274
-    # This Value can not exceed 274
+    range_end = 260
 
-    default = 200
+    default = 175
 
 
 class FactoryBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Factory.
+    The "Puzzle Piece" option takes priority over this option.
     """
     display_name = "Puzzle Piece requirement for Feather Fiend"
 
     range_start = 0
-    range_end = 324
-    # This Value can not exceed 324
+    range_end = 310
 
-    default = 260
+    default = 225
 
 
 class VolcanoBossAccess(Range):
     """
     Sets the amount of total Puzzle Pieces needed to gain access to the Boss in the Volcano.
+    The "Puzzle Piece" option takes priority over this option.
     """
     display_name = "Puzzle Piece requirement for Tiki Tong Terror"
 
     range_start = 0
-    range_end = 371
-    # This Value can not exceed 371
+    range_end = 340
 
-    default = 320
+    default = 290
 
 
 class JungleKLevelAccess(Range):
@@ -358,7 +429,7 @@ class JungleKLevelAccess(Range):
     range_end = 24
     # This Value can not exceed 24
 
-    default = 24
+    default = 12
 
 
 class BeachKLevelAccess(Range):
@@ -371,7 +442,7 @@ class BeachKLevelAccess(Range):
     range_end = 28
     # This Value can not exceed 28
 
-    default = 28
+    default = 14
 
 
 class RuinsKLevelAccess(Range):
@@ -384,7 +455,7 @@ class RuinsKLevelAccess(Range):
     range_end = 24
     # This Value can not exceed 24
 
-    default = 24
+    default = 12
 
 
 class CaveKLevelAccess(Range):
@@ -397,7 +468,7 @@ class CaveKLevelAccess(Range):
     range_end = 20
     # This Value can not exceed 20
 
-    default = 20
+    default = 10
 
 
 class ForestKLevelAccess(Range):
@@ -410,7 +481,7 @@ class ForestKLevelAccess(Range):
     range_end = 32
     # This Value can not exceed 32
 
-    default = 32
+    default = 16
 
 
 class CliffKLevelAccess(Range):
@@ -423,7 +494,7 @@ class CliffKLevelAccess(Range):
     range_end = 32
     # This Value can not exceed 32
 
-    default = 32
+    default = 16
 
 
 class FactoryKLevelAccess(Range):
@@ -436,7 +507,7 @@ class FactoryKLevelAccess(Range):
     range_end = 28
     # This Value can not exceed 28
 
-    default = 28
+    default = 14
 
 
 class VolcanoKLevelAccess(Range):
@@ -449,7 +520,7 @@ class VolcanoKLevelAccess(Range):
     range_end = 28
     # This Value can not exceed 28
 
-    default = 28
+    default = 14
 
 
 @dataclass
@@ -471,7 +542,14 @@ class DKCROptions(PerGameCommonOptions):
     grab: Grab
     blow: Blow
     ground_pound: GroundPound
-    mirror_mode: MirrorMode
+    level_clear_type: LevelClearType
+    k_level: KLevel
+    puzzle_pieces: PuzzlePieces
+    world_puzzle_piece_bundle: WorldPuzzlePieceBundle
+    world_kong_bundle: WorldKongBundle
+    world_cleared: WorldCleared
+    world_cleared_mirror: WorldClearedMirror
+    world_cleared_time_attack: WorldClearedTimeAttack
     mirror_mode_shards: MirrorModeShards
     squawks: Squawks
     sunset_shore_key: SunsetShoreKey
@@ -518,7 +596,14 @@ class DKCROptions(PerGameCommonOptions):
             "grab",
             "blow",
             "ground_pound",
-            "mirror_mode",
+            "level_clear_type",
+            "k_level",
+            "puzzle_pieces",
+            "world_puzzle_piece_bundle",
+            "world_kong_bundle",
+            "world_cleared",
+            "world_cleared_mirror",
+            "world_cleared_time_attack",
             "mirror_mode_shards",
             "squawks",
             "sunset_shore_key",
@@ -551,7 +636,7 @@ class DKCROptions(PerGameCommonOptions):
 option_groups = [
     OptionGroup(
         "Gameplay options",
-        [DeathLink, GoldenTemple, RareOrbs, RandomizeLevels, KongLetterCollectionCheckpoint, TimeAttackMedals]
+        [DeathLink, GoldenTemple, RareOrbs, RandomizeLevels, KongLetterCollectionCheckpoint, TimeAttackMedals, LevelClearType]
     ),
     OptionGroup(
         "Key options",
@@ -559,13 +644,17 @@ option_groups = [
          HandyHazardsKey, SmokeyPeakKey]
     ),
     OptionGroup(
+        "World options",
+        [WorldPuzzlePieceBundle, WorldKongBundle, WorldCleared, WorldClearedMirror, WorldClearedTimeAttack]
+    ),
+    OptionGroup(
         "Boss access options",
-        [JungleBossAccess, BeachBossAccess, RuinsBossAccess, CaveBossAccess, ForestBossAccess, CliffBossAccess,
+        [PuzzlePieces ,JungleBossAccess, BeachBossAccess, RuinsBossAccess, CaveBossAccess, ForestBossAccess, CliffBossAccess,
          FactoryBossAccess, VolcanoBossAccess]
     ),
     OptionGroup(
         "K Level access options",
-        [JungleKLevelAccess, BeachKLevelAccess, RuinsKLevelAccess, CaveKLevelAccess, ForestKLevelAccess, CliffKLevelAccess,
+        [KLevel, JungleKLevelAccess, BeachKLevelAccess, RuinsKLevelAccess, CaveKLevelAccess, ForestKLevelAccess, CliffKLevelAccess,
          FactoryKLevelAccess, VolcanoKLevelAccess]
     ),
     OptionGroup(
@@ -578,118 +667,54 @@ option_groups = [
     ),
     OptionGroup(
         "Mirror mode options",
-        [MirrorMode, MirrorModeShards]
+        [MirrorModeShards]
     )
 ]
 
-option_presets = {
-    "Full": {
-        "rare_orbs": 8,
-        "golden_temple": True,
-        "rambi": True,
-        "minecart": True,
-        "rocket_barrel": True,
-        "kong_barrel": True,
-        "run": True,
-        "roll": True,
-        "grab": True,
-        "blow": True,
-        "ground_pound": True,
-        "mirror_mode": True,
-        "mirror_mode_shards": 8,
-        "sunset_shore_key": True,
-        "blowhole_bound_key": True,
-        "damp_dungeon_key": True,
-        "mole_patrol_key": True,
-        "springy_spores_key": True,
-        "precarious_plateau_key": True,
-        "handy_hazards_key": True,
-        "smokey_peak_key": True,
-        "jungle_boss_access": 20,
-        "beach_boss_access": 50,
-        "ruins_boss_access": 80,
-        "cave_boss_access": 110,
-        "forest_boss_access": 150,
-        "cliff_boss_access": 200,
-        "factory_boss_access": 260,
-        "volcano_boss_access": 320,
-    },
-    "Empty": {
-        "rare_orbs": 0,
-        "golden_temple": False,
-        "rambi": False,
-        "minecart": False,
-        "rocket_barrel": False,
-        "kong_barrel": False,
-        "run": False,
-        "roll": False,
-        "grab": False,
-        "blow": False,
-        "ground_pound": False,
-        "mirror_mode": False,
-        "mirror_mode_shards": 0,
-        "sunset_shore_key": False,
-        "blowhole_bound_key": False,
-        "damp_dungeon_key": False,
-        "mole_patrol_key": False,
-        "springy_spores_key": False,
-        "precarious_plateau_key": False,
-        "handy_hazards_key": False,
-        "smokey_peak_key": False,
-        "jungle_boss_access": 20,
-        "beach_boss_access": 50,
-        "ruins_boss_access": 80,
-        "cave_boss_access": 110,
-        "forest_boss_access": 150,
-        "cliff_boss_access": 200,
-        "factory_boss_access": 260,
-        "volcano_boss_access": 320,
-    }
-}
 
-
-def handle_ut_yamless(world, slot_data: dict[str, Any] | None) -> dict[str, Any] | None:
+def handle_ut_yamless(dkcr_world, slot_data: dict[str, Any] | None) -> dict[str, Any] | None:
     if (
             not slot_data
-            and hasattr(world.multiworld, "re_gen_passthrough")
-            and isinstance(world.multiworld.re_gen_passthrough, dict)
-            and world.game in world.multiworld.re_gen_passthrough
+            and hasattr(dkcr_world.multiworld, "re_gen_passthrough")
+            and isinstance(dkcr_world.multiworld.re_gen_passthrough, dict)
+            and dkcr_world.game in dkcr_world.multiworld.re_gen_passthrough
     ):
-        slot_data = world.multiworld.re_gen_passthrough[world.game]
+        slot_data = dkcr_world.multiworld.re_gen_passthrough[dkcr_world.game]
 
     if not slot_data:
         return None
 
-    world.ut_medals = set(slot_data["time_attack_resolved"])
-    world.options.smog_clear.value = slot_data["smog_clear"]
-    world.options.lift_off_launch.value = slot_data["lift_off_launch"]
-    world.options.factory_buttons.value = slot_data["factory_buttons"]
-    world.options.mirror_mode.value = slot_data["mirror_mode"]
-    world.options.mirror_mode_shards.value = slot_data["mirror_mode_shards"]
-    world.options.squawks.value = slot_data["squawks"]
-    world.options.sunset_shore_key.value = slot_data["sunset_shore_key"]
-    world.options.blowhole_bound_key.value = slot_data["blowhole_bound_key"]
-    world.options.damp_dungeon_key.value = slot_data["damp_dungeon_key"]
-    world.options.mole_patrol_key.value = slot_data["mole_patrol_key"]
-    world.options.springy_spores_key.value = slot_data["springy_spores_key"]
-    world.options.precarious_plateau_key.value = slot_data["precarious_plateau_key"]
-    world.options.handy_hazards_key.value = slot_data["handy_hazards_key"]
-    world.options.smokey_peak_key.value = slot_data["smokey_peak_key"]
-    world.options.jungle_boss_access.value = slot_data["jungle_boss_access"]
-    world.options.beach_boss_access.value = slot_data["beach_boss_access"]
-    world.options.ruins_boss_access.value = slot_data["ruins_boss_access"]
-    world.options.cave_boss_access.value = slot_data["cave_boss_access"]
-    world.options.forest_boss_access.value = slot_data["forest_boss_access"]
-    world.options.cliff_boss_access.value = slot_data["cliff_boss_access"]
-    world.options.factory_boss_access.value = slot_data["factory_boss_access"]
-    world.options.volcano_boss_access.value = slot_data["volcano_boss_access"]
-    world.options.jungle_k_level_access.value = slot_data["jungle_k_level_access"]
-    world.options.beach_k_level_access.value = slot_data["beach_k_level_access"]
-    world.options.ruins_k_level_access.value = slot_data["ruins_k_level_access"]
-    world.options.cave_k_level_access.value = slot_data["cave_k_level_access"]
-    world.options.forest_k_level_access.value = slot_data["forest_k_level_access"]
-    world.options.cliff_k_level_access.value = slot_data["cliff_k_level_access"]
-    world.options.factory_k_level_access.value = slot_data["factory_k_level_access"]
-    world.options.volcano_k_level_access.value = slot_data["volcano_k_level_access"]
+    dkcr_world.ut_medals = set(slot_data["time_attack_resolved"])
+    dkcr_world.options.smog_clear.value = slot_data["smog_clear"]
+    dkcr_world.options.lift_off_launch.value = slot_data["lift_off_launch"]
+    dkcr_world.options.factory_buttons.value = slot_data["factory_buttons"]
+    dkcr_world.ut_level_clear_types = set(slot_data["level_clear_type_resolved"])
+    dkcr_world.options.mirror_mode.value = slot_data["mirror_mode"]
+    dkcr_world.options.mirror_mode_shards.value = slot_data["mirror_mode_shards"]
+    dkcr_world.options.squawks.value = slot_data["squawks"]
+    dkcr_world.options.sunset_shore_key.value = slot_data["sunset_shore_key"]
+    dkcr_world.options.blowhole_bound_key.value = slot_data["blowhole_bound_key"]
+    dkcr_world.options.damp_dungeon_key.value = slot_data["damp_dungeon_key"]
+    dkcr_world.options.mole_patrol_key.value = slot_data["mole_patrol_key"]
+    dkcr_world.options.springy_spores_key.value = slot_data["springy_spores_key"]
+    dkcr_world.options.precarious_plateau_key.value = slot_data["precarious_plateau_key"]
+    dkcr_world.options.handy_hazards_key.value = slot_data["handy_hazards_key"]
+    dkcr_world.options.smokey_peak_key.value = slot_data["smokey_peak_key"]
+    dkcr_world.options.jungle_boss_access.value = slot_data["jungle_boss_access"]
+    dkcr_world.options.beach_boss_access.value = slot_data["beach_boss_access"]
+    dkcr_world.options.ruins_boss_access.value = slot_data["ruins_boss_access"]
+    dkcr_world.options.cave_boss_access.value = slot_data["cave_boss_access"]
+    dkcr_world.options.forest_boss_access.value = slot_data["forest_boss_access"]
+    dkcr_world.options.cliff_boss_access.value = slot_data["cliff_boss_access"]
+    dkcr_world.options.factory_boss_access.value = slot_data["factory_boss_access"]
+    dkcr_world.options.volcano_boss_access.value = slot_data["volcano_boss_access"]
+    dkcr_world.options.jungle_k_level_access.value = slot_data["jungle_k_level_access"]
+    dkcr_world.options.beach_k_level_access.value = slot_data["beach_k_level_access"]
+    dkcr_world.options.ruins_k_level_access.value = slot_data["ruins_k_level_access"]
+    dkcr_world.options.cave_k_level_access.value = slot_data["cave_k_level_access"]
+    dkcr_world.options.forest_k_level_access.value = slot_data["forest_k_level_access"]
+    dkcr_world.options.cliff_k_level_access.value = slot_data["cliff_k_level_access"]
+    dkcr_world.options.factory_k_level_access.value = slot_data["factory_k_level_access"]
+    dkcr_world.options.volcano_k_level_access.value = slot_data["volcano_k_level_access"]
 
     return slot_data
