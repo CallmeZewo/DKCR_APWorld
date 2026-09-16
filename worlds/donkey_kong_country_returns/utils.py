@@ -1,6 +1,11 @@
 import dataclasses
 import dolphin_memory_engine as dme
+
 from .data.addresses import *
+from .data.levels import GameLevels
+from .data.worlds import GameWorlds
+from .data.constants import LocationOffset as Lo
+
 
 class Color:
     GREEN = "\033[92m"
@@ -26,4 +31,17 @@ def get_level_data(level_offset: int, ):
         dme.read_byte(level_data + 0x3e),
         float.fromhex(dme.read_bytes(level_data + 0x38, 4)),
         dme.read_byte(level_data + 0x3d)
+    )
+
+def get_base_address(level: GameLevels = None, world: GameWorlds = None) -> None | int:
+    if not world:
+        return None
+    if not level:
+        return (
+            world.world_index * Lo.WorldOffset
+            + world.world_index + 0xF * Lo.LevelOffset
+        )
+    return (
+        world.world_index * Lo.WorldOffset
+        + level.level_index * Lo.LevelOffset
     )
