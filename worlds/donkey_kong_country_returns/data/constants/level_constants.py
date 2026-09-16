@@ -1,0 +1,212 @@
+from enum import StrEnum, IntEnum
+
+class LevelIndex(IntEnum):
+    K_LEVEL_INDEX = 0x0
+    GOLDEN_TEMPLE_LEVEL_INDEX = 0x0
+    BOSS_LEVEL_INDEX = 0x1
+    FIRST_LEVEL_INDEX = 0x2
+    SECOND_LEVEL_INDEX = 0x3
+    THIRD_LEVEL_INDEX = 0x4
+    FOURTH_LEVEL_INDEX = 0x5
+    FIFTH_LEVEL_INDEX = 0x6
+    SIXTH_LEVEL_INDEX = 0x7
+    SEVENTH_LEVEL_INDEX = 0x8
+    EIGHTH_LEVEL_INDEX = 0x9
+    LIFT_OFF_LAUNCH_LEVEL_INDEX = 0xA
+    SHOP_LEVEL_INDEX = 0xB
+
+
+class LevelPointer(IntEnum):
+    PLATFORM_PANIC_POINTER = 0x071c
+    MUGLYS_MOUND_POINTER = 0x0e1c
+    JUNGLE_HIJINXS_POINTER = 0x0284
+    KING_OF_CLING_POINTER = 0x086c
+    TREE_TOP_BOP_POINTER = 0x0984
+    SUNSET_SHORE_POINTER = 0x07c4
+    CANOPY_CANNONS_POINTER = 0x0a9c
+    CRAZY_CART_POINTER = 0x0214
+    JUNGLE_SHOP_POINTER = 0x024c
+
+    TUMBLIN_TEMPLE_POINTER = 0x0d74
+    PINCHIN_PIRATES_POINTER = 0x0c5c
+    POPPIN_PLANKS_POINTER = 0x078c
+    SLOPPY_SANDS_POINTER = 0x055c
+    PEACEFUL_PIER_POINTER = 0x039c
+    CANNON_CLUSTER_POINTER = 0x11d4
+    STORMY_SHORE_POINTER = 0x0674
+    BLOWHOLE_BOUND_POINTER = 0x001c
+    TIDAL_TERROR_POINTER = 0x104c
+    BEACH_SHOP_POINTER = 0x06ac
+
+    SHIFTY_SMASHERS_POINTER = 0x00c4
+    RUINED_ROOST_POINTER = 0x0ccc
+    WONKY_WATERWAY_POINTER = 0x0834
+    BUTTON_BASH_POINTER = 0x032c
+    MAST_BLAST_POINTER = 0x1164
+    DAMP_DUNGEON_POINTER = 0x1084
+    ITTY_BITTY_BITERS_POINTER = 0x119c
+    TEMPLE_TOPPLE_POINTER = 0x1014
+    RUINS_SHOP_POINTER = 0x02f4
+
+    JAGGED_JEWELS_POINTER = 0x0b0c
+    THE_MOLE_TRAIN_POINTER = 0x0b44
+    RICKETY_RAILS_POINTER = 0x0754
+    GRIP_N_TRIP_POINTER = 0x0444
+    BOMBS_AWAY_POINTER = 0x0134
+    MOLE_PATROL_POINTER = 0x0604
+    CROWDED_CAVERN_POINTER = 0x0ec4
+    CAVE_SHOP_POINTER = 0x0364
+
+    BLAST_N_BOUNCE_POINTER = 0x0fa4
+    MANGORUBY_RUN_POINTER = 0x0d3c
+    VINE_VALLEY_POINTER = 0x08a4
+    CLINGY_SWINGY_POINTER = 0x07fc
+    FLUTTER_FLYAWAY_POINTER = 0x0bec
+    TIPPIN_TOTEMS_POINTER = 0x0efc
+    LONGSHOT_LAUNCH_POINTER = 0x0dac
+    SPRINGY_SPORES_POINTER = 0x0fdc
+    WIGGLEVINE_WONDERS_POINTER = 0x05cc
+    MUNCHER_MARATHON_POINTER = 0x0ad4
+    FOREST_SHOP_POINTER = 0x09bc
+
+    PERILOUS_PASSAGE_POINTER = 0x00fc
+    THUGLYS_HIGHRISE_POINTER = 0x063c
+    STICKY_SITUATION_POINTER = 0x0a64
+    PREHISTORIC_PATH_POINTER = 0x0c24
+    WEIGHTY_WAY_POINTER = 0x0bb4
+    BOULDER_ROLLER_POINTER = 0x0c94
+    PRECARIOUS_PLATEAU_POINTER = 0x02bc
+    CRUMBLE_CANYON_POINTER = 0x0054
+    TIPPY_SHIPPY_POINTER = 0x016c
+    CLIFFTOP_CLIMB_POINTER = 0x04b4
+    CLIFF_SHOP_POINTER = 0x0f6c
+
+    TREACHEROUS_TRACK_POINTER = 0x040c
+    FEATHER_FIEND_POINTER = 0x0524
+    FOGGY_FUMES_POINTER = 0x008c
+    SLAMMIN_STEEL_POINTER = 0x06e4
+    HANDY_HAZARDS_POINTER = 0x094c
+    GEAR_GETAWAY_POINTER = 0x0de4
+    COG_JOG_POINTER = 0x047c
+    SWITCHEROO_POINTER = 0x112c
+    MUSIC_MADNESS_POINTER = 0x0594
+    LIFT_OFF_LAUNCH_POINTER = 0x0f34
+    FACTORY_SHOP_POINTER = 0x01a4
+
+    FIVE_MONKEY_TRIAL_POINTER = 0x10bc
+    TIKI_TONG_TERROR_POINTER = 0x0d04
+    FURIOUS_FIRE_POINTER = 0x04ec
+    HOT_ROCKET_POINTER = 0x03d4
+    ROASTING_RAILS_POINTER = 0x0e54
+    SMOKEY_PEAK_POINTER = 0x0a2c
+    BOBBING_BASALT_POINTER = 0x0b7c
+    MOVING_MELTERS_POINTER = 0x08dc
+    RED_RED_RISING_POINTER = 0x01dc
+    VOLCANO_SHOP_POINTER = 0x0914
+
+    GOLDEN_TEMPLE_POINTER = 0x10f4
+
+class PPAmount(IntEnum):
+    PP_0 = 0x0
+    PP_5 = 0x5
+    PP_7 = 0x7
+    PP_9 = 0x9
+
+class LevelName(StrEnum):
+    # Jungle
+    PLATFORM_PANIC = "Platform Panic"
+    MUGLYS_MOUND = "Mugly's Mound"
+    JUNGLE_HIJINXS = "Jungle Hijinxs"
+    KING_OF_CLING = "King of Cling"
+    TREE_TOP_BOP = "Tree Top Bop"
+    SUNSET_SHORE = "Sunset Shore"
+    CANOPY_CANNONS = "Canopy Cannons"
+    CRAZY_CART = "Crazy Cart"
+    JUNGLE_SHOP = "Jungle Shop"
+
+    # Beach
+    TUMBLIN_TEMPLE = "Tumblin' Temple"
+    PINCHIN_PIRATES = "Pinchin' Pirates"
+    POPPIN_PLANKS = "Poppin' Planks"
+    SLOPPY_SANDS = "Sloppy Sands"
+    PEACEFUL_PIER = "Peaceful Pier"
+    CANNON_CLUSTER = "Cannon Cluster"
+    STORMY_SHORE = "Stormy Shore"
+    BLOWHOLE_BOUND = "Blowhole Bound"
+    TIDAL_TERROR = "Tidal Terror"
+    BEACH_SHOP = "Beach Shop"
+
+    # Ruins
+    SHIFTY_SMASHERS = "Shifty Smashers"
+    RUINED_ROOST = "Ruined Roost"
+    WONKY_WATERWAY = "Wonky Waterway"
+    BUTTON_BASH = "Button Bash"
+    MAST_BLAST = "Mast Blast"
+    DAMP_DUNGEON = "Damp Dungeon"
+    ITTY_BITTY_BITERS = "Itty Bitty Biters"
+    TEMPLE_TOPPLE = "Temple Topple"
+    RUINS_SHOP = "Ruins Shop"
+
+    # Cave
+    JAGGED_JEWELS = "Jagged Jewels"
+    THE_MOLE_TRAIN = "The Mole Train"
+    RICKETY_RAILS = "Rickety Rails"
+    GRIP_N_TRIP = "Grip 'n' Trip"
+    BOMBS_AWAY = "Bombs Away"
+    MOLE_PATROL = "Mole Patrol"
+    CROWDED_CAVERN = "Crowded Cavern"
+    CAVE_SHOP = "Cave Shop"
+
+    # Forest
+    BLAST_N_BOUNCE = "Blast 'n' Bounce"
+    MANGORUBY_RUN = "Mangoruby Run"
+    VINE_VALLEY = "Vine Valley"
+    CLINGY_SWINGY = "Clingy Swingy"
+    FLUTTER_FLYAWAY = "Flutter Flyaway"
+    TIPPIN_TOTEMS = "Tippin' Totems"
+    LONGSHOT_LAUNCH = "Longshot Launch"
+    SPRINGY_SPORES = "Springy Spores"
+    WIGGLEVINE_WONDERS = "Wigglevine Wonders"
+    MUNCHER_MARATHON = "Muncher Marathon"
+    FOREST_SHOP = "Forest Shop"
+
+    # Cliff
+    PERILOUS_PASSAGE = "Perilous Passage"
+    THUGLYS_HIGHRISE = "Thugly's Highrise"
+    STICKY_SITUATION = "Sticky Situation"
+    PREHISTORIC_PATH = "Prehistoric Path"
+    WEIGHTY_WAY = "Weighty Way"
+    BOULDER_ROLLER = "Boulder Roller"
+    PRECARIOUS_PLATEAU = "Precarious Plateau"
+    CRUMBLE_CANYON = "Crumble Canyon"
+    TIPPY_SHIPPY = "Tippy Shippy"
+    CLIFFTOP_CLIMB = "Clifftop Climb"
+    CLIFF_SHOP = "Cliff Shop"
+
+    # Factory
+    TREACHEROUS_TRACK = "Treacherous Track"
+    FEATHER_FIEND = "Feather Fiend"
+    FOGGY_FUMES = "Foggy Fumes"
+    SLAMMIN_STEEL = "Slammin' Steel"
+    HANDY_HAZARDS = "Handy Hazards"
+    GEAR_GETAWAY = "Gear Getaway"
+    COG_JOG = "Cog Jog"
+    SWITCHEROO = "Switcheroo"
+    MUSIC_MADNESS = "Music Madness"
+    LIFT_OFF_LAUNCH = "Lift-Off Launch"
+    FACTORY_SHOP = "Factory Shop"
+
+    # Volcano
+    FIVE_MONKEY_TRIAL = "Five Monkey Trial"
+    TIKI_TONG_TERROR = "Tiki Tong Terror"
+    FURIOUS_FIRE = "Furious Fire"
+    HOT_ROCKET = "Hot Rocket"
+    ROASTING_RAILS = "Roasting Rails"
+    SMOKEY_PEAK = "Smokey Peak"
+    BOBBING_BASALT = "Bobbing Basalt"
+    MOVING_MELTERS = "Moving Melters"
+    RED_RED_RISING = "Red Red Rising"
+    VOLCANO_SHOP = "Volcano Shop"
+
+    # Golden Temple
+    GOLDEN_TEMPLE_LEVEL = "Golden Temple Level"
