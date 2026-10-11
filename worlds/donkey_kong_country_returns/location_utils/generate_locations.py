@@ -1,4 +1,4 @@
-from rule_builder.field_resolvers import FromOption
+
 from ..data.constants import (
     PPIndex as Pi,
     KongLetterIndex as Kli,
@@ -62,11 +62,19 @@ def generate_level_location(world: GameWorlds, level: GameLevels) -> dict[str, i
             f"{level.display_name} {Ln.PUZZLE_PIECE.value} ({i})"
         ] = base_address + Pi.PUZZLE_PIECE_BASE + i
 
+    level_location_gen[
+        f"{level.display_name} {Ln.PUZZLE_PIECE.value} Set"
+    ] = base_address + Pi.PUZZLE_PIECE_SET
+
     if level.has_kong_letters:
         for letter, offset in KLM:
             level_location_gen[
                 f"{level.display_name} {letter.value}"
             ] = base_address + offset
+
+        level_location_gen[
+            f"{level.display_name} Kong Letter Set"
+        ] = base_address + Kli.KONG_LETTER_SET
 
     if level.level_index == Li.SHOP_LEVEL_INDEX:
         level_location_gen[
