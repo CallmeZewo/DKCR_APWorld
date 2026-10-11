@@ -70,6 +70,12 @@ def get_item_amount(dkcr_world: DKCRWorld, item: GameItems) -> int:
         if dkcr_world.options.k_level.value == 0:
             return 0
 
+    if item.display_name == GameItems.RARE_ORB.display_name:
+        if dkcr_world.options.golden_temple.value == 1:
+            return dkcr_world.options.rare_orbs.value
+        else:
+            return 0
+
     if item.display_name == GameItems.PUZZLE_PIECE.display_name:
         if dkcr_world.options.puzzle_pieces.value == 0:
             return 0
