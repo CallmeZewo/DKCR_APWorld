@@ -17,14 +17,14 @@ from .region_utils import setup_regions
 
 def run_client() -> None:
     print("Running Donkey Kong Country Returns Client")
-    from .DKCRClient import main
+    from .client.client_main import main
 
     launch_subprocess(main, name="DonkeyKongCountryReturnsClient")
 
 
 components.append(
     Component(
-        "[DKCR USA 1.1] Donkey Kong Country Returns Client",
+        "[DKCR] Donkey Kong Country Returns Client",
         func=run_client,
         component_type=Type.CLIENT,
         icon="DKCRIcon"
