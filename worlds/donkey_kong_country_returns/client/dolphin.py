@@ -65,19 +65,21 @@ class Dolphin:
         self.write_bytes(address, result)
 
     def read_or_write_word(self, address: int, operation_value: int) -> None:
-        """And a word with a value and save it to a specified address"""
+        """Or a word with a value and save it to a specified address"""
         base_value = self.read_word(address)
         self.write_word(address, base_value | operation_value)
 
     def read_or_write_byte(self, address: int, operation_value: int) -> None:
-        """And a byte with a value and save it to a specified address"""
+        """Or a byte with a value and save it to a specified address"""
         base_value = self.read_byte(address)
         self.write_byte(address, base_value | operation_value)
 
-    def read_or_write_bytes(self, address: int, size: int , operation_value: bytes) -> None:
-        """And bytes with a value and save it to a specified address"""
-        base_value = self.read_bytes(address, size)
-        if len(base_value) != len(operation_value):
-            raise ValueError("Current bitfield and operation value must have the same length.")
-        result = bytes(a | b for a, b in zip(base_value, operation_value))
-        self.write_bytes(address, result)
+    def read_set_bit_in_bytes(self, address: int, size: int, bit_index: int) -> None:
+        """Set a bit in a bitfield, counting from left to right."""
+        if not 0 <= bit_index < size * 8:
+            raise ValueError(f"Bit index must be between 0 and {size * 8 - 1}.")
+        base_value = bytearray(self.read_bytes(address, size))
+        byte_index = bit_index // 8
+        bit_position = 7 - (bit_index % 8)
+        base_value[byte_index] |= 1 << bit_position
+        self.write_bytes(address, bytes(base_value))
