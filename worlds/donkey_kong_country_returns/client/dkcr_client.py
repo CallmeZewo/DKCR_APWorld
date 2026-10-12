@@ -1,5 +1,6 @@
 import asyncio
 
+import NetUtils
 from CommonClient import logger
 
 from .dkcr_game import DKCRGame
@@ -12,6 +13,9 @@ from .utils.get_base_location_address import get_base_location_address
 from .utils.get_last_level import get_last_level
 
 from ..data.items import GameItems
+from ..data.levels import GameLevels
+from ..data.worlds import GameWorlds
+from ..data.constants.addresses.custom import CustomAddresses
 
 
 class DKCRClient:
@@ -26,7 +30,8 @@ class DKCRClient:
             await self.connect_client_to_dolphin()
             if self.dolphin_connected and self.ctx.slot is not None:
                 await self.main_loop()
-
+            else:
+                self.dkcr.dolphin.write_bytes(0x817fc000, b'\x00\x00\x00\x00' * 40)
             await asyncio.sleep(self.sleep_time)
             self.sleep_time = 0.1
 
@@ -48,6 +53,7 @@ class DKCRClient:
             self.dkcr.dolphin.write_bytes(0x817fc02a, b'\xff\xff') # Open all worlds
 
     async def main_loop(self) -> None:
+        self.create_level_bitfield()
         locations_to_send: set[int] = set()
         last_level = await get_last_level(self.dkcr)
         base_location_address = get_base_location_address(last_level)
@@ -73,6 +79,13 @@ class DKCRClient:
             await self.give_item()
         else:
             pass
+
+        if self.dkcr.in_pre_rendered_cutscene():
+            if self.dkcr.in_victory_cutscene():
+                await self.ctx.send_msgs([{
+                    "cmd": "StatusUpdate",
+                    "status": NetUtils.ClientStatus.CLIENT_GOAL,
+                }])
 
         await self.ctx.check_locations(locations_to_send)
 
@@ -146,3 +159,250 @@ class DKCRClient:
 
             self.ctx.last_received_item_index += 1
 
+    def create_level_bitfield(self):
+        for level in GameLevels:
+            match level:
+                case GameLevels.JUNGLE_HIJINXS:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.KING_OF_CLING:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.TREE_TOP_BOP:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.SUNSET_SHORE:
+                    if self.dkcr.has_key(GameWorlds.JUNGLE):
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.CANOPY_CANNONS:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.CRAZY_CART:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.PLATFORM_PANIC:
+                    if self.dkcr.get_kl(GameWorlds.JUNGLE) >= self.ctx.jungle_k_level_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.MUGLYS_MOUND:
+                    if self.dkcr.get_pp() >= self.ctx.jungle_boss_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.JUNGLE_SHOP:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.POPPIN_PLANKS:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.SLOPPY_SANDS:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.PEACEFUL_PIER:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.CANNON_CLUSTER:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.STORMY_SHORE:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.BLOWHOLE_BOUND:
+                    if self.dkcr.has_key(GameWorlds.BEACH):
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.TIDAL_TERROR:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.TUMBLIN_TEMPLE:
+                    if self.dkcr.get_kl(GameWorlds.BEACH) >= self.ctx.beach_k_level_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.PINCHIN_PIRATES:
+                    if self.dkcr.get_pp() >= self.ctx.beach_boss_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.BEACH_SHOP:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.WONKY_WATERWAY:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.BUTTON_BASH:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.MAST_BLAST:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.DAMP_DUNGEON:
+                    if self.dkcr.has_key(GameWorlds.RUINS):
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.ITTY_BITTY_BITERS:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.TEMPLE_TOPPLE:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.SHIFTY_SMASHERS:
+                    if self.dkcr.get_kl(GameWorlds.RUINS) >= self.ctx.ruins_k_level_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.RUINED_ROOST:
+                    if self.dkcr.get_pp() >= self.ctx.ruins_boss_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.RUINS_SHOP:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.RICKETY_RAILS:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.GRIP_N_TRIP:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.BOMBS_AWAY:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.MOLE_PATROL:
+                    if self.dkcr.has_key(GameWorlds.CAVE):
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.CROWDED_CAVERN:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.JAGGED_JEWELS:
+                    if self.dkcr.get_kl(GameWorlds.CAVE) >= self.ctx.cave_k_level_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.THE_MOLE_TRAIN:
+                    if self.dkcr.get_pp() >= self.ctx.cave_boss_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.CAVE_SHOP:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.VINE_VALLEY:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.CLINGY_SWINGY:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.FLUTTER_FLYAWAY:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.TIPPIN_TOTEMS:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.LONGSHOT_LAUNCH:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.SPRINGY_SPORES:
+                    if self.dkcr.has_key(GameWorlds.FOREST):
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.WIGGLEVINE_WONDERS:
+                    if self.dkcr.has_key(GameWorlds.FOREST):
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.MUNCHER_MARATHON:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.BLAST_N_BOUNCE:
+                    if self.dkcr.get_kl(GameWorlds.FOREST) >= self.ctx.forest_k_level_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.MANGORUBY_RUN:
+                    if self.dkcr.get_pp() >= self.ctx.forest_boss_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.FOREST_SHOP:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.STICKY_SITUATION:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.PREHISTORIC_PATH:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.WEIGHTY_WAY:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.BOULDER_ROLLER:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.PRECARIOUS_PLATEAU:
+                    if self.dkcr.has_key(GameWorlds.FOREST):
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.CRUMBLE_CANYON:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.TIPPY_SHIPPY:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.CLIFFTOP_CLIMB:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.PERILOUS_PASSAGE:
+                    if self.dkcr.get_kl(GameWorlds.CLIFF) >= self.ctx.cliff_k_level_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.THUGLYS_HIGHRISE:
+                    if self.dkcr.get_pp() >= self.ctx.cliff_boss_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.CLIFF_SHOP:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.FOGGY_FUMES:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.SLAMMIN_STEEL:
+                    if self.ctx.smog_clear_option:
+                        if self.dkcr.get_current_level_data(GameWorlds.CLIFF.world_index, GameLevels.FOGGY_FUMES.level_index).level_cleared:
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                    else:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.HANDY_HAZARDS:
+                    if self.dkcr.has_key(GameWorlds.FACTORY):
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.GEAR_GETAWAY:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.COG_JOG:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.SWITCHEROO:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.MUSIC_MADNESS:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.LIFT_OFF_LAUNCH:
+                    if not self.ctx.factory_buttons_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                    else:
+                        if self.dkcr.get_factory_button() >= self.ctx.factory_buttons_option:
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.TREACHEROUS_TRACK:
+                    if self.dkcr.get_kl(GameWorlds.FACTORY) >= self.ctx.factory_k_level_access_option:
+                        if self.dkcr.has_key(GameWorlds.FACTORY):
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.FEATHER_FIEND:
+                    if self.ctx.lift_off_launch_option:
+                        if self.dkcr.get_current_level_data(GameWorlds.FACTORY.world_index, GameLevels.LIFT_OFF_LAUNCH.level_index).level_cleared:
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                    else:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.FACTORY_SHOP:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.FURIOUS_FIRE:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.HOT_ROCKET:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.ROASTING_RAILS:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.SMOKEY_PEAK:
+                    if self.dkcr.has_key(GameWorlds.VOLCANO):
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.BOBBING_BASALT:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.MOVING_MELTERS:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.RED_RED_RISING:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.FIVE_MONKEY_TRIAL:
+                    if self.dkcr.get_kl(GameWorlds.VOLCANO) >= self.ctx.volcano_k_level_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.TIKI_TONG_TERROR:
+                    if self.dkcr.get_pp() >= self.ctx.volcano_boss_access_option:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
