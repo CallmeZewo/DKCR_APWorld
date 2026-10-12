@@ -12,12 +12,14 @@ class LevelTypeEnum(Enum):
     def __init__(self,
                  display_name: str,
                  level_index: int,
+                 level_map_index: int,
                  data_offset: int,
                  pp_amount: int,
                  has_kong_letters: bool = True
                  ):
         self.display_name = display_name
         self.level_index = level_index
+        self.level_map_index = level_map_index
         self.data_offset = data_offset
         self.pp_amount = pp_amount
         self.has_kong_letters = has_kong_letters
