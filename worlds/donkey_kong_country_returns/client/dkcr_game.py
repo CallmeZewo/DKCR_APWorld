@@ -66,6 +66,18 @@ class DKCRGame:
     def is_in_time_attack(self) -> bool:
         return self.get_game_state() == State.TIME_ATTACK
 
+    def in_pre_rendered_cutscene(self) -> bool:
+        return self.dolphin.read_word(self.addresses.IN_PRE_RENDERED_CUTSCENE) == 1
+
+    def cutscene_identifier(self):
+        return self.dolphin.read_word(self.addresses.CUTSCENE_IDENTIFIER)
+
+    def in_victory_cutscene(self) -> bool:
+        identifier = self.cutscene_identifier()
+        victory_solo = 0x31b100
+        victory_duo = 0x31b900
+        return identifier == victory_solo or identifier == victory_duo
+
     def get_current_level(self) -> int:
         return self.dolphin.read_word(
             self.addresses.LEVEL_NUMBER
@@ -179,6 +191,9 @@ class DKCRGame:
     def add_pp(self):
         self.dolphin.read_add_write_bytes(CustomAddresses.PP_AMOUNT, 2, 1)
 
+    def get_pp(self) -> int:
+        return int.from_bytes(self.dolphin.read_bytes(CustomAddresses.PP_AMOUNT, 2))
+
     def add_kl(self, item: GameItems):
         match item:
             case GameItems.KONG_LETTER_JUNGLE:
@@ -198,30 +213,71 @@ class DKCRGame:
             case GameItems.KONG_LETTER_VOLCANO:
                 self.dolphin.write_byte(CustomAddresses.KL_VLC, + 1)
 
+    def get_kl(self, world: GameWorlds):
+        match world:
+            case GameWorlds.JUNGLE:
+                return self.dolphin.read_byte(CustomAddresses.KL_JGL)
+            case GameWorlds.BEACH:
+                return self.dolphin.read_byte(CustomAddresses.KL_BCH)
+            case GameWorlds.RUINS:
+                return self.dolphin.read_byte(CustomAddresses.KL_RNS)
+            case GameWorlds.CAVE:
+                return self.dolphin.read_byte(CustomAddresses.KL_CVE)
+            case GameWorlds.FOREST:
+                return self.dolphin.read_byte(CustomAddresses.KL_FRS)
+            case GameWorlds.CLIFF:
+                return self.dolphin.read_byte(CustomAddresses.KL_CLF)
+            case GameWorlds.FACTORY:
+                return self.dolphin.read_byte(CustomAddresses.KL_FCT)
+            case GameWorlds.VOLCANO:
+                return self.dolphin.read_byte(CustomAddresses.KL_VLC)
+
     def add_key(self, item: GameItems):
         match item:
             case GameItems.JUNGLE_KEY:
                 self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b1)
             case GameItems.BEACH_KEY:
-                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b01)
+                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b10)
             case GameItems.RUINS_KEY:
-                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b001)
+                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b100)
             case GameItems.CAVE_KEY:
-                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b0001)
+                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b1000)
             case GameItems.FOREST_KEY:
-                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b00001)
+                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b10000)
             case GameItems.CLIFF_KEY:
-                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b000001)
+                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b100000)
             case GameItems.FACTORY_KEY:
-                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b0000001)
+                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b1000000)
             case GameItems.VOLCANO_KEY:
-                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b00000001)
+                self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b10000000)
+
+    def has_key(self, world: GameWorlds):
+        match world:
+            case GameWorlds.JUNGLE:
+                return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b1
+            case GameWorlds.BEACH:
+                return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b10
+            case GameWorlds.RUINS:
+                return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b100
+            case GameWorlds.CAVE:
+                return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b1000
+            case GameWorlds.FOREST:
+                return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b10000
+            case GameWorlds.CLIFF:
+                return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b100000
+            case GameWorlds.FACTORY:
+                return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b1000000
+            case GameWorlds.VOLCANO:
+                return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b10000000
 
     def add_orb(self):
         self.dolphin.read_add_write_byte(CustomAddresses.ORBS, 1)
 
     def add_factory_button(self):
         self.dolphin.read_add_write_byte(CustomAddresses.FACTORY_BUTTONS, 1)
+
+    def get_factory_button(self):
+        return self.dolphin.read_byte(CustomAddresses.FACTORY_BUTTONS)
 
     def add_boss_unlock(self):
         self.dolphin.read_add_write_byte(CustomAddresses.BOSS_UNLOCK, 1)
