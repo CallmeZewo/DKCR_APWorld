@@ -23,6 +23,7 @@ class ItemName(Enum):
     MIRROR_MODE = "Mirror Mode"
     PROGRESSIVE_FACTORY_BUTTON = "Progressive Factory Button"
     PROGRESSIVE_BOSS_UNLOCK = "Progressive Boss Unlock"
+    PROGRESSIVE_K_LEVEL_UNLOCK = "Progressive K Level Unlock"
     ROCKET_BARREL_FUEL = "Rocket Barrel Fuel"
     MINECART_PASS = "Minecart Pass"
     RAMBIS_SADDLE = "Rambi's Saddle"
@@ -82,6 +83,7 @@ class ItemOffset(IntEnum):
     MIRROR_MODE = UNLOCK + 0x2
     PROGRESSIVE_FACTORY_BUTTON = UNLOCK + 0x3
     PROGRESSIVE_BOSS_UNLOCK = UNLOCK + 0x4
+    PROGRESSIVE_K_LEVEL_UNLOCK = UNLOCK + 0x5
 
     SHOP = 0x6000 # Squawks
     SQUAWKS = SHOP + 0x1
