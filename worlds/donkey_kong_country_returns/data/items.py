@@ -26,6 +26,7 @@ class GameItems(ItemTypeEnum):
     RARE_ORB = (In.RARE_ORB.value, Io.ORB.value, ItemClassification.progression, 8)
     PROGRESSIVE_FACTORY_BUTTON = (In.PROGRESSIVE_FACTORY_BUTTON.value, Io.PROGRESSIVE_FACTORY_BUTTON.value, ItemClassification.progression)
     PROGRESSIVE_BOSS_UNLOCK = (In.PROGRESSIVE_BOSS_UNLOCK.value, Io.PROGRESSIVE_BOSS_UNLOCK.value, ItemClassification.progression, 8)
+    PROGRESSIVE_K_LEVEL_UNLOCK = (In.PROGRESSIVE_K_LEVEL_UNLOCK.value, Io.PROGRESSIVE_K_LEVEL_UNLOCK.value, ItemClassification.progression, 8)
     MIRROR_SHARD = (In.MIRROR_SHARD.value, Io.MIRROR_SHARD.value, ItemClassification.progression)
     MIRROR_MODE = (In.MIRROR_MODE.value, Io.MIRROR_MODE.value, ItemClassification.progression)
     SQUAWKS = (In.SQUAWKS.value, Io.SQUAWKS.value, ItemClassification.useful)
