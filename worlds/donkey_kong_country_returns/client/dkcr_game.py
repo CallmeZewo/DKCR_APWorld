@@ -282,6 +282,15 @@ class DKCRGame:
     def add_boss_unlock(self):
         self.dolphin.read_add_write_byte(CustomAddresses.BOSS_UNLOCK, 1)
 
+    def get_boss_unlock(self) -> int:
+        return self.dolphin.read_byte(CustomAddresses.BOSS_UNLOCK)
+
+    def add_k_level_unlock(self):
+        self.dolphin.read_add_write_byte(CustomAddresses.K_LEVEL_UNLOCK, 1)
+
+    def get_k_level_unlock(self) -> int:
+        return self.dolphin.read_byte(CustomAddresses.K_LEVEL_UNLOCK)
+
     def add_mirror_shard(self):
         self.dolphin.read_add_write_byte(CustomAddresses.MIRROR_SHARDS, 1)
 
