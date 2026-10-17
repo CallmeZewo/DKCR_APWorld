@@ -28,4 +28,5 @@ class CustomAddresses:
 
     CURRENT_LEVEL_PP = BASE + 0x2c
     BOSS_UNLOCK = BASE + 0x30
-    SQUAWKS = BASE + 31
+    K_LEVEL_UNLOCK = BASE + 0x31
+    SQUAWKS = BASE + 32
