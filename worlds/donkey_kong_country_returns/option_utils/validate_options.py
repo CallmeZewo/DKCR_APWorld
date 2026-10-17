@@ -14,7 +14,7 @@ def validate_options(dkcr_world: DKCRWorld):
 
     if options.level_clear_type.value in ["Time", "Time Attack"]:
         if not dkcr_world.selected_medals:
-            raise OptionError(f"If the level clear type 'Time Attack' does not work without the 'Time Attack Medal' option.")
+            raise OptionError(f"The level clear type 'Time Attack' does not work without the 'Time Attack Medal' option.")
 
 
 
