@@ -16,7 +16,7 @@ CONNECTIONS = {
         Connection(GameLevels.JUNGLE_HIJINXS),
         Connection(GameLevels.TREE_TOP_BOP),
         Connection(GameLevels.JUNGLE_SHOP),
-        Connection(GameLevels.PLATFORM_PANIC, rule=has_all_jungle_letters),
+        Connection(GameLevels.PLATFORM_PANIC, rule=can_enter_platform_panic()),
     ],
     GameLevels.TREE_TOP_BOP: [
         Connection(GameLevels.KING_OF_CLING),
@@ -79,7 +79,7 @@ CONNECTIONS = {
     GameLevels.TIDAL_TERROR: [
         Connection(GameLevels.STORMY_SHORE),
         Connection(GameLevels.PINCHIN_PIRATES, rule=can_enter_pinchin_pirates()),
-        Connection(GameLevels.TUMBLIN_TEMPLE, rule=has_all_beach_letters),
+        Connection(GameLevels.TUMBLIN_TEMPLE, rule=can_enter_tumblin_temple()),
     ],
     GameLevels.TUMBLIN_TEMPLE: [
         Connection(GameLevels.TIDAL_TERROR),
@@ -117,7 +117,7 @@ CONNECTIONS = {
     GameLevels.ITTY_BITTY_BITERS: [
         Connection(GameLevels.MAST_BLAST),
         Connection(GameLevels.TEMPLE_TOPPLE),
-        Connection(GameLevels.SHIFTY_SMASHERS, rule=has_all_ruins_letters),
+        Connection(GameLevels.SHIFTY_SMASHERS, rule=can_enter_shifty_smashers()),
     ],
     GameLevels.TEMPLE_TOPPLE: [
         Connection(GameLevels.ITTY_BITTY_BITERS),
@@ -151,7 +151,7 @@ CONNECTIONS = {
         Connection(GameLevels.RICKETY_RAILS),
         Connection(GameLevels.CAVE_SHOP),
         Connection(GameLevels.CROWDED_CAVERN),
-        Connection(GameLevels.JAGGED_JEWELS, rule=has_all_cave_letters),
+        Connection(GameLevels.JAGGED_JEWELS, rule=can_enter_jagged_jewels()),
     ],
     GameLevels.MOLE_PATROL: [
         Connection(GameLevels.GRIP_N_TRIP),
@@ -185,7 +185,7 @@ CONNECTIONS = {
     GameLevels.CLINGY_SWINGY: [
         Connection(GameLevels.VINE_VALLEY),
         Connection(GameLevels.FLUTTER_FLYAWAY),
-        Connection(GameLevels.BLAST_N_BOUNCE, rule=has_all_forest_letters),
+        Connection(GameLevels.BLAST_N_BOUNCE, rule=can_enter_blast_n_bounce()),
         Connection(GameLevels.SPRINGY_SPORES, rule=has_forest_key),
     ],
     GameLevels.FLUTTER_FLYAWAY: [
@@ -234,7 +234,7 @@ CONNECTIONS = {
     GameLevels.PREHISTORIC_PATH: [
         Connection(GameLevels.STICKY_SITUATION),
         Connection(GameLevels.WEIGHTY_WAY),
-        Connection(GameLevels.PERILOUS_PASSAGE, rule=has_all_cliff_letters),
+        Connection(GameLevels.PERILOUS_PASSAGE, rule=can_enter_perilous_passage()),
     ],
     GameLevels.WEIGHTY_WAY: [
         Connection(GameLevels.PREHISTORIC_PATH),
@@ -289,7 +289,7 @@ CONNECTIONS = {
     GameLevels.HANDY_HAZARDS: [
         Connection(GameLevels.SLAMMIN_STEEL),
         Connection(GameLevels.COG_JOG),
-        Connection(GameLevels.TREACHEROUS_TRACK, rule=has_all_factory_letters),
+        Connection(GameLevels.TREACHEROUS_TRACK, rule=can_enter_treacherous_track()),
     ],
     GameLevels.GEAR_GETAWAY: [
         Connection(GameLevels.SLAMMIN_STEEL),
@@ -348,7 +348,7 @@ CONNECTIONS = {
     GameLevels.MOVING_MELTERS: [
         Connection(GameLevels.BOBBING_BASALT),
         Connection(GameLevels.RED_RED_RISING),
-        Connection(GameLevels.FIVE_MONKEY_TRIAL, rule=has_all_volcano_letters),
+        Connection(GameLevels.FIVE_MONKEY_TRIAL, rule=can_enter_five_monkey_trial()),
     ],
     GameLevels.RED_RED_RISING: [
         Connection(GameLevels.MOVING_MELTERS),
