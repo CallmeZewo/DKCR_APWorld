@@ -48,7 +48,6 @@ def get_item_amount(dkcr_world: DKCRWorld, item: GameItems) -> int:
 
     if item.display_name == GameItems.SQUAWKS.display_name:
         if dkcr_world.options.squawks.value == 0:
-            print("no")
             return 0
 
     if item.display_name == GameItems.PROGRESSIVE_FACTORY_BUTTON.display_name:
@@ -62,16 +61,16 @@ def get_item_amount(dkcr_world: DKCRWorld, item: GameItems) -> int:
     if item.display_name == GameItems.MIRROR_MODE.display_name:
         if (
             dkcr_world.options.mirror_mode_shards.value == 0
-            and "Mirror Mode" in dkcr_world.selected_clear_types
+            and "Mirror Mode" not in dkcr_world.selected_clear_types
         ):
             return 0
 
     if "Kong Letter" in item.display_name:
-        if dkcr_world.options.k_level.value == 0:
+        if dkcr_world.options.kong_letter.value == 0:
             return 0
 
     if item.display_name == GameItems.RARE_ORB.display_name:
-        if dkcr_world.options.golden_temple.value == 1:
+        if dkcr_world.options.goal.value == 1:
             return dkcr_world.options.rare_orbs.value
         else:
             return 0
@@ -80,14 +79,12 @@ def get_item_amount(dkcr_world: DKCRWorld, item: GameItems) -> int:
         if dkcr_world.options.puzzle_pieces.value == 0:
             return 0
 
-        if dkcr_world.options.k_level.value == 0:
-            if dkcr_world.options.golden_temple.value == 0:
-                return item.amount - 45
-            return item.amount - 40
-
-
     if item.display_name == GameItems.PROGRESSIVE_BOSS_UNLOCK.display_name:
         if dkcr_world.options.puzzle_pieces.value == 1:
+            return 0
+
+    if item.display_name == GameItems.PROGRESSIVE_K_LEVEL_UNLOCK.display_name:
+        if dkcr_world.options.kong_letter.value == 1:
             return 0
 
     return item.amount
