@@ -58,9 +58,17 @@ def get_locations_for_level(dkcr_world: DKCRWorld, world: GameWorlds, level: Gam
             continue
         elif "Cleared" in location_name and "Normal" not in dkcr_world.selected_clear_types and level.level_index != LevelIndex.BOSS_LEVEL_INDEX:
             continue
-        elif "Kong Letter" in location_name and dkcr_world.options.k_level.value == 0:
+        elif "Kong Letter" in location_name and dkcr_world.options.kong_letter.value == 0:
             continue
         elif "Puzzle Piece" in location_name and dkcr_world.options.puzzle_pieces == 0:
+            continue
+        elif location_name in [
+            GameLevels.PLATFORM_PANIC.display_name, GameLevels.TUMBLIN_TEMPLE.display_name, GameLevels.SHIFTY_SMASHERS.display_name,
+            GameLevels.JAGGED_JEWELS.display_name, GameLevels.BLAST_N_BOUNCE.display_name, GameLevels.PERILOUS_PASSAGE.display_name,
+            GameLevels.TREACHEROUS_TRACK.display_name, GameLevels.FIVE_MONKEY_TRIAL.display_name
+        ] and dkcr_world.options.k_level.value == 0:
+            continue
+        elif "Golden" in location_name and dkcr_world.options.golden_temple == 0:
             continue
         locations_for_region[location_name] = code
     return locations_for_region
