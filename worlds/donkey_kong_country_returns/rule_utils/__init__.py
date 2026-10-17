@@ -6,3 +6,4 @@ from .kong_letter_rules import *
 from .level_rules import *
 from .mirror_mode_rules import *
 from .world_rules import *
+from .k_level_rules import *
