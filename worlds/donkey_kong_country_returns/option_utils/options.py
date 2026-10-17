@@ -11,13 +11,13 @@ class Goal(Choice):
     Golden Temple: clear the golden temple
     All K Level: clear every K Level
     """
-    TikiTongTerror = 0
-    GoldenTemple = 1
-    AllKLevel = 2
-    # AllBosses = 3
-    # AllLevel = 4
-    # AllKongLetter = 5
-    # AllPuzzlePieces = 6
+    option_tiki_tong_terror = 0
+    # option_golden_temple = 1
+    # option_all_k_level = 2
+    # option_all_bosses = 3
+    # option_all_level = 4
+    # option_all_kong_letter = 5
+    # option_all_puzzle_pieces = 6
     # planned
     default = 0
 
@@ -34,6 +34,7 @@ class GoldenTemple(Toggle):
     Golden Temple is randomized.
     """
     display_name = "Golden Temple"
+    visibility = Visibility.none
 
 class RareOrbs(Range):
     """
@@ -71,6 +72,7 @@ class TimeAttackMedals(OptionSet):
         "Bronze", "Silver", "Gold", "Shiny Gold", "Full", "RandomAll", "RandomOne",
         "Bronzeless", "Silverless", "Goldless", "Shiny Goldless"
     }
+    default = {"Bronze"}
 
 class KongLetterCollectionCheckpoint(Toggle):
     """
@@ -213,11 +215,12 @@ class KLevelRequirement(Range):
     Amount of K Level clears that are required when goal is set to "All K Level"
     """
 
-    range_start = 0
+    range_start = 1
     range_end = 8
-    default = 0
+    default = 6
 
     display_name = "K Level Requirement"
+    visibility = Visibility.none
 
 class KongLetter(Toggle):
     """
@@ -254,7 +257,6 @@ class WorldPuzzlePieceBundle(Toggle):
 class WorldKongBundle(Toggle):
     """
     Creates locations for each world for getting every kong letter location in that world.
-    The K Level option takes priority over this.
     """
     display_name = "World Kong Bundle"
     visibility = Visibility.none
@@ -558,6 +560,7 @@ class VolcanoKLevelAccess(Range):
 
 @dataclass
 class DKCROptions(PerGameCommonOptions):
+    goal: Goal
     death_link: DeathLink
     golden_temple: GoldenTemple
     rare_orbs: RareOrbs
@@ -614,6 +617,7 @@ class DKCROptions(PerGameCommonOptions):
 
     def get_slot_data_dict(self) -> dict[str, Any]:
         return self.as_dict(
+            "goal",
             "death_link",
             "golden_temple",
             "rare_orbs",
