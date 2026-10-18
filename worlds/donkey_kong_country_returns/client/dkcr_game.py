@@ -270,6 +270,26 @@ class DKCRGame:
             case GameWorlds.VOLCANO:
                 return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b10000000
 
+    def get_keys(self) -> set[int]:
+        key_ids: set[int] = set()
+        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+            key_ids.add(0x10000 * GameWorlds.JUNGLE.world_index + 0x100 * 0xB + 0x41)
+        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+            key_ids.add(0x10000 * GameWorlds.BEACH.world_index + 0x100 * 0xB + 0x41)
+        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+            key_ids.add(0x10000 * GameWorlds.RUINS.world_index + 0x100 * 0xB + 0x41)
+        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+            key_ids.add(0x10000 * GameWorlds.CAVE.world_index + 0x100 * 0xB + 0x41)
+        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+            key_ids.add(0x10000 * GameWorlds.FOREST.world_index + 0x100 * 0xB + 0x41)
+        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+            key_ids.add(0x10000 * GameWorlds.CLIFF.world_index + 0x100 * 0xB + 0x41)
+        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+            key_ids.add(0x10000 * GameWorlds.FACTORY.world_index + 0x100 * 0xB + 0x41)
+        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+            key_ids.add(0x10000 * GameWorlds.VOLCANO.world_index + 0x100 * 0xB + 0x41)
+        return key_ids
+
     def add_orb(self):
         self.dolphin.read_add_write_byte(CustomAddresses.ORBS, 1)
 
