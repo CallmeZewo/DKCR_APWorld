@@ -69,6 +69,7 @@ class DKCRClient:
             self.dkcr.reset_custom_pp()
             level_data = self.dkcr.get_current_level_data()
             locations_to_send.update(await check_level_data(base_location_address, level_data))
+            locations_to_send.update(self.dkcr.get_keys())
         elif self.dkcr.is_quit_from_game_over():
             pass
         elif self.dkcr.is_in_title():
