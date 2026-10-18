@@ -33,14 +33,14 @@ class GoldenTemple(Toggle):
     """
     Golden Temple is randomized.
     """
-    display_name = "Golden Temple"
+    display_name = "Include Golden Temple"
     visibility = Visibility.none
 
 class RareOrbs(Range):
     """
     How many of the Rare Orbs found in K-levels are needed to enter the Golden Temple.
     """
-    display_name = "Rare Orb amount"
+    display_name = "Required Rare Orb amount for Golden Temple"
 
     range_start = 0
     range_end = 8
@@ -95,21 +95,21 @@ class SmogClear(DefaultOnToggle):
     When enabled, requires to beat 7-1 to clear the smog covering the Factory world to move through it.
     If disabled, DK will be able to traverse the Factory world even with the smog present.
     """
-    display_name = "Smog Clear"
+    display_name = "Smog Clear required for Factory access"
 
 class LiftOffLaunch(DefaultOnToggle):
     """
     When enabled, requires to beat 7-R to access Feather Fiend.
     If disabled, DK will be able to access Feather Fiend without the need to beat 7-R.
     """
-    display_name = "Lift-off Launch"
+    display_name = "Lift-off Launch required for Feather Fiend access"
 
 class FactoryButtons(Range):
     """
     Amount of Factory Buttons that are required to access 7-R.
     Choosing 0 will disable this option and make 7-R always available.
     """
-    display_name = "Factory Buttons"
+    display_name = "Factory Button requirement for Lift-off Launch"
     range_start = 0
     range_end = 15
     # This value can not exceed 15
@@ -197,7 +197,7 @@ class LevelClearType(OptionSet):
     unless "RandomAll" or "RandomOne" is selected.
     """
 
-    display_name = "Level Clear Type"
+    display_name = "Level Clear Types"
     valid_keys = {
         "Normal", "Time Attack", "Time", "Mirror Mode", "Mirror", "Full", "RandomAll", "RandomOne",
         "Normalless", "Time Attackless", "Timeless", "Mirror Modeless", "Mirrorless"
@@ -206,9 +206,9 @@ class LevelClearType(OptionSet):
 
 class KLevel(Toggle):
     """
-    K Level are randomized.
+    K Level are part of the generation.
     """
-    display_name = "K Level"
+    display_name = "Include K Levels"
 
 class KLevelRequirement(Range):
     """
@@ -219,7 +219,7 @@ class KLevelRequirement(Range):
     range_end = 8
     default = 6
 
-    display_name = "K Level Requirement"
+    display_name = "K Level Requirement for K Level goal"
     visibility = Visibility.none
 
 class KongLetter(Toggle):
@@ -228,7 +228,7 @@ class KongLetter(Toggle):
     Kong Letters function as an unlock methode for K Levels.
     If this option is disabled, "Progressive K Level Unlock" items will be put into the pool instead.
     """
-    display_name = "Kong Letter"
+    display_name = "Include Kong Letters"
 
 class PuzzlePieces(Toggle):
     """
@@ -236,13 +236,13 @@ class PuzzlePieces(Toggle):
     Puzzle Pieces function as an unlock methode for Boss Levels.
     If this option is disabled, "Progressive Boss Level Unlock" items will be put into the pool instead.
     """
-    display_name = "Puzzle Pieces"
+    display_name = "Include Puzzle Pieces"
 
 class PuzzlePieceAmount(Range):
     """
     Amount of puzzle pieces in generation.
     """
-    display_name = "Puzzle Piece Amount"
+    display_name = "Total Puzzle Piece amount in generation"
     range_start = 0
     range_end = 350
     default = 300
@@ -251,35 +251,35 @@ class WorldPuzzlePieceBundle(Toggle):
     """
     Creates locations for each world for getting every puzzle piece location in that world.
     """
-    display_name = "World Puzzle Piece Bundle"
+    display_name = "Add World Puzzle Piece Bundle locations"
     visibility = Visibility.none
 
 class WorldKongBundle(Toggle):
     """
     Creates locations for each world for getting every kong letter location in that world.
     """
-    display_name = "World Kong Bundle"
+    display_name = "Add World Kong Bundle locations"
     visibility = Visibility.none
 
 class WorldCleared(Toggle):
     """
     Creates locations for each world for clearing every level in that world.
     """
-    display_name = "World Cleared"
+    display_name = "Add World Cleared locations"
     visibility = Visibility.none
 
 class WorldClearedMirror(Toggle):
     """
     Creates locations for each world for clearing every level in mirror mode in that world.
     """
-    display_name = "World Cleared Mirror"
+    display_name = "Add World Cleared Mirror locations"
     visibility = Visibility.none
 
 class WorldClearedTimeAttack(Toggle):
     """
     Creates locations for each world for clearing every level in time attack with the set medal in that world.
     """
-    display_name = "World Cleared Time Attack"
+    display_name = "Add World Cleared Time Attack locations"
     visibility = Visibility.none
 
 
@@ -288,7 +288,7 @@ class MirrorModeShards(Range):
     Decides how many Mirror Shards are needed to unlock Mirror Mode.
     Setting this option to 0 will disable the Mirror Shards and Mirror Mode will get its own item.
     """
-    display_name = "Mirror Mode Shard amount"
+    display_name = "Mirror Mode Shard amount for Mirror Mode unlock"
 
     range_start = 0
     range_end = 15
@@ -306,63 +306,63 @@ class SunsetShoreKey(DefaultOnToggle):
     """
     When enabled, adds the Jungle Shop Key for the level Sunset Shore as a location.
     """
-    display_name = "Sunset Shore Key"
+    display_name = "Include Sunset Shore Key"
 
 
 class BlowholeBoundKey(DefaultOnToggle):
     """
     Randomizes the Beach Shop Key for the level Blowhole Bound.
     """
-    display_name = "Blowhole Bound Key"
+    display_name = "Include Blowhole Bound Key"
 
 
 class DampDungeonKey(DefaultOnToggle):
     """
     Randomizes the Ruins Shop Key for the level Damp Dungeon.
     """
-    display_name = "Damp Dungeon Key"
+    display_name = "Include Damp Dungeon Key"
 
 
 class MolePatrolKey(DefaultOnToggle):
     """
     Randomizes the Cave Shop Key for the level Mole Patrol.
     """
-    display_name = "Mole Patrol Key"
+    display_name = "Include Mole Patrol Key"
 
 
 class SpringySporesKey(DefaultOnToggle):
     """
     Randomizes the Forest Shop Key for the level Springy Spores.
     """
-    display_name = "Springy Spores Key"
+    display_name = "Include Springy Spores Key"
 
 
 class PrecariousPlateauKey(DefaultOnToggle):
     """
     Randomizes the Cliff Shop Key for the level Precarious Plateau.
     """
-    display_name = "Precarious Plateau Key"
+    display_name = "Include Precarious Plateau Key"
 
 
 class HandyHazardsKey(DefaultOnToggle):
     """
     Randomizes the Factory Shop Key for the level Handy Hazards.
     """
-    display_name = "Handy Hazards Key"
+    display_name = "Include Handy Hazards Key"
 
 
 class SmokeyPeakKey(DefaultOnToggle):
     """
     Randomizes the Volcano Shop Key for the level Smokey Peak.
     """
-    display_name = "Smokey Peak Key"
+    display_name = "Include Smokey Peak Key"
 
 
 class JungleBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Jungle.
     """
-    display_name = "Puzzle Piece requirement for Mugly's Mound"
+    display_name = "Puzzle Piece % requirement for Mugly's Mound"
 
     range_start = 0
     range_end = 100
@@ -374,7 +374,7 @@ class BeachBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Beach.
     """
-    display_name = "Puzzle Piece requirement for Pinchin' Pirates"
+    display_name = "Puzzle Piece % requirement for Pinchin' Pirates"
 
     range_start = 0
     range_end = 100
@@ -386,7 +386,7 @@ class RuinsBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Ruins.
     """
-    display_name = "Puzzle Piece requirement for Ruined Roost"
+    display_name = "Puzzle Piece % requirement for Ruined Roost"
 
     range_start = 0
     range_end = 100
@@ -398,7 +398,7 @@ class CaveBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Cave.
     """
-    display_name = "Puzzle Piece requirement for The Mole Train"
+    display_name = "Puzzle Piece % requirement for The Mole Train"
 
     range_start = 0
     range_end = 100
@@ -410,7 +410,7 @@ class ForestBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Forest.
     """
-    display_name = "Puzzle Piece requirement for Mangoruby Run"
+    display_name = "Puzzle Piece % requirement for Mangoruby Run"
 
     range_start = 0
     range_end = 100
@@ -422,7 +422,7 @@ class CliffBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Cliff.
     """
-    display_name = "Puzzle Piece requirement for Thugly's Highrise"
+    display_name = "Puzzle Piece % requirement for Thugly's Highrise"
 
     range_start = 0
     range_end = 100
@@ -434,7 +434,7 @@ class FactoryBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Factory.
     """
-    display_name = "Puzzle Piece requirement for Feather Fiend"
+    display_name = "Puzzle Piece % requirement for Feather Fiend"
 
     range_start = 0
     range_end = 100
@@ -446,7 +446,7 @@ class VolcanoBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Volcano.
     """
-    display_name = "Puzzle Piece requirement for Tiki Tong Terror"
+    display_name = "Puzzle Piece % requirement for Tiki Tong Terror"
 
     range_start = 0
     range_end = 100
@@ -458,7 +458,7 @@ class JungleKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Jungle.
     """
-    display_name = "Kong Letter requirement for Platform Panic"
+    display_name = "Kong Letter required amount for Platform Panic access"
 
     range_start = 0
     range_end = 24
@@ -471,7 +471,7 @@ class BeachKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Beach.
     """
-    display_name = "Kong Letter requirement for Tumblin' Temple"
+    display_name = "Kong Letter required amount for Tumblin' Temple access"
 
     range_start = 0
     range_end = 28
@@ -484,7 +484,7 @@ class RuinsKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Ruins.
     """
-    display_name = "Kong Letter requirement for Shifty Smashers"
+    display_name = "Kong Letter required amount for Shifty Smashers access"
 
     range_start = 0
     range_end = 24
@@ -497,7 +497,7 @@ class CaveKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Cave.
     """
-    display_name = "Kong Letter requirement for Jagged Jewels"
+    display_name = "Kong Letter required amount for Jagged Jewels access"
 
     range_start = 0
     range_end = 20
@@ -510,7 +510,7 @@ class ForestKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Forest.
     """
-    display_name = "Kong Letter requirement for Blast & Bounce"
+    display_name = "Kong Letter required amount for Blast & Bounce access"
 
     range_start = 0
     range_end = 32
@@ -523,7 +523,7 @@ class CliffKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Cliff.
     """
-    display_name = "Kong Letter requirement for Perilous Passage"
+    display_name = "Kong Letter required amount for Perilous Passage access"
 
     range_start = 0
     range_end = 32
@@ -536,7 +536,7 @@ class FactoryKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Factory.
     """
-    display_name = "Kong Letter requirement for Treacherous Track"
+    display_name = "Kong Letter required amount for Treacherous Track access"
 
     range_start = 0
     range_end = 28
@@ -549,7 +549,7 @@ class VolcanoKLevelAccess(Range):
     """
     Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Volcano.
     """
-    display_name = "Kong Letter requirement for Five Monkey Trial"
+    display_name = "Kong Letter required amount for Five Monkey Trial access"
 
     range_start = 0
     range_end = 28
