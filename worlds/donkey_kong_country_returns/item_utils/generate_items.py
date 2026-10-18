@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from ..world import DKCRWorld
 
 def generate_all_items(dkcr_world: DKCRWorld):
-    itempool = dkcr_world.multiworld.itempool
+    itempool: list[DKCRItem] = []
 
     for item in GameItems:
         amount = get_item_amount(dkcr_world, item)
@@ -28,6 +28,8 @@ def generate_all_items(dkcr_world: DKCRWorld):
         len(dkcr_world.multiworld.get_unfilled_locations(dkcr_world.player)) - len(itempool),
         dkcr_world
     )
+
+    dkcr_world.multiworld.itempool += itempool
 
 
 def create_item_with_correct_classification(world:DKCRWorld, item_name: str) -> DKCRItem:
