@@ -1,7 +1,7 @@
 from BaseClasses import Tutorial
 from worlds.AutoWorld import WebWorld
 
-from .options import option_groups, option_presets
+from .option_utils.options import option_groups
 
 class DKCRWebWorld(WebWorld):
     game = "Donkey Kong Country Returns"
@@ -20,4 +20,4 @@ class DKCRWebWorld(WebWorld):
     tutorials = [setup_en]
 
     option_groups = option_groups
-    option_presets = option_presets
+    #option_presets = option_presets
