@@ -76,6 +76,7 @@ class DKCRClient:
             if self.ctx.mirror_mode_shards_option == 0:
                 if self.dkcr.get_mirror_mode() >= 1:
                     self.dkcr.enable_mirror_mode()
+            locations_to_send.update(self.dkcr.get_world_bundles(last_level[0], self.ctx.time_attack_resolved_option))
         elif self.dkcr.is_quit_from_game_over():
             pass
         elif self.dkcr.is_in_title():
