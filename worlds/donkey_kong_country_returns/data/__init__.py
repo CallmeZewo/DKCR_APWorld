@@ -54,7 +54,16 @@ class WorldTypeEnum(Enum):
             if world.display_name == display_name:
                 return world
         raise ValueError(
-            f"{display_name!r} is not valid {cls.__name__} display name"
+            f"{display_name!r} is not a valid {cls.__name__} display name"
+        )
+
+    @classmethod
+    def get_world_from_world_index(cls, world_index: int) -> "WorldTypeEnum":
+        for world in cls:
+            if world.world_index == world_index:
+                return world
+        raise ValueError(
+            f"{world_index!r} is not a valid {cls.__name__} world index"
         )
 
     @classmethod
@@ -123,6 +132,12 @@ class Medals(Enum):
     Gold = 0x2
     Shiny_Gold = 0x3
     Empty = 0xff
+
+    @property
+    def check_count(self) -> int:
+        if self is Medals.Empty:
+            return -1
+        return self._value_
 
 class LevelData:
     def __init__(self, bitflags: int, medal: int):
