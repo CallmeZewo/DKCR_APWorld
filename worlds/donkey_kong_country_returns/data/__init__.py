@@ -137,7 +137,7 @@ class Medals(Enum):
     def check_count(self) -> int:
         if self is Medals.Empty:
             return -1
-        return self._value_
+        return self._value_ + 1
 
 class LevelData:
     def __init__(self, bitflags: int, medal: int):
