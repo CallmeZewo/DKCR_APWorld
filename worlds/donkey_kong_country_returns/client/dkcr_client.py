@@ -70,6 +70,12 @@ class DKCRClient:
             level_data = self.dkcr.get_current_level_data()
             locations_to_send.update(await check_level_data(base_location_address, level_data))
             locations_to_send.update(self.dkcr.get_keys())
+            locations_to_send.update(self.dkcr.get_medals(base_location_address))
+            if self.dkcr.get_mirror_mode() >= self.ctx.mirror_mode_shards_option != 0:
+                self.dkcr.enable_mirror_mode()
+            if self.ctx.mirror_mode_shards_option == 0:
+                if self.dkcr.get_mirror_mode() >= 1:
+                    self.dkcr.enable_mirror_mode()
         elif self.dkcr.is_quit_from_game_over():
             pass
         elif self.dkcr.is_in_title():
@@ -177,6 +183,9 @@ class DKCRClient:
                 case GameLevels.SUNSET_SHORE:
                     if self.dkcr.has_key(GameWorlds.JUNGLE):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                    if self.ctx.sunset_shore_key_option == 0:
+                        if self.dkcr.read_keys(GameWorlds.JUNGLE):
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                 case GameLevels.CANOPY_CANNONS:
                     if True:
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
@@ -216,6 +225,9 @@ class DKCRClient:
                 case GameLevels.BLOWHOLE_BOUND:
                     if self.dkcr.has_key(GameWorlds.BEACH):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                    if self.ctx.blowhole_bound_key_option == 0:
+                        if self.dkcr.read_keys(GameWorlds.BEACH):
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                 case GameLevels.TIDAL_TERROR:
                     if True:
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
@@ -244,6 +256,9 @@ class DKCRClient:
                 case GameLevels.DAMP_DUNGEON:
                     if self.dkcr.has_key(GameWorlds.RUINS):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                    if self.ctx.damp_dungeon_key_option == 0:
+                        if self.dkcr.read_keys(GameWorlds.RUINS):
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                 case GameLevels.ITTY_BITTY_BITERS:
                     if True:
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
@@ -275,6 +290,9 @@ class DKCRClient:
                 case GameLevels.MOLE_PATROL:
                     if self.dkcr.has_key(GameWorlds.CAVE):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                    if self.ctx.mole_patrol_key_option == 0:
+                        if self.dkcr.read_keys(GameWorlds.CAVE):
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                 case GameLevels.CROWDED_CAVERN:
                     if True:
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
@@ -309,6 +327,9 @@ class DKCRClient:
                 case GameLevels.SPRINGY_SPORES:
                     if self.dkcr.has_key(GameWorlds.FOREST):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                    if self.ctx.sunset_shore_key_option == 0:
+                        if self.dkcr.read_keys(GameWorlds.FOREST):
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                 case GameLevels.WIGGLEVINE_WONDERS:
                     if self.dkcr.has_key(GameWorlds.FOREST):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
@@ -343,6 +364,9 @@ class DKCRClient:
                 case GameLevels.PRECARIOUS_PLATEAU:
                     if self.dkcr.has_key(GameWorlds.FOREST):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                    if self.ctx.precarious_plateau_key_option == 0:
+                        if self.dkcr.read_keys(GameWorlds.CLIFF):
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                 case GameLevels.CRUMBLE_CANYON:
                     if True:
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
@@ -377,6 +401,9 @@ class DKCRClient:
                 case GameLevels.HANDY_HAZARDS:
                     if self.dkcr.has_key(GameWorlds.FACTORY):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                    if self.ctx.handy_hazards_key_option == 0:
+                        if self.dkcr.read_keys(GameWorlds.FACTORY):
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                 case GameLevels.GEAR_GETAWAY:
                     if True:
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
@@ -425,6 +452,9 @@ class DKCRClient:
                 case GameLevels.SMOKEY_PEAK:
                     if self.dkcr.has_key(GameWorlds.VOLCANO):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                    if self.ctx.smokey_peak_key_option == 0:
+                        if self.dkcr.read_keys(GameWorlds.VOLCANO):
+                            self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                 case GameLevels.BOBBING_BASALT:
                     if True:
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
