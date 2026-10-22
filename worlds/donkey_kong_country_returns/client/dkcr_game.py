@@ -1,5 +1,5 @@
 from .dolphin import Dolphin
-from ..data import LevelData
+from ..data import LevelData, Medals
 from ..data.constants.addresses.pal import PALAddresses
 from ..data.constants.dkcr_version import DKCRVersion
 from ..data.constants.addresses.ntscu_rev_1 import NTSCUAddresses
@@ -357,3 +357,54 @@ class DKCRGame:
 
     def set_squawks(self):
         self.dolphin.read_add_write_byte(CustomAddresses.SQUAWKS, 1)
+
+    def get_world_bundles(self, world: int, medal_option: dict[str, int]) -> set[int]:
+        locations_to_send: set[int] = set()
+        game_world: GameWorlds = GameWorlds.get_world_from_world_index(world)
+        puzzle_piece_set_checker: list[bool] = []
+        kong_letter_set_checker: list[bool] = []
+        level_clear_checker: list[bool] = []
+        level_clear_mirror_checker: list[bool] = []
+        level_clear_time_attack_checker_bronze: list[bool] = []
+        level_clear_time_attack_checker_silver: list[bool] = []
+        level_clear_time_attack_checker_gold: list[bool] = []
+        level_clear_time_attack_checker_shiny_gold: list[bool] = []
+        for level in game_world.level_list:
+            if level.level_index == 0xB: # Skip shop
+                continue
+            level_data = self.get_current_level_data(world, level.level_index)
+            level_clear_checker.append(level_data.level_cleared)
+            if level.level_index == 0xA: # Skip 7-R
+                continue
+            level_clear_mirror_checker.append(level_data.mirror_mode_cleared)
+            level_clear_time_attack_checker_bronze.append(level_data.medal == Medals.Bronze)
+            level_clear_time_attack_checker_silver.append(level_data.medal == Medals.Silver)
+            level_clear_time_attack_checker_gold.append(level_data.medal == Medals.Gold)
+            level_clear_time_attack_checker_shiny_gold.append(level_data.medal == Medals.Shiny_Gold)
+            if level.level_index == 0x1: # Skip Levels without puzzle pieces and kong letters
+                continue
+            puzzle_piece_set_checker.append(level_data.all_puzzle_pieces_collected)
+            if level.level_index == 0x0: # Skip Level without kong letters
+                continue
+            kong_letter_set_checker.append(level_data.kong_collected)
+
+        base_address = 0x10000 * world + world + 0xF * 0x100
+
+        if all(puzzle_piece_set_checker):
+            locations_to_send.add(base_address + 0xB)
+        if all(kong_letter_set_checker):
+            locations_to_send.add(base_address + 0x1B)
+        if all(level_clear_checker):
+            locations_to_send.add(base_address + 0x21)
+        if all(level_clear_mirror_checker):
+            locations_to_send.add(base_address + 0x22)
+        if all(level_clear_time_attack_checker_bronze):
+            locations_to_send.add(base_address + 0x23)
+        if all(level_clear_time_attack_checker_silver):
+            locations_to_send.add(base_address + 0x24)
+        if all(level_clear_time_attack_checker_gold):
+            locations_to_send.add(base_address + 0x25)
+        if all(level_clear_time_attack_checker_shiny_gold):
+            locations_to_send.add(base_address + 0x26)
+
+        return locations_to_send
