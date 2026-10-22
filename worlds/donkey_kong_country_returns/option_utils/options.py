@@ -47,6 +47,7 @@ class RareOrbs(Range):
     # This value can not exceed 8
 
     default = 8
+    visibility = Visibility.none
 
 class TimeAttackMedals(OptionSet):
     """
@@ -725,12 +726,16 @@ def handle_ut_yamless(dkcr_world, slot_data: dict[str, Any] | None) -> dict[str,
     if not slot_data:
         return None
 
+    dkcr_world.options.goal.value = slot_data["goal"]
     dkcr_world.ut_medals = set(slot_data["time_attack_resolved"])
     dkcr_world.options.smog_clear.value = slot_data["smog_clear"]
     dkcr_world.options.lift_off_launch.value = slot_data["lift_off_launch"]
     dkcr_world.options.factory_buttons.value = slot_data["factory_buttons"]
     dkcr_world.ut_level_clear_types = set(slot_data["level_clear_type_resolved"])
-    dkcr_world.options.mirror_mode.value = slot_data["mirror_mode"]
+    dkcr_world.options.k_level.value = slot_data["k_level"]
+    dkcr_world.options.kong_letter.value = slot_data["kong_letter"]
+    dkcr_world.options.puzzle_pieces.value = slot_data["puzzle_pieces"]
+    dkcr_world.options.puzzle_piece_amount.value = slot_data["puzzle_piece_amount"]
     dkcr_world.options.mirror_mode_shards.value = slot_data["mirror_mode_shards"]
     dkcr_world.options.squawks.value = slot_data["squawks"]
     dkcr_world.options.sunset_shore_key.value = slot_data["sunset_shore_key"]
