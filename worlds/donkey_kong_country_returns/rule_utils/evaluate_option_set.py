@@ -57,9 +57,9 @@ def resolve_level_clear_types(dkcr_world: DKCRWorld) -> set[str]:
     for clear_type in available_clear_types:
         if clear_type in values:
             dkcr_world.selected_clear_types.add(clear_type)
-        elif "Time" in values:
+        if "Time" in values:
             dkcr_world.selected_clear_types.add("Time Attack")
-        elif "Mirror" in values:
+        if "Mirror" in values:
             dkcr_world.selected_clear_types.add("Mirror Mode")
     if "RandomAll" in values or "RandomOne" in values:
         available_clear_types -= dkcr_world.selected_clear_types
