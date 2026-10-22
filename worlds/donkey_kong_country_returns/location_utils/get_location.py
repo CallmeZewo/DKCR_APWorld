@@ -70,5 +70,21 @@ def get_locations_for_level(dkcr_world: DKCRWorld, world: GameWorlds, level: Gam
             continue
         elif "Golden" in location_name and dkcr_world.options.golden_temple == 0:
             continue
+        elif location_name == "Jungle Shop Key" and dkcr_world.options.sunset_shore_key == 0:
+            continue
+        elif location_name == "Beach Shop Key" and dkcr_world.options.blowhole_bound_key == 0:
+            continue
+        elif location_name == "Ruins Shop Key" and dkcr_world.options.damp_dungeon_key == 0:
+            continue
+        elif location_name == "Cave Shop Key" and dkcr_world.options.mole_patrol_key == 0:
+            continue
+        elif location_name == "Forest Shop Key" and dkcr_world.options.springy_spores_key == 0:
+            continue
+        elif location_name == "Cliff Shop Key" and dkcr_world.options.precarious_plateau_key == 0:
+            continue
+        elif location_name == "Factory Shop Key" and dkcr_world.options.handy_hazards_key == 0:
+            continue
+        elif location_name == "Volcano Shop Key" and dkcr_world.options.smokey_peak_key == 0:
+            continue
         locations_for_region[location_name] = code
     return locations_for_region
