@@ -62,8 +62,8 @@ def get_item_amount(dkcr_world: DKCRWorld, item: GameItems) -> int:
 
     if item.display_name == GameItems.MIRROR_MODE.display_name:
         if (
-            dkcr_world.options.mirror_mode_shards.value == 0
-            and "Mirror Mode" not in dkcr_world.selected_clear_types
+            dkcr_world.options.mirror_mode_shards.value != 0
+            or "Mirror Mode" not in dkcr_world.selected_clear_types
         ):
             return 0
 
@@ -87,6 +87,38 @@ def get_item_amount(dkcr_world: DKCRWorld, item: GameItems) -> int:
 
     if item.display_name == GameItems.PROGRESSIVE_K_LEVEL_UNLOCK.display_name:
         if dkcr_world.options.kong_letter.value == 1:
+            return 0
+
+    if item.display_name == GameItems.JUNGLE_KEY.display_name:
+        if dkcr_world.options.sunset_shore_key.value == 0:
+            return 0
+
+    if item.display_name == GameItems.BEACH_KEY.display_name:
+        if dkcr_world.options.blowhole_bound_key.value == 0:
+            return 0
+
+    if item.display_name == GameItems.RUINS_KEY.display_name:
+        if dkcr_world.options.damp_dungeon_key.value == 0:
+            return 0
+
+    if item.display_name == GameItems.CAVE_KEY.display_name:
+        if dkcr_world.options.mole_patrol_key.value == 0:
+            return 0
+
+    if item.display_name == GameItems.FOREST_KEY.display_name:
+        if dkcr_world.options.springy_spores_key.value == 0:
+            return 0
+
+    if item.display_name == GameItems.CLIFF_KEY.display_name:
+        if dkcr_world.options.precarious_plateau_key.value == 0:
+            return 0
+
+    if item.display_name == GameItems.FACTORY_KEY.display_name:
+        if dkcr_world.options.handy_hazards_key.value == 0:
+            return 0
+
+    if item.display_name == GameItems.VOLCANO_KEY.display_name:
+        if dkcr_world.options.smokey_peak_key.value == 0:
             return 0
 
     return item.amount
