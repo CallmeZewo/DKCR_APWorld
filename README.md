@@ -30,6 +30,14 @@ Bug reports and feedback are especially useful while the world is still in beta.
 
 Thanks to everyone who has helped with PopTracker development, testing, and early logic documentation. The feedback, testing, and contributions have been a huge help in getting the DKCR Archipelago world to this point.
 
+## AI Disclosure
+
+- AI was primarily used for grammar corrections and restructuring large chunks of text while preserving their original meaning.
+- AI was occasionally used to review complex sections of code and suggest potential improvements in text form, rather than generating complete code. These suggestions were reviewed by me and implemented in my own way, without copy-pasting.
+- No AI-generated output was implemented directly. All suggestions were reviewed and adapted manually.
+- No large portions of the codebase were generated using AI.
+- No assets were created or modified using AI.
+
 # [Archipelago](https://archipelago.gg) ![Discord Shield](https://discordapp.com/api/guilds/731205301247803413/widget.png?style=shield) | [Install](https://github.com/ArchipelagoMW/Archipelago/releases)
 
 Archipelago provides a generic framework for developing multiworld capability for game randomizers. In all cases,
