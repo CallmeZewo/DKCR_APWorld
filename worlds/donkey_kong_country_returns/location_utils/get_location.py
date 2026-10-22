@@ -30,7 +30,7 @@ def get_locations_for_world(dkcr_world: DKCRWorld, world: GameWorlds) -> Mapping
             if "Shiny Gold" not in dkcr_world.selected_medals or dkcr_world.options.world_cleared_time_attack == 0:
                 continue
         elif "(Mirror)" in location_name:
-            if "Mirror Mode" in dkcr_world.selected_clear_types or dkcr_world.options.world_cleared_mirror == 0:
+            if "Mirror Mode" not in dkcr_world.selected_clear_types or dkcr_world.options.world_cleared_mirror == 0:
                 continue
         elif "Cleared" in location_name:
             if "Normal" not in dkcr_world.selected_clear_types or dkcr_world.options.world_cleared == 0:
