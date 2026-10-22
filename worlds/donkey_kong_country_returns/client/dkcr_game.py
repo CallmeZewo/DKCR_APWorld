@@ -358,7 +358,7 @@ class DKCRGame:
     def set_squawks(self):
         self.dolphin.read_add_write_byte(CustomAddresses.SQUAWKS, 1)
 
-    def get_world_bundles(self, world: int, medal_option: dict[str, int]) -> set[int]:
+    def get_world_bundles(self, world: int) -> set[int]:
         locations_to_send: set[int] = set()
         game_world: GameWorlds = GameWorlds.get_world_from_world_index(world)
         puzzle_piece_set_checker: list[bool] = []
@@ -377,10 +377,10 @@ class DKCRGame:
             if level.level_index == 0xA: # Skip 7-R
                 continue
             level_clear_mirror_checker.append(level_data.mirror_mode_cleared)
-            level_clear_time_attack_checker_bronze.append(level_data.medal == Medals.Bronze)
-            level_clear_time_attack_checker_silver.append(level_data.medal == Medals.Silver)
-            level_clear_time_attack_checker_gold.append(level_data.medal == Medals.Gold)
-            level_clear_time_attack_checker_shiny_gold.append(level_data.medal == Medals.Shiny_Gold)
+            level_clear_time_attack_checker_bronze.append(level_data.medal >= Medals.Bronze != Medals.Empty)
+            level_clear_time_attack_checker_silver.append(level_data.medal >= Medals.Silver != Medals.Empty)
+            level_clear_time_attack_checker_gold.append(level_data.medal >= Medals.Gold != Medals.Empty)
+            level_clear_time_attack_checker_shiny_gold.append(level_data.medal >= Medals.Shiny_Gold != Medals.Empty)
             if level.level_index == 0x1: # Skip Levels without puzzle pieces and kong letters
                 continue
             puzzle_piece_set_checker.append(level_data.all_puzzle_pieces_collected)
