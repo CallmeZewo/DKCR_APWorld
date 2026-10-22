@@ -253,35 +253,30 @@ class WorldPuzzlePieceBundle(Toggle):
     Creates locations for each world for getting every puzzle piece location in that world.
     """
     display_name = "Add World Puzzle Piece Bundle locations"
-    visibility = Visibility.none
 
 class WorldKongBundle(Toggle):
     """
     Creates locations for each world for getting every kong letter location in that world.
     """
     display_name = "Add World Kong Bundle locations"
-    visibility = Visibility.none
 
 class WorldCleared(Toggle):
     """
     Creates locations for each world for clearing every level in that world.
     """
     display_name = "Add World Cleared locations"
-    visibility = Visibility.none
 
 class WorldClearedMirror(Toggle):
     """
     Creates locations for each world for clearing every level in mirror mode in that world.
     """
     display_name = "Add World Cleared Mirror locations"
-    visibility = Visibility.none
 
 class WorldClearedTimeAttack(Toggle):
     """
     Creates locations for each world for clearing every level in time attack with the set medal in that world.
     """
     display_name = "Add World Cleared Time Attack locations"
-    visibility = Visibility.none
 
 
 class MirrorModeShards(Range):
