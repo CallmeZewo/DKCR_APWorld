@@ -197,21 +197,21 @@ class DKCRGame:
     def add_kl(self, item: GameItems):
         match item:
             case GameItems.KONG_LETTER_JUNGLE:
-                self.dolphin.read_add_write_byte(CustomAddresses.KL_JGL, 1)
+                self.dolphin.read_add_write_byte(CustomAddresses.KL_JGL, 0x1)
             case GameItems.KONG_LETTER_BEACH:
-                self.dolphin.write_byte(CustomAddresses.KL_BCH, + 1)
+                self.dolphin.read_add_write_byte(CustomAddresses.KL_BCH, 0x1)
             case GameItems.KONG_LETTER_RUINS:
-                self.dolphin.write_byte(CustomAddresses.KL_RNS, + 1)
+                self.dolphin.read_add_write_byte(CustomAddresses.KL_RNS, 0x1)
             case GameItems.KONG_LETTER_CAVE:
-                self.dolphin.write_byte(CustomAddresses.KL_CVE, + 1)
+                self.dolphin.read_add_write_byte(CustomAddresses.KL_CVE, 0x1)
             case GameItems.KONG_LETTER_FOREST:
-                self.dolphin.write_byte(CustomAddresses.KL_FRS, + 1)
+                self.dolphin.read_add_write_byte(CustomAddresses.KL_FRS, 0x1)
             case GameItems.KONG_LETTER_CLIFF:
-                self.dolphin.write_byte(CustomAddresses.KL_CLF, + 1)
+                self.dolphin.read_add_write_byte(CustomAddresses.KL_CLF, 0x1)
             case GameItems.KONG_LETTER_FACTORY:
-                self.dolphin.write_byte(CustomAddresses.KL_FCT, + 1)
+                self.dolphin.read_add_write_byte(CustomAddresses.KL_FCT, 0x1)
             case GameItems.KONG_LETTER_VOLCANO:
-                self.dolphin.write_byte(CustomAddresses.KL_VLC, + 1)
+                self.dolphin.read_add_write_byte(CustomAddresses.KL_VLC, 0x1)
 
     def get_kl(self, world: GameWorlds):
         match world:
@@ -231,6 +231,26 @@ class DKCRGame:
                 return self.dolphin.read_byte(CustomAddresses.KL_FCT)
             case GameWorlds.VOLCANO:
                 return self.dolphin.read_byte(CustomAddresses.KL_VLC)
+
+    def read_keys(self, world: GameWorlds) -> bool:
+        match world:
+            case GameWorlds.JUNGLE:
+                return self.dolphin.read_byte(self.addresses.JUNGLE_KEY) == 1
+            case GameWorlds.BEACH:
+                return self.dolphin.read_byte(self.addresses.BEACH_KEY) == 1
+            case GameWorlds.RUINS:
+                return self.dolphin.read_byte(self.addresses.RUINS_KEY) == 1
+            case GameWorlds.CAVE:
+                return self.dolphin.read_byte(self.addresses.CAVE_KEY) == 1
+            case GameWorlds.FOREST:
+                return self.dolphin.read_byte(self.addresses.FOREST_KEY) == 1
+            case GameWorlds.CLIFF:
+                return self.dolphin.read_byte(self.addresses.CLIFF_KEY) == 1
+            case GameWorlds.FACTORY:
+                return self.dolphin.read_byte(self.addresses.FACTORY_KEY) == 1
+            case GameWorlds.VOLCANO:
+                return self.dolphin.read_byte(self.addresses.VOLCANO_KEY) == 1
+        return False
 
     def add_key(self, item: GameItems):
         match item:
@@ -272,23 +292,35 @@ class DKCRGame:
 
     def get_keys(self) -> set[int]:
         key_ids: set[int] = set()
-        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+        if self.read_keys(GameWorlds.JUNGLE):
             key_ids.add(0x10000 * GameWorlds.JUNGLE.world_index + 0x100 * 0xB + 0x41)
-        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+        if self.read_keys(GameWorlds.BEACH):
             key_ids.add(0x10000 * GameWorlds.BEACH.world_index + 0x100 * 0xB + 0x41)
-        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+        if self.read_keys(GameWorlds.RUINS):
             key_ids.add(0x10000 * GameWorlds.RUINS.world_index + 0x100 * 0xB + 0x41)
-        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+        if self.read_keys(GameWorlds.CAVE):
             key_ids.add(0x10000 * GameWorlds.CAVE.world_index + 0x100 * 0xB + 0x41)
-        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+        if self.read_keys(GameWorlds.FOREST):
             key_ids.add(0x10000 * GameWorlds.FOREST.world_index + 0x100 * 0xB + 0x41)
-        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+        if self.read_keys(GameWorlds.CLIFF):
             key_ids.add(0x10000 * GameWorlds.CLIFF.world_index + 0x100 * 0xB + 0x41)
-        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+        if self.read_keys(GameWorlds.FACTORY):
             key_ids.add(0x10000 * GameWorlds.FACTORY.world_index + 0x100 * 0xB + 0x41)
-        if self.dolphin.read_word(self.addresses.JUNGLE_KEY) == 1:
+        if self.read_keys(GameWorlds.VOLCANO):
             key_ids.add(0x10000 * GameWorlds.VOLCANO.world_index + 0x100 * 0xB + 0x41)
         return key_ids
+
+    def get_medals(self, base_address: int, world: int | None = None, level: int | None = None):
+        level_data = self.get_current_level_data(world, level)
+
+        if level_data.medal.check_count < 0: return set()
+
+        locations_to_send = {
+            base_address + offset
+            for offset in range(0x23, 0x23 + level_data.medal.check_count)
+        }
+
+        return locations_to_send
 
     def add_orb(self):
         self.dolphin.read_add_write_byte(CustomAddresses.ORBS, 1)
@@ -316,6 +348,12 @@ class DKCRGame:
 
     def set_mirror_mode(self):
         self.dolphin.read_add_write_byte(CustomAddresses.MIRROR_SHARDS, 1)
+
+    def get_mirror_mode(self):
+        return self.dolphin.read_byte(CustomAddresses.MIRROR_SHARDS)
+
+    def enable_mirror_mode(self):
+        self.dolphin.write_word(self.addresses.MIRROR_MODE_UNLOCKED, 1)
 
     def set_squawks(self):
         self.dolphin.read_add_write_byte(CustomAddresses.SQUAWKS, 1)
