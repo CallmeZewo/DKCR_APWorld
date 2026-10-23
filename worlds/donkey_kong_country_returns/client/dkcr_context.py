@@ -1,5 +1,3 @@
-from win32event import CancelWaitableTimer
-
 from CommonClient import CommonContext, logger
 
 from .dkcr_command_processor import DKCRCommandProcessor
