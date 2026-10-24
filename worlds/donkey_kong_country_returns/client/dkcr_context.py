@@ -14,6 +14,7 @@ class DKCRContext(CommonContext):
         password: str | None = None,
     ) -> None:
         super().__init__(server_address, password)
+        self.squawks_state = 0
 
         self.last_received_item_index: int = 0
 
