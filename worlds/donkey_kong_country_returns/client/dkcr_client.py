@@ -63,6 +63,7 @@ class DKCRClient:
             letters = self.dkcr.get_all_letters()
             locations_to_send.update(await check_pp(base_location_address, pp_field))
             locations_to_send.update(await check_letters(base_location_address, letters))
+            self.toggle_squawks()
 
         elif self.dkcr.is_in_world_map():
             await self.give_item()
@@ -85,6 +86,7 @@ class DKCRClient:
             await self.give_item()
         elif self.dkcr.is_in_time_attack():
             await self.give_item()
+            self.toggle_squawks(True)
         else:
             pass
 
@@ -96,6 +98,14 @@ class DKCRClient:
                 }])
 
         await self.ctx.check_locations(locations_to_send)
+
+    def toggle_squawks(self, force_toggle_off: bool = False):
+        if self.dkcr.get_squawks() == 1 or self.ctx.squawks_option == 0:
+            if not force_toggle_off:
+                self.dkcr.set_squawks_state(self.ctx.squawks_state)
+            else:
+                self.dkcr.set_squawks_state(0)
+                self.ctx.squawks_state = 0
 
     async def give_item(self):
         received_items = self.ctx.items_received
@@ -395,7 +405,7 @@ class DKCRClient:
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                 case GameLevels.SLAMMIN_STEEL:
                     if self.ctx.smog_clear_option:
-                        if self.dkcr.get_current_level_data(GameWorlds.CLIFF.world_index, GameLevels.FOGGY_FUMES.level_index).level_cleared:
+                        if self.dkcr.get_current_level_data(GameWorlds.FACTORY.world_index, GameLevels.FOGGY_FUMES.level_index).level_cleared:
                             self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                     else:
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
