@@ -1,4 +1,4 @@
-class PALAddresses():
+class PALAddresses:
     GAME_ID = 0x80000000
     REV_NUMBER = 0x80000007
 
@@ -44,14 +44,14 @@ class PALAddresses():
     FACTORY_ORB = 0x8080cde8
     VOLCANO_ORB = 0x8080cdec
 
-    JUNGLE_KEY = 0x8080ce10
-    BEACH_KEY = 0x8080cdfc
-    RUINS_KEY = 0x8080ce14
-    CAVE_KEY = 0x8080ce00
-    FOREST_KEY = 0x8080ce0c
-    CLIFF_KEY = 0x8080ce04
-    FACTORY_KEY = 0x8080ce08
-    VOLCANO_KEY = 0x8080ce18
+    JUNGLE_KEY = 0x8080ce13
+    BEACH_KEY = 0x8080cdff
+    RUINS_KEY = 0x8080ce17
+    CAVE_KEY = 0x8080ce03
+    FOREST_KEY = 0x8080ce0f
+    CLIFF_KEY = 0x8080ce07
+    FACTORY_KEY = 0x8080ce0b
+    VOLCANO_KEY = 0x8080ce1b
 
     INVENTORY_BANANA_JUICE = 0x8080ce1c
     INVENTORY_SQUAWKS = 0x8080ce20
