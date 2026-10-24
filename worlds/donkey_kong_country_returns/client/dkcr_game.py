@@ -47,6 +47,10 @@ class DKCRGame:
             )
         )
 
+    def get_current_time_attack_time(self) -> int:
+        time_ptr = self.dolphin.read_word(self.addresses.TIME_ATTACK_POINTER)
+        return self.dolphin.read_word(time_ptr + self.addresses.CURRENT_TIME_ATTACK_RUN_TIME_OFFSET)
+
     def is_in_level(self) -> bool:
         return self.get_game_state() == State.IN_LEVEL
 
@@ -176,9 +180,6 @@ class DKCRGame:
     def get_all_letters(self) -> list[int]:
         return [self.get_k_letter(), self.get_o_letter(), self.get_n_letter(), self.get_g_letter()]
 
-    def get_squawks_state(self) -> int:
-        return self.dolphin.read_word(self.addresses.SQUAWKS_EQUIPPED)
-
     def get_dk_heart_boost_state(self) -> int:
         return self.dolphin.read_word(self.addresses.DK_HEART_BOOST_EQUIPPED)
 
@@ -233,6 +234,7 @@ class DKCRGame:
                 return self.dolphin.read_byte(CustomAddresses.KL_VLC)
 
     def read_keys(self, world: GameWorlds) -> bool:
+        """Returns true if the player has bought the key in the shop of the provided world"""
         match world:
             case GameWorlds.JUNGLE:
                 return self.dolphin.read_byte(self.addresses.JUNGLE_KEY) == 1
@@ -253,6 +255,7 @@ class DKCRGame:
         return False
 
     def add_key(self, item: GameItems):
+        """Adding the gotten item keys into a custom word in the ram"""
         match item:
             case GameItems.JUNGLE_KEY:
                 self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b1)
@@ -272,6 +275,7 @@ class DKCRGame:
                 self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b10000000)
 
     def has_key(self, world: GameWorlds):
+        """Returns true if the player has the key item for the provided world"""
         match world:
             case GameWorlds.JUNGLE:
                 return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b1
@@ -291,6 +295,7 @@ class DKCRGame:
                 return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b10000000
 
     def get_keys(self) -> set[int]:
+        """Returns a set of location ids for the shop keys that were bought by the player"""
         key_ids: set[int] = set()
         if self.read_keys(GameWorlds.JUNGLE):
             key_ids.add(0x10000 * GameWorlds.JUNGLE.world_index + 0x100 * 0xB + 0x41)
@@ -356,7 +361,20 @@ class DKCRGame:
         self.dolphin.write_word(self.addresses.MIRROR_MODE_UNLOCKED, 1)
 
     def set_squawks(self):
+        """Write if item Squawks was received"""
         self.dolphin.read_add_write_byte(CustomAddresses.SQUAWKS, 1)
+
+    def get_squawks(self) -> int:
+        """Returns if item Squawks was received"""
+        return self.dolphin.read_byte(CustomAddresses.SQUAWKS)
+
+    def get_squawks_state(self) -> bool:
+        """Get Squawks equipped state, true if equipped"""
+        return self.dolphin.read_word(self.addresses.SQUAWKS_EQUIPPED) == 1
+
+    def set_squawks_state(self, state: int):
+        """Sets Squawks state and returns it"""
+        self.dolphin.write_word(self.addresses.SQUAWKS_EQUIPPED, state)
 
     def get_world_bundles(self, world: int) -> set[int]:
         locations_to_send: set[int] = set()
