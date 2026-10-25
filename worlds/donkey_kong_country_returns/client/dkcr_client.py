@@ -53,6 +53,14 @@ class DKCRClient:
             self.dkcr.dolphin.write_bytes(0x817fc02a, b'\xff\xff') # Open all worlds
 
     async def main_loop(self) -> None:
+        if self.ctx.ram_requested:
+            self.ctx.ram_requested = False
+            ram_bytes = self.dkcr.dolphin.get_custom_ram_state()
+            ram_hex = ram_bytes.hex().upper()
+            ram_words = [ram_hex[i:i+8] for i in range(0, len(ram_hex), 8)]
+            ram_lines = [" ".join(ram_words[i:i+4]) for i in range(0, len(ram_words), 4)]
+            logger.info("\n".join(ram_lines))
+
         self.create_level_bitfield()
         locations_to_send: set[int] = set()
         last_level = await get_last_level(self.dkcr)
