@@ -58,6 +58,8 @@ class DKCRContext(CommonContext):
         self.volcano_k_level_access_option: int = 0
         self.time_attack_resolved_option: dict[str, int] = {}
 
+        self.ram_requested = False
+
     def make_gui(self) -> "type[kvui.GameManager]":
         return create_game_manager(super().make_gui())
 
