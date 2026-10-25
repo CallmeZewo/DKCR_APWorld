@@ -150,7 +150,7 @@ class GameLevels(LevelTypeEnum):
 
     GOLDEN_TEMPLE = (
         Ln.GOLDEN_TEMPLE_LEVEL,
-        Li.GOLDEN_TEMPLE_LEVEL_INDEX,
+        Li.SECOND_LEVEL_INDEX,
         Lmi.GOLDEN_TEMPLE,
         Lo.GOLDEN_TEMPLE,
         Pp.PP_5,

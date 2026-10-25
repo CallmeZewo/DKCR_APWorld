@@ -2,7 +2,6 @@ from enum import StrEnum, IntEnum
 
 class LevelIndex(IntEnum):
     K_LEVEL_INDEX = 0x0
-    GOLDEN_TEMPLE_LEVEL_INDEX = 0x0
     BOSS_LEVEL_INDEX = 0x1
     FIRST_LEVEL_INDEX = 0x2
     SECOND_LEVEL_INDEX = 0x3
