@@ -1,6 +1,5 @@
 import dolphin_memory_engine as dme
 
-from ..data.constants.addresses.general import GeneralAddresses
 from ..data.constants.dkcr_version import DKCRVersion
 
 
@@ -20,7 +19,7 @@ class Dolphin:
         return dme.is_hooked()
 
     def get_version(self) -> DKCRVersion | None:
-        game_id = dme.read_bytes(GeneralAddresses.GAME_ID, 6)
+        game_id = self.read_bytes(0x80000000, 6)
 
         if game_id == b"SF8E01":
             return DKCRVersion.NTSC_U_REV_1
