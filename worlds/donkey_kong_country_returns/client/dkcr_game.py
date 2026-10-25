@@ -328,7 +328,38 @@ class DKCRGame:
         return locations_to_send
 
     def add_orb(self):
+        """Adds amount of orbs gotten as items"""
         self.dolphin.read_add_write_byte(CustomAddresses.ORBS, 1)
+
+    def get_orb(self) -> int:
+        """Gets amount of orbs gotten as items"""
+        return self.dolphin.read_byte(CustomAddresses.ORBS)
+
+
+    def set_orb(self, orb_setting: int):
+        """Sets in-game orb values for the Golden Temple unlock."""
+
+        orbs_filled = 8 - orb_setting
+        current_orbs = self.get_orb()
+        total_orbs = orbs_filled + current_orbs
+
+        if total_orbs == 0:
+            return
+
+        orb_addresses = [
+            self.addresses.JUNGLE_ORB,
+            self.addresses.BEACH_ORB,
+            self.addresses.RUINS_ORB,
+            self.addresses.CAVE_ORB,
+            self.addresses.FOREST_ORB,
+            self.addresses.CLIFF_ORB,
+            self.addresses.FACTORY_ORB,
+            self.addresses.VOLCANO_ORB,
+        ]
+
+        for index, address in enumerate(orb_addresses, start=1):
+            self.dolphin.write_word(address, int(total_orbs >= index))
+
 
     def add_factory_button(self):
         self.dolphin.read_add_write_byte(CustomAddresses.FACTORY_BUTTONS, 1)
@@ -402,7 +433,7 @@ class DKCRGame:
             if level.level_index == 0x1: # Skip Levels without puzzle pieces and kong letters
                 continue
             puzzle_piece_set_checker.append(level_data.all_puzzle_pieces_collected)
-            if level.level_index == 0x0: # Skip Level without kong letters
+            if level.level_index == 0x0 or level.level_map_index == 0xc: # Skip Level without kong letters
                 continue
             kong_letter_set_checker.append(level_data.kong_collected)
 
