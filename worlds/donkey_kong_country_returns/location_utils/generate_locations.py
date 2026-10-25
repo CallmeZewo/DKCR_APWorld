@@ -89,7 +89,7 @@ def generate_level_location(world: GameWorlds, level: GameLevels) -> dict[str, i
         ] = base_address + Cti.CLEARED
         return level_location_gen
 
-    if level.display_name != GameLevels.GOLDEN_TEMPLE.display_name and level.level_index == Li.K_LEVEL_INDEX:
+    if level.level_index == Li.K_LEVEL_INDEX:
         level_location_gen[
             f"{level.display_name} {Ln.RARE_ORB}"
         ] = base_address + Si.RARE_ORB
