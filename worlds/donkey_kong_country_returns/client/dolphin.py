@@ -82,3 +82,6 @@ class Dolphin:
         bit_position = 7 - (bit_index % 8)
         base_value[byte_index] |= 1 << bit_position
         self.write_bytes(address, bytes(base_value))
+
+    def get_custom_ram_state(self):
+        return self.read_bytes(0x817FC000, 0x32)
