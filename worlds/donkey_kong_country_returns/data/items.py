@@ -6,7 +6,7 @@ from .constants import (
 )
 
 class GameItems(ItemTypeEnum):
-    PUZZLE_PIECE = (In.PUZZLE_PIECE.value, Io.PUZZLE_PIECE.value, ItemClassification.progression, 371)
+    PUZZLE_PIECE = (In.PUZZLE_PIECE.value, Io.PUZZLE_PIECE.value, ItemClassification.progression)
     KONG_LETTER_JUNGLE = (In.KONG_LETTER_JUNGLE.value, Io.KONG_LETTER_JUNGLE.value, ItemClassification.progression, 24)
     KONG_LETTER_BEACH = (In.KONG_LETTER_BEACH.value, Io.KONG_LETTER_BEACH.value, ItemClassification.progression, 28)
     KONG_LETTER_RUINS = (In.KONG_LETTER_RUINS.value, Io.KONG_LETTER_RUINS.value, ItemClassification.progression, 24)
@@ -23,7 +23,7 @@ class GameItems(ItemTypeEnum):
     CLIFF_KEY = (In.CLIFF_KEY.value, Io.CLIFF_KEY.value, ItemClassification.progression)
     FACTORY_KEY = (In.FACTORY_KEY.value, Io.FACTORY_KEY.value, ItemClassification.progression)
     VOLCANO_KEY = (In.VOLCANO_KEY.value, Io.VOLCANO_KEY.value, ItemClassification.progression)
-    RARE_ORB = (In.RARE_ORB.value, Io.ORB.value, ItemClassification.progression, 8)
+    RARE_ORB = (In.RARE_ORB.value, Io.ORB.value, ItemClassification.progression)
     PROGRESSIVE_FACTORY_BUTTON = (In.PROGRESSIVE_FACTORY_BUTTON.value, Io.PROGRESSIVE_FACTORY_BUTTON.value, ItemClassification.progression)
     PROGRESSIVE_BOSS_UNLOCK = (In.PROGRESSIVE_BOSS_UNLOCK.value, Io.PROGRESSIVE_BOSS_UNLOCK.value, ItemClassification.progression, 8)
     PROGRESSIVE_K_LEVEL_UNLOCK = (In.PROGRESSIVE_K_LEVEL_UNLOCK.value, Io.PROGRESSIVE_K_LEVEL_UNLOCK.value, ItemClassification.progression, 8)
