@@ -12,7 +12,7 @@ class Goal(Choice):
     All K Level: clear every K Level
     """
     option_tiki_tong_terror = 0
-    # option_golden_temple = 1
+    option_golden_temple = 1
     # option_all_k_level = 2
     # option_all_bosses = 3
     # option_all_level = 4
@@ -38,7 +38,7 @@ class GoldenTemple(Toggle):
 
 class RareOrbs(Range):
     """
-    How many of the Rare Orbs found in K-levels are needed to enter the Golden Temple.
+    How many of the Rare Orbs usually found in K-levels are needed to enter the Golden Temple.
     """
     display_name = "Required Rare Orb amount for Golden Temple"
 
@@ -46,8 +46,7 @@ class RareOrbs(Range):
     range_end = 8
     # This value can not exceed 8
 
-    default = 8
-    visibility = Visibility.none
+    default = 6
 
 class TimeAttackMedals(OptionSet):
     """
