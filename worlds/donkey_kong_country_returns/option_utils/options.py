@@ -788,7 +788,7 @@ option_groups = [
     ),
     OptionGroup(
         "K Level access options",
-        [KongLetter, KLevel, JungleKongLetterAmount, BeachKongLetterAmount, RuinsKongLetterAmount, CaveKongLetterAmount,
+        [KongLetterUnlockKLevel, KongLetter, KLevel, JungleKongLetterAmount, BeachKongLetterAmount, RuinsKongLetterAmount, CaveKongLetterAmount,
          ForestKongLetterAmount, CliffKongLetterAmount, FactoryKongLetterAmount, VolcanoKongLetterAmount,
          JungleKLevelAccess, BeachKLevelAccess, RuinsKLevelAccess, CaveKLevelAccess, ForestKLevelAccess, CliffKLevelAccess,
          FactoryKLevelAccess, VolcanoKLevelAccess]
