@@ -18,6 +18,7 @@ class DKCRContext(CommonContext):
 
         self.last_received_item_index: int = 0
 
+        self.goal: int = 0
         self.rare_orbs_option: int = 0
         self.smog_clear_option: int = 0
         self.lift_off_launch_option: int = 0
@@ -85,6 +86,7 @@ class DKCRContext(CommonContext):
             slot_data = args.get("slot_data")
             if slot_data is None:
                 return
+            self.goal = slot_data.get("goal")
             self.rare_orbs_option = slot_data.get("rare_orbs")
             self.smog_clear_option = slot_data.get("smog_clear")
             self.lift_off_launch_option = slot_data.get("lift_off_launch")
