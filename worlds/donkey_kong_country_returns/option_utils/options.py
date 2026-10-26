@@ -226,17 +226,13 @@ class KLevelRequirement(Range):
 
 class KongLetter(Toggle):
     """
-    Kong Letter collectibles are randomized.
-    Kong Letters function as an unlock methode for K Levels.
-    If this option is disabled, "Progressive K Level Unlock" items will be put into the pool instead.
+    Kong Letter collectibles are added as locations.
     """
     display_name = "Include Kong Letters"
 
 class PuzzlePieces(Toggle):
     """
-    Puzzle Piece collectibles are randomized.
-    Puzzle Pieces function as an unlock methode for Boss Levels.
-    If this option is disabled, "Progressive Boss Level Unlock" items will be put into the pool instead.
+    Puzzle Piece collectibles are added as locations.
     """
     display_name = "Include Puzzle Pieces"
 
