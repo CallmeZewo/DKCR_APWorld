@@ -110,7 +110,8 @@ class DKCRGame:
 
         return LevelData(
             self.dolphin.read_byte(specific_level_data + 0x3e),
-            self.dolphin.read_byte(specific_level_data + 0x3d)
+            self.dolphin.read_byte(specific_level_data + 0x3d),
+            level == 0
         )
 
     def get_current_level_puzzle_piece_bitfield(self):
@@ -327,20 +328,20 @@ class DKCRGame:
 
         return locations_to_send
 
-    def add_orb(self):
+    def add_orbs(self):
         """Adds amount of orbs gotten as items"""
         self.dolphin.read_add_write_byte(CustomAddresses.ORBS, 1)
 
-    def get_orb(self) -> int:
+    def get_orbs(self) -> int:
         """Gets amount of orbs gotten as items"""
         return self.dolphin.read_byte(CustomAddresses.ORBS)
 
 
-    def set_orb(self, orb_setting: int):
+    def set_orbs(self, orb_setting: int):
         """Sets in-game orb values for the Golden Temple unlock."""
 
         orbs_filled = 8 - orb_setting
-        current_orbs = self.get_orb()
+        current_orbs = self.get_orbs()
         total_orbs = orbs_filled + current_orbs
 
         if total_orbs == 0:
