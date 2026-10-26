@@ -655,6 +655,8 @@ class DKCROptions(PerGameCommonOptions):
     kong_letter: KongLetter
     puzzle_pieces: PuzzlePieces
     puzzle_piece_amount: PuzzlePieceAmount
+    puzzle_pieces_unlock_bosses: PuzzlePiecesUnlockBosses
+    kong_letter_unlock_k_level: KongLetterUnlockKLevel
     world_puzzle_piece_bundle: WorldPuzzlePieceBundle
     world_kong_bundle: WorldKongBundle
     world_cleared: WorldCleared
@@ -720,6 +722,8 @@ class DKCROptions(PerGameCommonOptions):
             "kong_letter",
             "puzzle_pieces",
             "puzzle_piece_amount",
+            "puzzle_pieces_unlock_bosses",
+            "kong_letter_unlock_k_level",
             "world_puzzle_piece_bundle",
             "world_kong_bundle",
             "world_cleared",
@@ -778,7 +782,8 @@ option_groups = [
     ),
     OptionGroup(
         "Boss access options",
-        [PuzzlePieceAmount, PuzzlePieces ,JungleBossAccess, BeachBossAccess, RuinsBossAccess, CaveBossAccess, ForestBossAccess, CliffBossAccess,
+        [PuzzlePiecesUnlockBosses ,PuzzlePieceAmount, PuzzlePieces,
+         JungleBossAccess, BeachBossAccess, RuinsBossAccess, CaveBossAccess, ForestBossAccess, CliffBossAccess,
          FactoryBossAccess, VolcanoBossAccess]
     ),
     OptionGroup(
@@ -825,6 +830,8 @@ def handle_ut_yamless(dkcr_world, slot_data: dict[str, Any] | None) -> dict[str,
     dkcr_world.options.kong_letter.value = slot_data["kong_letter"]
     dkcr_world.options.puzzle_pieces.value = slot_data["puzzle_pieces"]
     dkcr_world.options.puzzle_piece_amount.value = slot_data["puzzle_piece_amount"]
+    dkcr_world.options.puzzle_pieces_unlock_bosses.value = slot_data["puzzle_pieces_unlock_bosses"]
+    dkcr_world.options.kong_letter_unlock_k_level.value = slot_data["kong_letter_unlock_k_level"]
     dkcr_world.options.mirror_mode_shards.value = slot_data["mirror_mode_shards"]
     dkcr_world.options.squawks.value = slot_data["squawks"]
     dkcr_world.options.sunset_shore_key.value = slot_data["sunset_shore_key"]
