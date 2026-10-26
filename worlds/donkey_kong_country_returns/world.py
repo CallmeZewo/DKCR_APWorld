@@ -11,6 +11,7 @@ from .item_utils import generate_item_name_to_id, create_item_with_correct_class
 from .item_utils.dkcr_item import DKCRItem
 from .location_utils import generate_all_locations
 from .option_utils.set_pp_percentage import set_pp_percentage
+from .option_utils.set_letter_percentage import set_letter_percentage
 from .option_utils.validate_options import validate_options
 from .rule_utils import resolve_medals, resolve_level_clear_types, set_completion_condition
 from .region_utils import setup_regions
@@ -70,6 +71,7 @@ class DKCRWorld(World):
         self.selected_medals: set = resolve_medals(self)
         self.selected_clear_types: set = resolve_level_clear_types(self)
         set_pp_percentage(self)
+        set_letter_percentage(self)
         validate_options(self)
 
     def create_regions(self) -> None:

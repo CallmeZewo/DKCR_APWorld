@@ -448,109 +448,172 @@ class VolcanoBossAccess(Range):
 
     default = 95
 
+class JungleKongLetterAmount(Range):
+    """
+    Amount of jungle kong letters in generation.
+    """
+    display_name = "Total jungle kong letter amount in generation"
+    range_start = 0
+    range_end = 50
+    default = 30
+
+class BeachKongLetterAmount(Range):
+    """
+    Amount of beach kong letters in generation.
+    """
+    display_name = "Total beach kong letter amount in generation"
+    range_start = 0
+    range_end = 50
+    default = 30
+
+class RuinsKongLetterAmount(Range):
+    """
+    Amount of ruins kong letters in generation.
+    """
+    display_name = "Total ruins kong letter amount in generation"
+    range_start = 0
+    range_end = 50
+    default = 30
+
+class CaveKongLetterAmount(Range):
+    """
+    Amount of cave kong letters in generation.
+    """
+    display_name = "Total cave kong letter amount in generation"
+    range_start = 0
+    range_end = 50
+    default = 30
+
+class ForestKongLetterAmount(Range):
+    """
+    Amount of forest kong letters in generation.
+    """
+    display_name = "Total forest kong letter amount in generation"
+    range_start = 0
+    range_end = 50
+    default = 30
+
+class CliffKongLetterAmount(Range):
+    """
+    Amount of cliff kong letters in generation.
+    """
+    display_name = "Total cliff kong letter amount in generation"
+    range_start = 0
+    range_end = 50
+    default = 30
+
+class FactoryKongLetterAmount(Range):
+    """
+    Amount of factory kong letters in generation.
+    """
+    display_name = "Total factory kong letter amount in generation"
+    range_start = 0
+    range_end = 50
+    default = 30
+
+class VolcanoKongLetterAmount(Range):
+    """
+    Amount of volcano kong letters in generation.
+    """
+    display_name = "Total volcano kong letter amount in generation"
+    range_start = 0
+    range_end = 50
+    default = 30
 
 class JungleKLevelAccess(Range):
     """
-    Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Jungle.
+    Sets the percentage of total Jungle Kong Letters needed to gain access to the K Level in the Jungle.
     """
-    display_name = "Kong Letter required amount for Platform Panic access"
+    display_name = "Kong Letter % requirement for Platform Panic access"
 
     range_start = 0
-    range_end = 24
-    # This Value can not exceed 24
+    range_end = 100
 
-    default = 12
+    default = 50
 
 
 class BeachKLevelAccess(Range):
     """
-    Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Beach.
+    Sets the percentage of total Beach Kong Letters needed to gain access to the K Level in the Beach.
     """
-    display_name = "Kong Letter required amount for Tumblin' Temple access"
+    display_name = "Kong Letter % requirement for Tumblin' Temple access"
 
     range_start = 0
-    range_end = 28
-    # This Value can not exceed 28
+    range_end = 100
 
-    default = 14
+    default = 50
 
 
 class RuinsKLevelAccess(Range):
     """
-    Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Ruins.
+    Sets the percentage of total Ruins Kong Letters needed to gain access to the K Level in the Ruins.
     """
-    display_name = "Kong Letter required amount for Shifty Smashers access"
+    display_name = "Kong Letter % requirement for Shifty Smashers access"
 
     range_start = 0
-    range_end = 24
-    # This Value can not exceed 24
+    range_end = 100
 
-    default = 12
+    default = 50
 
 
 class CaveKLevelAccess(Range):
     """
-    Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Cave.
+    Sets the percentage of total Cave Kong Letters needed to gain access to the K Level in the Cave.
     """
-    display_name = "Kong Letter required amount for Jagged Jewels access"
+    display_name = "Kong Letter % requirement for Jagged Jewels access"
 
     range_start = 0
-    range_end = 20
-    # This Value can not exceed 20
+    range_end = 100
 
-    default = 10
+    default = 50
 
 
 class ForestKLevelAccess(Range):
     """
-    Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Forest.
+    Sets the percentage of total Forest Kong Letters needed to gain access to the K Level in the Forest.
     """
-    display_name = "Kong Letter required amount for Blast & Bounce access"
+    display_name = "Kong Letter % requirement for Blast & Bounce access"
 
     range_start = 0
-    range_end = 32
-    # This Value can not exceed 32
+    range_end = 100
 
-    default = 16
+    default = 50
 
 
 class CliffKLevelAccess(Range):
     """
-    Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Cliff.
+    Sets the percentage of total Cliff Kong Letters needed to gain access to the K Level in the Cliff.
     """
-    display_name = "Kong Letter required amount for Perilous Passage access"
+    display_name = "Kong Letter % requirement for Perilous Passage access"
 
     range_start = 0
-    range_end = 32
-    # This Value can not exceed 32
+    range_end = 100
 
-    default = 16
+    default = 50
 
 
 class FactoryKLevelAccess(Range):
     """
-    Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Factory.
+    Sets the percentage of total Factory Kong Letters needed to gain access to the K Level in the Factory.
     """
-    display_name = "Kong Letter required amount for Treacherous Track access"
+    display_name = "Kong Letter % requirement for Treacherous Track access"
 
     range_start = 0
-    range_end = 28
-    # This Value can not exceed 28
+    range_end = 100
 
-    default = 14
+    default = 50
 
 
 class VolcanoKLevelAccess(Range):
     """
-    Sets the amount of total Kong Letters, from the respective World, needed to gain access to the K Level in the Volcano.
+    Sets the percentage of total Volcano Kong Letters needed to gain access to the K Level in the Volcano.
     """
-    display_name = "Kong Letter required amount for Five Monkey Trial access"
+    display_name = "Kong Letter % requirement for Five Monkey Trial access"
 
     range_start = 0
-    range_end = 28
-    # This Value can not exceed 28
+    range_end = 100
 
-    default = 14
+    default = 50
 
 
 @dataclass
@@ -601,6 +664,14 @@ class DKCROptions(PerGameCommonOptions):
     cliff_boss_access: CliffBossAccess
     factory_boss_access: FactoryBossAccess
     volcano_boss_access: VolcanoBossAccess
+    jungle_kong_letter_amount: JungleKongLetterAmount
+    beach_kong_letter_amount: BeachKongLetterAmount
+    ruins_kong_letter_amount: RuinsKongLetterAmount
+    cave_kong_letter_amount: CaveKongLetterAmount
+    forest_kong_letter_amount: ForestKongLetterAmount
+    cliff_kong_letter_amount: CliffKongLetterAmount
+    factory_kong_letter_amount: FactoryKongLetterAmount
+    volcano_kong_letter_amount: VolcanoKongLetterAmount
     jungle_k_level_access: JungleKLevelAccess
     beach_k_level_access: BeachKLevelAccess
     ruins_k_level_access: RuinsKLevelAccess
@@ -658,6 +729,14 @@ class DKCROptions(PerGameCommonOptions):
             "cliff_boss_access",
             "factory_boss_access",
             "volcano_boss_access",
+            "jungle_kong_letter_amount",
+            "beach_kong_letter_amount",
+            "ruins_kong_letter_amount",
+            "cave_kong_letter_amount",
+            "forest_kong_letter_amount",
+            "cliff_kong_letter_amount",
+            "factory_kong_letter_amount",
+            "volcano_kong_letter_amount",
             "jungle_k_level_access",
             "beach_k_level_access",
             "ruins_k_level_access",
@@ -690,7 +769,9 @@ option_groups = [
     ),
     OptionGroup(
         "K Level access options",
-        [KongLetter, KLevel, JungleKLevelAccess, BeachKLevelAccess, RuinsKLevelAccess, CaveKLevelAccess, ForestKLevelAccess, CliffKLevelAccess,
+        [KongLetter, KLevel, JungleKongLetterAmount, BeachKongLetterAmount, RuinsKongLetterAmount, CaveKongLetterAmount,
+         ForestKongLetterAmount, CliffKongLetterAmount, FactoryKongLetterAmount, VolcanoKongLetterAmount,
+         JungleKLevelAccess, BeachKLevelAccess, RuinsKLevelAccess, CaveKLevelAccess, ForestKLevelAccess, CliffKLevelAccess,
          FactoryKLevelAccess, VolcanoKLevelAccess]
     ),
     OptionGroup(
@@ -748,6 +829,14 @@ def handle_ut_yamless(dkcr_world, slot_data: dict[str, Any] | None) -> dict[str,
     dkcr_world.options.cliff_boss_access.value = slot_data["cliff_boss_access"]
     dkcr_world.options.factory_boss_access.value = slot_data["factory_boss_access"]
     dkcr_world.options.volcano_boss_access.value = slot_data["volcano_boss_access"]
+    dkcr_world.options.jungle_kong_letter_amount.value = slot_data["jungle_kong_letter_amount"]
+    dkcr_world.options.beach_kong_letter_amount.value = slot_data["beach_kong_letter_amount"]
+    dkcr_world.options.ruins_kong_letter_amount.value = slot_data["ruins_kong_letter_amount"]
+    dkcr_world.options.cave_kong_letter_amount.value = slot_data["cave_kong_letter_amount"]
+    dkcr_world.options.forest_kong_letter_amount.value = slot_data["forest_kong_letter_amount"]
+    dkcr_world.options.cliff_kong_letter_amount.value = slot_data["cliff_kong_letter_amount"]
+    dkcr_world.options.factory_kong_letter_amount.value = slot_data["factory_kong_letter_amount"]
+    dkcr_world.options.volcano_kong_letter_amount.value = slot_data["volcano_kong_letter_amount"]
     dkcr_world.options.jungle_k_level_access.value = slot_data["jungle_k_level_access"]
     dkcr_world.options.beach_k_level_access.value = slot_data["beach_k_level_access"]
     dkcr_world.options.ruins_k_level_access.value = slot_data["ruins_k_level_access"]
