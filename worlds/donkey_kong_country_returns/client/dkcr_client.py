@@ -72,6 +72,8 @@ class DKCRClient:
             locations_to_send.update(await check_pp(base_location_address, pp_field))
             locations_to_send.update(await check_letters(base_location_address, letters))
             self.toggle_squawks()
+            if last_level == (GameWorlds.GOLDEN_TEMPLE_WORLD.world_index, GameLevels.GOLDEN_TEMPLE.level_index):
+                self.dkcr.set_orbs(self.ctx.rare_orbs_option)
 
         elif self.dkcr.is_in_world_map():
             await self.give_item()
@@ -154,7 +156,7 @@ class DKCRClient:
                 ):
                     self.dkcr.add_key(dk_item)
                 case GameItems.RARE_ORB:
-                    self.dkcr.add_orb()
+                    self.dkcr.add_orbs()
                 case GameItems.PROGRESSIVE_FACTORY_BUTTON:
                     self.dkcr.add_factory_button()
                 case GameItems.PROGRESSIVE_BOSS_UNLOCK:
