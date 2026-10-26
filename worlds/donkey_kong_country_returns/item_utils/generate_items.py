@@ -68,7 +68,9 @@ def get_item_amount(dkcr_world: DKCRWorld, item: GameItems) -> int:
             return 0
 
     if "Kong Letter" in item.display_name:
-        if dkcr_world.options.kong_letter.value == 0:
+        if dkcr_world.options.kong_letter_unlock_k_level.value == 0:
+            return 0
+        if dkcr_world.options.k_level.value == 0:
             return 0
 
     if item.display_name == GameItems.RARE_ORB.display_name:
@@ -78,15 +80,15 @@ def get_item_amount(dkcr_world: DKCRWorld, item: GameItems) -> int:
             return 0
 
     if item.display_name == GameItems.PUZZLE_PIECE.display_name:
-        if dkcr_world.options.puzzle_pieces.value == 0:
+        if dkcr_world.options.puzzle_pieces_unlock_bosses.value == 0:
             return 0
 
     if item.display_name == GameItems.PROGRESSIVE_BOSS_UNLOCK.display_name:
-        if dkcr_world.options.puzzle_pieces.value == 1:
+        if dkcr_world.options.puzzle_pieces_unlock_bosses.value == 1:
             return 0
 
     if item.display_name == GameItems.PROGRESSIVE_K_LEVEL_UNLOCK.display_name:
-        if dkcr_world.options.kong_letter.value == 1:
+        if dkcr_world.options.kong_letter_unlock_k_level.value == 1:
             return 0
 
     if item.display_name == GameItems.JUNGLE_KEY.display_name:
