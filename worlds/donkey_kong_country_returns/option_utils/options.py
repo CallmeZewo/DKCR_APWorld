@@ -207,6 +207,8 @@ class LevelClearType(OptionSet):
 class KLevel(Toggle):
     """
     K Level are part of the generation.
+    K Level are locked behind kong letter items of their world.
+    No Kong Letter items will be added into generation if this option is disabled.
     """
     display_name = "Include K Levels"
 
@@ -246,6 +248,22 @@ class PuzzlePieceAmount(Range):
     range_start = 0
     range_end = 350
     default = 300
+
+class PuzzlePiecesUnlockBosses(Toggle):
+    """
+    If enabled, bosses are unlocked with puzzle piece items.
+    If disabled, bosses are unlocked with "Progressive Boss Unlock" items.
+    No Puzzle Piece items will be added into generation if this option is disabled.
+    """
+    display_name = "Puzzle Pieces unlock bosses"
+
+class KongLetterUnlockKLevel(Toggle):
+    """
+    If enabled, K Level are unlocked with kong letter items.
+    If disabled, K Level are unlocked with "Progressive K Level Unlock" items.
+    No Kong Letter items will be added into generation if this option is disabled.
+    """
+    display_name = "Kong Letter unlock K Level"
 
 class WorldPuzzlePieceBundle(Toggle):
     """
