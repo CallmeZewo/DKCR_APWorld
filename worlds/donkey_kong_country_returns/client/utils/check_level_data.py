@@ -12,5 +12,7 @@ async def check_level_data(base_location_address: int, level_data: LevelData):
         locations_to_send.add(base_location_address + 0x1A)
     if level_data.all_puzzle_pieces_collected:
         locations_to_send.add(base_location_address + 0xA)
+    if level_data.is_k_level:
+        locations_to_send.add(base_location_address + 0x31)
 
     return locations_to_send
