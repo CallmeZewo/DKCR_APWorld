@@ -62,14 +62,6 @@ def get_locations_for_level(dkcr_world: DKCRWorld, world: GameWorlds, level: Gam
             continue
         elif "Puzzle Piece" in location_name and dkcr_world.options.puzzle_pieces == 0:
             continue
-        elif location_name in [
-            GameLevels.PLATFORM_PANIC.display_name, GameLevels.TUMBLIN_TEMPLE.display_name, GameLevels.SHIFTY_SMASHERS.display_name,
-            GameLevels.JAGGED_JEWELS.display_name, GameLevels.BLAST_N_BOUNCE.display_name, GameLevels.PERILOUS_PASSAGE.display_name,
-            GameLevels.TREACHEROUS_TRACK.display_name, GameLevels.FIVE_MONKEY_TRIAL.display_name
-        ] and dkcr_world.options.k_level.value == 0:
-            continue
-        elif "Golden" in location_name and dkcr_world.options.golden_temple == 0:
-            continue
         elif location_name == "Jungle Shop Key" and dkcr_world.options.sunset_shore_key == 0:
             continue
         elif location_name == "Beach Shop Key" and dkcr_world.options.blowhole_bound_key == 0:
