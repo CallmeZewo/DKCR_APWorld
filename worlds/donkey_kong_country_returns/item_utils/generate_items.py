@@ -68,10 +68,25 @@ def get_item_amount(dkcr_world: DKCRWorld, item: GameItems) -> int:
             return 0
 
     if "Kong Letter" in item.display_name:
-        if dkcr_world.options.kong_letter_unlock_k_level.value == 0:
+        if dkcr_world.options.kong_letter_unlock_k_level.value == 0 or dkcr_world.options.k_level.value == 0:
             return 0
-        if dkcr_world.options.k_level.value == 0:
-            return 0
+        match item.display_name:
+            case GameItems.KONG_LETTER_JUNGLE:
+                return dkcr_world.options.jungle_kong_letter_amount.value
+            case GameItems.KONG_LETTER_BEACH:
+                return dkcr_world.options.beach_kong_letter_amount.value
+            case GameItems.KONG_LETTER_RUINS:
+                return dkcr_world.options.ruins_kong_letter_amount.value
+            case GameItems.KONG_LETTER_CAVE:
+                return dkcr_world.options.cave_kong_letter_amount.value
+            case GameItems.KONG_LETTER_FOREST:
+                return dkcr_world.options.forest_kong_letter_amount.value
+            case GameItems.KONG_LETTER_CLIFF:
+                return dkcr_world.options.cliff_kong_letter_amount.value
+            case GameItems.KONG_LETTER_FACTORY:
+                return dkcr_world.options.factory_kong_letter_amount.value
+            case GameItems.KONG_LETTER_VOLCANO:
+                return dkcr_world.options.volcano_kong_letter_amount.value
 
     if item.display_name == GameItems.RARE_ORB.display_name:
         if dkcr_world.options.goal.value == 1:
@@ -82,6 +97,8 @@ def get_item_amount(dkcr_world: DKCRWorld, item: GameItems) -> int:
     if item.display_name == GameItems.PUZZLE_PIECE.display_name:
         if dkcr_world.options.puzzle_pieces_unlock_bosses.value == 0:
             return 0
+        else:
+            return dkcr_world.options.puzzle_piece_amount.value
 
     if item.display_name == GameItems.PROGRESSIVE_BOSS_UNLOCK.display_name:
         if dkcr_world.options.puzzle_pieces_unlock_bosses.value == 1:
