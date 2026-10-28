@@ -9,7 +9,7 @@ class Goal(Choice):
     Required end goal to beat the game.
     Tiki Tong Terror: defeat the end boss in 8-B
     Golden Temple: clear the golden temple
-    All K Level: clear every K Level
+    All K Level: clear every K Level (WIP)
     """
     option_tiki_tong_terror = 0
     option_golden_temple = 1
@@ -31,13 +31,13 @@ class DeathLink(Toggle):
 
 class GoldenTemple(Toggle):
     """
-    Golden Temple is randomized.
+    Golden Temple level locations are in generation.
     """
     display_name = "Include Golden Temple"
 
 class RareOrbs(Range):
     """
-    How many of the Rare Orbs usually found in K-levels are needed to enter the Golden Temple.
+    How many of the Rare Orbs, usually found in K-levels, are needed to enter the Golden Temple.
     """
     display_name = "Required Rare Orb amount for Golden Temple"
 
@@ -91,14 +91,14 @@ class RandomizeLevels(Toggle):
 
 class SmogClear(DefaultOnToggle):
     """
-    When enabled, requires to beat 7-1 to clear the smog covering the Factory world to move through it.
+    When enabled, requires you to beat 7-1 to clear the smog that is covering the Factory world to move through it.
     If disabled, DK will be able to traverse the Factory world even with the smog present.
     """
     display_name = "Smog Clear required for Factory access"
 
 class LiftOffLaunch(DefaultOnToggle):
     """
-    When enabled, requires to beat 7-R to access Feather Fiend.
+    When enabled, requires you to beat 7-R to access Feather Fiend.
     If disabled, DK will be able to access Feather Fiend without the need to beat 7-R.
     """
     display_name = "Lift-off Launch required for Feather Fiend access"
@@ -237,7 +237,7 @@ class PuzzlePieces(Toggle):
 
 class PuzzlePieceAmount(Range):
     """
-    Amount of puzzle pieces in generation.
+    Amount of Puzzle Piece items in generation.
     """
     display_name = "Total Puzzle Piece amount in generation"
     range_start = 0
@@ -246,7 +246,7 @@ class PuzzlePieceAmount(Range):
 
 class PuzzlePiecesUnlockBosses(Toggle):
     """
-    If enabled, bosses are unlocked with puzzle piece items.
+    If enabled, bosses are unlocked with Puzzle Piece items.
     If disabled, bosses are unlocked with "Progressive Boss Unlock" items.
     No Puzzle Piece items will be added into generation if this option is disabled.
     """
@@ -254,7 +254,7 @@ class PuzzlePiecesUnlockBosses(Toggle):
 
 class KongLetterUnlockKLevel(Toggle):
     """
-    If enabled, K Level are unlocked with kong letter items.
+    If enabled, K Level are unlocked with Kong Letter items.
     If disabled, K Level are unlocked with "Progressive K Level Unlock" items.
     No Kong Letter items will be added into generation if this option is disabled.
     """
@@ -262,13 +262,13 @@ class KongLetterUnlockKLevel(Toggle):
 
 class WorldPuzzlePieceBundle(Toggle):
     """
-    Creates locations for each world for getting every puzzle piece location in that world.
+    Creates locations for each world for getting every Puzzle Piece location in that world.
     """
     display_name = "Add World Puzzle Piece Bundle locations"
 
 class WorldKongBundle(Toggle):
     """
-    Creates locations for each world for getting every kong letter location in that world.
+    Creates locations for each world for getting every Kong Letter location in that world.
     """
     display_name = "Add World Kong Bundle locations"
 
@@ -293,7 +293,7 @@ class WorldClearedTimeAttack(Toggle):
 
 class MirrorModeShards(Range):
     """
-    Decides how many Mirror Shards are needed to unlock Mirror Mode.
+    Decides how many Mirror Shard items are needed to unlock Mirror Mode.
     Setting this option to 0 will disable the Mirror Shards and Mirror Mode will get its own item.
     """
     display_name = "Mirror Mode Shard amount for Mirror Mode unlock"
@@ -312,7 +312,8 @@ class Squawks(Toggle):
 
 class SunsetShoreKey(DefaultOnToggle):
     """
-    When enabled, adds the Jungle Shop Key for the level Sunset Shore as a location.
+    When enabled, adds the Jungle Shop Key for the level Sunset Shore.
+    Keys function like in vanilla DKCR if this is disabled.
     """
     display_name = "Include Sunset Shore Key"
 
@@ -320,6 +321,7 @@ class SunsetShoreKey(DefaultOnToggle):
 class BlowholeBoundKey(DefaultOnToggle):
     """
     Randomizes the Beach Shop Key for the level Blowhole Bound.
+    Keys function like in vanilla DKCR if this is disabled.
     """
     display_name = "Include Blowhole Bound Key"
 
@@ -327,6 +329,7 @@ class BlowholeBoundKey(DefaultOnToggle):
 class DampDungeonKey(DefaultOnToggle):
     """
     Randomizes the Ruins Shop Key for the level Damp Dungeon.
+    Keys function like in vanilla DKCR if this is disabled.
     """
     display_name = "Include Damp Dungeon Key"
 
@@ -334,6 +337,7 @@ class DampDungeonKey(DefaultOnToggle):
 class MolePatrolKey(DefaultOnToggle):
     """
     Randomizes the Cave Shop Key for the level Mole Patrol.
+    Keys function like in vanilla DKCR if this is disabled.
     """
     display_name = "Include Mole Patrol Key"
 
@@ -341,6 +345,7 @@ class MolePatrolKey(DefaultOnToggle):
 class SpringySporesKey(DefaultOnToggle):
     """
     Randomizes the Forest Shop Key for the level Springy Spores.
+    Keys function like in vanilla DKCR if this is disabled.
     """
     display_name = "Include Springy Spores Key"
 
@@ -348,6 +353,7 @@ class SpringySporesKey(DefaultOnToggle):
 class PrecariousPlateauKey(DefaultOnToggle):
     """
     Randomizes the Cliff Shop Key for the level Precarious Plateau.
+    Keys function like in vanilla DKCR if this is disabled.
     """
     display_name = "Include Precarious Plateau Key"
 
@@ -355,6 +361,7 @@ class PrecariousPlateauKey(DefaultOnToggle):
 class HandyHazardsKey(DefaultOnToggle):
     """
     Randomizes the Factory Shop Key for the level Handy Hazards.
+    Keys function like in vanilla DKCR if this is disabled.
     """
     display_name = "Include Handy Hazards Key"
 
@@ -362,6 +369,7 @@ class HandyHazardsKey(DefaultOnToggle):
 class SmokeyPeakKey(DefaultOnToggle):
     """
     Randomizes the Volcano Shop Key for the level Smokey Peak.
+    Keys function like in vanilla DKCR if this is disabled.
     """
     display_name = "Include Smokey Peak Key"
 
@@ -463,72 +471,72 @@ class VolcanoBossAccess(Range):
 
 class JungleKongLetterAmount(Range):
     """
-    Amount of jungle kong letters in generation.
+    Amount of Jungle Kong Letter items in generation.
     """
-    display_name = "Total jungle kong letter amount in generation"
+    display_name = "Total Jungle Kong Letter amount in generation"
     range_start = 0
     range_end = 50
     default = 30
 
 class BeachKongLetterAmount(Range):
     """
-    Amount of beach kong letters in generation.
+    Amount of Beach Kong Letter items in generation.
     """
-    display_name = "Total beach kong letter amount in generation"
+    display_name = "Total Beach Kong Letter amount in generation"
     range_start = 0
     range_end = 50
     default = 30
 
 class RuinsKongLetterAmount(Range):
     """
-    Amount of ruins kong letters in generation.
+    Amount of Ruins Kong Letter items in generation.
     """
-    display_name = "Total ruins kong letter amount in generation"
+    display_name = "Total Ruins Kong Letter amount in generation"
     range_start = 0
     range_end = 50
     default = 30
 
 class CaveKongLetterAmount(Range):
     """
-    Amount of cave kong letters in generation.
+    Amount of Cave Kong Letter items in generation.
     """
-    display_name = "Total cave kong letter amount in generation"
+    display_name = "Total Cave Kong Letter amount in generation"
     range_start = 0
     range_end = 50
     default = 30
 
 class ForestKongLetterAmount(Range):
     """
-    Amount of forest kong letters in generation.
+    Amount of Forest Kong Letter items in generation.
     """
-    display_name = "Total forest kong letter amount in generation"
+    display_name = "Total Forest Kong Letter amount in generation"
     range_start = 0
     range_end = 50
     default = 30
 
 class CliffKongLetterAmount(Range):
     """
-    Amount of cliff kong letters in generation.
+    Amount of Cliff Kong Letter items in generation.
     """
-    display_name = "Total cliff kong letter amount in generation"
+    display_name = "Total Cliff Kong Letter amount in generation"
     range_start = 0
     range_end = 50
     default = 30
 
 class FactoryKongLetterAmount(Range):
     """
-    Amount of factory kong letters in generation.
+    Amount of Factory Kong Letter items in generation.
     """
-    display_name = "Total factory kong letter amount in generation"
+    display_name = "Total Factory Kong Letter amount in generation"
     range_start = 0
     range_end = 50
     default = 30
 
 class VolcanoKongLetterAmount(Range):
     """
-    Amount of volcano kong letters in generation.
+    Amount of Volcano Kong Letter items in generation.
     """
-    display_name = "Total volcano kong letter amount in generation"
+    display_name = "Total Volcano Kong Letter amount in generation"
     range_start = 0
     range_end = 50
     default = 30
