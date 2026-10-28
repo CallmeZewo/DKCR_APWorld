@@ -11,11 +11,11 @@ if TYPE_CHECKING:
 def generate_all_regions(dkcr_world: DKCRWorld):
     regions = dkcr_world.multiworld.regions
     for world in GameWorlds:
-        if world.world_index == Wi.GOLDEN_TEMPLE_WORLD_INDEX and dkcr_world.options.golden_temple.value == 0:
+        if world.world_index == Wi.GOLDEN_TEMPLE_WORLD_INDEX and (dkcr_world.options.goal.value != 1 or dkcr_world.options.golden_temple.value == 0):
             continue
         regions.append(create_region(world.display_name, dkcr_world))
         for level in world.level_list:
-            if level.level_index == Li.K_LEVEL_INDEX and dkcr_world.options.k_level.value == 0 and "Gold" not in level.display_name:
+            if level.level_index == Li.K_LEVEL_INDEX and dkcr_world.options.k_level.value == 0:
                 continue
             regions.append(create_region(level.display_name, dkcr_world))
 
