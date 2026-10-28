@@ -34,7 +34,6 @@ class GoldenTemple(Toggle):
     Golden Temple is randomized.
     """
     display_name = "Include Golden Temple"
-    visibility = Visibility.none
 
 class RareOrbs(Range):
     """
@@ -821,6 +820,9 @@ def handle_ut_yamless(dkcr_world, slot_data: dict[str, Any] | None) -> dict[str,
         return None
 
     dkcr_world.options.goal.value = slot_data["goal"]
+    dkcr_world.options.death_link.value = slot_data["death_link"]
+    dkcr_world.options.golden_temple.value = slot_data["golden_temple"]
+    dkcr_world.options.rare_orbs.value = slot_data["rare_orbs"]
     dkcr_world.ut_medals = set(slot_data["time_attack_resolved"])
     dkcr_world.options.smog_clear.value = slot_data["smog_clear"]
     dkcr_world.options.lift_off_launch.value = slot_data["lift_off_launch"]
