@@ -94,7 +94,7 @@ class SmogClear(DefaultOnToggle):
     When enabled, requires you to beat 7-1 to clear the smog that is covering the Factory world to move through it.
     If disabled, DK will be able to traverse the Factory world even with the smog present.
     """
-    display_name = "Smog Clear required for Factory access"
+    display_name = "Smog clear required for Factory access"
 
 class LiftOffLaunch(DefaultOnToggle):
     """
