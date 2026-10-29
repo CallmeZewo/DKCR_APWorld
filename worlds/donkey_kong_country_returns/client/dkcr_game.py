@@ -108,6 +108,11 @@ class DKCRGame:
             level_data + offset
         )
 
+        if level != 0x1 and level < 0xA:
+            level_flags = self.dolphin.read_byte(specific_level_data + 0x3e)
+
+            self.dolphin.write_byte(specific_level_data + 0x3e, level_flags & 0b11011111)
+
         return LevelData(
             self.dolphin.read_byte(specific_level_data + 0x3e),
             self.dolphin.read_byte(specific_level_data + 0x3d),
