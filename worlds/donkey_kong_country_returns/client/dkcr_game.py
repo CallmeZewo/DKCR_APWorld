@@ -16,6 +16,10 @@ class DKCRGame:
         self.addresses = None
 
     def connect(self) -> bool:
+        """
+        Main connector to dolphin
+        If not already connected, will check for game version, sets it and returns if successful
+        """
         if not self.dolphin.connect():
             return False
 
@@ -32,6 +36,10 @@ class DKCRGame:
         return True
 
     def check_in_rom(self) -> bool:
+        """
+        Returns true if player is currently running a rom
+        If false will disconnect player from dolphin
+        """
         try:
             self.dolphin.read_bytes(self.addresses.GAME_ID, 6)
         except RuntimeError:
@@ -41,6 +49,9 @@ class DKCRGame:
         return True
 
     def get_game_state(self) -> State:
+        """
+        Returns the state the game is currently in
+        """
         return State(
             self.dolphin.read_word(
                 self.addresses.GAME_STATE
@@ -48,51 +59,91 @@ class DKCRGame:
         )
 
     def get_current_time_attack_time(self) -> int:
+        """
+        Returns current time in level, used in time attack mainly
+        """
         time_ptr = self.dolphin.read_word(self.addresses.TIME_ATTACK_POINTER)
         return self.dolphin.read_word(time_ptr + self.addresses.CURRENT_TIME_ATTACK_RUN_TIME_OFFSET)
 
     def is_in_level(self) -> bool:
+        """
+        Returns true if player is in a level
+        """
         return self.get_game_state() == State.IN_LEVEL
 
     def is_in_world_map(self) -> bool:
+        """
+        Returns true if player on the world map
+        """
         state = self.get_game_state()
         return state == State.WORLD_MAP or state == State.WORLD_MAP_AFTER_QUIT
 
     def is_quit_from_game_over(self) -> bool:
+        """
+        Returns true if the player quit from the game over screen (briefly)
+        """
         return self.get_game_state() == State.QUIT_GAME_OVER
 
     def is_in_title(self) -> bool:
+        """
+        Returns true if player is in the title scene
+        """
         return self.get_game_state() == State.TITLE
 
     def is_in_super_guide(self) -> bool:
+        """
+        Returns true if player is using the super guide
+        """
         return self.get_game_state() == State.SUPER_GUIDE
 
     def is_in_time_attack(self) -> bool:
+        """
+        Returns true if player is in a time attack
+        This will return false when the level is being restarted
+        """
         return self.get_game_state() == State.TIME_ATTACK
 
     def in_pre_rendered_cutscene(self) -> bool:
+        """
+        Returns true if player is in a pre-rendered cutscene
+        """
         return self.dolphin.read_word(self.addresses.IN_PRE_RENDERED_CUTSCENE) == 1
 
     def cutscene_identifier(self):
+        """
+        Returns current cutscene identifier id from game
+        """
         return self.dolphin.read_word(self.addresses.CUTSCENE_IDENTIFIER)
 
     def in_victory_cutscene(self) -> bool:
+        """
+        Returns true if current cutscene playing is one of the victory cutscenes after beating 8-B
+        """
         identifier = self.cutscene_identifier()
         victory_solo = 0x31b100
         victory_duo = 0x31b900
         return identifier == victory_solo or identifier == victory_duo
 
     def get_current_level(self) -> int:
+        """
+        Returns current level as in-game id
+        """
         return self.dolphin.read_word(
             self.addresses.LEVEL_NUMBER
         )
 
     def get_current_world(self) -> int:
+        """
+        Returns current world as in-game id
+        """
         return self.dolphin.read_word(
             self.addresses.WORLD_OF_CURRENT_LEVEL
         )
 
     def get_current_level_data(self, world: int | None = None, level: int | None = None) -> "LevelData":
+        """
+        Returns Level Data class for the level passed in
+        """
         if not world:
             world = self.get_current_world()
         if not level:
@@ -120,12 +171,21 @@ class DKCRGame:
         )
 
     def get_current_level_puzzle_piece_bitfield(self):
+        """
+        Returns puzzle piece bitfield of the current level
+        """
         return self.dolphin.read_word(CustomAddresses.CURRENT_LEVEL_PP)
 
     def reset_custom_pp(self):
+        """
+        Resets ram that holds the puzzle piece bitfield
+        """
         self.dolphin.write_word(CustomAddresses.CURRENT_LEVEL_PP, 0x0)
 
     def add_bananas(self, amount: int):
+        """
+        Adding bananas to the counter
+        """
         current_bananas = self.dolphin.read_word(self.addresses.BANANAS)
         new_amount = current_bananas + amount
         extra_lives_to_get = 0
@@ -139,6 +199,9 @@ class DKCRGame:
             self.add_extra_lives(extra_lives_to_get)
 
     def add_banana_coins(self, amount: int):
+        """
+        Adding banana coins to the counter
+        """
         current_coins = self.dolphin.read_word(self.addresses.BANANA_COINS)
         new_amount = current_coins + amount
         if new_amount > 999:
@@ -147,6 +210,9 @@ class DKCRGame:
         self.dolphin.write_word(self.addresses.BANANA_COINS, new_amount)
 
     def add_extra_lives(self, amount: int):
+        """
+        Adding extra lives to the counter
+        """
         current_extra_lives = self.dolphin.read_word(self.addresses.LIVES)
         new_amount = current_extra_lives + amount
         if new_amount > 99:
@@ -155,6 +221,10 @@ class DKCRGame:
         self.dolphin.write_word(self.addresses.LIVES, new_amount)
 
     def add_recovery_heart(self):
+        """
+        Heals DK/DD by one heart
+        Full logic for heart booster item
+        """
         current_health_dk = self.dolphin.read_word(self.addresses.DK_HEALTH)
         current_health_dd = self.dolphin.read_word(self.addresses.DD_HEALTH)
         dk_has_heart_boost = self.dolphin.read_word(self.addresses.DK_HEART_BOOST_EQUIPPED)
@@ -172,36 +242,69 @@ class DKCRGame:
             self.dolphin.write_word(self.addresses.DD_HEALTH, 3)
 
     def get_k_letter(self) -> int:
+        """
+        Returns ram value of k letter gotten in current level
+        """
         return self.dolphin.read_byte(self.addresses.K_LETTER)
 
     def get_o_letter(self) -> int:
+        """
+        Returns ram value of o letter gotten in current level
+        """
         return self.dolphin.read_byte(self.addresses.O_LETTER)
 
     def get_n_letter(self) -> int:
+        """
+        Returns ram value of n letter gotten in current level
+        """
         return self.dolphin.read_byte(self.addresses.N_LETTER)
 
     def get_g_letter(self) -> int:
+        """
+        Returns ram value of g letter gotten in current level
+        """
         return self.dolphin.read_byte(self.addresses.G_LETTER)
 
     def get_all_letters(self) -> list[int]:
+        """
+        Returns ram value of all letter gotten in current level as list
+        """
         return [self.get_k_letter(), self.get_o_letter(), self.get_n_letter(), self.get_g_letter()]
 
     def get_dk_heart_boost_state(self) -> int:
+        """
+        Returns ram value of DK using the heart boost item
+        """
         return self.dolphin.read_word(self.addresses.DK_HEART_BOOST_EQUIPPED)
 
     def get_dd_heart_boost_state(self) -> int:
+        """
+        Returns ram value of DD using the heart boost item
+        """
         return self.dolphin.read_word(self.addresses.DIDDY_HEART_BOOST_EQUIPPED)
 
     def get_mirror_mode_state(self) -> int:
+        """
+        Returns ram value of mirror mode being active
+        """
         return self.dolphin.read_word(self.addresses.MIRROR_MODE_ACTIVE)
 
     def add_pp(self):
+        """
+        Adding to the amount of puzzle piece items gotten
+        """
         self.dolphin.read_add_write_bytes(CustomAddresses.PP_AMOUNT, 2, 1)
 
     def get_pp(self) -> int:
+        """
+        Getting the amount of puzzle piece items gotten
+        """
         return int.from_bytes(self.dolphin.read_bytes(CustomAddresses.PP_AMOUNT, 2))
 
     def add_kl(self, item: GameItems):
+        """
+        Adding to the amount of kong letters items gotten for individual worlds
+        """
         match item:
             case GameItems.KONG_LETTER_JUNGLE:
                 self.dolphin.read_add_write_byte(CustomAddresses.KL_JGL, 0x1)
@@ -221,6 +324,9 @@ class DKCRGame:
                 self.dolphin.read_add_write_byte(CustomAddresses.KL_VLC, 0x1)
 
     def get_kl(self, world: GameWorlds):
+        """
+        Getting the amount of kong letters items gotten for a chosen world
+        """
         match world:
             case GameWorlds.JUNGLE:
                 return self.dolphin.read_byte(CustomAddresses.KL_JGL)
@@ -240,7 +346,9 @@ class DKCRGame:
                 return self.dolphin.read_byte(CustomAddresses.KL_VLC)
 
     def read_keys(self, world: GameWorlds) -> bool:
-        """Returns true if the player has bought the key in the shop of the provided world"""
+        """
+        Returns true if the player has bought the key in the shop of the provided world
+        """
         match world:
             case GameWorlds.JUNGLE:
                 return self.dolphin.read_byte(self.addresses.JUNGLE_KEY) == 1
@@ -261,7 +369,9 @@ class DKCRGame:
         return False
 
     def add_key(self, item: GameItems):
-        """Adding the gotten item keys into a custom word in the ram"""
+        """
+        Adding the gotten item keys into a custom word in the ram
+        """
         match item:
             case GameItems.JUNGLE_KEY:
                 self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b1)
@@ -281,7 +391,9 @@ class DKCRGame:
                 self.dolphin.read_or_write_byte(CustomAddresses.KEYS, 0b10000000)
 
     def has_key(self, world: GameWorlds):
-        """Returns true if the player has the key item for the provided world"""
+        """
+        Returns true if the player has the key item for the provided world
+        """
         match world:
             case GameWorlds.JUNGLE:
                 return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b1
@@ -301,7 +413,9 @@ class DKCRGame:
                 return self.dolphin.read_byte(CustomAddresses.KEYS) & 0b10000000
 
     def get_keys(self) -> set[int]:
-        """Returns a set of location ids for the shop keys that were bought by the player"""
+        """
+        Returns a set of location ids for the shop keys that were bought by the player
+        """
         key_ids: set[int] = set()
         if self.read_keys(GameWorlds.JUNGLE):
             key_ids.add(0x10000 * GameWorlds.JUNGLE.world_index + 0x100 * 0xB + 0x41)
@@ -322,6 +436,9 @@ class DKCRGame:
         return key_ids
 
     def get_medals(self, base_address: int, world: int | None = None, level: int | None = None):
+        """
+        Returns a set of location ids for the medals that were achieved by the player
+        """
         level_data = self.get_current_level_data(world, level)
 
         if level_data.medal.check_count < 0: return set()
@@ -334,16 +451,22 @@ class DKCRGame:
         return locations_to_send
 
     def add_orbs(self):
-        """Adds amount of orbs gotten as items"""
+        """
+        Adds amount of orbs gotten as items
+        """
         self.dolphin.read_add_write_byte(CustomAddresses.ORBS, 1)
 
     def get_orbs(self) -> int:
-        """Gets amount of orbs gotten as items"""
+        """
+        Gets amount of orbs gotten as items
+        """
         return self.dolphin.read_byte(CustomAddresses.ORBS)
 
 
     def set_orbs(self, orb_setting: int):
-        """Sets in-game orb values for the Golden Temple unlock."""
+        """
+        Sets in-game orb values for the Golden Temple unlock
+        """
 
         orbs_filled = 8 - orb_setting
         current_orbs = self.get_orbs()
@@ -368,52 +491,94 @@ class DKCRGame:
 
 
     def add_factory_button(self):
+        """
+        Adds amount of factory button items gotten
+        """
         self.dolphin.read_add_write_byte(CustomAddresses.FACTORY_BUTTONS, 1)
 
     def get_factory_button(self):
+        """
+        Getting the amount of factory button items gotten
+        """
         return self.dolphin.read_byte(CustomAddresses.FACTORY_BUTTONS)
 
     def add_boss_unlock(self):
+        """
+        Adds amount of boss unlock items gotten
+        """
         self.dolphin.read_add_write_byte(CustomAddresses.BOSS_UNLOCK, 1)
 
     def get_boss_unlock(self) -> int:
+        """
+        Getting the amount of boss unlock items gotten
+        """
         return self.dolphin.read_byte(CustomAddresses.BOSS_UNLOCK)
 
     def add_k_level_unlock(self):
+        """
+        Adds amount of k level unlock items gotten
+        """
         self.dolphin.read_add_write_byte(CustomAddresses.K_LEVEL_UNLOCK, 1)
 
     def get_k_level_unlock(self) -> int:
+        """
+        Getting the amount of k level unlock items gotten
+        """
         return self.dolphin.read_byte(CustomAddresses.K_LEVEL_UNLOCK)
 
     def add_mirror_shard(self):
+        """
+        Adds amount of mirror shards items gotten
+        """
         self.dolphin.read_add_write_byte(CustomAddresses.MIRROR_SHARDS, 1)
 
     def set_mirror_mode(self):
+        """
+        Set mirror mode shards to 1 for mirror mode item
+        Logic is combine for these
+        """
         self.dolphin.read_add_write_byte(CustomAddresses.MIRROR_SHARDS, 1)
 
     def get_mirror_mode(self):
+        """
+        Getting the amount of mirror shards items gotten
+        """
         return self.dolphin.read_byte(CustomAddresses.MIRROR_SHARDS)
 
     def enable_mirror_mode(self):
+        """
+        Setting the unlock state of mirror mode in game
+        """
         self.dolphin.write_word(self.addresses.MIRROR_MODE_UNLOCKED, 1)
 
     def set_squawks(self):
-        """Write if item Squawks was received"""
+        """
+        Write if item Squawks was received
+        """
         self.dolphin.read_add_write_byte(CustomAddresses.SQUAWKS, 1)
 
     def get_squawks(self) -> int:
-        """Returns if item Squawks was received"""
+        """
+        Returns if item Squawks was received
+        """
         return self.dolphin.read_byte(CustomAddresses.SQUAWKS)
 
     def get_squawks_state(self) -> bool:
-        """Get Squawks equipped state, true if equipped"""
+        """
+        Get Squawks equipped state, true if equipped
+        """
         return self.dolphin.read_word(self.addresses.SQUAWKS_EQUIPPED) == 1
 
     def set_squawks_state(self, state: int):
-        """Sets Squawks state and returns it"""
+        """
+        Sets Squawks state and returns it
+        """
         self.dolphin.write_word(self.addresses.SQUAWKS_EQUIPPED, state)
 
     def get_world_bundles(self, world: int) -> set[int]:
+        """
+        Returns a set of location ids for the world bundles that were achieved by the player
+        """
         locations_to_send: set[int] = set()
         game_world: GameWorlds = GameWorlds.get_world_from_world_index(world)
         puzzle_piece_set_checker: list[bool] = []
