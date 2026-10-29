@@ -45,6 +45,12 @@ def create_events(dkcr_world: DKCRWorld):
         location_type=DKCRLocation,
         item_type=DKCRItem
     )
+    dkcr_world.get_region(Ln.FOGGY_FUMES).add_event(
+        location_name=f"{Ln.FOGGY_FUMES} event",
+        item_name="Cleared smog",
+        location_type=DKCRLocation,
+        item_type=DKCRItem
+    )
     dkcr_world.get_region(Ln.FEATHER_FIEND).add_event(
         location_name=f"{Ln.FEATHER_FIEND} event",
         item_name="Factory boss beaten",
