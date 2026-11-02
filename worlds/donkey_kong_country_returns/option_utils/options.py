@@ -11,6 +11,8 @@ class Goal(Choice):
     Golden Temple: clear the golden temple
     All K Level: clear every K Level (WIP)
     """
+    display_name = "Goal"
+
     option_tiki_tong_terror = 0
     option_golden_temple = 1
     # option_all_k_level = 2
