@@ -68,24 +68,24 @@ def get_item_amount(dkcr_world: DKCRWorld, item: GameItems) -> int:
             return 0
 
     if "Kong Letter" in item.display_name:
-        if dkcr_world.options.kong_letter_unlock_k_level.value == 0 or dkcr_world.options.k_level.value == 0:
+        if dkcr_world.options.kong_letter_unlock_k_level.value == 0 or (dkcr_world.options.k_level.value == 0 and dkcr_world.options.goal_option.value != 2):
             return 0
         match item.display_name:
-            case GameItems.KONG_LETTER_JUNGLE:
+            case GameItems.KONG_LETTER_JUNGLE.display_name:
                 return dkcr_world.options.jungle_kong_letter_amount.value
-            case GameItems.KONG_LETTER_BEACH:
+            case GameItems.KONG_LETTER_BEACH.display_name:
                 return dkcr_world.options.beach_kong_letter_amount.value
-            case GameItems.KONG_LETTER_RUINS:
+            case GameItems.KONG_LETTER_RUINS.display_name:
                 return dkcr_world.options.ruins_kong_letter_amount.value
-            case GameItems.KONG_LETTER_CAVE:
+            case GameItems.KONG_LETTER_CAVE.display_name:
                 return dkcr_world.options.cave_kong_letter_amount.value
-            case GameItems.KONG_LETTER_FOREST:
+            case GameItems.KONG_LETTER_FOREST.display_name:
                 return dkcr_world.options.forest_kong_letter_amount.value
-            case GameItems.KONG_LETTER_CLIFF:
+            case GameItems.KONG_LETTER_CLIFF.display_name:
                 return dkcr_world.options.cliff_kong_letter_amount.value
-            case GameItems.KONG_LETTER_FACTORY:
+            case GameItems.KONG_LETTER_FACTORY.display_name:
                 return dkcr_world.options.factory_kong_letter_amount.value
-            case GameItems.KONG_LETTER_VOLCANO:
+            case GameItems.KONG_LETTER_VOLCANO.display_name:
                 return dkcr_world.options.volcano_kong_letter_amount.value
 
     if item.display_name == GameItems.RARE_ORB.display_name:
