@@ -50,7 +50,6 @@ class DKCRClient:
         elif not self.dolphin_connected:
             logger.info(f"Donkey Kong Country Returns {self.dkcr.version.value} successfully connected!")
             self.dolphin_connected = True
-            self.dkcr.dolphin.write_bytes(0x817fc02a, b'\xff\xff') # Open all worlds
 
     async def main_loop(self) -> None:
         if self.ctx.ram_requested:
