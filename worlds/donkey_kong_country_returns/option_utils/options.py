@@ -708,7 +708,7 @@ class DKCROptions(PerGameCommonOptions):
 
     def get_slot_data_dict(self) -> dict[str, Any]:
         return self.as_dict(
-            "goal",
+            "goal_option",
             "death_link",
             "golden_temple",
             "rare_orbs",
@@ -830,7 +830,7 @@ def handle_ut_yamless(dkcr_world, slot_data: dict[str, Any] | None) -> dict[str,
     if not slot_data:
         return None
 
-    dkcr_world.options.goal_option.value = slot_data["goal"]
+    dkcr_world.options.goal_option.value = slot_data["goal_option"]
     dkcr_world.options.death_link.value = slot_data["death_link"]
     dkcr_world.options.golden_temple.value = slot_data["golden_temple"]
     dkcr_world.options.rare_orbs.value = slot_data["rare_orbs"]
