@@ -40,6 +40,8 @@ def get_locations_for_world(dkcr_world: DKCRWorld, world: GameWorlds) -> Mapping
 
 def get_locations_for_level(dkcr_world: DKCRWorld, world: GameWorlds, level: GameLevels) -> Mapping[str, int | None]:
     locations_for_region: dict[str, int | None] = {}
+    if level.level_index == LevelIndex.K_LEVEL_INDEX and dkcr_world.options.k_level.value == 0:
+        return locations_for_region
     locations_for_level = generate_level_location(world, level)
     for location_name, code in locations_for_level.items():
         if "[Bronze]" in location_name:
