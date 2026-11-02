@@ -1,4 +1,3 @@
-from rule_builder.rules import True_
 from .kong_letter_rules import *
 from ..option_utils.options import *
 
@@ -26,3 +25,6 @@ def can_enter_treacherous_track():
 
 def can_enter_five_monkey_trial():
     return has_all_volcano_letters | Has("Progressive K Level Unlock", 8)
+
+def can_goal_k_level():
+    return Has("K Level beaten", count=FromOption(KLevelRequirement))
