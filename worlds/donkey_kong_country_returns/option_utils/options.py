@@ -639,7 +639,7 @@ class VolcanoKLevelAccess(Range):
 
 @dataclass
 class DKCROptions(PerGameCommonOptions):
-    goal: Goal
+    goal_option: Goal
     death_link: DeathLink
     golden_temple: GoldenTemple
     rare_orbs: RareOrbs
@@ -827,7 +827,7 @@ def handle_ut_yamless(dkcr_world, slot_data: dict[str, Any] | None) -> dict[str,
     if not slot_data:
         return None
 
-    dkcr_world.options.goal.value = slot_data["goal"]
+    dkcr_world.options.goal_option.value = slot_data["goal"]
     dkcr_world.options.death_link.value = slot_data["death_link"]
     dkcr_world.options.golden_temple.value = slot_data["golden_temple"]
     dkcr_world.options.rare_orbs.value = slot_data["rare_orbs"]

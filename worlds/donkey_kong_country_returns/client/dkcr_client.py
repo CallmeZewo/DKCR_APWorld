@@ -101,10 +101,10 @@ class DKCRClient:
             pass
 
         send_goal: bool = False
-        if self.ctx.goal == 0:
+        if self.ctx.goal_option == 0:
             if self.dkcr.in_pre_rendered_cutscene() and self.dkcr.in_victory_cutscene():
                 send_goal = True
-        if self.ctx.goal == 1:
+        if self.ctx.goal_option == 1:
             if self.dkcr.get_current_level_data(
                     GameWorlds.GOLDEN_TEMPLE_WORLD.world_index,
                     GameLevels.GOLDEN_TEMPLE.level_index

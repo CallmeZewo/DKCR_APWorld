@@ -9,9 +9,9 @@ if TYPE_CHECKING:
 
 
 def set_completion_condition(dkcr_world: DKCRWorld):
-    if dkcr_world.options.goal.value == 0:
+    if dkcr_world.options.goal_option.value == 0:
         dkcr_world.set_completion_rule(can_enter_tiki_tong_terror())
         return
-    if dkcr_world.options.goal.value == 1:
+    if dkcr_world.options.goal_option.value == 1:
         dkcr_world.set_completion_rule(can_enter_golden_temple())
         return
