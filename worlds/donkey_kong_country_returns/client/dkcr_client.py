@@ -96,7 +96,7 @@ class DKCRClient:
             await self.give_item()
         elif self.dkcr.is_in_time_attack():
             await self.give_item()
-            self.toggle_squawks(True)
+            self.toggle_squawks(force_toggle_off=True)
         else:
             pass
 
