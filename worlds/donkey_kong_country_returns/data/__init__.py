@@ -38,10 +38,12 @@ class WorldTypeEnum(Enum):
     def __init__(self,
                  display_name: str,
                  world_index: int,
+                 overworld_index: int,
                  key_address: int | None,
                  orb_address: int | None,
                  level_list: dict[GameLevels, GameLevels]):
         self.display_name = display_name
+        self.overworld_index = overworld_index
         self.world_index = world_index
         self.key_address = key_address
         self.orb_address = orb_address
