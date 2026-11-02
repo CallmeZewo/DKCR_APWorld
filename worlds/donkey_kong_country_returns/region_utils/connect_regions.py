@@ -17,7 +17,7 @@ def connect_all_regions(dkcr_world: DKCRWorld):
                     and connection.target.display_name == GameWorlds.GOLDEN_TEMPLE_WORLD.display_name):
                 continue
 
-            if (dkcr_world.options.k_level.value == 0
+            if (dkcr_world.options.k_level.value == 0 and dkcr_world.options.goal_option.value != 2
                     and connection.target.display_name in [
                         Ln.PLATFORM_PANIC, Ln.TUMBLIN_TEMPLE, Ln.SHIFTY_SMASHERS, Ln.JAGGED_JEWELS,
                         Ln.BLAST_N_BOUNCE, Ln.PERILOUS_PASSAGE, Ln.TREACHEROUS_TRACK, Ln.FIVE_MONKEY_TRIAL
