@@ -26,6 +26,7 @@ class DKCRContext(CommonContext):
         self.factory_buttons_option: int = 0
         self.level_clear_type_option: dict[str, int] = {}
         self.k_level_option: int = 0
+        self.k_level_requirement_option: int = 0
         self.puzzle_pieces_option: int = 0
         self.world_puzzle_piece_bundle_option: int = 0
         self.world_kong_letter_bundle_option: int = 0
@@ -95,6 +96,7 @@ class DKCRContext(CommonContext):
             self.factory_buttons_option = slot_data.get("factory_buttons")
             self.level_clear_type_option: dict[str, int] = slot_data.get("level_clear_type")
             self.k_level_option = slot_data.get("k_level")
+            self.k_level_requirement_option = slot_data.get("k_level_requirement")
             self.puzzle_pieces_option = slot_data.get("puzzle_pieces")
             self.world_puzzle_piece_bundle_option = slot_data.get("world_puzzle_piece_bundle")
             self.world_kong_letter_bundle_option = slot_data.get("world_kong_letter_bundle")
