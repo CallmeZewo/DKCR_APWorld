@@ -61,6 +61,7 @@ class DKCRClient:
             logger.info("\n".join(ram_lines))
 
         self.create_level_bitfield()
+        self.create_world_bitfield()
         locations_to_send: set[int] = set()
         last_level = await get_last_level(self.dkcr)
         base_location_address = get_base_location_address(last_level)
@@ -503,3 +504,34 @@ class DKCRClient:
                         or self.dkcr.get_boss_unlock() >= 8
                     ):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+
+    def create_world_bitfield(self):
+        for world in GameWorlds:
+            match world:
+                case GameWorlds.JUNGLE:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.WORLD_CONNECTION, 2, world.overworld_index)
+                case GameWorlds.BEACH:
+                    if self.dkcr.get_current_level_data(GameWorlds.JUNGLE.world_index, GameLevels.MUGLYS_MOUND.level_index).level_cleared:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.WORLD_CONNECTION, 2, world.overworld_index)
+                case GameWorlds.RUINS:
+                    if self.dkcr.get_current_level_data(GameWorlds.BEACH.world_index, GameLevels.PINCHIN_PIRATES.level_index).level_cleared:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.WORLD_CONNECTION, 2, world.overworld_index)
+                case GameWorlds.CAVE:
+                    if self.dkcr.get_current_level_data(GameWorlds.RUINS.world_index, GameLevels.RUINED_ROOST.level_index).level_cleared:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.WORLD_CONNECTION, 2, world.overworld_index)
+                case GameWorlds.FOREST:
+                    if self.dkcr.get_current_level_data(GameWorlds.CAVE.world_index, GameLevels.THE_MOLE_TRAIN.level_index).level_cleared:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.WORLD_CONNECTION, 2, world.overworld_index)
+                case GameWorlds.CLIFF:
+                    if self.dkcr.get_current_level_data(GameWorlds.FOREST.world_index, GameLevels.MANGORUBY_RUN.level_index).level_cleared:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.WORLD_CONNECTION, 2, world.overworld_index)
+                case GameWorlds.FACTORY:
+                    if self.dkcr.get_current_level_data(GameWorlds.CLIFF.world_index, GameLevels.THUGLYS_HIGHRISE.level_index).level_cleared:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.WORLD_CONNECTION, 2, world.overworld_index)
+                case GameWorlds.VOLCANO:
+                    if self.dkcr.get_current_level_data(GameWorlds.FACTORY.world_index, GameLevels.FEATHER_FIEND.level_index).level_cleared:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.WORLD_CONNECTION, 2, world.overworld_index)
+                case GameWorlds.GOLDEN_TEMPLE_WORLD:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.WORLD_CONNECTION, 2, world.overworld_index)
