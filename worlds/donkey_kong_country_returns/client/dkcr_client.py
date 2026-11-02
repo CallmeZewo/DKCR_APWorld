@@ -504,6 +504,9 @@ class DKCRClient:
                         or self.dkcr.get_boss_unlock() >= 8
                     ):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.GOLDEN_TEMPLE:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
 
     def create_world_bitfield(self):
         for world in GameWorlds:
