@@ -31,7 +31,7 @@ class DKCRClient:
             if self.dolphin_connected and self.ctx.slot is not None:
                 await self.main_loop()
             elif self.dolphin_connected:
-                self.dkcr.dolphin.write_bytes(0x817fc000, b'\x00\x00\x00\x00' * 40)
+                self.dkcr.dolphin.write_bytes(0x817fc000, b'\x00\x00\x00\x00' * 50)
             await asyncio.sleep(self.sleep_time)
             self.sleep_time = 0.1
 
