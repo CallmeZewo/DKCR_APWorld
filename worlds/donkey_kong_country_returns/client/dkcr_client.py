@@ -110,6 +110,9 @@ class DKCRClient:
                     GameLevels.GOLDEN_TEMPLE.level_index
                     ).level_cleared:
                 send_goal = True
+        if self.ctx.goal_option == 2:
+            if self.dkcr.check_amount_of_k_level_beaten() == self.ctx.k_level_option:
+                send_goal = True
         if send_goal:
             await self.ctx.send_msgs([{
                 "cmd": "StatusUpdate",
