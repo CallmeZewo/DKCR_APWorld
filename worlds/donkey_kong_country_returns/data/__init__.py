@@ -95,19 +95,6 @@ class WorldTypeEnum(Enum):
         )
 
 
-    def kong_letter_amount(self) -> int:
-        amount: int = 0
-        for level in self.level_list:
-            amount += 1 if level.has_kong_letters else 0
-        return amount
-
-    def puzzle_piece_amount(self) -> int:
-        amount: int = 0
-        for level in self.level_list:
-            amount += level.pp_amount
-        return amount
-
-
 class ItemTypeEnum(Enum):
     def __init__(self,
                  display_name: str,
