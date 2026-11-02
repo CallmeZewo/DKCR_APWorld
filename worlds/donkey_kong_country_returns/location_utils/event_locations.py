@@ -63,6 +63,8 @@ def create_events(dkcr_world: DKCRWorld):
         location_type=DKCRLocation,
         item_type=DKCRItem
     )
+    if dkcr_world.options.goal_option.value != 2 and dkcr_world.options.k_level.value == 0:
+        return
     dkcr_world.get_region(Ln.PLATFORM_PANIC).add_event(
         location_name=f"{Ln.PLATFORM_PANIC} event",
         item_name="K Level beaten",
