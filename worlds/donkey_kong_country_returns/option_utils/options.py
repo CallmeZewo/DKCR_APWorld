@@ -208,8 +208,9 @@ class LevelClearType(OptionSet):
 class KLevel(Toggle):
     """
     K Level are part of the generation.
-    K Level are locked behind kong letter items of their world.
+    K Level are locked behind kong letter items of their world or Progressive Level Unlock items.
     No Kong Letter items will be added into generation if this option is disabled.
+    K Levels are in generation for the goal "All K Level" but no locations will be added to them.
     """
     display_name = "Include K Levels"
 
@@ -378,6 +379,7 @@ class SmokeyPeakKey(DefaultOnToggle):
 class JungleBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Jungle.
+    This option is disregarded if Bosses are unlocked with the "Progressive Boss Unlock" items.
     """
     display_name = "Puzzle Piece % requirement for Mugly's Mound"
 
@@ -390,6 +392,7 @@ class JungleBossAccess(Range):
 class BeachBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Beach.
+    This option is disregarded if Bosses are unlocked with the "Progressive Boss Unlock" items.
     """
     display_name = "Puzzle Piece % requirement for Pinchin' Pirates"
 
@@ -402,6 +405,7 @@ class BeachBossAccess(Range):
 class RuinsBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Ruins.
+    This option is disregarded if Bosses are unlocked with the "Progressive Boss Unlock" items.
     """
     display_name = "Puzzle Piece % requirement for Ruined Roost"
 
@@ -414,6 +418,7 @@ class RuinsBossAccess(Range):
 class CaveBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Cave.
+    This option is disregarded if Bosses are unlocked with the "Progressive Boss Unlock" items.
     """
     display_name = "Puzzle Piece % requirement for The Mole Train"
 
@@ -426,6 +431,7 @@ class CaveBossAccess(Range):
 class ForestBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Forest.
+    This option is disregarded if Bosses are unlocked with the "Progressive Boss Unlock" items.
     """
     display_name = "Puzzle Piece % requirement for Mangoruby Run"
 
@@ -438,6 +444,7 @@ class ForestBossAccess(Range):
 class CliffBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Cliff.
+    This option is disregarded if Bosses are unlocked with the "Progressive Boss Unlock" items.
     """
     display_name = "Puzzle Piece % requirement for Thugly's Highrise"
 
@@ -450,6 +457,7 @@ class CliffBossAccess(Range):
 class FactoryBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Factory.
+    This option is disregarded if Bosses are unlocked with the "Progressive Boss Unlock" items.
     """
     display_name = "Puzzle Piece % requirement for Feather Fiend"
 
@@ -462,6 +470,7 @@ class FactoryBossAccess(Range):
 class VolcanoBossAccess(Range):
     """
     Sets the percentage of total Puzzle Pieces needed to gain access to the Boss in the Volcano.
+    This option is disregarded if Bosses are unlocked with the "Progressive Boss Unlock" items.
     """
     display_name = "Puzzle Piece % requirement for Tiki Tong Terror"
 
@@ -545,6 +554,7 @@ class VolcanoKongLetterAmount(Range):
 class JungleKLevelAccess(Range):
     """
     Sets the percentage of total Jungle Kong Letters needed to gain access to the K Level in the Jungle.
+    This option is disregarded if K Level are unlocked with the "Progressive K Level Unlock" items.
     """
     display_name = "Kong Letter % requirement for Platform Panic access"
 
@@ -557,6 +567,7 @@ class JungleKLevelAccess(Range):
 class BeachKLevelAccess(Range):
     """
     Sets the percentage of total Beach Kong Letters needed to gain access to the K Level in the Beach.
+    This option is disregarded if K Level are unlocked with the "Progressive K Level Unlock" items.
     """
     display_name = "Kong Letter % requirement for Tumblin' Temple access"
 
@@ -569,6 +580,7 @@ class BeachKLevelAccess(Range):
 class RuinsKLevelAccess(Range):
     """
     Sets the percentage of total Ruins Kong Letters needed to gain access to the K Level in the Ruins.
+    This option is disregarded if K Level are unlocked with the "Progressive K Level Unlock" items.
     """
     display_name = "Kong Letter % requirement for Shifty Smashers access"
 
@@ -581,6 +593,7 @@ class RuinsKLevelAccess(Range):
 class CaveKLevelAccess(Range):
     """
     Sets the percentage of total Cave Kong Letters needed to gain access to the K Level in the Cave.
+    This option is disregarded if K Level are unlocked with the "Progressive K Level Unlock" items.
     """
     display_name = "Kong Letter % requirement for Jagged Jewels access"
 
@@ -593,6 +606,7 @@ class CaveKLevelAccess(Range):
 class ForestKLevelAccess(Range):
     """
     Sets the percentage of total Forest Kong Letters needed to gain access to the K Level in the Forest.
+    This option is disregarded if K Level are unlocked with the "Progressive K Level Unlock" items.
     """
     display_name = "Kong Letter % requirement for Blast & Bounce access"
 
@@ -605,6 +619,7 @@ class ForestKLevelAccess(Range):
 class CliffKLevelAccess(Range):
     """
     Sets the percentage of total Cliff Kong Letters needed to gain access to the K Level in the Cliff.
+    This option is disregarded if K Level are unlocked with the "Progressive K Level Unlock" items.
     """
     display_name = "Kong Letter % requirement for Perilous Passage access"
 
@@ -617,6 +632,7 @@ class CliffKLevelAccess(Range):
 class FactoryKLevelAccess(Range):
     """
     Sets the percentage of total Factory Kong Letters needed to gain access to the K Level in the Factory.
+    This option is disregarded if K Level are unlocked with the "Progressive K Level Unlock" items.
     """
     display_name = "Kong Letter % requirement for Treacherous Track access"
 
@@ -629,6 +645,7 @@ class FactoryKLevelAccess(Range):
 class VolcanoKLevelAccess(Range):
     """
     Sets the percentage of total Volcano Kong Letters needed to gain access to the K Level in the Volcano.
+    This option is disregarded if K Level are unlocked with the "Progressive K Level Unlock" items.
     """
     display_name = "Kong Letter % requirement for Five Monkey Trial access"
 
