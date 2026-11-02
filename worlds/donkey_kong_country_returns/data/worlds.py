@@ -3,13 +3,14 @@ from .levels import GameLevels
 from .constants import (
     WorldName as Wn,
     WorldIndex as Wi,
+    OverWorldIndex as Owi,
     WorldKey as Wk,
     WorldOrb as Wo
 )
 
 
 class GameWorlds(WorldTypeEnum):
-    JUNGLE = (Wn.JUNGLE, Wi.JUNGLE_WORLD_INDEX, Wk.WORLD_MAP_KEY_JUNGLE, Wo.RARE_ORB_JUNGLE,
+    JUNGLE = (Wn.JUNGLE, Wi.JUNGLE_WORLD_INDEX, Owi.JUNGLE_OVERWORLD_INDEX, Wk.WORLD_MAP_KEY_JUNGLE, Wo.RARE_ORB_JUNGLE,
         {
             GameLevels.JUNGLE_HIJINXS: GameLevels.JUNGLE_HIJINXS,
             GameLevels.KING_OF_CLING: GameLevels.KING_OF_CLING,
@@ -21,7 +22,7 @@ class GameWorlds(WorldTypeEnum):
             GameLevels.MUGLYS_MOUND: GameLevels.MUGLYS_MOUND,
             GameLevels.JUNGLE_SHOP: GameLevels.JUNGLE_SHOP,
         })
-    BEACH = (Wn.BEACH, Wi.BEACH_WORLD_INDEX, Wk.WORLD_MAP_KEY_BEACH, Wo.RARE_ORB_BEACH,
+    BEACH = (Wn.BEACH, Wi.BEACH_WORLD_INDEX, Owi.BEACH_OVERWORLD_INDEX, Wk.WORLD_MAP_KEY_BEACH, Wo.RARE_ORB_BEACH,
         {
             GameLevels.POPPIN_PLANKS: GameLevels.POPPIN_PLANKS,
             GameLevels.SLOPPY_SANDS: GameLevels.SLOPPY_SANDS,
@@ -34,7 +35,7 @@ class GameWorlds(WorldTypeEnum):
             GameLevels.PINCHIN_PIRATES: GameLevels.PINCHIN_PIRATES,
             GameLevels.BEACH_SHOP: GameLevels.BEACH_SHOP,
         })
-    RUINS = (Wn.RUINS, Wi.RUINS_WORLD_INDEX, Wk.WORLD_MAP_KEY_RUINS, Wo.RARE_ORB_RUINS,
+    RUINS = (Wn.RUINS, Wi.RUINS_WORLD_INDEX, Owi.RUINS_OVERWORLD_INDEX, Wk.WORLD_MAP_KEY_RUINS, Wo.RARE_ORB_RUINS,
         {
             GameLevels.WONKY_WATERWAY: GameLevels.WONKY_WATERWAY,
             GameLevels.BUTTON_BASH: GameLevels.BUTTON_BASH,
@@ -46,7 +47,7 @@ class GameWorlds(WorldTypeEnum):
             GameLevels.RUINED_ROOST: GameLevels.RUINED_ROOST,
             GameLevels.RUINS_SHOP: GameLevels.RUINS_SHOP,
         })
-    CAVE = (Wn.CAVE, Wi.CAVE_WORLD_INDEX, Wk.WORLD_MAP_KEY_CAVE, Wo.RARE_ORB_CAVE,
+    CAVE = (Wn.CAVE, Wi.CAVE_WORLD_INDEX, Owi.CAVE_OVERWORLD_INDEX, Wk.WORLD_MAP_KEY_CAVE, Wo.RARE_ORB_CAVE,
         {
             GameLevels.RICKETY_RAILS: GameLevels.RICKETY_RAILS,
             GameLevels.GRIP_N_TRIP: GameLevels.GRIP_N_TRIP,
@@ -57,7 +58,7 @@ class GameWorlds(WorldTypeEnum):
             GameLevels.THE_MOLE_TRAIN: GameLevels.THE_MOLE_TRAIN,
             GameLevels.CAVE_SHOP: GameLevels.CAVE_SHOP,
         })
-    FOREST = (Wn.FOREST, Wi.FOREST_WORLD_INDEX, Wk.WORLD_MAP_KEY_FOREST, Wo.RARE_ORB_FOREST,
+    FOREST = (Wn.FOREST, Wi.FOREST_WORLD_INDEX, Owi.FOREST_OVERWORLD_INDEX, Wk.WORLD_MAP_KEY_FOREST, Wo.RARE_ORB_FOREST,
         {
             GameLevels.VINE_VALLEY: GameLevels.VINE_VALLEY,
             GameLevels.CLINGY_SWINGY: GameLevels.CLINGY_SWINGY,
@@ -71,7 +72,7 @@ class GameWorlds(WorldTypeEnum):
             GameLevels.MANGORUBY_RUN: GameLevels.MANGORUBY_RUN,
             GameLevels.FOREST_SHOP: GameLevels.FOREST_SHOP,
         })
-    CLIFF = (Wn.CLIFF, Wi.CLIFF_WORLD_INDEX, Wk.WORLD_MAP_KEY_CLIFF, Wo.RARE_ORB_CLIFF,
+    CLIFF = (Wn.CLIFF, Wi.CLIFF_WORLD_INDEX, Owi.CLIFF_OVERWORLD_INDEX, Wk.WORLD_MAP_KEY_CLIFF, Wo.RARE_ORB_CLIFF,
         {
             GameLevels.STICKY_SITUATION: GameLevels.STICKY_SITUATION,
             GameLevels.PREHISTORIC_PATH: GameLevels.PREHISTORIC_PATH,
@@ -85,7 +86,7 @@ class GameWorlds(WorldTypeEnum):
             GameLevels.THUGLYS_HIGHRISE: GameLevels.THUGLYS_HIGHRISE,
             GameLevels.CLIFF_SHOP: GameLevels.CLIFF_SHOP,
         })
-    FACTORY = (Wn.FACTORY, Wi.FACTORY_WORLD_INDEX, Wk.WORLD_MAP_KEY_FACTORY, Wo.RARE_ORB_FACTORY,
+    FACTORY = (Wn.FACTORY, Wi.FACTORY_WORLD_INDEX, Owi.FACTORY_OVERWORLD_INDEX, Wk.WORLD_MAP_KEY_FACTORY, Wo.RARE_ORB_FACTORY,
         {
             GameLevels.FOGGY_FUMES: GameLevels.FOGGY_FUMES,
             GameLevels.SLAMMIN_STEEL: GameLevels.SLAMMIN_STEEL,
@@ -99,7 +100,7 @@ class GameWorlds(WorldTypeEnum):
             GameLevels.FEATHER_FIEND: GameLevels.FEATHER_FIEND,
             GameLevels.FACTORY_SHOP: GameLevels.FACTORY_SHOP,
         })
-    VOLCANO = (Wn.VOLCANO, Wi.VOLCANO_WORLD_INDEX, Wk.WORLD_MAP_KEY_VOLCANO, Wo.RARE_ORB_VOLCANO,
+    VOLCANO = (Wn.VOLCANO, Wi.VOLCANO_WORLD_INDEX, Owi.VOLCANO_OVERWORLD_INDEX, Wk.WORLD_MAP_KEY_VOLCANO, Wo.RARE_ORB_VOLCANO,
         {
             GameLevels.FURIOUS_FIRE: GameLevels.FURIOUS_FIRE,
             GameLevels.HOT_ROCKET: GameLevels.HOT_ROCKET,
@@ -112,7 +113,7 @@ class GameWorlds(WorldTypeEnum):
             GameLevels.TIKI_TONG_TERROR: GameLevels.TIKI_TONG_TERROR,
             GameLevels.VOLCANO_SHOP: GameLevels.VOLCANO_SHOP,
         })
-    GOLDEN_TEMPLE_WORLD = (Wn.GOLDEN_TEMPLE_WORLD, Wi.GOLDEN_TEMPLE_WORLD_INDEX, None, None,
+    GOLDEN_TEMPLE_WORLD = (Wn.GOLDEN_TEMPLE_WORLD, Wi.GOLDEN_TEMPLE_WORLD_INDEX, Owi.GOLDEN_TEMPLE_OVERWORLD_INDEX, None, None,
         {
             GameLevels.GOLDEN_TEMPLE: GameLevels.GOLDEN_TEMPLE,
         })
