@@ -88,7 +88,7 @@ class DKCRContext(CommonContext):
             slot_data = args.get("slot_data")
             if slot_data is None:
                 return
-            self.goal_option = slot_data.get("goal")
+            self.goal_option = slot_data.get("goal_option")
             self.golden_temple = slot_data.get("golden_temple")
             self.rare_orbs_option = slot_data.get("rare_orbs")
             self.smog_clear_option = slot_data.get("smog_clear")
