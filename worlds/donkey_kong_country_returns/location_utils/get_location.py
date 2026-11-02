@@ -4,13 +4,14 @@ from typing import TYPE_CHECKING, Mapping
 from .generate_locations import generate_world_location, generate_level_location
 from ..data.levels import GameLevels
 from ..data.worlds import GameWorlds
-from ..data.constants import LevelIndex
 
 if TYPE_CHECKING:
     from .. import DKCRWorld
 
 def get_locations_for_world(dkcr_world: DKCRWorld, world: GameWorlds) -> Mapping[str, int | None]:
     locations_for_region: dict[str, int | None] = {}
+    if world.world_index == GameWorlds.GOLDEN_TEMPLE_WORLD.world_index:
+        return locations_for_region
     locations_for_world = generate_world_location(world)
     for location_name, code in locations_for_world.items():
         if "Puzzle Bundle" in location_name and dkcr_world.options.world_puzzle_piece_bundle == 0:
@@ -40,7 +41,9 @@ def get_locations_for_world(dkcr_world: DKCRWorld, world: GameWorlds) -> Mapping
 
 def get_locations_for_level(dkcr_world: DKCRWorld, world: GameWorlds, level: GameLevels) -> Mapping[str, int | None]:
     locations_for_region: dict[str, int | None] = {}
-    if level.level_index == LevelIndex.K_LEVEL_INDEX and dkcr_world.options.k_level.value == 0:
+    if level.level_index == GameLevels.PLATFORM_PANIC.level_index and dkcr_world.options.k_level.value == 0:
+        return locations_for_region
+    if world.world_index == GameWorlds.GOLDEN_TEMPLE_WORLD.world_index and dkcr_world.options.golden_temple.value == 0:
         return locations_for_region
     locations_for_level = generate_level_location(world, level)
     for location_name, code in locations_for_level.items():
@@ -58,7 +61,7 @@ def get_locations_for_level(dkcr_world: DKCRWorld, world: GameWorlds, level: Gam
                 continue
         elif "(Mirror)" in location_name and "Mirror Mode" not in dkcr_world.selected_clear_types:
             continue
-        elif "Cleared" in location_name and "Normal" not in dkcr_world.selected_clear_types and level.level_index != LevelIndex.BOSS_LEVEL_INDEX:
+        elif "Cleared" in location_name and "Normal" not in dkcr_world.selected_clear_types and level.level_index != GameLevels.MUGLYS_MOUND.level_index:
             continue
         elif "Kong Letter" in location_name and dkcr_world.options.kong_letter.value == 0:
             continue
