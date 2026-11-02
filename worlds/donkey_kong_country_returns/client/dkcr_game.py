@@ -144,9 +144,9 @@ class DKCRGame:
         """
         Returns Level Data class for the level passed in
         """
-        if not world:
+        if world is None:
             world = self.get_current_world()
-        if not level:
+        if level is None:
             level = self.get_current_level()
 
         offset = GameWorlds.get_level_offset_from_world_and_level_index(world, level)
