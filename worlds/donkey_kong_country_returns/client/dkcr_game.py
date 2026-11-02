@@ -7,6 +7,7 @@ from ..data.constants.addresses.custom import CustomAddresses
 from ..data.constants.game_states import State
 from ..data.items import GameItems
 from ..data.worlds import GameWorlds
+from ..data.levels import GameLevels
 
 
 class DKCRGame:
@@ -628,3 +629,24 @@ class DKCRGame:
             locations_to_send.add(base_address + 0x26)
 
         return locations_to_send
+
+    def check_amount_of_k_level_beaten(self) -> int:
+        """Returns amount of beaten K Level."""
+        k_level: dict[GameWorlds, GameLevels] = {
+            GameWorlds.JUNGLE: GameLevels.PLATFORM_PANIC,
+            GameWorlds.BEACH: GameLevels.TUMBLIN_TEMPLE,
+            GameWorlds.RUINS: GameLevels.SHIFTY_SMASHERS,
+            GameWorlds.CAVE: GameLevels.JAGGED_JEWELS,
+            GameWorlds.FOREST: GameLevels.BLAST_N_BOUNCE,
+            GameWorlds.CLIFF: GameLevels.PERILOUS_PASSAGE,
+            GameWorlds.FACTORY: GameLevels.TREACHEROUS_TRACK,
+            GameWorlds.VOLCANO: GameLevels.FIVE_MONKEY_TRIAL,
+        }
+
+        count: int = 0
+
+        for world, level in k_level:
+            if self.get_current_level_data(world, level).level_cleared:
+                count += 1
+
+        return count
