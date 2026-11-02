@@ -1,6 +1,6 @@
 from rule_builder.field_resolvers import FromOption
 from rule_builder.options import OptionFilter
-from rule_builder.rules import Has, True_
+from rule_builder.rules import Has
 from ..data.constants.item_constants import ItemName as In
 from ..option_utils.options import *
 
@@ -52,6 +52,6 @@ beaten_boss_cave = Has("Cave boss beaten")
 beaten_boss_forest = Has("Forest boss beaten")
 beaten_boss_cliff = Has("Cliff boss beaten")
 beaten_boss_factory = Has("Factory boss beaten")
-beaten_boss_volcano = Has("Volcano boss beaten")
+beaten_boss_volcano = Has("Volcano boss beaten", options=[OptionFilter(Goal, 1, operator="ne")], filtered_resolution=True)
 
 can_access_feathery_fiend = Has("Cleared 7-R")
