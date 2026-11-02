@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING
 
 from .boss_rules import can_enter_tiki_tong_terror
 from .world_rules import can_enter_golden_temple
+from .k_level_rules import can_goal_k_level
 
 if TYPE_CHECKING:
     from worlds.donkey_kong_country_returns import DKCRWorld
@@ -14,4 +15,7 @@ def set_completion_condition(dkcr_world: DKCRWorld):
         return
     if dkcr_world.options.goal_option.value == 1:
         dkcr_world.set_completion_rule(can_enter_golden_temple())
+        return
+    if dkcr_world.options.goal_option.value == 2:
+        dkcr_world.set_completion_rule(can_goal_k_level())
         return
