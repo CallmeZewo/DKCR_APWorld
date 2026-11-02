@@ -15,7 +15,7 @@ class Goal(Choice):
 
     option_tiki_tong_terror = 0
     option_golden_temple = 1
-    # option_all_k_level = 2
+    option_all_k_level = 2
     # option_all_bosses = 3
     # option_all_level = 4
     # option_all_kong_letter = 5
@@ -223,7 +223,6 @@ class KLevelRequirement(Range):
     default = 6
 
     display_name = "K Level Requirement for K Level goal"
-    visibility = Visibility.none
 
 class KongLetter(Toggle):
     """
@@ -661,6 +660,7 @@ class DKCROptions(PerGameCommonOptions):
     ground_pound: GroundPound
     level_clear_type: LevelClearType
     k_level: KLevel
+    k_level_requirement: KLevelRequirement
     kong_letter: KongLetter
     puzzle_pieces: PuzzlePieces
     puzzle_piece_amount: PuzzlePieceAmount
@@ -728,6 +728,7 @@ class DKCROptions(PerGameCommonOptions):
             "ground_pound",
             "level_clear_type",
             "k_level",
+            "k_level_requirement",
             "kong_letter",
             "puzzle_pieces",
             "puzzle_piece_amount",
@@ -797,7 +798,7 @@ option_groups = [
     ),
     OptionGroup(
         "K Level access options",
-        [KongLetterUnlockKLevel, KongLetter, KLevel, JungleKongLetterAmount, BeachKongLetterAmount, RuinsKongLetterAmount, CaveKongLetterAmount,
+        [KLevelRequirement, KongLetterUnlockKLevel, KongLetter, KLevel, JungleKongLetterAmount, BeachKongLetterAmount, RuinsKongLetterAmount, CaveKongLetterAmount,
          ForestKongLetterAmount, CliffKongLetterAmount, FactoryKongLetterAmount, VolcanoKongLetterAmount,
          JungleKLevelAccess, BeachKLevelAccess, RuinsKLevelAccess, CaveKLevelAccess, ForestKLevelAccess, CliffKLevelAccess,
          FactoryKLevelAccess, VolcanoKLevelAccess]
@@ -839,6 +840,7 @@ def handle_ut_yamless(dkcr_world, slot_data: dict[str, Any] | None) -> dict[str,
     dkcr_world.options.factory_buttons.value = slot_data["factory_buttons"]
     dkcr_world.ut_level_clear_types = set(slot_data["level_clear_type_resolved"])
     dkcr_world.options.k_level.value = slot_data["k_level"]
+    dkcr_world.options.k_level_requirement.value = slot_data["k_level_requirement"]
     dkcr_world.options.kong_letter.value = slot_data["kong_letter"]
     dkcr_world.options.puzzle_pieces.value = slot_data["puzzle_pieces"]
     dkcr_world.options.puzzle_piece_amount.value = slot_data["puzzle_piece_amount"]
