@@ -19,6 +19,7 @@ class DKCRContext(CommonContext):
         self.last_received_item_index: int = 0
 
         self.goal_option: int = 0
+        self.golden_temple: int = 0
         self.rare_orbs_option: int = 0
         self.smog_clear_option: int = 0
         self.lift_off_launch_option: int = 0
