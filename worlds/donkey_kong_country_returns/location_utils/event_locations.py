@@ -63,3 +63,51 @@ def create_events(dkcr_world: DKCRWorld):
         location_type=DKCRLocation,
         item_type=DKCRItem
     )
+    dkcr_world.get_region(Ln.PLATFORM_PANIC).add_event(
+        location_name=f"{Ln.PLATFORM_PANIC} event",
+        item_name="K Level beaten",
+        location_type=DKCRLocation,
+        item_type=DKCRItem
+    )
+    dkcr_world.get_region(Ln.TUMBLIN_TEMPLE).add_event(
+        location_name=f"{Ln.TUMBLIN_TEMPLE} event",
+        item_name="K Level beaten",
+        location_type=DKCRLocation,
+        item_type=DKCRItem
+    )
+    dkcr_world.get_region(Ln.SHIFTY_SMASHERS).add_event(
+        location_name=f"{Ln.SHIFTY_SMASHERS} event",
+        item_name="K Level beaten",
+        location_type=DKCRLocation,
+        item_type=DKCRItem
+    )
+    dkcr_world.get_region(Ln.JAGGED_JEWELS).add_event(
+        location_name=f"{Ln.JAGGED_JEWELS} event",
+        item_name="K Level beaten",
+        location_type=DKCRLocation,
+        item_type=DKCRItem
+    )
+    dkcr_world.get_region(Ln.BLAST_N_BOUNCE).add_event(
+        location_name=f"{Ln.BLAST_N_BOUNCE} event",
+        item_name="K Level beaten",
+        location_type=DKCRLocation,
+        item_type=DKCRItem
+    )
+    dkcr_world.get_region(Ln.PERILOUS_PASSAGE).add_event(
+        location_name=f"{Ln.PERILOUS_PASSAGE} event",
+        item_name="K Level beaten",
+        location_type=DKCRLocation,
+        item_type=DKCRItem
+    )
+    dkcr_world.get_region(Ln.TREACHEROUS_TRACK).add_event(
+        location_name=f"{Ln.TREACHEROUS_TRACK} event",
+        item_name="K Level beaten",
+        location_type=DKCRLocation,
+        item_type=DKCRItem
+    )
+    dkcr_world.get_region(Ln.FIVE_MONKEY_TRIAL).add_event(
+        location_name=f"{Ln.FIVE_MONKEY_TRIAL} event",
+        item_name="K Level beaten",
+        location_type=DKCRLocation,
+        item_type=DKCRItem
+    )
