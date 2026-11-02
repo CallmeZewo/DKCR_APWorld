@@ -15,7 +15,7 @@ def generate_all_regions(dkcr_world: DKCRWorld):
             continue
         regions.append(create_region(world.display_name, dkcr_world))
         for level in world.level_list:
-            if level.level_index == Li.K_LEVEL_INDEX and dkcr_world.options.k_level.value == 0:
+            if level.level_index == Li.K_LEVEL_INDEX and not (dkcr_world.options.goal_option.value == 2 or dkcr_world.options.k_level.value == 1):
                 continue
             regions.append(create_region(level.display_name, dkcr_world))
 
