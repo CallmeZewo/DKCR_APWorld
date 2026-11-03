@@ -243,8 +243,8 @@ class PuzzlePieceAmount(Range):
     """
     display_name = "Total Puzzle Piece amount in generation"
     range_start = 0
-    range_end = 350
-    default = 300
+    range_end = 300
+    default = 250
 
 class PuzzlePiecesUnlockBosses(Toggle):
     """
@@ -384,7 +384,7 @@ class JungleBossAccess(Range):
     display_name = "Puzzle Piece % requirement for Mugly's Mound"
 
     range_start = 0
-    range_end = 100
+    range_end = 10
 
     default = 5
 
@@ -397,7 +397,7 @@ class BeachBossAccess(Range):
     display_name = "Puzzle Piece % requirement for Pinchin' Pirates"
 
     range_start = 0
-    range_end = 100
+    range_end = 25
 
     default = 10
 
@@ -410,7 +410,7 @@ class RuinsBossAccess(Range):
     display_name = "Puzzle Piece % requirement for Ruined Roost"
 
     range_start = 0
-    range_end = 100
+    range_end = 35
 
     default = 20
 
@@ -423,9 +423,9 @@ class CaveBossAccess(Range):
     display_name = "Puzzle Piece % requirement for The Mole Train"
 
     range_start = 0
-    range_end = 100
+    range_end =45
 
-    default = 35
+    default = 48
 
 
 class ForestBossAccess(Range):
@@ -436,7 +436,7 @@ class ForestBossAccess(Range):
     display_name = "Puzzle Piece % requirement for Mangoruby Run"
 
     range_start = 0
-    range_end = 100
+    range_end = 60
 
     default = 50
 
@@ -449,7 +449,7 @@ class CliffBossAccess(Range):
     display_name = "Puzzle Piece % requirement for Thugly's Highrise"
 
     range_start = 0
-    range_end = 100
+    range_end = 70
 
     default = 65
 
@@ -462,7 +462,7 @@ class FactoryBossAccess(Range):
     display_name = "Puzzle Piece % requirement for Feather Fiend"
 
     range_start = 0
-    range_end = 100
+    range_end = 85
 
     default = 80
 
@@ -477,7 +477,7 @@ class VolcanoBossAccess(Range):
     range_start = 0
     range_end = 100
 
-    default = 95
+    default = 90
 
 class JungleKongLetterAmount(Range):
     """
