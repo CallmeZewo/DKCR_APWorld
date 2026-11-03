@@ -168,7 +168,8 @@ class DKCRGame:
         return LevelData(
             self.dolphin.read_byte(specific_level_data + 0x3e),
             self.dolphin.read_byte(specific_level_data + 0x3d),
-            level == 0
+            level == 0,
+            world == 8 and level == 2
         )
 
     def get_current_level_puzzle_piece_bitfield(self):
