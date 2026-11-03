@@ -16,6 +16,34 @@ def validate_options(dkcr_world: DKCRWorld):
         if "Bronze" or "Silver" or "Gold" or "Shiny Gold" not in dkcr_world.selected_medals:
             raise OptionError(f"The level clear type 'Time Attack' does not work without the 'Time Attack Medal' option.")
 
+    letters_and_pieces_items: int = 0
+
+    if options.puzzle_pieces_unlock_bosses.value == 1:
+        letters_and_pieces_items += options.puzzle_piece_amount.value
+
+    if options.kong_letter_unlock_k_level.value == 1 or options.k_level.value == 1:
+        letters_and_pieces_items += (options.jungle_kong_letter_amount.value +
+            options.beach_kong_letter_amount.value +
+            options.ruins_kong_letter_amount.value +
+            options.cave_kong_letter_amount.value +
+            options.forest_kong_letter_amount.value +
+            options.cliff_kong_letter_amount.value +
+            options.factory_kong_letter_amount.value +
+            options.volcano_kong_letter_amount.value
+        )
+
+    letters_and_pieces_loc: int = 100
+
+    if options.kong_letter.value == 1:
+        letters_and_pieces_loc += (54 * 4)
+
+    if options.puzzle_pieces.value == 1:
+        letters_and_pieces_loc += 371
+
+    if letters_and_pieces_loc < letters_and_pieces_items:
+        raise OptionError(f"Its not recommended to have a big amount of puzzle piece items and or kong letter [k level] items"
+                          f"without a good location amount. Try to enable the kong letter or puzzle piece option for more locations.")
+
     if options.puzzle_pieces.value == 0 and options.kong_letter.value == 0 and options.puzzle_piece_amount > 50 and options.puzzle_pieces_unlock_bosses.value == 1:
         raise OptionError(f"Its not recommended to put more than 50 as the value of 'Puzzle Piece Amount' if both the Puzzle Piece and Kong Letter Locations are turned off while using Puzzle Pieces as the unlock method for Bosses.")
 
