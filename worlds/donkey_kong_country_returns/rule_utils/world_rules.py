@@ -11,5 +11,3 @@ def smog_blocks_factory():
 
 def can_enter_golden_temple():
     return beaten_boss_volcano & Has(ItemName.RARE_ORB.value, count=FromOption(RareOrbs))
-
-can_access_factory = Has("Cleared smog")
