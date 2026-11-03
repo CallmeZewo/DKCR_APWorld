@@ -427,9 +427,9 @@ class CaveBossAccess(Range):
     display_name = "Puzzle Piece % requirement for The Mole Train"
 
     range_start = 0
-    range_end =45
+    range_end = 45
 
-    default = 48
+    default = 40
 
 
 class ForestBossAccess(Range):
