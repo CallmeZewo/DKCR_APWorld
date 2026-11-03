@@ -9,7 +9,11 @@ class Goal(Choice):
     Required end goal to beat the game.
     Tiki Tong Terror: defeat the end boss in 8-B
     Golden Temple: clear the golden temple
-    All K Level: clear every K Level (WIP)
+    All K Level: clear the required amount of K Level
+    All Bosses: access to every world from the start, beat the required amount of bosses (WIP and not implemented yet)
+    All Level: access to every world from the start, beat every needed level at least once (WIP and not implemented yet)
+    All Kong Letter: access to every world from the start, get every kong letter location (WIP and not implemented yet)
+    All Puzzle Pieces: access to every world from the start, get every puzzle piece location (WIP and not implemented yet)
     """
     display_name = "Goal"
 
