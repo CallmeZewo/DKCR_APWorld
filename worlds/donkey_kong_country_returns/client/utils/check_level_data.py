@@ -6,13 +6,15 @@ async def check_level_data(base_location_address: int, level_data: LevelData):
 
     if level_data.level_cleared:
         locations_to_send.add(base_location_address + 0x21)
+        if level_data.is_k_level:
+            locations_to_send.add(base_location_address + 0x31)
+        if level_data.is_gt:
+            locations_to_send.add(base_location_address + 0x51)
     if level_data.mirror_mode_cleared:
         locations_to_send.add(base_location_address + 0x22)
     if level_data.kong_collected:
         locations_to_send.add(base_location_address + 0x1A)
     if level_data.all_puzzle_pieces_collected:
         locations_to_send.add(base_location_address + 0xA)
-    if level_data.is_k_level:
-        locations_to_send.add(base_location_address + 0x31)
 
     return locations_to_send
