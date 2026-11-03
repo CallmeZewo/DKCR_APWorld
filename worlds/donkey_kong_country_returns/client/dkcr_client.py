@@ -507,6 +507,9 @@ class DKCRClient:
                         or self.dkcr.get_boss_unlock() >= 8
                     ):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
+                case GameLevels.VOLCANO_SHOP:
+                    if True:
+                        self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                 case GameLevels.GOLDEN_TEMPLE:
                     if True:
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
