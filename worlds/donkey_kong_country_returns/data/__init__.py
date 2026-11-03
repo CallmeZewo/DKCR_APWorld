@@ -129,7 +129,7 @@ class Medals(Enum):
         return self._value_ + 1
 
 class LevelData:
-    def __init__(self, bitflags: int, medal: int, is_k_level: bool):
+    def __init__(self, bitflags: int, medal: int, is_k_level: bool, is_gt: bool):
         self.level_available = bitflags & 0x80 == 0x80
         self.level_cleared = bitflags & 0x40 == 0x40
         self.flag_to_play_level_clear_animation = bitflags & 0x20 == 0x20
@@ -141,3 +141,4 @@ class LevelData:
         self.medal = Medals(medal)
 
         self.is_k_level = is_k_level
+        self.is_gt = is_gt
