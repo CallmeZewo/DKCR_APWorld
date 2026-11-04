@@ -102,8 +102,9 @@ class DKCRWorld(World):
             "Time Attack": 0,
             "Mirror Mode": 0,
         }
-        for medal in self.selected_medals:
-            medals[medal] = 1
+        if "Time Attack" in self.selected_clear_types:
+            for medal in self.selected_medals:
+                medals[medal] = 1
         slot_data["time_attack_resolved"] = medals
         for clear_type in self.selected_clear_types:
             clear_types[clear_type] = 1
