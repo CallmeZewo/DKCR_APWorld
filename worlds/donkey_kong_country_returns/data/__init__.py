@@ -14,14 +14,14 @@ class LevelTypeEnum(Enum):
                  level_index: int,
                  level_map_index: int,
                  data_offset: int,
-                 pp_amount: int,
+                 pp_list: list[int],
                  has_kong_letters: bool = True
                  ):
         self.display_name = display_name
         self.level_index = level_index
         self.level_map_index = level_map_index
         self.data_offset = data_offset
-        self.pp_amount = pp_amount
+        self.pp_list = pp_list
         self.has_kong_letters = has_kong_letters
         self.connections = []
 
