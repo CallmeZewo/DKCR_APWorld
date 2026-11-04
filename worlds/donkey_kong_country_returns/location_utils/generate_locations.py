@@ -57,12 +57,12 @@ def generate_world_location(world: GameWorlds) -> dict[str, int]:
 def generate_level_location(world: GameWorlds, level: GameLevels) -> dict[str, int]:
     level_location_gen: dict[str, int] = {}
     base_address = get_base_address(level=level, world=world)
-    for i in range(1, level.pp_amount + 1):
+    for i in range(1, len(level.pp_list) + 1):
         level_location_gen[
-            f"{level.display_name} {Ln.PUZZLE_PIECE.value} ({i})"
+            f"{level.display_name} {Ln.PUZZLE_PIECE.value} ({level.pp_list.index(i) + 1})"
         ] = base_address + Pi.PUZZLE_PIECE_BASE + i
 
-    if level.pp_amount != 0:
+    if len(level.pp_list) > 0:
         level_location_gen[
             f"{level.display_name} {Ln.PUZZLE_PIECE.value} Set"
         ] = base_address + Pi.PUZZLE_PIECE_SET
