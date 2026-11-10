@@ -646,8 +646,8 @@ class DKCRGame:
 
         count: int = 0
 
-        for world, level in k_level:
-            if self.get_current_level_data(world, level).level_cleared:
+        for world, level in k_level.items():
+            if self.get_current_level_data(world.world_index, level.level_index).level_cleared:
                 count += 1
 
         return count
