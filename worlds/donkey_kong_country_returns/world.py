@@ -67,11 +67,11 @@ class DKCRWorld(World):
         return slot_data
 
     def generate_early(self) -> None:
+        set_pp_percentage(self)
+        set_letter_percentage(self)
         dkcr_options.handle_ut_yamless(self, None)
         self.selected_medals: set = resolve_medals(self)
         self.selected_clear_types: set = resolve_level_clear_types(self)
-        set_pp_percentage(self)
-        set_letter_percentage(self)
         validate_options(self)
 
     def create_regions(self) -> None:
