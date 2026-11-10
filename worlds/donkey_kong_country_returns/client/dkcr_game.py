@@ -599,10 +599,10 @@ class DKCRGame:
             if level.level_index == 0xA: # Skip 7-R
                 continue
             level_clear_mirror_checker.append(level_data.mirror_mode_cleared)
-            level_clear_time_attack_checker_bronze.append(level_data.medal.value >= Medals.Bronze.value != Medals.Empty.value)
-            level_clear_time_attack_checker_silver.append(level_data.medal.value >= Medals.Silver.value != Medals.Empty.value)
-            level_clear_time_attack_checker_gold.append(level_data.medal.value >= Medals.Gold.value != Medals.Empty.value)
-            level_clear_time_attack_checker_shiny_gold.append(level_data.medal.value >= Medals.Shiny_Gold.value != Medals.Empty.value)
+            level_clear_time_attack_checker_bronze.append(Medals.Bronze.value <= level_data.medal.value < Medals.Empty.value)
+            level_clear_time_attack_checker_silver.append(Medals.Silver.value <= level_data.medal.value < Medals.Empty.value)
+            level_clear_time_attack_checker_gold.append(Medals.Gold.value <= level_data.medal.value < Medals.Empty.value)
+            level_clear_time_attack_checker_shiny_gold.append(Medals.Shiny_Gold.value <= level_data.medal.value < Medals.Empty.value)
             if level.level_index == 0x1: # Skip Levels without puzzle pieces and kong letters
                 continue
             puzzle_piece_set_checker.append(level_data.all_puzzle_pieces_collected)
