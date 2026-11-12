@@ -395,7 +395,7 @@ class DKCRClient:
                     if True:
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                 case GameLevels.PRECARIOUS_PLATEAU:
-                    if self.dkcr.has_key(GameWorlds.FOREST):
+                    if self.dkcr.has_key(GameWorlds.CLIFF):
                         self.dkcr.dolphin.read_set_bit_in_bytes(CustomAddresses.LEVEL_CONNECTION, 10, level.level_map_index)
                     if self.ctx.precarious_plateau_key_option == 0:
                         if self.dkcr.read_keys(GameWorlds.CLIFF):
